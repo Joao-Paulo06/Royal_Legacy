@@ -1,0 +1,90 @@
+[gd_scene load_steps=6 format=3 uid="uid://cfrx3e3sbyo4a"]
+
+[ext_resource type="FontFile" uid="uid://d3wyk170ulhtp" path="res://fontes/LibreBaskerville-Bold.ttf" id="1_6jyd1"]
+[ext_resource type="Texture2D" uid="uid://cnd3lbdp4a4af" path="res://temas/tema_6.jpg" id="1_yd14j"]
+[ext_resource type="FontFile" uid="uid://cwjl7kg0e40pe" path="res://fontes/LibreBaskerville-Regular.ttf" id="2_uhy6f"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_psh2s"]
+font = ExtResource("1_6jyd1")
+font_size = 80
+font_color = Color(0.964706, 0.721569, 0.34902, 1)
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 10
+shadow_color = Color(0.556863, 0.501961, 0.705882, 1)
+shadow_offset = Vector2(5, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xn66q"]
+bg_color = Color(0.980392, 0.854902, 0.654902, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+shadow_color = Color(0, 0, 0, 0.396078)
+shadow_size = 10
+shadow_offset = Vector2(10, 10)
+
+[node name="cen_menu_principal" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_yd14j")
+expand_mode = 2
+
+[node name="ctn_menu_principal" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 25
+
+[node name="lbl_titulo" type="Label" parent="ctn_menu_principal"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "  Royal     Legacy"
+label_settings = SubResource("LabelSettings_psh2s")
+
+[node name="ctn_botoes" type="PanelContainer" parent="ctn_menu_principal"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_xn66q")
+
+[node name="v_ctn_botoes" type="VBoxContainer" parent="ctn_menu_principal/ctn_botoes"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="btn_jogar" type="Button" parent="ctn_menu_principal/ctn_botoes/v_ctn_botoes"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_uhy6f")
+theme_override_font_sizes/font_size = 30
+text = "Jogar"
+
+[node name="btn_opcoes" type="Button" parent="ctn_menu_principal/ctn_botoes/v_ctn_botoes"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_uhy6f")
+theme_override_font_sizes/font_size = 30
+text = "Opções"
+
+[node name="btn_sair" type="Button" parent="ctn_menu_principal/ctn_botoes/v_ctn_botoes"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_uhy6f")
+theme_override_font_sizes/font_size = 30
+text = "Sair"
