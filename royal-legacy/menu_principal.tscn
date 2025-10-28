@@ -15,7 +15,7 @@ shadow_color = Color(0.556863, 0.501961, 0.705882, 1)
 shadow_offset = Vector2(5, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xn66q"]
-bg_color = Color(0.31548333, 0.25811824, 0.14926046, 1)
+bg_color = Color(0.33983332, 2.4065375e-08, 0.1854111, 1)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
@@ -26,10 +26,10 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
-expand_margin_left = 10.0
-expand_margin_top = 10.0
-expand_margin_right = 10.0
-expand_margin_bottom = 10.0
+expand_margin_left = 32.0
+expand_margin_top = 32.0
+expand_margin_right = 32.0
+expand_margin_bottom = 32.0
 shadow_color = Color(0, 0, 0, 0.396078)
 shadow_size = 10
 shadow_offset = Vector2(10, 10)
@@ -67,15 +67,13 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_xn66q")
 
 [node name="v_ctn_botoes" type="VBoxContainer" parent="ctn_menu_principal/ctn_botoes"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
 theme_override_constants/separation = 20
 
 [node name="btn_jogar" type="Button" parent="ctn_menu_principal/ctn_botoes/v_ctn_botoes"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_uhy6f")
 theme_override_font_sizes/font_size = 30
-text = "Jogar"
+text = "        Jogar        "
 
 [node name="btn_opcoes" type="Button" parent="ctn_menu_principal/ctn_botoes/v_ctn_botoes"]
 layout_mode = 2
