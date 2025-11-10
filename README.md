@@ -110,7 +110,7 @@ Este projeto foi desenvolvido por:
 *   Davi Brito
 *   João Paulo Moreira
 *   Klayvert
-*   Thierry Feitosa
+*   Thierry Feitoza
 
 ---
 
