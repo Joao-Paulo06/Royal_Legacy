@@ -1,15 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://cfrx3e3sbyo4a"]
+[gd_scene load_steps=6 format=3 uid="uid://b0mlqk52vlpxk"]
 
-[ext_resource type="FontFile" uid="uid://d3wyk170ulhtp" path="res://fontes/LibreBaskerville-Bold.ttf" id="1_6jyd1"]
-[ext_resource type="Texture2D" uid="uid://cnd3lbdp4a4af" path="res://temas/tema_6.jpg" id="1_yd14j"]
-[ext_resource type="FontFile" uid="uid://cwjl7kg0e40pe" path="res://fontes/LibreBaskerville-Regular.ttf" id="2_uhy6f"]
+[ext_resource type="Texture2D" uid="uid://djhhgqj4qd32d" path="res://temas/tema_10.jpg" id="1_eju38"]
+[ext_resource type="FontFile" uid="uid://d3wyk170ulhtp" path="res://fontes/LibreBaskerville-Bold.ttf" id="2_60l56"]
+[ext_resource type="FontFile" uid="uid://cwjl7kg0e40pe" path="res://fontes/LibreBaskerville-Regular.ttf" id="3_nto3o"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_psh2s"]
-font = ExtResource("1_6jyd1")
+font = ExtResource("2_60l56")
 font_size = 80
 font_color = Color(0, 0, 0, 1)
 shadow_size = 5
-shadow_color = Color(0.96862745, 0.6313726, 0, 1)
+shadow_color = Color(0.7607843, 0.3372549, 0.1882353, 1)
 shadow_offset = Vector2(5, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xn66q"]
@@ -32,16 +32,16 @@ shadow_color = Color(0, 0, 0, 0.396078)
 shadow_size = 10
 shadow_offset = Vector2(10, 10)
 
-[node name="cen_menu_principal" type="TextureRect"]
+[node name="cen_menu_opcoes" type="TextureRect"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_yd14j")
+texture = ExtResource("1_eju38")
 expand_mode = 2
 
-[node name="marg_ctn_menu_principal" type="MarginContainer" parent="."]
+[node name="marg_ctn_menu_opcoes" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -50,37 +50,37 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_top = 25
 
-[node name="lbl_titulo" type="Label" parent="marg_ctn_menu_principal"]
+[node name="lbl_titulo" type="Label" parent="marg_ctn_menu_opcoes"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-text = "  Royal     Legacy"
+text = "Opções"
 label_settings = SubResource("LabelSettings_psh2s")
 
-[node name="pnl_ctn_botoes" type="PanelContainer" parent="marg_ctn_menu_principal"]
+[node name="pnl_ctn_botoes" type="PanelContainer" parent="marg_ctn_menu_opcoes"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_xn66q")
 
-[node name="vert_ctn_botoes" type="VBoxContainer" parent="marg_ctn_menu_principal/pnl_ctn_botoes"]
+[node name="vert_ctn_botoes" type="VBoxContainer" parent="marg_ctn_menu_opcoes/pnl_ctn_botoes"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="btn_novo_jogo" type="Button" parent="marg_ctn_menu_principal/pnl_ctn_botoes/vert_ctn_botoes"]
+[node name="btn_sons" type="Button" parent="marg_ctn_menu_opcoes/pnl_ctn_botoes/vert_ctn_botoes"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_uhy6f")
+theme_override_fonts/font = ExtResource("3_nto3o")
 theme_override_font_sizes/font_size = 30
-text = "       Novo Jogo        "
+text = "               Sons               "
 
-[node name="btn_opcoes" type="Button" parent="marg_ctn_menu_principal/pnl_ctn_botoes/vert_ctn_botoes"]
+[node name="btn_temas" type="Button" parent="marg_ctn_menu_opcoes/pnl_ctn_botoes/vert_ctn_botoes"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_uhy6f")
+theme_override_fonts/font = ExtResource("3_nto3o")
 theme_override_font_sizes/font_size = 30
-text = "Opções"
+text = "Temas"
 
-[node name="btn_sair" type="Button" parent="marg_ctn_menu_principal/pnl_ctn_botoes/vert_ctn_botoes"]
+[node name="btn_creditos" type="Button" parent="marg_ctn_menu_opcoes/pnl_ctn_botoes/vert_ctn_botoes"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_uhy6f")
+theme_override_fonts/font = ExtResource("3_nto3o")
 theme_override_font_sizes/font_size = 30
-text = "Sair"
+text = "Créditos"

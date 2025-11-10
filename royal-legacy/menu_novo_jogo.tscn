@@ -1,0 +1,86 @@
+[gd_scene load_steps=6 format=3 uid="uid://cce28b022shju"]
+
+[ext_resource type="Texture2D" uid="uid://bsmemqsbqydas" path="res://temas/tema_8.jpg" id="1_rqoo8"]
+[ext_resource type="FontFile" uid="uid://d3wyk170ulhtp" path="res://fontes/LibreBaskerville-Bold.ttf" id="2_ree10"]
+[ext_resource type="FontFile" uid="uid://cwjl7kg0e40pe" path="res://fontes/LibreBaskerville-Regular.ttf" id="3_gfsje"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_psh2s"]
+font = ExtResource("2_ree10")
+font_size = 80
+font_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0.21568628, 0.70980394, 0.87058824, 1)
+shadow_offset = Vector2(5, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xn66q"]
+bg_color = Color(0.13333334, 0.15294118, 0.31764707, 0.39215687)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 32.0
+expand_margin_top = 32.0
+expand_margin_right = 32.0
+expand_margin_bottom = 32.0
+shadow_color = Color(0, 0, 0, 0.396078)
+shadow_size = 10
+shadow_offset = Vector2(10, 10)
+
+[node name="cen_menu_novo_jogo" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_rqoo8")
+expand_mode = 2
+
+[node name="marg_ctn_menu_novo_jogo" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 25
+
+[node name="lbl_titulo" type="Label" parent="marg_ctn_menu_novo_jogo"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "Novo Jogo  "
+label_settings = SubResource("LabelSettings_psh2s")
+
+[node name="pnl_ctn_botoes" type="PanelContainer" parent="marg_ctn_menu_novo_jogo"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_xn66q")
+
+[node name="vert_ctn_botoes" type="VBoxContainer" parent="marg_ctn_menu_novo_jogo/pnl_ctn_botoes"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="btn_p_v_e" type="Button" parent="marg_ctn_menu_novo_jogo/pnl_ctn_botoes/vert_ctn_botoes"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_gfsje")
+theme_override_font_sizes/font_size = 30
+text = "              PvE              "
+
+[node name="btn_p_v_p" type="Button" parent="marg_ctn_menu_novo_jogo/pnl_ctn_botoes/vert_ctn_botoes"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_gfsje")
+theme_override_font_sizes/font_size = 30
+text = "PvP Local"
+
+[node name="btn_p_v_p_online" type="Button" parent="marg_ctn_menu_novo_jogo/pnl_ctn_botoes/vert_ctn_botoes"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_gfsje")
+theme_override_font_sizes/font_size = 30
+text = "PvP Online"
