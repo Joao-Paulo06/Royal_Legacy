@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cce28b022shju"]
 
 [ext_resource type="Texture2D" uid="uid://bsmemqsbqydas" path="res://temas/tema_8.jpg" id="1_rqoo8"]
-[ext_resource type="Script" uid="uid://dwec0mm5hfw0j" path="res://menu_novo_jogo.gd" id="2_0i6gi"]
+[ext_resource type="Script" uid="uid://dwec0mm5hfw0j" path="res://scripts/menu_novo_jogo.gd" id="2_0i6gi"]
 [ext_resource type="FontFile" uid="uid://d3wyk170ulhtp" path="res://fontes/LibreBaskerville-Bold.ttf" id="2_ree10"]
 [ext_resource type="FontFile" uid="uid://cwjl7kg0e40pe" path="res://fontes/LibreBaskerville-Regular.ttf" id="3_gfsje"]
 

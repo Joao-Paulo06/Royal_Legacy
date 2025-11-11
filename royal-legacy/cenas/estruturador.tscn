@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://uc1uv57stt28"]
 
-[ext_resource type="Script" uid="uid://dumuijyxx18jm" path="res://estruturador.gd" id="1_s4gh1"]
-[ext_resource type="PackedScene" uid="uid://b0mlqk52vlpxk" path="res://menu_opcoes.tscn" id="2_jqohn"]
-[ext_resource type="PackedScene" uid="uid://cce28b022shju" path="res://menu_novo_jogo.tscn" id="3_iy0r7"]
-[ext_resource type="PackedScene" uid="uid://cfrx3e3sbyo4a" path="res://menu_principal.tscn" id="4_ehvh2"]
+[ext_resource type="Script" uid="uid://dumuijyxx18jm" path="res://scripts/estruturador.gd" id="1_s4gh1"]
+[ext_resource type="PackedScene" uid="uid://b0mlqk52vlpxk" path="res://cenas/menu_opcoes.tscn" id="2_jqohn"]
+[ext_resource type="PackedScene" uid="uid://cce28b022shju" path="res://cenas/menu_novo_jogo.tscn" id="3_iy0r7"]
+[ext_resource type="PackedScene" uid="uid://cfrx3e3sbyo4a" path="res://cenas/menu_principal.tscn" id="4_ehvh2"]
 
 [node name="estruturador" type="Node"]
 script = ExtResource("1_s4gh1")

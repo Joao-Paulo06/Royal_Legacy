@@ -2,7 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://d3wyk170ulhtp" path="res://fontes/LibreBaskerville-Bold.ttf" id="1_6jyd1"]
 [ext_resource type="Texture2D" uid="uid://cnd3lbdp4a4af" path="res://temas/tema_6.jpg" id="1_yd14j"]
-[ext_resource type="Script" uid="uid://d3stdyasrjvbn" path="res://menu_principal.gd" id="2_ns3he"]
+[ext_resource type="Script" uid="uid://d3stdyasrjvbn" path="res://scripts/menu_principal.gd" id="2_ns3he"]
 [ext_resource type="FontFile" uid="uid://cwjl7kg0e40pe" path="res://fontes/LibreBaskerville-Regular.ttf" id="2_uhy6f"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_psh2s"]
