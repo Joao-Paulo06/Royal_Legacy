@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b0mlqk52vlpxk"]
+[gd_scene load_steps=7 format=3 uid="uid://b0mlqk52vlpxk"]
 
 [ext_resource type="Texture2D" uid="uid://djhhgqj4qd32d" path="res://temas/tema_10.jpg" id="1_eju38"]
 [ext_resource type="FontFile" uid="uid://d3wyk170ulhtp" path="res://fontes/LibreBaskerville-Bold.ttf" id="2_60l56"]
+[ext_resource type="Script" uid="uid://ly2jsaje63gy" path="res://menu_opcoes.gd" id="2_nto3o"]
 [ext_resource type="FontFile" uid="uid://cwjl7kg0e40pe" path="res://fontes/LibreBaskerville-Regular.ttf" id="3_nto3o"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_psh2s"]
@@ -40,6 +41,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_eju38")
 expand_mode = 2
+script = ExtResource("2_nto3o")
 
 [node name="marg_ctn_menu_opcoes" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -48,7 +50,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
 
 [node name="lbl_titulo" type="Label" parent="marg_ctn_menu_opcoes"]
 layout_mode = 2
@@ -56,6 +60,14 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "Opções"
 label_settings = SubResource("LabelSettings_psh2s")
+
+[node name="btn_retornar" type="Button" parent="marg_ctn_menu_opcoes"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_60l56")
+theme_override_font_sizes/font_size = 30
+text = "   <   "
 
 [node name="pnl_ctn_botoes" type="PanelContainer" parent="marg_ctn_menu_opcoes"]
 layout_mode = 2

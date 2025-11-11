@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://uc1uv57stt28"]
+
+[ext_resource type="Script" uid="uid://dumuijyxx18jm" path="res://estruturador.gd" id="1_s4gh1"]
+[ext_resource type="PackedScene" uid="uid://b0mlqk52vlpxk" path="res://menu_opcoes.tscn" id="2_jqohn"]
+[ext_resource type="PackedScene" uid="uid://cce28b022shju" path="res://menu_novo_jogo.tscn" id="3_iy0r7"]
+[ext_resource type="PackedScene" uid="uid://cfrx3e3sbyo4a" path="res://menu_principal.tscn" id="4_ehvh2"]
+
+[node name="estruturador" type="Node"]
+script = ExtResource("1_s4gh1")
+
+[node name="cen_menu_opcoes" parent="." instance=ExtResource("2_jqohn")]
+
+[node name="cen_menu_novo_jogo" parent="." instance=ExtResource("3_iy0r7")]
+
+[node name="cen_menu_principal" parent="." instance=ExtResource("4_ehvh2")]
+
+[connection signal="pressed" from="cen_menu_opcoes/marg_ctn_menu_opcoes/btn_retornar" to="." method="_on_btn_retornar_de_opcoes_pressed"]
+[connection signal="pressed" from="cen_menu_opcoes/marg_ctn_menu_opcoes/pnl_ctn_botoes/vert_ctn_botoes/btn_sons" to="." method="_on_btn_sons_pressed"]
+[connection signal="pressed" from="cen_menu_opcoes/marg_ctn_menu_opcoes/pnl_ctn_botoes/vert_ctn_botoes/btn_temas" to="." method="_on_btn_temas_pressed"]
+[connection signal="pressed" from="cen_menu_opcoes/marg_ctn_menu_opcoes/pnl_ctn_botoes/vert_ctn_botoes/btn_creditos" to="." method="_on_btn_creditos_pressed"]
+[connection signal="pressed" from="cen_menu_novo_jogo/marg_ctn_menu_novo_jogo/btn_retornar" to="." method="_on_btn_retornar_de_novo_jogo_pressed"]
+[connection signal="pressed" from="cen_menu_novo_jogo/marg_ctn_menu_novo_jogo/pnl_ctn_botoes/vert_ctn_botoes/btn_p_v_e" to="." method="_on_btn_p_v_e_pressed"]
+[connection signal="pressed" from="cen_menu_novo_jogo/marg_ctn_menu_novo_jogo/pnl_ctn_botoes/vert_ctn_botoes/btn_p_v_p" to="." method="_on_btn_p_v_p_pressed"]
+[connection signal="pressed" from="cen_menu_novo_jogo/marg_ctn_menu_novo_jogo/pnl_ctn_botoes/vert_ctn_botoes/btn_p_v_p_online" to="." method="_on_btn_p_v_p_online_pressed"]
+[connection signal="pressed" from="cen_menu_principal/marg_ctn_menu_principal/pnl_ctn_botoes/vert_ctn_botoes/btn_novo_jogo" to="." method="_on_btn_novo_jogo_pressed"]
+[connection signal="pressed" from="cen_menu_principal/marg_ctn_menu_principal/pnl_ctn_botoes/vert_ctn_botoes/btn_opcoes" to="." method="_on_btn_opcoes_pressed"]
+[connection signal="pressed" from="cen_menu_principal/marg_ctn_menu_principal/pnl_ctn_botoes/vert_ctn_botoes/btn_sair" to="." method="_on_btn_sair_pressed"]
+
+[editable path="cen_menu_opcoes"]
+[editable path="cen_menu_novo_jogo"]
+[editable path="cen_menu_principal"]
