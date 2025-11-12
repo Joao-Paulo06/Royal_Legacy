@@ -18,13 +18,16 @@ script = null
 [node name="cen_menu_principal" parent="." instance=ExtResource("4_ehvh2")]
 script = null
 
+[node name="tabuleiro" parent="." instance=ExtResource("5_bl8ek")]
+position = Vector2(8.568939, 31.449982)
+
+[node name="pecas" parent="tabuleiro" index="0"]
+visible = true
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, 10)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="tabuleiro" parent="." instance=ExtResource("5_bl8ek")]
-position = Vector2(8.568939, 31.449982)
 
 [connection signal="pressed" from="cen_menu_opcoes/marg_ctn_menu_opcoes/btn_retornar" to="." method="_on_btn_retornar_de_opcoes_pressed"]
 [connection signal="pressed" from="cen_menu_opcoes/marg_ctn_menu_opcoes/pnl_ctn_botoes/vert_ctn_botoes/btn_sons" to="." method="_on_btn_sons_pressed"]
@@ -41,3 +44,4 @@ position = Vector2(8.568939, 31.449982)
 [editable path="cen_menu_opcoes"]
 [editable path="cen_menu_novo_jogo"]
 [editable path="cen_menu_principal"]
+[editable path="tabuleiro"]
