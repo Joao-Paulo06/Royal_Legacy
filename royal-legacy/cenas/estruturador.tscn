@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://uc1uv57stt28"]
+[gd_scene load_steps=6 format=3 uid="uid://uc1uv57stt28"]
 
 [ext_resource type="Script" uid="uid://dumuijyxx18jm" path="res://scripts/estruturador.gd" id="1_s4gh1"]
 [ext_resource type="PackedScene" uid="uid://b0mlqk52vlpxk" path="res://cenas/menu_opcoes.tscn" id="2_jqohn"]
 [ext_resource type="PackedScene" uid="uid://cce28b022shju" path="res://cenas/menu_novo_jogo.tscn" id="3_iy0r7"]
 [ext_resource type="PackedScene" uid="uid://cfrx3e3sbyo4a" path="res://cenas/menu_principal.tscn" id="4_ehvh2"]
+[ext_resource type="PackedScene" uid="uid://v4acm1siny8r" path="res://cenas/novo_jogo_pve.tscn" id="5_bl8ek"]
 
 [node name="estruturador" type="Node"]
 script = ExtResource("1_s4gh1")
@@ -16,6 +17,14 @@ script = null
 
 [node name="cen_menu_principal" parent="." instance=ExtResource("4_ehvh2")]
 script = null
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 10)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="tabuleiro" parent="." instance=ExtResource("5_bl8ek")]
+position = Vector2(8.568939, 31.449982)
 
 [connection signal="pressed" from="cen_menu_opcoes/marg_ctn_menu_opcoes/btn_retornar" to="." method="_on_btn_retornar_de_opcoes_pressed"]
 [connection signal="pressed" from="cen_menu_opcoes/marg_ctn_menu_opcoes/pnl_ctn_botoes/vert_ctn_botoes/btn_sons" to="." method="_on_btn_sons_pressed"]

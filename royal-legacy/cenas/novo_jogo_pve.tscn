@@ -8,6 +8,7 @@ texture = ExtResource("1_6wpih")
 script = ExtResource("2_f23y0")
 
 [node name="pecas" type="Node2D" parent="."]
+visible = false
 
 [node name="quadrados" type="Node2D" parent="."]
 
