@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://v4acm1siny8r"]
+
+[ext_resource type="Texture2D" uid="uid://bubrk5yjk5jeb" path="res://assets/versao_1/tabuleiro.png" id="1_6wpih"]
+[ext_resource type="Script" uid="uid://bj7vu5tci1he3" path="res://scripts/base_xadrez.gd" id="2_f23y0"]
+
+[node name="tabuleiro" type="Sprite2D"]
+texture = ExtResource("1_6wpih")
+script = ExtResource("2_f23y0")
+
+[node name="pecas" type="Node2D" parent="."]
+
+[node name="quadrados" type="Node2D" parent="."]
+
+[node name="turno" type="Sprite2D" parent="."]

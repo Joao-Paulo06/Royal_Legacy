@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbsqcbibtf7dl"
-path="res://.godot/imported/white_bishop.png-04be8a84ddc0f0d8dd90729cb618c20e.ctex"
+uid="uid://dkc53donpkwuo"
+path="res://.godot/imported/bispo_branco.png-ff79ad8b3694cbbf1bde6b2804c45c54.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/white_bishop.png"
-dest_files=["res://.godot/imported/white_bishop.png-04be8a84ddc0f0d8dd90729cb618c20e.ctex"]
+source_file="res://assets/versao_2/bispo_branco.png"
+dest_files=["res://.godot/imported/bispo_branco.png-ff79ad8b3694cbbf1bde6b2804c45c54.ctex"]
 
 [params]
 

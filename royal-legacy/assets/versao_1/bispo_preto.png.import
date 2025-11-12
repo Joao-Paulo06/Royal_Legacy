@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rg3qbvpfantq"
-path="res://.godot/imported/sprite_sheet.png-e5166308e47c800b8726fe291577f49d.ctex"
+uid="uid://6ypo2afls06u"
+path="res://.godot/imported/bispo_preto.png-4af59c7ef8f88de208892f5272c53385.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprite_sheet.png"
-dest_files=["res://.godot/imported/sprite_sheet.png-e5166308e47c800b8726fe291577f49d.ctex"]
+source_file="res://assets/versao_1/bispo_preto.png"
+dest_files=["res://.godot/imported/bispo_preto.png-4af59c7ef8f88de208892f5272c53385.ctex"]
 
 [params]
 

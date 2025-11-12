@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctrunynxxlab6"
-path="res://.godot/imported/black_queen.png-b3a23f2261e9a9a70ccab4b6669dff8e.ctex"
+uid="uid://igvsn2sfo5it"
+path="res://.godot/imported/torre_branca.png-66db44c88e39810fc2b0279cc7e3e3aa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/black_queen.png"
-dest_files=["res://.godot/imported/black_queen.png-b3a23f2261e9a9a70ccab4b6669dff8e.ctex"]
+source_file="res://assets/versao_2/torre_branca.png"
+dest_files=["res://.godot/imported/torre_branca.png-66db44c88e39810fc2b0279cc7e3e3aa.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bac8xd0l1s6am"
-path="res://.godot/imported/white_rook.png-81c43f16ec6ed6babd3cb0d404cdc1fc.ctex"
+uid="uid://miyycfpemav1"
+path="res://.godot/imported/movimentacao_peca.png-3fc35e14f3ca255b8d03a0d6864aeb64.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/white_rook.png"
-dest_files=["res://.godot/imported/white_rook.png-81c43f16ec6ed6babd3cb0d404cdc1fc.ctex"]
+source_file="res://assets/versao_1/movimentacao_peca.png"
+dest_files=["res://.godot/imported/movimentacao_peca.png-3fc35e14f3ca255b8d03a0d6864aeb64.ctex"]
 
 [params]
 

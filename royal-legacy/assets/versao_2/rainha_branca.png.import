@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c72m3tevx1qc4"
-path="res://.godot/imported/white_knight.png-404d03d22ab10549c22c094840ed9bd6.ctex"
+uid="uid://bstu2k7boq0d1"
+path="res://.godot/imported/rainha_branca.png-3247b7f1e03446a29d0569bddc4edec4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/white_knight.png"
-dest_files=["res://.godot/imported/white_knight.png-404d03d22ab10549c22c094840ed9bd6.ctex"]
+source_file="res://assets/versao_2/rainha_branca.png"
+dest_files=["res://.godot/imported/rainha_branca.png-3247b7f1e03446a29d0569bddc4edec4.ctex"]
 
 [params]
 

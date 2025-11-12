@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8nquyln3shq5"
-path="res://.godot/imported/black_rook.png-ae06f639629e67dac62ae3b2b38943c9.ctex"
+uid="uid://0q5rfk1gwkau"
+path="res://.godot/imported/turno_branco.png-1a615cd386bf88d3e276fcfc2a4cd7cb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/black_rook.png"
-dest_files=["res://.godot/imported/black_rook.png-ae06f639629e67dac62ae3b2b38943c9.ctex"]
+source_file="res://assets/versao_1/turno_branco.png"
+dest_files=["res://.godot/imported/turno_branco.png-1a615cd386bf88d3e276fcfc2a4cd7cb.ctex"]
 
 [params]
 
