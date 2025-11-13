@@ -3,11 +3,12 @@ extends Node
 @onready var menu_principal = $cen_menu_principal
 @onready var tela_novo_jogo = $cen_menu_novo_jogo
 @onready var tela_opcoes = $cen_menu_opcoes
+@onready var tabuleiro: Sprite2D = $tabuleiro
 
 var telas: Array[Node] = []
 
 func _ready() -> void:
-	telas = [menu_principal, tela_novo_jogo, tela_opcoes]
+	telas = [menu_principal, tela_novo_jogo, tela_opcoes, tabuleiro]
 	mostrar_tela(menu_principal)
 	
 func mostrar_tela(tela: Node) -> void:
@@ -30,8 +31,8 @@ func _on_btn_retornar_de_novo_jogo_pressed() -> void:
 	mostrar_tela(menu_principal)
 
 func _on_btn_p_v_e_pressed() -> void:
-	pass # Replace with function body.
-
+	mostrar_tela(tabuleiro)
+	
 func _on_btn_p_v_p_pressed() -> void:
 	pass # Replace with function body.
 

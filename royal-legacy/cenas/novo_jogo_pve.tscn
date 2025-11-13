@@ -5,6 +5,7 @@
 
 [node name="tabuleiro" type="Sprite2D"]
 texture = ExtResource("1_6wpih")
+centered = false
 script = ExtResource("2_f23y0")
 
 [node name="pecas" type="Node2D" parent="."]
