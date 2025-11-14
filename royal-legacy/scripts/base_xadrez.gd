@@ -112,8 +112,8 @@ func pegar_movimento():
 		2: print("cavalo")
 		3: _movimento = bispo_movimento()
 		4: _movimento = torre_movimento()
-		5: print("rainha")
-		6: print("rei")
+		5: _movimento = rainha_movimento()
+		6: _movimento = rei_movimento()
 		
 	return _movimento
 	
@@ -157,6 +157,44 @@ func bispo_movimento():
 			
 			pos += i
 
+	return _movimento
+
+func rainha_movimento():
+	
+	var _movimento = []
+	var direcao = [Vector2(1, 1), Vector2(1, -1),Vector2(-1, 1),Vector2(-1, -1), 
+					Vector2(1, 0), Vector2(-1, 0),Vector2(0, 1),Vector2(0, -1)]
+	
+	for i in direcao:
+		var pos = Vector2(
+				int(selecionar_peca.x) + i.x,
+				int(selecionar_peca.y) + i.y
+				)
+		while posicao_valida(pos):
+			if posicao_vazia(pos): 
+				_movimento.append(pos)
+			elif pecas_inimigas(pos): 
+				_movimento.append(pos)
+				break
+			else: break
+			
+			pos += i
+
+	return _movimento
+
+func rei_movimento():
+	var _movimento = []
+	var direcao = [Vector2(1, 1), Vector2(1, -1),Vector2(-1, 1),Vector2(-1, -1), 
+					Vector2(1, 0), Vector2(-1, 0),Vector2(0, 1),Vector2(0, -1)]
+	
+	for i in direcao:
+		var pos = selecionar_peca + i
+		
+		if posicao_valida(pos): 
+			if posicao_vazia(pos): _movimento.append(pos)
+			elif pecas_inimigas(pos):
+				_movimento.append(pos)
+				
 	return _movimento
 
 func posicao_valida(pos: Vector2):
