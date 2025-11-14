@@ -39,7 +39,7 @@ func _ready():
 	tabuleiro.append([0, 0, 0, 0, 0, 0, 0, 0])
 	tabuleiro.append([0, 0, 0, 0, 0, 0, 0, 0])
 	tabuleiro.append([0, 0, 0, 0, 0, 0, 0, 0])
-	tabuleiro.append([0, 0, 0, 0, 0, 0, 0, 0])
+	tabuleiro.append([1, 1, 1, 1, 1, 1, 1, 1])
 	tabuleiro.append([4, 2, 3, 5, 6, 3, 2, 4])
 	
 	exibir()
@@ -108,13 +108,53 @@ func mostrar_quadrados():
 func pegar_movimento():
 	var _movimento = []
 	match abs(tabuleiro[selecionar_peca.y][selecionar_peca.x]):
-		1: print("peao")
-		2: print("cavalo")
+		1: _movimento = peao_movimento()
+		2: _movimento = cavalo_movimento()
 		3: _movimento = bispo_movimento()
 		4: _movimento = torre_movimento()
 		5: _movimento = rainha_movimento()
 		6: _movimento = rei_movimento()
 		
+	return _movimento
+	
+func peao_movimento():
+	var _movimento = []
+	var direcao
+	var primeiro_movimento = false
+	
+	if brancas: direcao = Vector2(0, -1)
+	else: direcao = Vector2(0, 1)
+	
+	if brancas && selecionar_peca.y == 6 || !brancas && selecionar_peca.y == 1: primeiro_movimento = true
+	
+	var pos = selecionar_peca + direcao
+	if posicao_valida(pos) && posicao_vazia(pos): _movimento.append(pos)
+	
+	pos = selecionar_peca + Vector2(1, direcao.y)
+	if posicao_valida(pos): 
+		if pecas_inimigas(pos): _movimento.append(pos)
+	pos = selecionar_peca + Vector2(-1, direcao.y)
+	if posicao_valida(pos):
+		if pecas_inimigas(pos): _movimento.append(pos)
+	
+	pos = selecionar_peca + direcao * 2
+	if primeiro_movimento && posicao_vazia(pos) && posicao_vazia(selecionar_peca + direcao): _movimento.append(pos)
+	
+	return _movimento
+	
+func cavalo_movimento():
+	var _movimento = []
+	var direcao = [Vector2(2, 1), Vector2(2, -1),Vector2(-2, 1),Vector2(-2, -1), 
+					Vector2(1, 2), Vector2(1, -2),Vector2(-1, 2), Vector2(-1, -2)]
+	
+	for i in direcao:
+		var pos = selecionar_peca + i
+		
+		if posicao_valida(pos): 
+			if posicao_vazia(pos): _movimento.append(pos)
+			elif pecas_inimigas(pos):
+				_movimento.append(pos)
+				
 	return _movimento
 	
 func torre_movimento():
