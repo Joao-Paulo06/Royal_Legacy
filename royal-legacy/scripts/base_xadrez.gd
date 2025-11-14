@@ -26,7 +26,6 @@ const REI_BRANCO = preload("uid://dpmnx7e7b7ie2")
 const REI_PRETO = preload("uid://cunta3rxnil1q")
 const TORRE_BRANCA = preload("uid://dl0x2md5aj6vp")
 const TORRE_PRETA = preload("uid://bv3u6gc45fxpj")
-
 # Texturas usadas para indicar turno e casas possíveis
 const TURNO_BRANCO = preload("uid://0q5rfk1gwkau")
 const TURNO_PRETO = preload("uid://op3kil5srww7")
@@ -54,7 +53,7 @@ const MOVIMENTACAO_PECA = preload("uid://miyycfpemav1")
 # Números negativos = peças pretas
 var tabuleiro: Array = []
 
-# Whose turn it is — true = brancas, false = pretas
+# Quem joga — true = brancas, false = pretas
 var brancas: bool = true
 
 # Indica se já existe uma peça selecionada para mover
@@ -112,7 +111,8 @@ func _input(event):
 				mostrar_opcoes()
 
 				situacao = true  # Marca como "já existe uma peça selecionada"
-
+			
+			elif situacao: definir_movimento(linha, coluna)
 # ==========================
 # FUNÇÃO: VERIFICA SE CLICOU FORA
 # ==========================
@@ -203,7 +203,15 @@ func pegar_movimento():
 		6: _movimento = rei_movimento()
 	
 	return _movimento
-
+	
+func definir_movimento(linha, coluna):
+	for i in movimento:
+		if i.y == linha && i.x == coluna:
+			tabuleiro[linha][coluna] = tabuleiro[selecionar_peca.y][selecionar_peca.x]
+			tabuleiro[selecionar_peca.y][selecionar_peca.x] = 0
+			brancas = !brancas
+			exibir()
+			
 # ==========================
 # MOVIMENTO DO PEÃO
 # ==========================
