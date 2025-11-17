@@ -10,10 +10,12 @@ enum GameState {
 }
 
 var current_state = GameState.MENU
+var winner = "" # "branca", "preta" ou "empate"
 var board_state = [] 
-var current_player = "white" 
+var current_player = "branca" 
 var move_history = [] 
 
+const END_GAME_MENU = preload("res://cenas/end_game_menu.tscn")
 
 # Funções de Persistência (Salvar/Carregar)
 
@@ -24,6 +26,7 @@ func get_save_data():
 	
 	return {
 		"state": current_state,
+		"winner": winner,
 		"board": board_state,
 		"player": current_player,
 		"history": move_history,
@@ -53,6 +56,7 @@ func load_game():
 		
 		if save_data:
 			current_state = save_data.state
+			winner = save_data.winner if save_data.has("winner") else ""
 			board_state = save_data.board
 			current_player = save_data.player
 			move_history = save_data.history
@@ -74,7 +78,7 @@ func get_all_valid_moves():
 	print("Obtendo movimentos válidos... (Placeholder)")
 	
 	# Simulação de movimentos válidos (apenas para teste da IA)
-	if current_player == "black":
+	if current_player == "preta":
 		return [
 			{ "from": "a7", "to": "a6", "piece": "pawn" },
 			{ "from": "b7", "to": "b6", "piece": "pawn" },
@@ -87,7 +91,7 @@ func get_all_valid_moves():
 		]
 
 func ai_make_move():
-	if current_state != GameState.PLAYING or current_player != "black":
+	if current_state != GameState.PLAYING or current_player != "preta":
 		return
 		
 	var valid_moves = get_all_valid_moves()
@@ -99,8 +103,8 @@ func ai_make_move():
 		
 		# Simula a execução do movimento 
 		execute_move(chosen_move)
-		print("IA (Black) moveu: " + chosen_move.piece + " de " + chosen_move.from + " para " + chosen_move.to)
-		current_player = "white"
+		print("IA (Preta) moveu: " + chosen_move.piece + " de " + chosen_move.from + " para " + chosen_move.to)
+		current_player = "branca"
 		
 # Funções de Lógica do Jogo (Placeholder para integração futura)
 func execute_move(move_data):
@@ -115,11 +119,27 @@ func execute_move(move_data):
 func start_new_game():
 	# Inicializa o tabuleiro e o estado do jogo
 	board_state = [] # Reinicializa o tabuleiro
-	current_player = "white"
+	current_player = "branca"
 	move_history = []
+	winner = ""
 	current_state = GameState.PLAYING
 	print("Novo jogo iniciado.")
 
+func end_game(result: int):
+	if current_state != GameState.PLAYING: return
+	
+	if result == 1: # Xeque-mate
+		winner = "branca" if current_player == "preta" else "preta"
+		current_state = GameState.CHECKMATE
+		print("Fim de jogo: Xeque-mate! Vencedor: " + winner)
+	elif result == 2: # Empate
+		winner = "empate"
+		current_state = GameState.STALEMATE
+		print("Fim de jogo: Empate (Stalemate).")
+		
+	# Mostra a tela de fim de jogo
+	var end_game_menu = END_GAME_MENU.instantiate()
+	get_tree().root.add_child(end_game_menu)
 
 
 func _ready():
@@ -131,10 +151,10 @@ func _ready():
 	start_new_game()
 	
 	
-	if current_player == "white":
+	if current_player == "branca":
 		# Simula o movimento do jogador (Branca)
 		execute_move({ "from": "e2", "to": "e4", "piece": "pawn" })
-		current_player = "black"
+		current_player = "preta"
 		
 		# Chama o movimento da IA
 		ai_make_move()
