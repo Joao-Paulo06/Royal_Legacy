@@ -10,6 +10,7 @@
 script = ExtResource("1_s4gh1")
 
 [node name="tabuleiro" parent="." instance=ExtResource("5_bl8ek")]
+position = Vector2(187, 0)
 
 [node name="cen_menu_opcoes" parent="." instance=ExtResource("2_jqohn")]
 script = null

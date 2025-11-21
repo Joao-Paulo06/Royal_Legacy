@@ -4,6 +4,9 @@
 [ext_resource type="Script" uid="uid://bj7vu5tci1he3" path="res://scripts/base_xadrez.gd" id="2_f23y0"]
 
 [node name="tabuleiro" type="Sprite2D"]
+scale = Vector2(3.333, 3.333)
+
+
 texture = ExtResource("1_6wpih")
 centered = false
 script = ExtResource("2_f23y0")
