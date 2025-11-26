@@ -4,22 +4,22 @@ extends Sprite2D
 #   CONSTANTES E PRELOADS
 # ==========================
 
-const TAMANHO_TABULEIRO = 8
-const TAMANHO_CELULA = 60  # Ajustado para 854x480 (854/8 = 106.75, 480/8 = 60)
-const CASAS = preload("uid://c8snr6qequ51c")
-const BISPO_BRANCO = preload("uid://dmw5aco5mr0ot")
-const BISPO_PRETO = preload("uid://6ypo2afls06u")
-const CAVALO_BRANCO = preload("uid://33s58ruwmk72")
-const CAVALO_PRETO = preload("uid://bn1cp7pl06r7i")
-const PEAO_BRANCO = preload("uid://bqbg07hivfpne")
-const PEAO_PRETO = preload("uid://yd5g0e6so2aa")
-const RAINHA_BRANCA = preload("uid://b5uvwhds6d428")
-const RAINHA_PRETA = preload("uid://b44u3s5yucep5")
-const REI_BRANCO = preload("uid://dpmnx7e7b7ie2")
-const REI_PRETO = preload("uid://cunta3rxnil1q")
-const TORRE_BRANCA = preload("uid://dl0x2md5aj6vp")
-const TORRE_PRETA = preload("uid://bv3u6gc45fxpj")
-const MOVIMENTACAO_PECA = preload("uid://miyycfpemav1")
+const TAMANHO_TABULEIRO := 8
+const TAMANHO_CELULA := 60.0  # fallback se a textura não estiver disponível
+const CASAS := preload("uid://c8snr6qequ51c")
+const BISPO_BRANCO := preload("uid://dmw5aco5mr0ot")
+const BISPO_PRETO := preload("uid://6ypo2afls06u")
+const CAVALO_BRANCO := preload("uid://33s58ruwmk72")
+const CAVALO_PRETO := preload("uid://bn1cp7pl06r7i")
+const PEAO_BRANCO := preload("uid://bqbg07hivfpne")
+const PEAO_PRETO := preload("uid://yd5g0e6so2aa")
+const RAINHA_BRANCA := preload("uid://b5uvwhds6d428")
+const RAINHA_PRETA := preload("uid://b44u3s5yucep5")
+const REI_BRANCO := preload("uid://dpmnx7e7b7ie2")
+const REI_PRETO := preload("uid://cunta3rxnil1q")
+const TORRE_BRANCA := preload("uid://dl0x2md5aj6vp")
+const TORRE_PRETA := preload("uid://bv3u6gc45fxpj")
+const MOVIMENTACAO_PECA := preload("uid://miyycfpemav1")
 
 # ==========================
 #        NÓS DO CENÁRIO
@@ -33,138 +33,204 @@ const MOVIMENTACAO_PECA = preload("uid://miyycfpemav1")
 # ==========================
 
 var tabuleiro: Array = []
-var brancas: bool = true
-var situacao: bool = false
-var movimento = []
-var selecionar_peca: Vector2
+var brancas: bool = true            # turno das brancas (true) ou pretas (false)
+var situacao: bool = false          # se está no modo "peça selecionada"
+var movimento: Array = []          # movimentos válidos da peça selecionada
+var selecionar_peca: Vector2 = Vector2(-1, -1)  # posição da peça selecionada
 
 # ==========================
 #   FUNÇÃO PRINCIPAL (_ready)
 # ==========================
 
-func _ready():
-	tabuleiro.append([-4, -2, -3, -5, -6, -3, -2, -4])
-	tabuleiro.append([-1, -1, -1, -1, -1, -1, -1, -1])
-	tabuleiro.append([0, 0, 0, 0, 0, 0, 0, 0])
-	tabuleiro.append([0, 0, 0, 0, 0, 0, 0, 0])
-	tabuleiro.append([0, 0, 0, 0, 0, 0, 0, 0])
-	tabuleiro.append([0, 0, 0, 0, 0, 0, 0, 0])
-	tabuleiro.append([1, 1, 1, 1, 1, 1, 1, 1])
-	tabuleiro.append([4, 2, 3, 5, 6, 3, 2, 4])
+func _ready() -> void:
+	# Inicializa tabuleiro padrão
+	# valores positivos = peças brancas, negativos = peças pretas
+	tabuleiro = [
+		[-4, -2, -3, -5, -6, -3, -2, -4],
+		[-1, -1, -1, -1, -1, -1, -1, -1],
+		[0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0],
+		[1, 1, 1, 1, 1, 1, 1, 1],
+		[4, 2, 3, 5, 6, 3, 2, 4]
+	]
 	exibir()
 
 # ==========================
-#     INPUT DO MOUSE
+#     UTILITÁRIOS DO TABULEIRO
 # ==========================
 
-func _input(event):
-	if event is InputEventMouseButton && event.is_pressed() && event.button_index == MOUSE_BUTTON_LEFT:
-		if mouse_off(): return
+func _get_texture() -> Texture2D:
+	return texture
 
-		var mouse = get_local_mouse_position()
-		var coluna = floor(mouse.x / TAMANHO_CELULA)
-		var linha = floor(mouse.y / TAMANHO_CELULA)
+func _get_texture_size() -> Vector2:
+	var tex = _get_texture()
+	if tex == null:
+		return Vector2.ZERO
+	return tex.get_size()
 
-		if !situacao && ((brancas && tabuleiro[linha][coluna] > 0) || (!brancas && tabuleiro[linha][coluna] < 0)):
-			selecionar_peca = Vector2(coluna, linha)
-			mostrar_opcoes()
-			situacao = true
-		elif situacao:
-			definir_movimento(linha, coluna)
+func _get_cell_size() -> float:
+	# calcula o tamanho da célula com base na largura da textura
+	var tex_size = _get_texture_size()
+	if tex_size.x == 0:
+		return TAMANHO_CELULA # fallback
+	return tex_size.x / float(TAMANHO_TABULEIRO)
+
+func _get_board_origin() -> Vector2:
+	# retorna o canto superior esquerdo do tabuleiro em coordenadas locais
+	var tex_size = _get_texture_size()
+	if centered:
+		return -tex_size * 0.5
+	else:
+		return Vector2.ZERO
+
+# verifica se o mouse está fora do tabuleiro (usando coordenadas locais da Sprite2D)
+func mouse_off() -> bool:
+	var mouse_local = to_local(get_global_mouse_position())
+	var origin = _get_board_origin()
+	var cell = _get_cell_size()
+	var board_size = Vector2(TAMANHO_TABULEIRO * cell, TAMANHO_TABULEIRO * cell)
+	var rel = mouse_local - origin
+	return rel.x < 0 or rel.y < 0 or rel.x >= board_size.x or rel.y >= board_size.y
+
+# ==========================
+#        INPUT DO MOUSE
+# ==========================
+
+func _input(event) -> void:
+	# somente clique esquerdo pressionado
+	if not (event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT):
+		return
+
+	# posição do mouse em coordenadas locais da sprite
+	var mouse_local = to_local(get_global_mouse_position())
+	var origin = _get_board_origin()
+	var cell = _get_cell_size()
+
+	# mouse relativo ao canto superior esquerdo do tabuleiro (em pixels da textura)
+	var mouse_board = mouse_local - origin
+
+	# checar se está dentro do tabuleiro
+	if mouse_board.x < 0 or mouse_board.x >= TAMANHO_TABULEIRO * cell:
+		return
+	if mouse_board.y < 0 or mouse_board.y >= TAMANHO_TABULEIRO * cell:
+		return
+
+	var coluna := int(floor(mouse_board.x / cell))
+	var linha := int(floor(mouse_board.y / cell))
+
+	# seleção e movimento
+	if not situacao and ((brancas and tabuleiro[linha][coluna] > 0) or (not brancas and tabuleiro[linha][coluna] < 0)):
+		selecionar_peca = Vector2(coluna, linha)
+		mostrar_opcoes()
+		situacao = true
+	elif situacao:
+		definir_movimento(linha, coluna)
 
 # ==========================
 #   LÓGICA DE MOVIMENTO
 # ==========================
 
-func definir_movimento(linha, coluna):
-	var movimento_encontrado = false
+func definir_movimento(linha: int, coluna: int) -> void:
+	var movimento_encontrado := false
 	for i in movimento:
-		if i.y == linha && i.x == coluna:
+		if i.y == linha and i.x == coluna:
 			movimento_encontrado = true
 			break
 
+	# limpa indicadores de movimento
 	for child in quadrados.get_children():
 		child.queue_free()
-		situacao = false
+	situacao = false
 
 	if movimento_encontrado:
+		# executa movimento
 		tabuleiro[linha][coluna] = tabuleiro[selecionar_peca.y][selecionar_peca.x]
 		tabuleiro[selecionar_peca.y][selecionar_peca.x] = 0
-		brancas = !brancas
+		brancas = not brancas
 		verificar_fim_de_jogo()
 		exibir()
 
-func mostrar_opcoes():
+func mostrar_opcoes() -> void:
 	movimento = pegar_movimento()
 	if movimento.is_empty():
 		situacao = false
 		return
 	mostrar_quadrados()
 
-func pegar_movimento():
-	var _movimento = []
+func pegar_movimento() -> Array:
+	var _movimento: Array = []
 	match abs(tabuleiro[selecionar_peca.y][selecionar_peca.x]):
-		1: _movimento = peao_movimento()
-		2: _movimento = cavalo_movimento()
-		3: _movimento = bispo_movimento()
-		4: _movimento = torre_movimento()
-		5: _movimento = rainha_movimento()
-		6: _movimento = rei_movimento()
+		1:
+			_movimento = peao_movimento()
+		2:
+			_movimento = cavalo_movimento()
+		3:
+			_movimento = bispo_movimento()
+		4:
+			_movimento = torre_movimento()
+		5:
+			_movimento = rainha_movimento()
+		6:
+			_movimento = rei_movimento()
 	return _movimento
 
 # ==========================
 #   MOVIMENTOS DAS PEÇAS
 # ==========================
 
-func peao_movimento():
-	var _movimento = []
-	var direcao = 1 if !brancas else -1
-	var pos = selecionar_peca + Vector2(0, direcao)
+func peao_movimento() -> Array:
+	var _movimento: Array = []
+	var direcao := 1 if not brancas else -1
+	var pos := selecionar_peca + Vector2(0, direcao)
 
-	if posicao_valida(pos) && posicao_vazia(pos):
+	# avanço simples e duplo na primeira jogada
+	if posicao_valida(pos) and posicao_vazia(pos):
 		_movimento.append(pos)
-		var primeira_jogada = (brancas && selecionar_peca.y == 6) || (!brancas && selecionar_peca.y == 1)
+		var primeira_jogada := (brancas and selecionar_peca.y == 6) or (not brancas and selecionar_peca.y == 1)
 		if primeira_jogada:
 			pos = selecionar_peca + Vector2(0, direcao * 2)
-			if posicao_valida(pos) && posicao_vazia(pos):
+			if posicao_valida(pos) and posicao_vazia(pos):
 				_movimento.append(pos)
 
+	# capturas diagonais
 	for i in [-1, 1]:
 		pos = selecionar_peca + Vector2(i, direcao)
-		if posicao_valida(pos) && !posicao_vazia(pos) && pecas_inimigas(pos):
+		if posicao_valida(pos) and not posicao_vazia(pos) and pecas_inimigas(pos):
 			_movimento.append(pos)
 
 	return filtrar_movimentos_ilegais(_movimento)
 
-func cavalo_movimento():
-	var _movimento = []
+func cavalo_movimento() -> Array:
+	var _movimento: Array = []
 	var direcoes = [Vector2(1,2),Vector2(1,-2),Vector2(-1,2),Vector2(-1,-2),Vector2(2,1),Vector2(2,-1),Vector2(-2,1),Vector2(-2,-1)]
 	for d in direcoes:
 		var pos = selecionar_peca + d
-		if posicao_valida(pos) && (posicao_vazia(pos) || pecas_inimigas(pos)):
+		if posicao_valida(pos) and (posicao_vazia(pos) or pecas_inimigas(pos)):
 			_movimento.append(pos)
 	return filtrar_movimentos_ilegais(_movimento)
 
-func torre_movimento():
+func torre_movimento() -> Array:
 	return filtrar_movimentos_ilegais(movimento_linear([Vector2(1,0),Vector2(-1,0),Vector2(0,1),Vector2(0,-1)]))
 
-func bispo_movimento():
+func bispo_movimento() -> Array:
 	return filtrar_movimentos_ilegais(movimento_linear([Vector2(1,1),Vector2(1,-1),Vector2(-1,1),Vector2(-1,-1)]))
 
-func rainha_movimento():
+func rainha_movimento() -> Array:
 	return filtrar_movimentos_ilegais(movimento_linear([Vector2(1,0),Vector2(-1,0),Vector2(0,1),Vector2(0,-1),Vector2(1,1),Vector2(1,-1),Vector2(-1,1),Vector2(-1,-1)]))
 
-func rei_movimento():
-	var _movimento = []
+func rei_movimento() -> Array:
+	var _movimento: Array = []
 	var direcoes = [Vector2(1,0),Vector2(-1,0),Vector2(0,1),Vector2(0,-1),Vector2(1,1),Vector2(1,-1),Vector2(-1,1),Vector2(-1,-1)]
 	for d in direcoes:
 		var pos = selecionar_peca + d
-		if posicao_valida(pos) && (posicao_vazia(pos) || pecas_inimigas(pos)):
+		if posicao_valida(pos) and (posicao_vazia(pos) or pecas_inimigas(pos)):
 			_movimento.append(pos)
 	return filtrar_movimentos_ilegais(_movimento)
 
-func movimento_linear(direcoes):
-	var _movimento = []
+func movimento_linear(direcoes: Array) -> Array:
+	var _movimento: Array = []
 	for d in direcoes:
 		var pos = selecionar_peca + d
 		while posicao_valida(pos):
@@ -181,25 +247,28 @@ func movimento_linear(direcoes):
 #   LÓGICA DE XEQUE E XEQUE-MATE
 # ==========================
 
-func filtrar_movimentos_ilegais(movimentos):
-	var movimentos_legais = []
+func filtrar_movimentos_ilegais(movimentos: Array) -> Array:
+	var movimentos_legais: Array = []
 	for m in movimentos:
 		var peca_origem = tabuleiro[selecionar_peca.y][selecionar_peca.x]
 		var peca_destino = tabuleiro[m.y][m.x]
+		# aplica movimento temporariamente
 		tabuleiro[selecionar_peca.y][selecionar_peca.x] = 0
 		tabuleiro[m.y][m.x] = peca_origem
 
-		if !esta_em_xeque(brancas):
+		if not esta_em_xeque(brancas):
 			movimentos_legais.append(m)
 
+		# restaura tabuleiro
 		tabuleiro[selecionar_peca.y][selecionar_peca.x] = peca_origem
 		tabuleiro[m.y][m.x] = peca_destino
 	return movimentos_legais
 
-func esta_em_xeque(cor_rei: bool):
+func esta_em_xeque(cor_rei: bool) -> bool:
 	var pos_rei = encontrar_rei(cor_rei)
-	if pos_rei == Vector2.ONE * -1: return false
-	return casa_sob_ataque(pos_rei, !cor_rei)
+	if pos_rei == Vector2.ONE * -1:
+		return false
+	return casa_sob_ataque(pos_rei, not cor_rei)
 
 func encontrar_rei(cor_rei: bool) -> Vector2:
 	var valor_rei = 6 if cor_rei else -6
@@ -213,7 +282,8 @@ func casa_sob_ataque(pos: Vector2, cor_atacante: bool) -> bool:
 	for y in range(TAMANHO_TABULEIRO):
 		for x in range(TAMANHO_TABULEIRO):
 			var peca_valor = tabuleiro[y][x]
-			if peca_valor == 0: continue
+			if peca_valor == 0:
+				continue
 			var peca_cor_branca = peca_valor > 0
 			if peca_cor_branca == cor_atacante:
 				var movimentos_brutos = pegar_movimentos_brutos(Vector2(x, y))
@@ -222,43 +292,52 @@ func casa_sob_ataque(pos: Vector2, cor_atacante: bool) -> bool:
 						return true
 	return false
 
-func pegar_movimentos_brutos(pos_peca: Vector2):
+func pegar_movimentos_brutos(pos_peca: Vector2) -> Array:
+	# salva estado atual
 	var temp_selecionar_peca = selecionar_peca
 	var temp_brancas = brancas
+
 	selecionar_peca = pos_peca
 	brancas = tabuleiro[pos_peca.y][pos_peca.x] > 0
-	
-	var _movimento = []
-	match abs(tabuleiro[pos_peca.y][pos_peca.x]):
-		1: _movimento = peao_movimento_bruto()
-		2: _movimento = cavalo_movimento_bruto()
-		3: _movimento = movimento_linear_bruto([Vector2(1,1),Vector2(1,-1),Vector2(-1,1),Vector2(-1,-1)])
-		4: _movimento = movimento_linear_bruto([Vector2(1,0),Vector2(-1,0),Vector2(0,1),Vector2(0,-1)])
-		5: _movimento = movimento_linear_bruto([Vector2(1,0),Vector2(-1,0),Vector2(0,1),Vector2(0,-1),Vector2(1,1),Vector2(1,-1),Vector2(-1,1),Vector2(-1,-1)])
-		6: _movimento = rei_movimento_bruto()
 
+	var _movimento: Array = []
+	match abs(tabuleiro[pos_peca.y][pos_peca.x]):
+		1:
+			_movimento = peao_movimento_bruto()
+		2:
+			_movimento = cavalo_movimento_bruto()
+		3:
+			_movimento = movimento_linear_bruto([Vector2(1,1),Vector2(1,-1),Vector2(-1,1),Vector2(-1,-1)])
+		4:
+			_movimento = movimento_linear_bruto([Vector2(1,0),Vector2(-1,0),Vector2(0,1),Vector2(0,-1)])
+		5:
+			_movimento = movimento_linear_bruto([Vector2(1,0),Vector2(-1,0),Vector2(0,1),Vector2(0,-1),Vector2(1,1),Vector2(1,-1),Vector2(-1,1),Vector2(-1,-1)])
+		6:
+			_movimento = rei_movimento_bruto()
+
+	# restaura estado
 	selecionar_peca = temp_selecionar_peca
 	brancas = temp_brancas
 	return _movimento
 
-func verificar_fim_de_jogo():
+func verificar_fim_de_jogo() -> void:
 	var tem_movimento_legal = false
-	var pecas_jogador_atual = []
+	var pecas_jogador_atual: Array = []
 	for y in range(TAMANHO_TABULEIRO):
 		for x in range(TAMANHO_TABULEIRO):
 			var peca_valor = tabuleiro[y][x]
-			if peca_valor != 0 && (peca_valor > 0) == brancas:
+			if peca_valor != 0 and (peca_valor > 0) == brancas:
 				pecas_jogador_atual.append(Vector2(x,y))
 
 	var temp_selecionar_peca = selecionar_peca
 	for p in pecas_jogador_atual:
 		selecionar_peca = p
-		if !pegar_movimento().is_empty():
+		if not pegar_movimento().is_empty():
 			tem_movimento_legal = true
 			break
 	selecionar_peca = temp_selecionar_peca
 
-	if !tem_movimento_legal:
+	if not tem_movimento_legal:
 		var game_manager = get_node("/root/GameManager")
 		if esta_em_xeque(brancas):
 			game_manager.end_game(1) # Xeque-mate
@@ -269,28 +348,28 @@ func verificar_fim_de_jogo():
 #   MOVIMENTOS BRUTOS (para checagem de ataque)
 # ==========================
 
-func movimento_linear_bruto(direcoes):
-	var _movimento = []
+func movimento_linear_bruto(direcoes: Array) -> Array:
+	var _movimento: Array = []
 	for d in direcoes:
 		var pos = selecionar_peca + d
 		while posicao_valida(pos):
 			_movimento.append(pos)
-			if !posicao_vazia(pos):
+			if not posicao_vazia(pos):
 				break
 			pos += d
 	return _movimento
 
-func peao_movimento_bruto():
-	var _movimento = []
-	var direcao = 1 if !brancas else -1
+func peao_movimento_bruto() -> Array:
+	var _movimento: Array = []
+	var direcao := 1 if not brancas else -1
 	for i in [-1, 1]:
 		var pos = selecionar_peca + Vector2(i, direcao)
 		if posicao_valida(pos):
 			_movimento.append(pos)
 	return _movimento
 
-func cavalo_movimento_bruto():
-	var _movimento = []
+func cavalo_movimento_bruto() -> Array:
+	var _movimento: Array = []
 	var direcoes = [Vector2(1,2),Vector2(1,-2),Vector2(-1,2),Vector2(-1,-2),Vector2(2,1),Vector2(2,-1),Vector2(-2,1),Vector2(-2,-1)]
 	for d in direcoes:
 		var pos = selecionar_peca + d
@@ -298,8 +377,8 @@ func cavalo_movimento_bruto():
 			_movimento.append(pos)
 	return _movimento
 
-func rei_movimento_bruto():
-	var _movimento = []
+func rei_movimento_bruto() -> Array:
+	var _movimento: Array = []
 	var direcoes = [Vector2(1,0),Vector2(-1,0),Vector2(0,1),Vector2(0,-1),Vector2(1,1),Vector2(1,-1),Vector2(-1,1),Vector2(-1,-1)]
 	for d in direcoes:
 		var pos = selecionar_peca + d
@@ -311,15 +390,23 @@ func rei_movimento_bruto():
 #   FUNÇÕES DE EXIBIÇÃO E UTILITÁRIAS
 # ==========================
 
-func exibir():
+func exibir() -> void:
+	# limpa peças anteriores
 	for child in pecas.get_children():
 		child.queue_free()
-		
+
+	var origin = _get_board_origin()
+	var cell = _get_cell_size()
+
 	for i in range(TAMANHO_TABULEIRO):
 		for j in range(TAMANHO_TABULEIRO):
 			var casa = CASAS.instantiate()
 			pecas.add_child(casa)
-			casa.position = Vector2(j * TAMANHO_CELULA + (TAMANHO_CELULA / 2), i * TAMANHO_CELULA + (TAMANHO_CELULA / 2)) / 3.333
+			# posiciona no centro da célula (em pixels da textura)
+			casa.position = origin + Vector2(
+				j * cell + cell * 0.5,
+				i * cell + cell * 0.5
+			)
 			match tabuleiro[i][j]:
 				-6: casa.texture = REI_PRETO
 				-5: casa.texture = RAINHA_PRETA
@@ -334,24 +421,34 @@ func exibir():
 				2: casa.texture = CAVALO_BRANCO
 				1: casa.texture = PEAO_BRANCO
 
-func mostrar_quadrados():
+func mostrar_quadrados() -> void:
+	# limpa e mostra indicadores de movimento
+	for child in quadrados.get_children():
+		child.queue_free()
+
+	var origin = _get_board_origin()
+	var cell = _get_cell_size()
 	for i in movimento:
 		var casa = CASAS.instantiate()
 		quadrados.add_child(casa)
 		casa.texture = MOVIMENTACAO_PECA
-		casa.position = Vector2(i.x * TAMANHO_CELULA + (TAMANHO_CELULA / 2), i.y * TAMANHO_CELULA + (TAMANHO_CELULA / 2)) / 3.333
+		casa.position = origin + Vector2(
+			i.x * cell + cell * 0.5,
+			i.y * cell + cell * 0.5
+		)
 
-func mouse_off() -> bool:
-	var mouse = get_local_mouse_position()
-	return mouse.x < 0 || mouse.x > TAMANHO_TABULEIRO * TAMANHO_CELULA || mouse.y < 0 || mouse.y > TAMANHO_TABULEIRO * TAMANHO_CELULA
+# ==========================
+#   FUNÇÕES AUXILIARES
+# ==========================
 
 func posicao_valida(pos: Vector2) -> bool:
-	return pos.x >= 0 && pos.x < TAMANHO_TABULEIRO && pos.y >= 0 && pos.y < TAMANHO_TABULEIRO
+	return pos.x >= 0 and pos.x < TAMANHO_TABULEIRO and pos.y >= 0 and pos.y < TAMANHO_TABULEIRO
 
 func posicao_vazia(pos: Vector2) -> bool:
 	return tabuleiro[pos.y][pos.x] == 0
 
 func pecas_inimigas(pos: Vector2) -> bool:
 	var valor_peca = tabuleiro[pos.y][pos.x]
-	if valor_peca == 0: return false
+	if valor_peca == 0:
+		return false
 	return (valor_peca > 0) != brancas

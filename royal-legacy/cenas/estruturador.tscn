@@ -13,12 +13,15 @@ script = ExtResource("1_s4gh1")
 position = Vector2(187, 0)
 
 [node name="cen_menu_opcoes" parent="." instance=ExtResource("2_jqohn")]
+visible = false
 script = null
 
 [node name="cen_menu_novo_jogo" parent="." instance=ExtResource("3_iy0r7")]
+visible = false
 script = null
 
 [node name="cen_menu_principal" parent="." instance=ExtResource("4_ehvh2")]
+visible = false
 script = null
 
 [connection signal="pressed" from="cen_menu_opcoes/marg_ctn_menu_opcoes/btn_retornar" to="." method="_on_btn_retornar_de_opcoes_pressed"]

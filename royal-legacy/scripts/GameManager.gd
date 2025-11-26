@@ -10,30 +10,28 @@ enum GameState {
 }
 
 var current_state = GameState.MENU
-var winner = "" # "branca", "preta" ou "empate"
-var board_state = [] 
-var current_player = "branca" 
-var move_history = [] 
+var winner = ""                # "branca", "preta" ou "empate"
+var board_state = []           # Representação do tabuleiro (placeholder)
+var current_player = "branca"  # Jogador atual
+var move_history = []          # Histórico de jogadas
 
 const END_GAME_MENU = preload("res://cenas/end_game_menu.tscn")
-
-# Funções de Persistência (Salvar/Carregar)
-
-
 const SAVE_PATH = "user://royal_legacy_save.json"
 
-func get_save_data():
-	
+# ============================================================
+# ===================== PERSISTÊNCIA ==========================
+# ============================================================
+
+func get_save_data() -> Dictionary:
 	return {
 		"state": current_state,
 		"winner": winner,
 		"board": board_state,
 		"player": current_player,
 		"history": move_history,
-		
 	}
 
-func save_game():
+func save_game() -> bool:
 	var save_data = get_save_data()
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if file:
@@ -44,40 +42,42 @@ func save_game():
 		print("Erro ao salvar o jogo.")
 		return false
 
-func load_game():
+func load_game() -> bool:
 	if not FileAccess.file_exists(SAVE_PATH):
 		print("Nenhum arquivo de save encontrado.")
 		return false
 
 	var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
-	if file:
-		var content = file.get_as_text()
-		var save_data = JSON.parse_string(content)
-		
-		if save_data:
-			current_state = save_data.state
-			winner = save_data.winner if save_data.has("winner") else ""
-			board_state = save_data.board
-			current_player = save_data.player
-			move_history = save_data.history
-			print("Jogo carregado com sucesso.")
-			
-			return true
-		else:
-			print("Erro ao parsear dados salvos.")
-			return false
-	else:
-		print("Erro ao carregar o jogo.")
+	if not file:
+		print("Erro ao abrir o arquivo de save.")
 		return false
 
+	var content = file.get_as_text()
+	var save_data = JSON.parse_string(content)
 
-# Funções da IA (Modo Simples e Movimentos Aleatórios Válidos)
-
-func get_all_valid_moves():
+	if typeof(save_data) != TYPE_DICTIONARY:
+		print("Erro ao parsear dados salvos.")
+		return false
 	
+	# Carrega os dados com segurança
+	current_state = save_data.get("state", GameState.MENU)
+	winner = save_data.get("winner", "")
+	board_state = save_data.get("board", [])
+	current_player = save_data.get("player", "branca")
+	move_history = save_data.get("history", [])
+
+	print("Jogo carregado com sucesso.")
+	return true
+
+
+# ============================================================
+# =============== IA — Movimentos Aleatórios ==================
+# ============================================================
+
+func get_all_valid_moves() -> Array:
 	print("Obtendo movimentos válidos... (Placeholder)")
-	
-	# Simulação de movimentos válidos (apenas para teste da IA)
+
+	# Apenas exemplos para teste da IA
 	if current_player == "preta":
 		return [
 			{ "from": "a7", "to": "a6", "piece": "pawn" },
@@ -91,34 +91,42 @@ func get_all_valid_moves():
 		]
 
 func ai_make_move():
-	if current_state != GameState.PLAYING or current_player != "preta":
+	if current_state != GameState.PLAYING:
 		return
-		
+	if current_player != "preta":
+		return
+
 	var valid_moves = get_all_valid_moves()
-	
+
 	if valid_moves.size() > 0:
-		# Escolhe um movimento aleatório (Modo Simples)
 		randomize()
 		var chosen_move = valid_moves[randi() % valid_moves.size()]
-		
-		# Simula a execução do movimento 
+
 		execute_move(chosen_move)
-		print("IA (Preta) moveu: " + chosen_move.piece + " de " + chosen_move.from + " para " + chosen_move.to)
+
+		print("IA (Preta) moveu: %s de %s para %s"
+			% [chosen_move.piece, chosen_move.from, chosen_move.to])
+
 		current_player = "branca"
-		
-# Funções de Lógica do Jogo (Placeholder para integração futura)
-func execute_move(move_data):
-	# Placeholder para a lógica de movimento real 
-	# Atualiza o estado do tabuleiro 
-	# Atualiza o Histórico de Jogadas 
-	var notation = move_data.piece + move_data.from + move_data.to # Notação simplificada
+
+
+# ============================================================
+# ===================== LÓGICA DO JOGO ========================
+# ============================================================
+
+func execute_move(move_data: Dictionary):
+	# Placeholder da lógica real
+	var notation = "%s%s%s" % [
+		move_data.get("piece", "?"),
+		move_data.get("from", "?"),
+		move_data.get("to", "?"),
+	]
+
 	move_history.append(notation)
-	print("Histórico atualizado: " + str(move_history))
-	pass
+	print("Histórico atualizado: ", move_history)
 
 func start_new_game():
-	# Inicializa o tabuleiro e o estado do jogo
-	board_state = [] # Reinicializa o tabuleiro
+	board_state = []
 	current_player = "branca"
 	move_history = []
 	winner = ""
@@ -126,51 +134,53 @@ func start_new_game():
 	print("Novo jogo iniciado.")
 
 func end_game(result: int):
-	if current_state != GameState.PLAYING: return
-	
-	if result == 1: # Xeque-mate
+	if current_state != GameState.PLAYING:
+		return
+
+	if result == 1:  # Xeque-mate
 		winner = "branca" if current_player == "preta" else "preta"
 		current_state = GameState.CHECKMATE
 		print("Fim de jogo: Xeque-mate! Vencedor: " + winner)
-	elif result == 2: # Empate
+
+	elif result == 2:  # Empate
 		winner = "empate"
 		current_state = GameState.STALEMATE
 		print("Fim de jogo: Empate (Stalemate).")
-		
-	# Mostra a tela de fim de jogo
+
+	# Mostra menu final
 	var end_game_menu = END_GAME_MENU.instantiate()
 	get_tree().root.add_child(end_game_menu)
 
 
+# ============================================================
+# ============================ READY ==========================
+# ============================================================
+
 func _ready():
-	
 	if not DirAccess.dir_exists_absolute("user://"):
 		DirAccess.make_dir_absolute("user://")
-		
-	
+
 	start_new_game()
-	
-	
+
 	if current_player == "branca":
-		# Simula o movimento do jogador (Branca)
+		# Movimento do jogador (teste)
 		execute_move({ "from": "e2", "to": "e4", "piece": "pawn" })
 		current_player = "preta"
-		
-		# Chama o movimento da IA
+
+		# Movimento da IA
 		ai_make_move()
-		
-		# Teste de Salvar/Carregar
+
+		# Salvando
 		save_game()
-		
-		# Simula o carregamento para verificar se o histórico e o estado persistem
-		current_state = GameState.MENU # Altera o estado para simular que o jogo foi fechado
+
+		# Alterando variáveis para testar carregamento
+		current_state = GameState.MENU
 		current_player = "none"
 		move_history = []
-		
+
 		print("\n--- Teste de Carregamento ---")
 		load_game()
-		print("Estado após carregamento: " + str(current_state))
-		print("Jogador atual após carregamento: " + current_player)
-		print("Histórico após carregamento: " + str(move_history))
-		
-	pass
+
+		print("Estado após carregamento: ", current_state)
+		print("Jogador atual após carregamento: ", current_player)
+		print("Histórico após carregamento: ", move_history)
