@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b0mlqk52vlpxk" path="res://cenas/menu_opcoes.tscn" id="2_jqohn"]
 [ext_resource type="PackedScene" uid="uid://cce28b022shju" path="res://cenas/menu_novo_jogo.tscn" id="3_iy0r7"]
 [ext_resource type="PackedScene" uid="uid://cfrx3e3sbyo4a" path="res://cenas/menu_principal.tscn" id="4_ehvh2"]
-[ext_resource type="PackedScene" uid="uid://v4acm1siny8r" path="res://cenas/novo_jogo_pve.tscn" id="5_bl8ek"]
+[ext_resource type="PackedScene" uid="uid://v4acm1siny8r" path="res://cenas/novo_jogo.tscn" id="5_bl8ek"]
 
 [node name="estruturador" type="Node"]
 script = ExtResource("1_s4gh1")
