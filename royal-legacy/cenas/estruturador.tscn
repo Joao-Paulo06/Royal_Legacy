@@ -14,7 +14,7 @@ position = Vector2(187, 0)
 
 [node name="turno" parent="tabuleiro" index="2"]
 z_index = -10
-position = Vector2(72.00721, 72.0072)
+position = Vector2(71.70717, 71.70717)
 
 [node name="cen_menu_opcoes" parent="." instance=ExtResource("2_jqohn")]
 visible = false
@@ -27,6 +27,10 @@ script = null
 [node name="cen_menu_principal" parent="." instance=ExtResource("4_ehvh2")]
 visible = false
 script = null
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="pressed" from="cen_menu_opcoes/marg_ctn_menu_opcoes/btn_retornar" to="." method="_on_btn_retornar_de_opcoes_pressed"]
 [connection signal="pressed" from="cen_menu_opcoes/marg_ctn_menu_opcoes/pnl_ctn_botoes/vert_ctn_botoes/btn_sons" to="." method="_on_btn_sons_pressed"]

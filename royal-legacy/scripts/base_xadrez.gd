@@ -22,8 +22,8 @@ const TORRE_PRETA := preload("uid://bv3u6gc45fxpj")
 const TURNO_BRANCO = preload("uid://0q5rfk1gwkau")
 const TURNO_PRETO = preload("uid://op3kil5srww7")
 const MOVIMENTACAO_PECA := preload("uid://miyycfpemav1")
-const SOM_MOVIMENTO = preload("res://assets/sons/movimento.mp3")
-const SOM_CAPTURA = preload("res://assets/sons/captura.mp3")
+const SOM_CAPTURANDO = preload("uid://b7rtga1jwlm4s")
+const SOM_MOVIMENTO = preload("uid://dg3r16ow1l3vb")
 
 
 # ==========================
@@ -167,7 +167,7 @@ func definir_movimento(linha: int, coluna: int) -> void:
 			
 			# Toca o som apropriado
 			if peca_destino_valor != 0:
-				tocar_som(SOM_CAPTURA)
+				tocar_som(SOM_CAPTURANDO)
 			else:
 				tocar_som(SOM_MOVIMENTO)
 				
@@ -470,14 +470,8 @@ func exibir() -> void:
 				1: casa.texture = PEAO_BRANCO	
 				
 				# Animação de transição de turno
-				var nova_textura = TURNO_BRANCO if brancas else TURNO_PRETO
-				if turno.texture != nova_textura:
-					var tween = turno.create_tween()
-					tween.tween_property(turno, "modulate", Color(1, 1, 1, 0), 0.15) # Fade out
-					tween.tween_callback(func(): turno.texture = nova_textura)
-					tween.tween_property(turno, "modulate", Color(1, 1, 1, 1), 0.15) # Fade in
-				else:
-					turno.texture = nova_textura
+			if brancas: turno.texture = TURNO_BRANCO
+			else: turno.texture = TURNO_PRETO	
 
 func mostrar_quadrados() -> void:
 	# limpa e mostra indicadores de movimento
