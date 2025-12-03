@@ -12,10 +12,6 @@ script = ExtResource("1_s4gh1")
 [node name="tabuleiro" parent="." instance=ExtResource("5_bl8ek")]
 position = Vector2(187, 0)
 
-[node name="turno" parent="tabuleiro" index="2"]
-z_index = -10
-position = Vector2(72.00721, 72.0072)
-
 [node name="cen_menu_opcoes" parent="." instance=ExtResource("2_jqohn")]
 visible = false
 script = null

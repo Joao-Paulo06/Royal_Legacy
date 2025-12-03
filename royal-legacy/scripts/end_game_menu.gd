@@ -22,4 +22,4 @@ func _on_RestartButton_pressed():
 	if game_manager:
 		game_manager.start_new_game()
 
-	get_tree().change_scene_to_file("res://cenas/novo_jogo_pve.tscn")
+	get_tree().change_scene_to_file("res://cenas/novo_jogo.tscn")

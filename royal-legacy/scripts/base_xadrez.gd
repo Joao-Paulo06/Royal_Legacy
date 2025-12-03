@@ -19,7 +19,10 @@ const REI_BRANCO := preload("uid://dpmnx7e7b7ie2")
 const REI_PRETO := preload("uid://cunta3rxnil1q")
 const TORRE_BRANCA := preload("uid://dl0x2md5aj6vp")
 const TORRE_PRETA := preload("uid://bv3u6gc45fxpj")
+const TURNO_BRANCO = preload("uid://0q5rfk1gwkau")
+const TURNO_PRETO = preload("uid://op3kil5srww7")
 const MOVIMENTACAO_PECA := preload("uid://miyycfpemav1")
+
 
 # ==========================
 #        NÓS DO CENÁRIO
@@ -27,6 +30,7 @@ const MOVIMENTACAO_PECA := preload("uid://miyycfpemav1")
 
 @onready var pecas: Node2D = $pecas
 @onready var quadrados: Node2D = $quadrados
+@onready var turno: Sprite2D = $turno
 
 # ==========================
 #        VARIÁVEIS
@@ -419,7 +423,10 @@ func exibir() -> void:
 				4: casa.texture = TORRE_BRANCA
 				3: casa.texture = BISPO_BRANCO
 				2: casa.texture = CAVALO_BRANCO
-				1: casa.texture = PEAO_BRANCO
+				1: casa.texture = PEAO_BRANCO	
+				
+			if brancas: turno.texture = TURNO_BRANCO
+			else: turno.texture = TURNO_PRETO
 
 func mostrar_quadrados() -> void:
 	# limpa e mostra indicadores de movimento
