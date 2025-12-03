@@ -5,8 +5,6 @@
 
 [node name="tabuleiro" type="Sprite2D"]
 scale = Vector2(3.333, 3.333)
-
-
 texture = ExtResource("1_6wpih")
 centered = false
 script = ExtResource("2_f23y0")
@@ -17,7 +15,7 @@ script = ExtResource("2_f23y0")
 
 [node name="turno" type="Sprite2D" parent="."]
 
-[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Som_pecas" type="AudioStreamPlayer" parent="."]
 
 [node name="CheckIndicator" type="ColorRect" parent="."]
 anchors_preset = 15

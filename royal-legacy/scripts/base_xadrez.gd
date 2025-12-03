@@ -33,8 +33,8 @@ const SOM_MOVIMENTO = preload("uid://dg3r16ow1l3vb")
 @onready var pecas: Node2D = $pecas
 @onready var quadrados: Node2D = $quadrados
 @onready var turno: Sprite2D = $turno
-@onready var audio_player: AudioStreamPlayer = $AudioPlayer
 @onready var check_indicator: ColorRect = $CheckIndicator
+@onready var som_pecas: AudioStreamPlayer = $Som_pecas
 
 # ==========================
 #        VARIÁVEIS
@@ -180,9 +180,9 @@ func definir_movimento(linha: int, coluna: int) -> void:
 # ==========================
 
 func tocar_som(som: AudioStream) -> void:
-	if audio_player:
-		audio_player.stream = som
-		audio_player.play()
+	if som_pecas:
+		som_pecas.stream = som
+		som_pecas.play()
 
 # ==========================
 #   LÓGICA DE MOVIMENTO

@@ -1,18 +1,32 @@
-[gd_scene load_steps=6 format=3 uid="uid://uc1uv57stt28"]
+[gd_scene load_steps=8 format=3 uid="uid://uc1uv57stt28"]
 
 [ext_resource type="Script" uid="uid://dumuijyxx18jm" path="res://scripts/estruturador.gd" id="1_s4gh1"]
 [ext_resource type="PackedScene" uid="uid://b0mlqk52vlpxk" path="res://cenas/menu_opcoes.tscn" id="2_jqohn"]
+[ext_resource type="Texture2D" uid="uid://hjdtl4mjjfvj" path="res://temas/tema_fundo1.jpg" id="2_p68bc"]
 [ext_resource type="PackedScene" uid="uid://cce28b022shju" path="res://cenas/menu_novo_jogo.tscn" id="3_iy0r7"]
+[ext_resource type="Script" uid="uid://bl75o236pwb0" path="res://scripts/GameManager.gd" id="4_7xjcx"]
 [ext_resource type="PackedScene" uid="uid://cfrx3e3sbyo4a" path="res://cenas/menu_principal.tscn" id="4_ehvh2"]
 [ext_resource type="PackedScene" uid="uid://v4acm1siny8r" path="res://cenas/novo_jogo.tscn" id="5_bl8ek"]
 
 [node name="estruturador" type="Node"]
 script = ExtResource("1_s4gh1")
 
+[node name="cenario" type="TextureRect" parent="."]
+z_index = -11
+offset_right = 3785.0
+offset_bottom = 2523.0
+scale = Vector2(0.2573753, 0.23276475)
+texture = ExtResource("2_p68bc")
+
 [node name="tabuleiro" parent="." instance=ExtResource("5_bl8ek")]
 position = Vector2(187, 0)
 
-[node name="turno" parent="tabuleiro" index="2"]
+[node name="GameManager" type="Node2D" parent="tabuleiro"]
+position = Vector2(-56.10561, 0)
+scale = Vector2(0.30003, 0.30003)
+script = ExtResource("4_7xjcx")
+
+[node name="turno" parent="tabuleiro" index="3"]
 z_index = -10
 position = Vector2(71.70717, 71.70717)
 
@@ -27,10 +41,6 @@ script = null
 [node name="cen_menu_principal" parent="." instance=ExtResource("4_ehvh2")]
 visible = false
 script = null
-
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
 
 [connection signal="pressed" from="cen_menu_opcoes/marg_ctn_menu_opcoes/btn_retornar" to="." method="_on_btn_retornar_de_opcoes_pressed"]
 [connection signal="pressed" from="cen_menu_opcoes/marg_ctn_menu_opcoes/pnl_ctn_botoes/vert_ctn_botoes/btn_sons" to="." method="_on_btn_sons_pressed"]
