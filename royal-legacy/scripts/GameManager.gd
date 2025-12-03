@@ -1,5 +1,7 @@
 extends Node
 
+signal check_state_changed(is_in_check)
+
 enum GameState {
 	MENU,
 	SETUP,
@@ -203,10 +205,12 @@ func check_game_state():
 	elif state == "stalemate" or state.begins_with("draw"):
 		end_game(2) # 2 para empate
 	elif is_check:
-		print("O rei está em xeque!")
-		# **TODO:** Adicionar lógica para notificar a UI sobre o xeque
+			print("O rei está em xeque!")
+			check_state_changed.emit(true) # Notifica a UI sobre o xeque
 	
-	# Se o jogo continua, o estado é "playing" ou "check" (que é um sub-estado de playing)
+		# Se o jogo continua, o estado é "playing" ou "check" (que é um sub-estado de playing)
+		if not is_check:
+			check_state_changed.emit(false) # Notifica a UI que o xeque foi removido (se estava)
 
 
 func end_game(result_type: int, winner_color: String = ""):

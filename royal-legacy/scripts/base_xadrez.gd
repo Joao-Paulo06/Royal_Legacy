@@ -22,6 +22,8 @@ const TORRE_PRETA := preload("uid://bv3u6gc45fxpj")
 const TURNO_BRANCO = preload("uid://0q5rfk1gwkau")
 const TURNO_PRETO = preload("uid://op3kil5srww7")
 const MOVIMENTACAO_PECA := preload("uid://miyycfpemav1")
+const SOM_MOVIMENTO = preload("res://assets/sons/movimento.mp3")
+const SOM_CAPTURA = preload("res://assets/sons/captura.mp3")
 
 
 # ==========================
@@ -31,6 +33,8 @@ const MOVIMENTACAO_PECA := preload("uid://miyycfpemav1")
 @onready var pecas: Node2D = $pecas
 @onready var quadrados: Node2D = $quadrados
 @onready var turno: Sprite2D = $turno
+@onready var audio_player: AudioStreamPlayer = $AudioPlayer
+@onready var check_indicator: ColorRect = $CheckIndicator
 
 # ==========================
 #        VARIÁVEIS
@@ -47,6 +51,12 @@ var selecionar_peca: Vector2 = Vector2(-1, -1)  # posição da peça selecionada
 # ==========================
 
 func _ready() -> void:
+	# Conecta o sinal de xeque do GameManager
+	var game_manager = get_node("/root/GameManager")
+	if game_manager:
+		game_manager.check_state_changed.connect(_on_check_state_changed)
+
+
 	# Inicializa tabuleiro padrão
 	# valores positivos = peças brancas, negativos = peças pretas
 	tabuleiro = [
@@ -149,12 +159,34 @@ func definir_movimento(linha: int, coluna: int) -> void:
 	situacao = false
 
 	if movimento_encontrado:
-		# executa movimento
-		tabuleiro[linha][coluna] = tabuleiro[selecionar_peca.y][selecionar_peca.x]
-		tabuleiro[selecionar_peca.y][selecionar_peca.x] = 0
-		brancas = not brancas
-		verificar_fim_de_jogo()
-		exibir()
+			# executa movimento
+			var peca_destino_valor = tabuleiro[linha][coluna] # Valor da peça na casa de destino (0 se vazia)
+			
+			tabuleiro[linha][coluna] = tabuleiro[selecionar_peca.y][selecionar_peca.x]
+			tabuleiro[selecionar_peca.y][selecionar_peca.x] = 0
+			
+			# Toca o som apropriado
+			if peca_destino_valor != 0:
+				tocar_som(SOM_CAPTURA)
+			else:
+				tocar_som(SOM_MOVIMENTO)
+				
+			brancas = not brancas
+			verificar_fim_de_jogo()
+			exibir()
+
+# ==========================
+#        ÁUDIO
+# ==========================
+
+func tocar_som(som: AudioStream) -> void:
+	if audio_player:
+		audio_player.stream = som
+		audio_player.play()
+
+# ==========================
+#   LÓGICA DE MOVIMENTO
+# ==========================
 
 func mostrar_opcoes() -> void:
 	movimento = pegar_movimento()
@@ -394,6 +426,18 @@ func rei_movimento_bruto() -> Array:
 #   FUNÇÕES DE EXIBIÇÃO E UTILITÁRIAS
 # ==========================
 
+func _on_check_state_changed(is_in_check: bool) -> void:
+	if is_in_check:
+		# Efeito de piscar vermelho no tabuleiro
+		var tween = check_indicator.create_tween()
+		tween.set_loops()
+		tween.tween_property(check_indicator, "color", Color(1, 0, 0, 0.2), 0.5)
+		tween.tween_property(check_indicator, "color", Color(1, 0, 0, 0.0), 0.5)
+	else:
+		# Para o efeito de piscar e garante que a cor está transparente
+		check_indicator.get_tree().create_tween().kill()
+		check_indicator.color = Color(1, 0, 0, 0)
+
 func exibir() -> void:
 	# limpa peças anteriores
 	for child in pecas.get_children():
@@ -425,8 +469,15 @@ func exibir() -> void:
 				2: casa.texture = CAVALO_BRANCO
 				1: casa.texture = PEAO_BRANCO	
 				
-			if brancas: turno.texture = TURNO_BRANCO
-			else: turno.texture = TURNO_PRETO
+				# Animação de transição de turno
+				var nova_textura = TURNO_BRANCO if brancas else TURNO_PRETO
+				if turno.texture != nova_textura:
+					var tween = turno.create_tween()
+					tween.tween_property(turno, "modulate", Color(1, 1, 1, 0), 0.15) # Fade out
+					tween.tween_callback(func(): turno.texture = nova_textura)
+					tween.tween_property(turno, "modulate", Color(1, 1, 1, 1), 0.15) # Fade in
+				else:
+					turno.texture = nova_textura
 
 func mostrar_quadrados() -> void:
 	# limpa e mostra indicadores de movimento
