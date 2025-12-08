@@ -36,6 +36,7 @@ const SOM_MOVIMENTO = preload("uid://dg3r16ow1l3vb")
 @onready var check_indicator: ColorRect = $CheckIndicator
 @onready var som_pecas: AudioStreamPlayer = $Som_pecas
 
+
 # ==========================
 #        VARIÁVEIS
 # ==========================
@@ -52,7 +53,7 @@ var selecionar_peca: Vector2 = Vector2(-1, -1)  # posição da peça selecionada
 
 func _ready() -> void:
 	# Conecta o sinal de xeque do GameManager
-	var game_manager = get_node("/root/GameManager")
+	var game_manager = get_node("../tabuleiro/GameManager")
 	if game_manager:
 		game_manager.check_state_changed.connect(_on_check_state_changed)
 
@@ -374,7 +375,7 @@ func verificar_fim_de_jogo() -> void:
 	selecionar_peca = temp_selecionar_peca
 
 	if not tem_movimento_legal:
-		var game_manager = get_node("/root/GameManager")
+		var game_manager = get_node("../tabuleiro/GameManager")
 		if esta_em_xeque(brancas):
 			game_manager.end_game(1) # Xeque-mate
 		else:

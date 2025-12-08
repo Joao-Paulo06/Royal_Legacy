@@ -3,7 +3,7 @@ extends Control
 @onready var winner_label = $VBoxContainer/WinnerLabel
 
 func _ready():
-	var game_manager = get_node_or_null("/root/GameManager")
+	var game_manager = get_node_or_null("../estruturador/tabuleiro/GameManager")
 	if game_manager:
 		var winner = str(game_manager.winner)
 
@@ -18,7 +18,7 @@ func _ready():
 
 
 func _on_RestartButton_pressed():
-	var game_manager = get_node_or_null("/root/GameManager")
+	var game_manager = get_node_or_null("../estruturador/tabuleiro/GameManager")
 	if game_manager:
 		game_manager.start_new_game()
 
