@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://uc1uv57stt28"]
+[gd_scene load_steps=8 format=3 uid="uid://uc1uv57stt28"]
 
 [ext_resource type="Script" uid="uid://dumuijyxx18jm" path="res://scripts/estruturador.gd" id="1_s4gh1"]
 [ext_resource type="Texture2D" uid="uid://c2q0w85vqu3ki" path="res://temas/tema_fundo_principal.png" id="2_7xjcx"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://bl75o236pwb0" path="res://scripts/GameManager.gd" id="4_7xjcx"]
 [ext_resource type="PackedScene" uid="uid://cfrx3e3sbyo4a" path="res://cenas/menu_principal.tscn" id="4_ehvh2"]
 [ext_resource type="PackedScene" uid="uid://v4acm1siny8r" path="res://cenas/novo_jogo.tscn" id="5_bl8ek"]
-[ext_resource type="Script" uid="uid://blah6pkbjock5" path="res://scripts/linhas.gd" id="5_jhnjv"]
 
 [node name="estruturador" type="Node"]
 script = ExtResource("1_s4gh1")
@@ -30,11 +29,6 @@ position = Vector2(71.70717, 71.70717)
 script = ExtResource("4_7xjcx")
 
 [node name="Sprite2D" type="Sprite2D" parent="tabuleiro"]
-
-[node name="linhas" type="Node2D" parent="."]
-position = Vector2(187, 0)
-scale = Vector2(3.3329997, 3.3329997)
-script = ExtResource("5_jhnjv")
 
 [node name="cen_menu_opcoes" parent="." instance=ExtResource("2_jqohn")]
 visible = false
