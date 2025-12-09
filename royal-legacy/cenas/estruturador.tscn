@@ -28,7 +28,12 @@ position = Vector2(71.70717, 71.70717)
 [node name="GameManager" type="Node2D" parent="tabuleiro"]
 script = ExtResource("4_7xjcx")
 
-[node name="Sprite2D" type="Sprite2D" parent="tabuleiro"]
+[node name="borda" type="Line2D" parent="."]
+position = Vector2(0, 1.9541527)
+scale = Vector2(0.99999994, 0.9908304)
+points = PackedVector2Array(187, 480, 667, 480, 667, 0, 187, 0, 187, 482.51614)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
 
 [node name="cen_menu_opcoes" parent="." instance=ExtResource("2_jqohn")]
 visible = false
