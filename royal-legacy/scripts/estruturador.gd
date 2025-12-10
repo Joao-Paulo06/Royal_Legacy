@@ -49,15 +49,19 @@ func _on_btn_retornar_de_novo_jogo_pressed() -> void:
 	# Volta ao menu principal
 	mostrar_tela(menu_principal)
 
+func _on_btn_retornar_de_tabuleiro_pressed() -> void:
+	# Volta ao menu novo jogo
+	mostrar_tela(tela_novo_jogo)
+	
 func _on_btn_p_v_e_pressed() -> void:
 	# Jogador vs IA → mostra o tabuleiro
 	# (Aqui no futuro você vai iniciar IA, dificuldade, etc.)
-	mostrar_tela(tabuleiro)
+	pass
 	
 func _on_btn_p_v_p_pressed() -> void:
 	# Jogador vs Jogador local
 	# (Ainda não implementado)
-	pass
+	mostrar_tela(tabuleiro)
 
 func _on_btn_p_v_p_online_pressed() -> void:
 	# Modo online

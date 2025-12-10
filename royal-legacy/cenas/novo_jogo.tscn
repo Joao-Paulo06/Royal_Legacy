@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://v4acm1siny8r"]
 
-[ext_resource type="Texture2D" uid="uid://bubrk5yjk5jeb" path="res://assets/versao_1/tabuleiro.png" id="1_6wpih"]
-[ext_resource type="Script" uid="uid://bj7vu5tci1he3" path="res://scripts/base_xadrez.gd" id="2_f23y0"]
+[ext_resource type="Texture2D" uid="uid://dw5sr42wu1i6" path="res://assets/versao_1/tabuleiro.png" id="1_6wpih"]
+[ext_resource type="Script" uid="uid://bj7vu5tci1he3" path="res://scripts/BaseXadrez.gd" id="2_f23y0"]
 
 [node name="tabuleiro" type="Sprite2D"]
 scale = Vector2(3.333, 3.333)

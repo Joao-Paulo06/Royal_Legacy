@@ -14,6 +14,10 @@ config/name="Royal Legacy"
 run/main_scene="uid://uc1uv57stt28"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 
+[autoload]
+
+Global="*res://scripts/Global.gd"
+
 [display]
 
 window/size/viewport_width=854

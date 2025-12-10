@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://uc1uv57stt28"]
+[gd_scene load_steps=9 format=3 uid="uid://uc1uv57stt28"]
 
-[ext_resource type="Script" uid="uid://dumuijyxx18jm" path="res://scripts/estruturador.gd" id="1_s4gh1"]
+[ext_resource type="Script" uid="uid://dumuijyxx18jm" path="res://scripts/Estruturador.gd" id="1_s4gh1"]
 [ext_resource type="Texture2D" uid="uid://c2q0w85vqu3ki" path="res://temas/tema_fundo_principal.png" id="2_7xjcx"]
 [ext_resource type="PackedScene" uid="uid://b0mlqk52vlpxk" path="res://cenas/menu_opcoes.tscn" id="2_jqohn"]
 [ext_resource type="PackedScene" uid="uid://cce28b022shju" path="res://cenas/menu_novo_jogo.tscn" id="3_iy0r7"]
-[ext_resource type="Script" uid="uid://bl75o236pwb0" path="res://scripts/GameManager.gd" id="4_7xjcx"]
+[ext_resource type="Script" uid="uid://sokxvn1sv4y6" path="res://scripts/GameManager.gd" id="4_7xjcx"]
 [ext_resource type="PackedScene" uid="uid://cfrx3e3sbyo4a" path="res://cenas/menu_principal.tscn" id="4_ehvh2"]
 [ext_resource type="PackedScene" uid="uid://v4acm1siny8r" path="res://cenas/novo_jogo.tscn" id="5_bl8ek"]
+[ext_resource type="FontFile" uid="uid://d3wyk170ulhtp" path="res://fontes/LibreBaskerville-Bold.ttf" id="5_jhnjv"]
 
 [node name="estruturador" type="Node"]
 script = ExtResource("1_s4gh1")
@@ -21,19 +22,32 @@ texture = ExtResource("2_7xjcx")
 [node name="tabuleiro" parent="." instance=ExtResource("5_bl8ek")]
 position = Vector2(187, 0)
 
-[node name="turno" parent="tabuleiro" index="2"]
+[node name="GameManager" type="Node2D" parent="tabuleiro"]
+scale = Vector2(0.99999994, 0.99999994)
+script = ExtResource("4_7xjcx")
+
+[node name="turno" parent="tabuleiro" index="3"]
 z_index = -10
 position = Vector2(71.70717, 71.70717)
 
-[node name="GameManager" type="Node2D" parent="tabuleiro"]
-script = ExtResource("4_7xjcx")
+[node name="btn_retornar" type="Button" parent="tabuleiro"]
+offset_left = -52.20522
+offset_top = 3.0002997
+offset_right = 21.79478
+offset_bottom = 50.0003
+scale = Vector2(0.25, 0.25)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("5_jhnjv")
+theme_override_font_sizes/font_size = 30
+text = "   <   "
 
 [node name="borda" type="Line2D" parent="."]
 position = Vector2(0, 1.9541527)
 scale = Vector2(0.99999994, 0.9908304)
 points = PackedVector2Array(187, 480, 667, 480, 667, 0, 187, 0, 187, 482.51614)
 width = 5.0
-default_color = Color(0, 0, 0, 1)
+default_color = Color(0.3511163, 0.13352808, 0.011081624, 1)
 
 [node name="cen_menu_opcoes" parent="." instance=ExtResource("2_jqohn")]
 visible = false
@@ -47,6 +61,7 @@ script = null
 visible = false
 script = null
 
+[connection signal="pressed" from="tabuleiro/btn_retornar" to="." method="_on_btn_retornar_de_tabuleiro_pressed"]
 [connection signal="pressed" from="cen_menu_opcoes/marg_ctn_menu_opcoes/btn_retornar" to="." method="_on_btn_retornar_de_opcoes_pressed"]
 [connection signal="pressed" from="cen_menu_opcoes/marg_ctn_menu_opcoes/pnl_ctn_botoes/vert_ctn_botoes/btn_sons" to="." method="_on_btn_sons_pressed"]
 [connection signal="pressed" from="cen_menu_opcoes/marg_ctn_menu_opcoes/pnl_ctn_botoes/vert_ctn_botoes/btn_temas" to="." method="_on_btn_temas_pressed"]
