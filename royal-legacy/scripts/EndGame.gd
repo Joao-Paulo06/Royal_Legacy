@@ -2,11 +2,13 @@ extends Control
 
 @onready var winner_label: Label = $VBoxContainer/WinnerLabel
 
+# ==============================================================================
+# 1. INICIALIZAÇÃO
+# ==============================================================================
+
 func _ready() -> void:
-	# LÊ DO GLOBAL (Que nunca é destruído)
+	# Tenta ler do Global, fallback para o GameManager se necessário
 	var game_manager = get_node_or_null("../estruturador/tabuleiro/GameManager")
-	
-	# Prioridade: Lê do Global. Se estiver vazio, tenta achar o manager (caso de testes)
 	var vencedor_final = Global.vencedor
 	
 	if vencedor_final == "":
@@ -25,8 +27,11 @@ func atualizar_mensagem_vitoria(valor_vencedor) -> void:
 	else:
 		winner_label.text = "Vencedor: " + texto.capitalize()
 
+# ==============================================================================
+# 2. SINAIS DOS BOTÕES
+# ==============================================================================
+
 func _on_restart_button_pressed() -> void:
-	Global.vencedor = "" # Limpa o global
-	get_tree().change_scene_to_file("res://cenas/estruturador.tscn") 
-	# DICA: Volte para o 'estruturador.tscn' (menu principal/jogo) em vez de 'novo_jogo.tscn' 
-	# se essa for sua cena principal.
+	Global.vencedor = "" 
+	# Garanta que o caminho abaixo aponta para sua cena principal
+	get_tree().change_scene_to_file("res://cenas/estruturador.tscn")

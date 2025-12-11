@@ -1,66 +1,80 @@
-[gd_scene load_steps=9 format=3 uid="uid://uc1uv57stt28"]
+[gd_scene load_steps=10 format=3 uid="uid://uc1uv57stt28"]
 
-[ext_resource type="Script" uid="uid://dumuijyxx18jm" path="res://scripts/Estruturador.gd" id="1_s4gh1"]
-[ext_resource type="Texture2D" uid="uid://c2q0w85vqu3ki" path="res://temas/tema_fundo_principal.png" id="2_7xjcx"]
-[ext_resource type="PackedScene" uid="uid://b0mlqk52vlpxk" path="res://cenas/menu_opcoes.tscn" id="2_jqohn"]
-[ext_resource type="PackedScene" uid="uid://cce28b022shju" path="res://cenas/menu_novo_jogo.tscn" id="3_iy0r7"]
-[ext_resource type="Script" uid="uid://sokxvn1sv4y6" path="res://scripts/GameManager.gd" id="4_7xjcx"]
-[ext_resource type="PackedScene" uid="uid://cfrx3e3sbyo4a" path="res://cenas/menu_principal.tscn" id="4_ehvh2"]
-[ext_resource type="PackedScene" uid="uid://v4acm1siny8r" path="res://cenas/novo_jogo.tscn" id="5_bl8ek"]
-[ext_resource type="FontFile" uid="uid://d3wyk170ulhtp" path="res://fontes/LibreBaskerville-Bold.ttf" id="5_jhnjv"]
+[ext_resource type="Script" uid="uid://dumuijyxx18jm" path="res://scripts/Estruturador.gd" id="1_2mx58"]
+[ext_resource type="Texture2D" uid="uid://c2q0w85vqu3ki" path="res://temas/tema_fundo_principal.png" id="2_31dd1"]
+[ext_resource type="PackedScene" uid="uid://v4acm1siny8r" path="res://cenas/NovoJogo.tscn" id="3_5567i"]
+[ext_resource type="Script" uid="uid://sokxvn1sv4y6" path="res://scripts/GameManager.gd" id="4_ry3m5"]
+[ext_resource type="FontFile" uid="uid://d3wyk170ulhtp" path="res://fontes/LibreBaskerville-Bold.ttf" id="5_4vg03"]
+[ext_resource type="Texture2D" uid="uid://gm3kw0onk2ow" path="res://assets/extras/Desfazer.png" id="6_31dd1"]
+[ext_resource type="PackedScene" uid="uid://b0mlqk52vlpxk" path="res://cenas/MenuOpcoes.tscn" id="6_lxwp1"]
+[ext_resource type="PackedScene" uid="uid://cce28b022shju" path="res://cenas/MenuNovoJogo.tscn" id="7_cj5mv"]
+[ext_resource type="PackedScene" uid="uid://cfrx3e3sbyo4a" path="res://cenas/MenuPrincipal.tscn" id="8_a1j3f"]
 
-[node name="estruturador" type="Node"]
-script = ExtResource("1_s4gh1")
+[node name="Estruturador" type="Node"]
+script = ExtResource("1_2mx58")
 
 [node name="cenario" type="TextureRect" parent="."]
 z_index = -11
 offset_right = 3407.475
 offset_bottom = 2075.0564
 scale = Vector2(0.2573753, 0.23276475)
-texture = ExtResource("2_7xjcx")
+texture = ExtResource("2_31dd1")
 
-[node name="tabuleiro" parent="." instance=ExtResource("5_bl8ek")]
+[node name="tabuleiro" parent="." instance=ExtResource("3_5567i")]
 position = Vector2(187, 0)
 
-[node name="GameManager" type="Node2D" parent="tabuleiro"]
-scale = Vector2(0.99999994, 0.99999994)
-script = ExtResource("4_7xjcx")
-
-[node name="turno" parent="tabuleiro" index="3"]
+[node name="turno" parent="tabuleiro" index="2"]
 z_index = -10
 position = Vector2(71.70717, 71.70717)
 
-[node name="btn_retornar" type="Button" parent="tabuleiro"]
-offset_left = -52.20522
-offset_top = 3.0002997
-offset_right = 21.79478
-offset_bottom = 50.0003
+[node name="GameManager" type="Node2D" parent="tabuleiro"]
+scale = Vector2(0.9999999, 0.9999999)
+script = ExtResource("4_ry3m5")
+
+[node name="btn_desfazer_mov" type="Button" parent="tabuleiro"]
+offset_left = -52.0
+offset_top = 19.202
+offset_right = 30.0
+offset_bottom = 74.201996
 scale = Vector2(0.25, 0.25)
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("5_jhnjv")
+theme_override_fonts/font = ExtResource("5_4vg03")
+theme_override_font_sizes/font_size = 30
+icon = ExtResource("6_31dd1")
+
+[node name="btn_retornar" type="Button" parent="tabuleiro"]
+offset_left = -52.0
+offset_top = 3.0
+offset_right = 30.0
+offset_bottom = 58.0
+scale = Vector2(0.25, 0.25)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("5_4vg03")
 theme_override_font_sizes/font_size = 30
 text = "   <   "
 
 [node name="borda" type="Line2D" parent="."]
-position = Vector2(0, 1.9541527)
-scale = Vector2(0.99999994, 0.9908304)
+position = Vector2(0, -0.00828284)
+scale = Vector2(0.99999994, 0.99896467)
 points = PackedVector2Array(187, 480, 667, 480, 667, 0, 187, 0, 187, 482.51614)
-width = 5.0
+width = 8.0
 default_color = Color(0.3511163, 0.13352808, 0.011081624, 1)
 
-[node name="cen_menu_opcoes" parent="." instance=ExtResource("2_jqohn")]
+[node name="cen_menu_opcoes" parent="." instance=ExtResource("6_lxwp1")]
 visible = false
 script = null
 
-[node name="cen_menu_novo_jogo" parent="." instance=ExtResource("3_iy0r7")]
+[node name="cen_menu_novo_jogo" parent="." instance=ExtResource("7_cj5mv")]
 visible = false
 script = null
 
-[node name="cen_menu_principal" parent="." instance=ExtResource("4_ehvh2")]
+[node name="cen_menu_principal" parent="." instance=ExtResource("8_a1j3f")]
 visible = false
 script = null
 
+[connection signal="pressed" from="tabuleiro/btn_desfazer_mov" to="tabuleiro" method="_on_btn_desfazer_mov_pressed"]
 [connection signal="pressed" from="tabuleiro/btn_retornar" to="." method="_on_btn_retornar_de_tabuleiro_pressed"]
 [connection signal="pressed" from="cen_menu_opcoes/marg_ctn_menu_opcoes/btn_retornar" to="." method="_on_btn_retornar_de_opcoes_pressed"]
 [connection signal="pressed" from="cen_menu_opcoes/marg_ctn_menu_opcoes/pnl_ctn_botoes/vert_ctn_botoes/btn_sons" to="." method="_on_btn_sons_pressed"]
