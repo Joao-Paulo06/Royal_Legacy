@@ -1,0 +1,101 @@
+[gd_scene load_steps=7 format=3 uid="uid://qlqxyol7fw8y"]
+
+[ext_resource type="Texture2D" uid="uid://c0et7gdtkbsk5" path="res://temas/tema_16.jpg" id="1_e1mem"]
+[ext_resource type="Script" uid="uid://dwec0mm5hfw0j" path="res://scripts/MenuNovoJogo.gd" id="2_yf3iw"]
+[ext_resource type="FontFile" uid="uid://d3wyk170ulhtp" path="res://fontes/LibreBaskerville-Bold.ttf" id="3_0kvhd"]
+[ext_resource type="FontFile" uid="uid://cwjl7kg0e40pe" path="res://fontes/LibreBaskerville-Regular.ttf" id="4_1buvh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_psh2s"]
+font = ExtResource("3_0kvhd")
+font_size = 80
+font_color = Color(0, 0, 0, 1)
+shadow_size = 9
+shadow_color = Color(0.98039216, 0.9764706, 0.8666667, 1)
+shadow_offset = Vector2(5, 1)
+stacked_shadow_count = 1
+stacked_shadow_0/offset = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xn66q"]
+bg_color = Color(0.13333334, 0.15294118, 0.31764707, 0.39215687)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 32.0
+expand_margin_top = 32.0
+expand_margin_right = 32.0
+expand_margin_bottom = 32.0
+shadow_color = Color(0, 0, 0, 0.396078)
+shadow_size = 10
+shadow_offset = Vector2(10, 10)
+
+[node name="cen_PvE" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_e1mem")
+expand_mode = 2
+script = ExtResource("2_yf3iw")
+
+[node name="marg_ctn_menu_novo_jogo" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+
+[node name="lbl_titulo" type="Label" parent="marg_ctn_menu_novo_jogo"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Dificuldade"
+label_settings = SubResource("LabelSettings_psh2s")
+horizontal_alignment = 3
+
+[node name="btn_retornar" type="Button" parent="marg_ctn_menu_novo_jogo"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("3_0kvhd")
+theme_override_font_sizes/font_size = 30
+text = "   <   "
+
+[node name="pnl_ctn_botoes" type="PanelContainer" parent="marg_ctn_menu_novo_jogo"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_xn66q")
+
+[node name="vert_ctn_botoes" type="VBoxContainer" parent="marg_ctn_menu_novo_jogo/pnl_ctn_botoes"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="btn_facil" type="Button" parent="marg_ctn_menu_novo_jogo/pnl_ctn_botoes/vert_ctn_botoes"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_1buvh")
+theme_override_font_sizes/font_size = 30
+text = "              Fácil              "
+
+[node name="btn_mediano" type="Button" parent="marg_ctn_menu_novo_jogo/pnl_ctn_botoes/vert_ctn_botoes"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_1buvh")
+theme_override_font_sizes/font_size = 30
+text = "Mediano"
+
+[node name="btn_dificil" type="Button" parent="marg_ctn_menu_novo_jogo/pnl_ctn_botoes/vert_ctn_botoes"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_1buvh")
+theme_override_font_sizes/font_size = 30
+text = "Difícil"

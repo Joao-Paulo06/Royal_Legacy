@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://uc1uv57stt28"]
+[gd_scene load_steps=11 format=3 uid="uid://uc1uv57stt28"]
 
 [ext_resource type="Script" uid="uid://dumuijyxx18jm" path="res://scripts/Estruturador.gd" id="1_2mx58"]
 [ext_resource type="Texture2D" uid="uid://c2q0w85vqu3ki" path="res://temas/tema_fundo_principal.png" id="2_31dd1"]
@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://d3wyk170ulhtp" path="res://fontes/LibreBaskerville-Bold.ttf" id="5_4vg03"]
 [ext_resource type="Texture2D" uid="uid://gm3kw0onk2ow" path="res://assets/extras/Desfazer.png" id="6_31dd1"]
 [ext_resource type="PackedScene" uid="uid://b0mlqk52vlpxk" path="res://cenas/MenuOpcoes.tscn" id="6_lxwp1"]
+[ext_resource type="PackedScene" uid="uid://qlqxyol7fw8y" path="res://cenas/PvEMenuNovoJogo.tscn" id="7_5567i"]
 [ext_resource type="PackedScene" uid="uid://cce28b022shju" path="res://cenas/MenuNovoJogo.tscn" id="7_cj5mv"]
 [ext_resource type="PackedScene" uid="uid://cfrx3e3sbyo4a" path="res://cenas/MenuPrincipal.tscn" id="8_a1j3f"]
 
@@ -62,6 +63,8 @@ points = PackedVector2Array(187, 480, 667, 480, 667, 0, 187, 0, 187, 482.51614)
 width = 8.0
 default_color = Color(0.3511163, 0.13352808, 0.011081624, 1)
 
+[node name="cen_PvE" parent="." instance=ExtResource("7_5567i")]
+
 [node name="cen_menu_opcoes" parent="." instance=ExtResource("6_lxwp1")]
 visible = false
 script = null
@@ -76,6 +79,10 @@ script = null
 
 [connection signal="pressed" from="tabuleiro/btn_desfazer_mov" to="tabuleiro" method="_on_btn_desfazer_mov_pressed"]
 [connection signal="pressed" from="tabuleiro/btn_retornar" to="." method="_on_btn_retornar_de_tabuleiro_pressed"]
+[connection signal="pressed" from="cen_PvE/marg_ctn_menu_novo_jogo/btn_retornar" to="." method="_on_btn_retornar_de_pve_pressed"]
+[connection signal="pressed" from="cen_PvE/marg_ctn_menu_novo_jogo/pnl_ctn_botoes/vert_ctn_botoes/btn_facil" to="." method="_on_btn_facil_pressed"]
+[connection signal="pressed" from="cen_PvE/marg_ctn_menu_novo_jogo/pnl_ctn_botoes/vert_ctn_botoes/btn_mediano" to="." method="_on_btn_mediano_pressed"]
+[connection signal="pressed" from="cen_PvE/marg_ctn_menu_novo_jogo/pnl_ctn_botoes/vert_ctn_botoes/btn_dificil" to="." method="_on_btn_dificil_pressed"]
 [connection signal="pressed" from="cen_menu_opcoes/marg_ctn_menu_opcoes/btn_retornar" to="." method="_on_btn_retornar_de_opcoes_pressed"]
 [connection signal="pressed" from="cen_menu_opcoes/marg_ctn_menu_opcoes/pnl_ctn_botoes/vert_ctn_botoes/btn_sons" to="." method="_on_btn_sons_pressed"]
 [connection signal="pressed" from="cen_menu_opcoes/marg_ctn_menu_opcoes/pnl_ctn_botoes/vert_ctn_botoes/btn_temas" to="." method="_on_btn_temas_pressed"]
@@ -89,6 +96,7 @@ script = null
 [connection signal="pressed" from="cen_menu_principal/marg_ctn_menu_principal/pnl_ctn_botoes/vert_ctn_botoes/btn_sair" to="." method="_on_btn_sair_pressed"]
 
 [editable path="tabuleiro"]
+[editable path="cen_PvE"]
 [editable path="cen_menu_opcoes"]
 [editable path="cen_menu_novo_jogo"]
 [editable path="cen_menu_principal"]

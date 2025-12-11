@@ -58,7 +58,7 @@ theme_override_constants/margin_right = 25
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-text = "Novo Jogo  "
+text = "    Novo Jogo"
 label_settings = SubResource("LabelSettings_psh2s")
 
 [node name="btn_retornar" type="Button" parent="marg_ctn_menu_novo_jogo"]

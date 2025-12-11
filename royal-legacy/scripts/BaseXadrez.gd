@@ -51,6 +51,9 @@ var situacao: bool = false        # Estado de seleção
 var selecionar_peca: Vector2 = Vector2(-1, -1)
 var movimento: Array = []         # Lista de movimentos válidos
 var historico_partida: Array = [] # Pilha para guardar os estados anteriores
+var modo_pve: bool = true   # Se true, joga contra o PC. Se false, PvP local.
+var dificuldade_ia: int = 2 # 1 = Fácil, 2 = Médio, 3 = Difícil
+var ia_pensando: bool = false
 
 # Histórico e Regras Especiais
 var ultimo_movimento = { "peca": 0, "origem": Vector2.ZERO, "destino": Vector2.ZERO }
@@ -65,7 +68,9 @@ var torres_moveram = {
 # ==============================================================================
 
 func _ready() -> void:
-	# Conecta sinal do GameManager se existir
+	modo_pve = Global.modo_pve
+	dificuldade_ia = Global.dificuldade_escolhida
+
 	var game_manager = get_game_manager()
 	if game_manager:
 		if not game_manager.check_state_changed.is_connected(_on_check_state_changed):
@@ -86,6 +91,10 @@ func _ready() -> void:
 	exibir()
 
 func _input(event) -> void:
+
+	if ia_pensando or (modo_pve and not brancas):
+		return
+		
 	if not (event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT):
 		return
 
@@ -187,7 +196,12 @@ func definir_movimento(linha: int, coluna: int) -> void:
 			# Avisa o GameManager (opcional, para redundância)
 			var gm = get_game_manager()
 			if gm: gm.atualizar_xeque(true)
-
+			
+		# Se agora é vez das Pretas (not brancas) e estamos no modo PvE:
+		if not brancas and modo_pve:
+			# Chama a função da IA com um pequeno atraso para não ser instantâneo
+			iniciar_turno_ia()
+			
 		verificar_fim_de_jogo()
 
 # ==============================================================================
@@ -566,3 +580,140 @@ func desfazer_ultima_jogada() -> void:
 func _on_btn_desfazer_mov_pressed() -> void:
 	desfazer_ultima_jogada()
 	
+# ==============================================================================
+# 11. INTELIGÊNCIA ARTIFICIAL 
+# ==============================================================================
+
+func iniciar_turno_ia() -> void:
+	var gm = get_game_manager()
+	if gm and gm.winner != "": return
+	
+	ia_pensando = true
+	# Tempo para "fingir" que pensa (quanto mais difícil, menos delay pra ser agil)
+	var tempo_espera = 0.5 if dificuldade_ia == 3 else 1.0
+	await get_tree().create_timer(tempo_espera).timeout
+	
+	var jogada = escolher_melhor_jogada()
+	
+	if jogada.is_empty():
+		print("IA: Sem movimentos (Mate/Afogamento)")
+		ia_pensando = false
+		return
+
+	executar_movimento_ia(jogada["origem"], jogada["destino"])
+	ia_pensando = false
+
+func executar_movimento_ia(origem: Vector2, destino: Vector2) -> void:
+	selecionar_peca = origem
+	movimento = [destino]
+	definir_movimento(int(destino.y), int(destino.x))
+
+func escolher_melhor_jogada() -> Dictionary:
+	# Analisa todas as jogadas e dá uma nota (Score) para cada uma
+	var todas = obter_todas_jogadas_pontuadas(false) # false = Pretas (IA)
+	
+	if todas.is_empty(): return {}
+	
+	# Ordena do maior Score para o menor
+	todas.sort_custom(func(a, b): return a["score"] > b["score"])
+	
+	# --- NÍVEL 1: ESTRATÉGICO (Antigo Difícil) ---
+	# Pega a melhor jogada, mas as vezes erra um pouco (pega uma das top 3)
+	if dificuldade_ia == 1:
+		# Pega aleatória entre as 3 melhores para não ser robótico demais
+		var top_n = min(3, todas.size())
+		return todas.slice(0, top_n).pick_random()
+
+	# --- NÍVEL 2: TÁTICO (Joga Seguro) ---
+	# Pega sempre a melhor jogada calculada (evita suicídio)
+	if dificuldade_ia == 2:
+		return todas[0]
+
+	# --- NÍVEL 3: EXTREMO (Agressivo) ---
+	# Igual ao 2, mas a pontuação calculada lá embaixo é mais refinada
+	if dificuldade_ia == 3:
+		# Se tiver chance de xeque-mate ou grande vantagem, pega a Top 1
+		# Se tiverem várias jogadas com score parecido, varia um pouco
+		return todas[0]
+
+	return todas[0]
+
+# --- O CÉREBRO DA IA (Cálculo de Pontos) ---
+func obter_todas_jogadas_pontuadas(para_brancas: bool) -> Array:
+	var jogadas: Array = []
+	var backup_sel = selecionar_peca
+	var backup_brancas = brancas
+	
+	# Simula turno da IA
+	brancas = para_brancas 
+
+	for y in range(TAMANHO_TABULEIRO):
+		for x in range(TAMANHO_TABULEIRO):
+			var val = tabuleiro[y][x]
+			
+			# Se é peça da IA
+			if val != 0 and (val > 0) == para_brancas:
+				selecionar_peca = Vector2(x, y)
+				var movimentos_desta_peca = pegar_movimento()
+				
+				for destino in movimentos_desta_peca:
+					# 1. PONTUAÇÃO BASE (Captura)
+					# Peão=10, Cavalo/Bispo=30, Torre=50, Rainha=90, Rei=900
+					var valor_peca_alvo = abs(tabuleiro[destino.y][destino.x])
+					var score = obter_valor_peca(valor_peca_alvo)
+					
+					# 2. BÔNUS DE POSIÇÃO (Centro do Tabuleiro)
+					# Incentiva dominar o meio
+					if destino.x >= 2 and destino.x <= 5 and destino.y >= 2 and destino.y <= 5:
+						score += 3
+
+					# 3. PROMOÇÃO DE PEÃO
+					# Se for peão e chegar no final, pontuação altíssima
+					if abs(val) == 1:
+						if (para_brancas and destino.y == 0) or (not para_brancas and destino.y == 7):
+							score += 80 # Quase uma nova rainha
+
+					# --- LÓGICA AVANÇADA (Níveis 2 e 3) ---
+					if dificuldade_ia >= 2:
+						# ANALISE DE SEGURANÇA (Será que vou morrer?)
+						# Se a casa de destino está sendo atacada pelo INIMIGO (jogador)
+						if casa_sob_ataque(destino, !para_brancas):
+							var valor_minha_peca = obter_valor_peca(abs(val))
+							
+							# Se eu for comer algo valioso, vale a pena o risco (Troca)
+							# Score = (Valor que comi) - (Valor que vou perder)
+							score -= valor_minha_peca
+					
+					# --- LÓGICA EXTREMA (Nível 3) ---
+					if dificuldade_ia == 3:
+						# BÔNUS DE XEQUE (Agressividade)
+						# Simula o movimento para ver se coloca o oponente em xeque
+						var peca_origem = tabuleiro[y][x]
+						var peca_dest = tabuleiro[destino.y][destino.x]
+						tabuleiro[y][x] = 0; tabuleiro[destino.y][destino.x] = peca_origem
+						
+						if esta_em_xeque(!para_brancas): # Oponente em xeque?
+							score += 15 # Prioriza dar xeque
+						
+						# Desfaz simulação
+						tabuleiro[y][x] = peca_origem; tabuleiro[destino.y][destino.x] = peca_dest
+
+					jogadas.append({
+						"origem": Vector2(x, y),
+						"destino": destino,
+						"score": score
+					})
+
+	selecionar_peca = backup_sel
+	brancas = backup_brancas
+	return jogadas
+
+func obter_valor_peca(tipo_peca: int) -> int:
+	match tipo_peca:
+		1: return 10  # Peão
+		2: return 30  # Cavalo
+		3: return 30  # Bispo
+		4: return 50  # Torre
+		5: return 90  # Rainha
+		6: return 900 # Rei
+	return 0
