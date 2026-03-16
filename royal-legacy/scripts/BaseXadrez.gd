@@ -77,7 +77,6 @@ func _ready() -> void:
 			game_manager.check_state_changed.connect(_on_check_state_changed)
 
 	# Inicializa Matriz do Tabuleiro
-	# Positivos = Brancas | Negativos = Pretas
 	tabuleiro = [
 		[-4, -2, -3, -5, -6, -3, -2, -4], # Pretas (Topo)
 		[-1, -1, -1, -1, -1, -1, -1, -1],
@@ -91,32 +90,27 @@ func _ready() -> void:
 	exibir()
 
 func _input(event) -> void:
-
 	if ia_pensando or (modo_pve and not brancas):
 		return
 		
 	if not (event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT):
 		return
 
-	# Converte mouse global para coordenadas do tabuleiro
 	var mouse_local = to_local(get_global_mouse_position())
 	var origin = _get_board_origin()
 	var cell = _get_cell_size()
 	var mouse_board = mouse_local - origin
 
-	# Verifica clique fora do tabuleiro
 	if mouse_board.x < 0 or mouse_board.x >= TAMANHO_TABULEIRO * cell: return
 	if mouse_board.y < 0 or mouse_board.y >= TAMANHO_TABULEIRO * cell: return
 
 	var coluna := int(floor(mouse_board.x / cell))
 	var linha := int(floor(mouse_board.y / cell))
 
-	# Lógica de Seleção
 	if not situacao and ((brancas and tabuleiro[linha][coluna] > 0) or (not brancas and tabuleiro[linha][coluna] < 0)):
 		selecionar_peca = Vector2(coluna, linha)
 		mostrar_opcoes()
 		situacao = true
-	# Lógica de Movimento
 	elif situacao:
 		definir_movimento(linha, coluna)
 		
@@ -131,14 +125,12 @@ func definir_movimento(linha: int, coluna: int) -> void:
 			movimento_encontrado = true
 			break
 
-	# Limpa visualização de movimentos
 	for child in quadrados.get_children():
 		child.queue_free()
 	situacao = false
 
 	if movimento_encontrado:
 		salvar_estado_atual()
-		# --- A. LÓGICA DO ROQUE --
 		var distancia_x = coluna - selecionar_peca.x
 		if abs(tabuleiro[selecionar_peca.y][selecionar_peca.x]) == 6 and abs(distancia_x) == 2:
 			var y = selecionar_peca.y
@@ -147,7 +139,6 @@ func definir_movimento(linha: int, coluna: int) -> void:
 			elif distancia_x == -2: # Roque Longo
 				tabuleiro[y][3] = tabuleiro[y][0]; tabuleiro[y][0] = 0
 
-		# --- B. EXECUTA MOVIMENTO ---
 		var peca_destino_valor = tabuleiro[linha][coluna]
 		var peca_movida_valor = tabuleiro[selecionar_peca.y][selecionar_peca.x]
 		var pos_anterior = selecionar_peca
@@ -155,26 +146,22 @@ func definir_movimento(linha: int, coluna: int) -> void:
 		tabuleiro[linha][coluna] = peca_movida_valor
 		tabuleiro[selecionar_peca.y][selecionar_peca.x] = 0
 		
-		# --- C. PROMOÇÃO DE PEÃO ---
 		if peca_movida_valor == 1 and linha == 0:
 			tabuleiro[linha][coluna] = 5  # Rainha Branca
 		elif peca_movida_valor == -1 and linha == 7:
 			tabuleiro[linha][coluna] = -5 # Rainha Preta
 
-		# --- D. EN PASSANT ---
 		if abs(peca_movida_valor) == 1 and peca_destino_valor == 0 and coluna != pos_anterior.x:
 			var direcao_captura = 1 if brancas else -1
 			var y_inimigo = linha + direcao_captura
 			tabuleiro[y_inimigo][coluna] = 0
-			peca_destino_valor = 999 # Força som de captura
+			peca_destino_valor = 999 
 
-		# --- E. ATUALIZA FLAGS ---
 		if abs(peca_movida_valor) == 6:
 			rei_moveu[brancas] = true
 		if abs(peca_movida_valor) == 4 and pos_anterior in torres_moveram:
 			torres_moveram[pos_anterior] = true
 
-		# --- F. SOM E HISTÓRICO ---
 		if peca_destino_valor != 0: tocar_som(SOM_CAPTURANDO)
 		else: tocar_som(SOM_MOVIMENTO)
 			
@@ -182,24 +169,17 @@ func definir_movimento(linha: int, coluna: int) -> void:
 			"peca": peca_movida_valor, "origem": pos_anterior, "destino": Vector2(coluna, linha)
 		}
 
-		# --- G. FINALIZAÇÃO DE TURNO ---
 		brancas = not brancas
+		exibir() 
 		
-		exibir() # Atualiza visual antes do efeito de xeque
-		
-		# Verifica Xeque visualmente
 		if esta_em_xeque(brancas):
 			tocar_som(SOM_CAPTURANDO)
 			animar_xeque_tela()
 			destacar_rei_em_perigo(brancas)
-			
-			# Avisa o GameManager (opcional, para redundância)
 			var gm = get_game_manager()
 			if gm: gm.atualizar_xeque(true)
 			
-		# Se agora é vez das Pretas (not brancas) e estamos no modo PvE:
 		if not brancas and modo_pve:
-			# Chama a função da IA com um pequeno atraso para não ser instantâneo
 			iniciar_turno_ia()
 			
 		verificar_fim_de_jogo()
@@ -224,14 +204,11 @@ func pegar_movimento() -> Array:
 		6: return rei_movimento()
 	return []
 
-# --- Movimentos das Peças ---
-
 func peao_movimento() -> Array:
 	var _movs: Array = []
 	var dir := 1 if not brancas else -1
 	var pos := selecionar_peca + Vector2(0, dir)
 
-	# Simples e Duplo
 	if posicao_valida(pos) and posicao_vazia(pos):
 		_movs.append(pos)
 		var prim_jogada := (brancas and selecionar_peca.y == 6) or (not brancas and selecionar_peca.y == 1)
@@ -239,13 +216,11 @@ func peao_movimento() -> Array:
 			pos = selecionar_peca + Vector2(0, dir * 2)
 			if posicao_valida(pos) and posicao_vazia(pos): _movs.append(pos)
 
-	# Captura
 	for i in [-1, 1]:
 		pos = selecionar_peca + Vector2(i, dir)
 		if posicao_valida(pos) and not posicao_vazia(pos) and pecas_inimigas(pos):
 			_movs.append(pos)
 
-	# En Passant
 	var linha_ep = 3 if brancas else 4
 	if selecionar_peca.y == linha_ep:
 		for i in [-1, 1]:
@@ -269,15 +244,12 @@ func rei_movimento() -> Array:
 		if posicao_valida(pos) and (posicao_vazia(pos) or pecas_inimigas(pos)):
 			_movs.append(pos)
 			
-	# Roque
 	if not rei_moveu[brancas] and not esta_em_xeque(brancas):
 		var y = selecionar_peca.y
 		var cor_ini = not brancas
-		# Curto
 		if tabuleiro[y][7] == (4 if brancas else -4) and not torres_moveram.get(Vector2(7, y), true):
 			if tabuleiro[y][5] == 0 and tabuleiro[y][6] == 0 and not casa_sob_ataque(Vector2(5, y), cor_ini):
 				_movs.append(Vector2(6, y))
-		# Longo
 		if tabuleiro[y][0] == (4 if brancas else -4) and not torres_moveram.get(Vector2(0, y), true):
 			if tabuleiro[y][1] == 0 and tabuleiro[y][2] == 0 and tabuleiro[y][3] == 0 and not casa_sob_ataque(Vector2(3, y), cor_ini):
 				_movs.append(Vector2(2, y))
@@ -323,10 +295,8 @@ func filtrar_movimentos_ilegais(movimentos: Array) -> Array:
 		var origem = tabuleiro[selecionar_peca.y][selecionar_peca.x]
 		var destino = tabuleiro[m.y][m.x]
 		
-		# Simula
 		tabuleiro[selecionar_peca.y][selecionar_peca.x] = 0; tabuleiro[m.y][m.x] = origem
 		if not esta_em_xeque(brancas): legais.append(m)
-		# Desfaz
 		tabuleiro[selecionar_peca.y][selecionar_peca.x] = origem; tabuleiro[m.y][m.x] = destino
 	return legais
 
@@ -392,8 +362,6 @@ func verificar_fim_de_jogo() -> void:
 				if gm.has_method("set_winner"): gm.set_winner(vencedor)
 			else:
 				if gm.has_method("set_winner"): gm.set_winner("Empate")
-		else:
-			print("ERRO: GameManager não encontrado!")
 
 # ==============================================================================
 # 7. FUNÇÕES AUXILIARES (BRUTOS)
@@ -533,9 +501,8 @@ func pecas_inimigas(pos: Vector2) -> bool: return tabuleiro[pos.y][pos.x] != 0 a
 # ==============================================================================
 
 func salvar_estado_atual() -> void:
-	# Cria um dicionário com COPIAS (.duplicate) de tudo que importa
 	var estado = {
-		"tabuleiro": tabuleiro.duplicate(true), # 'true' é vital para copiar matrizes
+		"tabuleiro": tabuleiro.duplicate(true),
 		"brancas": brancas,
 		"rei_moveu": rei_moveu.duplicate(),
 		"torres_moveram": torres_moveram.duplicate(),
@@ -544,44 +511,30 @@ func salvar_estado_atual() -> void:
 		"selecionar_peca": selecionar_peca
 	}
 	historico_partida.append(estado)
-	print("Estado salvo. Histórico: ", historico_partida.size())
 
 func desfazer_ultima_jogada() -> void:
-	if historico_partida.is_empty():
-		print("Nada para desfazer!")
-		return
+	if historico_partida.is_empty(): return
 
-	# 1. Recupera o último estado salvo
 	var estado_anterior = historico_partida.pop_back()
-
-	# 2. Restaura as variáveis
 	tabuleiro = estado_anterior["tabuleiro"]
 	brancas = estado_anterior["brancas"]
 	rei_moveu = estado_anterior["rei_moveu"]
 	torres_moveram = estado_anterior["torres_moveram"]
 	ultimo_movimento = estado_anterior["ultimo_movimento"]
 
-	# 3. Reseta seleção visual
 	situacao = false
 	selecionar_peca = Vector2(-1, -1)
 	movimento = []
-
-	# 4. Atualiza a tela
 	exibir()
 
-	# Limpa os quadrados verdes de movimento
-	for child in quadrados.get_children():
-		child.queue_free()
-
-	# Limpa indicador de xeque se houver
-	if check_indicator:
-		check_indicator.color = Color(0,0,0,0)
+	for child in quadrados.get_children(): child.queue_free()
+	if check_indicator: check_indicator.color = Color(0,0,0,0)
 
 func _on_btn_desfazer_mov_pressed() -> void:
 	desfazer_ultima_jogada()
 	
 # ==============================================================================
-# 11. INTELIGÊNCIA ARTIFICIAL 
+# 11. INTELIGÊNCIA ARTIFICIAL (MINIMAX ALPHA-BETA)
 # ==============================================================================
 
 func iniciar_turno_ia() -> void:
@@ -589,8 +542,7 @@ func iniciar_turno_ia() -> void:
 	if gm and gm.winner != "": return
 	
 	ia_pensando = true
-	# Tempo para "fingir" que pensa (quanto mais difícil, menos delay pra ser agil)
-	var tempo_espera = 0.5 if dificuldade_ia == 3 else 1.0
+	var tempo_espera = 0.5
 	await get_tree().create_timer(tempo_espera).timeout
 	
 	var jogada = escolher_melhor_jogada()
@@ -608,105 +560,92 @@ func executar_movimento_ia(origem: Vector2, destino: Vector2) -> void:
 	movimento = [destino]
 	definir_movimento(int(destino.y), int(destino.x))
 
+# --- O CÉREBRO DA IA ---
 func escolher_melhor_jogada() -> Dictionary:
-	# Analisa todas as jogadas e dá uma nota (Score) para cada uma
-	var todas = obter_todas_jogadas_pontuadas(false) # false = Pretas (IA)
-	
-	if todas.is_empty(): return {}
-	
-	# Ordena do maior Score para o menor
-	todas.sort_custom(func(a, b): return a["score"] > b["score"])
-	
-	# --- NÍVEL 1: ESTRATÉGICO (Antigo Difícil) ---
-	# Pega a melhor jogada, mas as vezes erra um pouco (pega uma das top 3)
-	if dificuldade_ia == 1:
-		# Pega aleatória entre as 3 melhores para não ser robótico demais
-		var top_n = min(3, todas.size())
-		return todas.slice(0, top_n).pick_random()
+	var melhor_jogada = {}
+	var melhor_valor = 999999 # IA controla pretas, então quer o MENOR valor possível
+	var profundidade = dificuldade_ia # Nível de dificuldade = Profundidade da busca
 
-	# --- NÍVEL 2: TÁTICO (Joga Seguro) ---
-	# Pega sempre a melhor jogada calculada (evita suicídio)
-	if dificuldade_ia == 2:
-		return todas[0]
+	var jogadas = obter_todos_movimentos_validos(false) # Pretas
 
-	# --- NÍVEL 3: EXTREMO (Agressivo) ---
-	# Igual ao 2, mas a pontuação calculada lá embaixo é mais refinada
-	if dificuldade_ia == 3:
-		# Se tiver chance de xeque-mate ou grande vantagem, pega a Top 1
-		# Se tiverem várias jogadas com score parecido, varia um pouco
-		return todas[0]
+	if jogadas.is_empty(): return {}
 
-	return todas[0]
+	# Loop Inicial para disparar o Minimax
+	for jogada in jogadas:
+		var peca_capturada = simular_mov_minimax(jogada)
+		
+		# Avalia o futuro a partir desse movimento (passa a vez para as Brancas = true)
+		var valor_tabuleiro = minimax(profundidade - 1, -999999, 999999, true)
+		
+		desfazer_mov_minimax(jogada, peca_capturada)
 
-# --- O CÉREBRO DA IA (Cálculo de Pontos) ---
-func obter_todas_jogadas_pontuadas(para_brancas: bool) -> Array:
-	var jogadas: Array = []
-	var backup_sel = selecionar_peca
-	var backup_brancas = brancas
-	
-	# Simula turno da IA
-	brancas = para_brancas 
+		# Como somos as pretas, queremos MINIMIZAR a pontuação
+		if valor_tabuleiro < melhor_valor:
+			melhor_valor = valor_tabuleiro
+			melhor_jogada = jogada
 
+	# Prevenção: Se todas as jogadas forem muito ruins, garante que jogue a primeira
+	if melhor_jogada.is_empty():
+		melhor_jogada = jogadas[0]
+
+	return melhor_jogada
+
+# --- ALGORITMO MINIMAX RECURSIVO ---
+func minimax(depth: int, alpha: int, beta: int, is_maximizing: bool) -> int:
+	if depth == 0:
+		return avaliar_estado_tabuleiro()
+
+	var jogadas = obter_todos_movimentos_validos(is_maximizing)
+
+	if jogadas.is_empty():
+		if esta_em_xeque(is_maximizing):
+			return -999999 if is_maximizing else 999999 # Xeque-mate (Brancas perdem = -, Pretas perdem = +)
+		return 0 # Empate
+
+	if is_maximizing: # Jogador (Brancas) quer maximizar
+		var max_eval = -999999
+		for jogada in jogadas:
+			var capturada = simular_mov_minimax(jogada)
+			var eval = minimax(depth - 1, alpha, beta, false)
+			desfazer_mov_minimax(jogada, capturada)
+			
+			max_eval = max(max_eval, eval)
+			alpha = max(alpha, eval)
+			if beta <= alpha: break # Poda
+		return max_eval
+		
+	else: # IA (Pretas) quer minimizar
+		var min_eval = 999999
+		for jogada in jogadas:
+			var capturada = simular_mov_minimax(jogada)
+			var eval = minimax(depth - 1, alpha, beta, true)
+			desfazer_mov_minimax(jogada, capturada)
+			
+			min_eval = min(min_eval, eval)
+			beta = min(beta, eval)
+			if beta <= alpha: break # Poda
+		return min_eval
+
+# --- AVALIAÇÃO DO TABULEIRO (Score Global) ---
+func avaliar_estado_tabuleiro() -> int:
+	var score = 0
 	for y in range(TAMANHO_TABULEIRO):
 		for x in range(TAMANHO_TABULEIRO):
-			var val = tabuleiro[y][x]
-			
-			# Se é peça da IA
-			if val != 0 and (val > 0) == para_brancas:
-				selecionar_peca = Vector2(x, y)
-				var movimentos_desta_peca = pegar_movimento()
+			var peca = tabuleiro[y][x]
+			if peca == 0: continue
+
+			var valor = obter_valor_peca(abs(peca))
+
+			# Bônus de posição (Domínio do centro)
+			if x >= 2 and x <= 5 and y >= 2 and y <= 5:
+				valor += 5
+
+			if peca > 0: # Brancas
+				score += valor
+			else:        # Pretas
+				score -= valor
 				
-				for destino in movimentos_desta_peca:
-					# 1. PONTUAÇÃO BASE (Captura)
-					# Peão=10, Cavalo/Bispo=30, Torre=50, Rainha=90, Rei=900
-					var valor_peca_alvo = abs(tabuleiro[destino.y][destino.x])
-					var score = obter_valor_peca(valor_peca_alvo)
-					
-					# 2. BÔNUS DE POSIÇÃO (Centro do Tabuleiro)
-					# Incentiva dominar o meio
-					if destino.x >= 2 and destino.x <= 5 and destino.y >= 2 and destino.y <= 5:
-						score += 3
-
-					# 3. PROMOÇÃO DE PEÃO
-					# Se for peão e chegar no final, pontuação altíssima
-					if abs(val) == 1:
-						if (para_brancas and destino.y == 0) or (not para_brancas and destino.y == 7):
-							score += 80 # Quase uma nova rainha
-
-					# --- LÓGICA AVANÇADA (Níveis 2 e 3) ---
-					if dificuldade_ia >= 2:
-						# ANALISE DE SEGURANÇA (Será que vou morrer?)
-						# Se a casa de destino está sendo atacada pelo INIMIGO (jogador)
-						if casa_sob_ataque(destino, !para_brancas):
-							var valor_minha_peca = obter_valor_peca(abs(val))
-							
-							# Se eu for comer algo valioso, vale a pena o risco (Troca)
-							# Score = (Valor que comi) - (Valor que vou perder)
-							score -= valor_minha_peca
-					
-					# --- LÓGICA EXTREMA (Nível 3) ---
-					if dificuldade_ia == 3:
-						# BÔNUS DE XEQUE (Agressividade)
-						# Simula o movimento para ver se coloca o oponente em xeque
-						var peca_origem = tabuleiro[y][x]
-						var peca_dest = tabuleiro[destino.y][destino.x]
-						tabuleiro[y][x] = 0; tabuleiro[destino.y][destino.x] = peca_origem
-						
-						if esta_em_xeque(!para_brancas): # Oponente em xeque?
-							score += 15 # Prioriza dar xeque
-						
-						# Desfaz simulação
-						tabuleiro[y][x] = peca_origem; tabuleiro[destino.y][destino.x] = peca_dest
-
-					jogadas.append({
-						"origem": Vector2(x, y),
-						"destino": destino,
-						"score": score
-					})
-
-	selecionar_peca = backup_sel
-	brancas = backup_brancas
-	return jogadas
+	return score
 
 func obter_valor_peca(tipo_peca: int) -> int:
 	match tipo_peca:
@@ -717,3 +656,41 @@ func obter_valor_peca(tipo_peca: int) -> int:
 		5: return 90  # Rainha
 		6: return 900 # Rei
 	return 0
+
+# --- FUNÇÕES DE SIMULAÇÃO (rápidas, sem sons ou visuais) ---
+func simular_mov_minimax(jogada: Dictionary) -> int:
+	var origem = jogada["origem"]
+	var destino = jogada["destino"]
+	var peca_capturada = tabuleiro[destino.y][destino.x]
+	
+	tabuleiro[destino.y][destino.x] = tabuleiro[origem.y][origem.x]
+	tabuleiro[origem.y][origem.x] = 0
+	
+	return peca_capturada
+
+func desfazer_mov_minimax(jogada: Dictionary, peca_capturada: int) -> void:
+	var origem = jogada["origem"]
+	var destino = jogada["destino"]
+	
+	tabuleiro[origem.y][origem.x] = tabuleiro[destino.y][destino.x]
+	tabuleiro[destino.y][destino.x] = peca_capturada
+
+# Gera uma lista otimizada com todos os movimentos para a recursão
+func obter_todos_movimentos_validos(para_brancas: bool) -> Array:
+	var jogadas = []
+	var backup_sel = selecionar_peca
+	var backup_brancas = brancas
+
+	brancas = para_brancas
+	for y in range(TAMANHO_TABULEIRO):
+		for x in range(TAMANHO_TABULEIRO):
+			var val = tabuleiro[y][x]
+			if val != 0 and (val > 0) == para_brancas:
+				selecionar_peca = Vector2(x, y)
+				var movs = pegar_movimento()
+				for m in movs:
+					jogadas.append({"origem": Vector2(x, y), "destino": m})
+
+	selecionar_peca = backup_sel
+	brancas = backup_brancas
+	return jogadas
