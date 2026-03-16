@@ -1,6 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://uc1uv57stt28"]
+[gd_scene format=3 uid="uid://uc1uv57stt28"]
 
-[ext_resource type="Script" uid="uid://dumuijyxx18jm" path="res://scripts/Estruturador.gd" id="1_2mx58"]
+[ext_resource type="Script" uid="uid://dumuijyxx18jm" path="res://scripts/estruturador.gd" id="1_2mx58"]
 [ext_resource type="Texture2D" uid="uid://c2q0w85vqu3ki" path="res://temas/tema_fundo_principal.png" id="2_31dd1"]
 [ext_resource type="PackedScene" uid="uid://v4acm1siny8r" path="res://cenas/NovoJogo.tscn" id="3_5567i"]
 [ext_resource type="Script" uid="uid://sokxvn1sv4y6" path="res://scripts/GameManager.gd" id="4_ry3m5"]
@@ -11,28 +11,33 @@
 [ext_resource type="PackedScene" uid="uid://cce28b022shju" path="res://cenas/MenuNovoJogo.tscn" id="7_cj5mv"]
 [ext_resource type="PackedScene" uid="uid://cfrx3e3sbyo4a" path="res://cenas/MenuPrincipal.tscn" id="8_a1j3f"]
 
-[node name="Estruturador" type="Node"]
+[node name="Estruturador" type="Node" unique_id=1050597522]
 script = ExtResource("1_2mx58")
 
-[node name="cenario" type="TextureRect" parent="."]
+[node name="cenario" type="TextureRect" parent="." unique_id=1653686074]
 z_index = -11
-offset_right = 3407.475
-offset_bottom = 2075.0564
+offset_left = -108.00002
+offset_top = -120.0
+offset_right = 4639.93
+offset_bottom = 2943.1785
 scale = Vector2(0.2573753, 0.23276475)
 texture = ExtResource("2_31dd1")
+expand_mode = 1
+stretch_mode = 6
 
-[node name="tabuleiro" parent="." instance=ExtResource("3_5567i")]
-position = Vector2(187, 0)
+[node name="tabuleiro" parent="." unique_id=899442188 instance=ExtResource("3_5567i")]
+position = Vector2(273, 12.999999)
+scale = Vector2(3.15, 3.15)
 
 [node name="turno" parent="tabuleiro" index="2"]
 z_index = -10
 position = Vector2(71.70717, 71.70717)
 
-[node name="GameManager" type="Node2D" parent="tabuleiro"]
+[node name="GameManager" type="Node2D" parent="tabuleiro" unique_id=1529957825]
 scale = Vector2(0.9999999, 0.9999999)
 script = ExtResource("4_ry3m5")
 
-[node name="btn_desfazer_mov" type="Button" parent="tabuleiro"]
+[node name="btn_desfazer_mov" type="Button" parent="tabuleiro" unique_id=192284867]
 offset_left = -52.0
 offset_top = 19.202
 offset_right = 30.0
@@ -44,7 +49,7 @@ theme_override_fonts/font = ExtResource("5_4vg03")
 theme_override_font_sizes/font_size = 30
 icon = ExtResource("6_31dd1")
 
-[node name="btn_retornar" type="Button" parent="tabuleiro"]
+[node name="btn_retornar" type="Button" parent="tabuleiro" unique_id=737699231]
 offset_left = -52.0
 offset_top = 3.0
 offset_right = 30.0
@@ -56,24 +61,25 @@ theme_override_fonts/font = ExtResource("5_4vg03")
 theme_override_font_sizes/font_size = 30
 text = "   <   "
 
-[node name="borda" type="Line2D" parent="."]
-position = Vector2(0, -0.00828284)
-scale = Vector2(0.99999994, 0.99896467)
-points = PackedVector2Array(187, 480, 667, 480, 667, 0, 187, 0, 187, 482.51614)
+[node name="borda" type="Line2D" parent="." unique_id=959378862]
+position = Vector2(90.21774, 9.680248)
+scale = Vector2(0.95967734, 0.9600311)
+points = PackedVector2Array(187, 480, 667, 480, 667, 0, 187, 0, 187, 208.54034, 187.00002, 483.98383)
 width = 8.0
 default_color = Color(0.3511163, 0.13352808, 0.011081624, 1)
 
-[node name="cen_PvE" parent="." instance=ExtResource("7_5567i")]
+[node name="cen_PvE" parent="." unique_id=375808665 instance=ExtResource("7_5567i")]
+visible = false
 
-[node name="cen_menu_opcoes" parent="." instance=ExtResource("6_lxwp1")]
+[node name="cen_menu_opcoes" parent="." unique_id=1989628465 instance=ExtResource("6_lxwp1")]
 visible = false
 script = null
 
-[node name="cen_menu_novo_jogo" parent="." instance=ExtResource("7_cj5mv")]
+[node name="cen_menu_novo_jogo" parent="." unique_id=866609491 instance=ExtResource("7_cj5mv")]
 visible = false
 script = null
 
-[node name="cen_menu_principal" parent="." instance=ExtResource("8_a1j3f")]
+[node name="cen_menu_principal" parent="." unique_id=2129603396 instance=ExtResource("8_a1j3f")]
 visible = false
 script = null
 
