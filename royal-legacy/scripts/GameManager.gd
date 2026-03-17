@@ -20,26 +20,48 @@ func end_game(tipo_resultado: int):
 	if tipo_resultado == 2:
 		winner = "empate"
 	
-	# Chama a troca de cena
-	call_deferred("change_scene_game_over")
-
+	# ESPERA 2 SEGUNDOS ANTES DE MUDAR DE TELA
+	await get_tree().create_timer(2.0).timeout
+	
+	# Chama a troca de cena no formato seguro da Godot 4 (Callable)
+	change_scene_game_over.call_deferred()
+	
 func set_winner(cor_vencedora: String):
 	winner = cor_vencedora
 	# Salva no Global (Autoload) para persistir entre cenas
 	Global.vencedor = cor_vencedora 
 	
 	game_over.emit(winner)
-	call_deferred("change_scene_game_over")
-
+	
+	# ESPERA 2 SEGUNDOS ANTES DE MUDAR DE TELA
+	await get_tree().create_timer(2.0).timeout
+	
+	change_scene_game_over.call_deferred()
+	
 # ==============================================================================
 # TROCA DE CENAS
 # ==============================================================================
 
 func change_scene_game_over():
-	# Verifique o nome do arquivo na sua pasta (Maiúsculas/Minúsculas importam!)
-	get_tree().change_scene_to_file("res://cenas/EndGame.tscn")
+	var tree = get_tree()
+	
+	# Tentativa 1: O jeito normal
+	if tree:
+		tree.change_scene_to_file("res://cenas/EndGame.tscn")
+	# Tentativa 2 (Fallback): Se o GameManager estiver "flutuando", puxamos a árvore direto da Engine
+	else:
+		var main_loop = Engine.get_main_loop()
+		if main_loop is SceneTree:
+			main_loop.change_scene_to_file("res://cenas/EndGame.tscn")
+		else:
+			print("ERRO CRÍTICO: Não foi possível acessar a SceneTree para trocar a cena.")
 
 func start_new_game():
 	winner = ""
 	turn_count = 1
-	get_tree().change_scene_to_file("res://cenas/Tabuleiro.tscn")
+	
+	var tree = get_tree()
+	if tree:
+		tree.change_scene_to_file("res://cenas/Tabuleiro.tscn")
+	else:
+		Engine.get_main_loop().change_scene_to_file("res://cenas/Tabuleiro.tscn")

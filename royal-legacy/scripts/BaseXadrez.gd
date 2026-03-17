@@ -358,6 +358,7 @@ func verificar_fim_de_jogo() -> void:
 		var gm = get_game_manager()
 		if gm:
 			if esta_em_xeque(brancas):
+				animar_xeque_mate_tela()
 				var vencedor = "Pretas" if brancas else "Brancas"
 				if gm.has_method("set_winner"): gm.set_winner(vencedor)
 			else:
@@ -449,8 +450,16 @@ func animar_xeque_tela() -> void:
 		check_indicator.visible = true
 		var tween = create_tween()
 		tween.set_loops(3)
-		tween.tween_property(check_indicator, "color", Color(1, 0, 0, 0.3), 0.2)
-		tween.tween_property(check_indicator, "color", Color(1, 0, 0, 0.0), 0.2)
+		tween.tween_property(check_indicator, "color", Color(1, 1, 0, 0.3), 0.2)
+		tween.tween_property(check_indicator, "color", Color(1, 1, 0, 0.0), 0.2)
+
+func animar_xeque_mate_tela() -> void:
+	if check_indicator:
+		check_indicator.visible = true
+		# Cria um novo Tween que vai cancelar a piscada e escurecer a tela
+		var tween = create_tween()
+		# Transição suave de meio segundo para um Vermelho Escuro (estático)
+		tween.tween_property(check_indicator, "color", Color(1.0, 0.0, 0.0, 0.6), 0.5)
 
 func destacar_rei_em_perigo(cor_branca: bool) -> void:
 	var pos_rei = encontrar_rei(cor_branca)
@@ -532,165 +541,119 @@ func desfazer_ultima_jogada() -> void:
 
 func _on_btn_desfazer_mov_pressed() -> void:
 	desfazer_ultima_jogada()
-	
+
 # ==============================================================================
-# 11. INTELIGÊNCIA ARTIFICIAL (MINIMAX ALPHA-BETA)
+# 11. INTELIGÊNCIA ARTIFICIAL (VIA STOCKFISH / PYTHON EM SEGUNDO PLANO)
 # ==============================================================================
+
+var ia_thread: Thread
 
 func iniciar_turno_ia() -> void:
-	var gm = get_game_manager()
-	if gm and gm.winner != "": return
-	
 	ia_pensando = true
-	var tempo_espera = 0.5
-	await get_tree().create_timer(tempo_espera).timeout
 	
-	var jogada = escolher_melhor_jogada()
+	# A MÁGICA CONTRA O TRAVAMENTO: 
+	# Limpamos a Thread antiga AQUI, antes de criar a nova, e não no final.
+	if ia_thread and ia_thread.is_started():
+		ia_thread.wait_to_finish()
 	
-	if jogada.is_empty():
-		print("IA: Sem movimentos (Mate/Afogamento)")
-		ia_pensando = false
-		return
+	var fen_atual = matriz_para_fen()
+	
+	ia_thread = Thread.new()
+	ia_thread.start(_chamar_python_em_background.bind(fen_atual, dificuldade_ia))
 
-	executar_movimento_ia(jogada["origem"], jogada["destino"])
+# Essa função roda "por debaixo dos panos" sem travar a tela
+func _chamar_python_em_background(fen_atual: String, dificuldade: int) -> void:
+	var caminho_script = ProjectSettings.globalize_path("res://scripts/chess_bridge.py") 
+	var args = PackedStringArray([caminho_script, fen_atual, "get_ai_move", str(dificuldade)])
+	var output_lines = []
+	
+	# Executa o Python e espera (como está numa Thread, o jogo não congela)
+	var exit_code = OS.execute("python", args, output_lines, true)
+	var melhor_jogada_uci = ""
+	
+	if exit_code == 0 and output_lines.size() > 0:
+		var output_text = "".join(output_lines)
+		var json = JSON.new()
+		if json.parse(output_text.strip_edges()) == OK:
+			var resposta = json.data
+			if typeof(resposta) == TYPE_DICTIONARY and resposta.has("status") and resposta["status"] == "success":
+				melhor_jogada_uci = resposta["move_uci"]
+			else:
+				print("Erro do Python: ", resposta.get("message", "Desconhecido"))
+	else:
+		print("Falha ao executar Python. Código: ", exit_code)
+		
+	# Manda a resposta de volta para o jogo principal (de forma segura)
+	call_deferred("_finalizar_turno_ia", melhor_jogada_uci)
+
+func _finalizar_turno_ia(jogada_uci: String) -> void:
+	# ATENÇÃO: Removemos o wait_to_finish() daqui para evitar o Deadlock!
+	
+	if jogada_uci != "":
+		print("Stockfish jogou: ", jogada_uci)
+		var coordenadas = uci_para_coordenadas(jogada_uci)
+		executar_movimento_ia(coordenadas["origem"], coordenadas["destino"])
+	else:
+		print("A IA falhou em retornar uma jogada.")
+	
+	# LIBERA O JOGO: Avisa que a IA terminou e devolve o controle pra você
 	ia_pensando = false
-
+	
 func executar_movimento_ia(origem: Vector2, destino: Vector2) -> void:
 	selecionar_peca = origem
 	movimento = [destino]
 	definir_movimento(int(destino.y), int(destino.x))
 
-# --- O CÉREBRO DA IA ---
-func escolher_melhor_jogada() -> Dictionary:
-	var melhor_jogada = {}
-	var melhor_valor = 999999 # IA controla pretas, então quer o MENOR valor possível
-	var profundidade = dificuldade_ia # Nível de dificuldade = Profundidade da busca
+# --- TRADUTORES (GODOT <-> PYTHON) ---
 
-	var jogadas = obter_todos_movimentos_validos(false) # Pretas
-
-	if jogadas.is_empty(): return {}
-
-	# Loop Inicial para disparar o Minimax
-	for jogada in jogadas:
-		var peca_capturada = simular_mov_minimax(jogada)
-		
-		# Avalia o futuro a partir desse movimento (passa a vez para as Brancas = true)
-		var valor_tabuleiro = minimax(profundidade - 1, -999999, 999999, true)
-		
-		desfazer_mov_minimax(jogada, peca_capturada)
-
-		# Como somos as pretas, queremos MINIMIZAR a pontuação
-		if valor_tabuleiro < melhor_valor:
-			melhor_valor = valor_tabuleiro
-			melhor_jogada = jogada
-
-	# Prevenção: Se todas as jogadas forem muito ruins, garante que jogue a primeira
-	if melhor_jogada.is_empty():
-		melhor_jogada = jogadas[0]
-
-	return melhor_jogada
-
-# --- ALGORITMO MINIMAX RECURSIVO ---
-func minimax(depth: int, alpha: int, beta: int, is_maximizing: bool) -> int:
-	if depth == 0:
-		return avaliar_estado_tabuleiro()
-
-	var jogadas = obter_todos_movimentos_validos(is_maximizing)
-
-	if jogadas.is_empty():
-		if esta_em_xeque(is_maximizing):
-			return -999999 if is_maximizing else 999999 # Xeque-mate (Brancas perdem = -, Pretas perdem = +)
-		return 0 # Empate
-
-	if is_maximizing: # Jogador (Brancas) quer maximizar
-		var max_eval = -999999
-		for jogada in jogadas:
-			var capturada = simular_mov_minimax(jogada)
-			var eval = minimax(depth - 1, alpha, beta, false)
-			desfazer_mov_minimax(jogada, capturada)
-			
-			max_eval = max(max_eval, eval)
-			alpha = max(alpha, eval)
-			if beta <= alpha: break # Poda
-		return max_eval
-		
-	else: # IA (Pretas) quer minimizar
-		var min_eval = 999999
-		for jogada in jogadas:
-			var capturada = simular_mov_minimax(jogada)
-			var eval = minimax(depth - 1, alpha, beta, true)
-			desfazer_mov_minimax(jogada, capturada)
-			
-			min_eval = min(min_eval, eval)
-			beta = min(beta, eval)
-			if beta <= alpha: break # Poda
-		return min_eval
-
-# --- AVALIAÇÃO DO TABULEIRO (Score Global) ---
-func avaliar_estado_tabuleiro() -> int:
-	var score = 0
+func matriz_para_fen() -> String:
+	var fen = ""
 	for y in range(TAMANHO_TABULEIRO):
+		var casas_vazias = 0
 		for x in range(TAMANHO_TABULEIRO):
 			var peca = tabuleiro[y][x]
-			if peca == 0: continue
-
-			var valor = obter_valor_peca(abs(peca))
-
-			# Bônus de posição (Domínio do centro)
-			if x >= 2 and x <= 5 and y >= 2 and y <= 5:
-				valor += 5
-
-			if peca > 0: # Brancas
-				score += valor
-			else:        # Pretas
-				score -= valor
+			if peca == 0:
+				casas_vazias += 1
+			else:
+				if casas_vazias > 0:
+					fen += str(casas_vazias)
+					casas_vazias = 0
 				
-	return score
-
-func obter_valor_peca(tipo_peca: int) -> int:
-	match tipo_peca:
-		1: return 10  # Peão
-		2: return 30  # Cavalo
-		3: return 30  # Bispo
-		4: return 50  # Torre
-		5: return 90  # Rainha
-		6: return 900 # Rei
-	return 0
-
-# --- FUNÇÕES DE SIMULAÇÃO (rápidas, sem sons ou visuais) ---
-func simular_mov_minimax(jogada: Dictionary) -> int:
-	var origem = jogada["origem"]
-	var destino = jogada["destino"]
-	var peca_capturada = tabuleiro[destino.y][destino.x]
+				var letra = ""
+				match abs(peca):
+					1: letra = "P"
+					2: letra = "N"
+					3: letra = "B"
+					4: letra = "R"
+					5: letra = "Q"
+					6: letra = "K"
+				
+				if peca < 0:
+					letra = letra.to_lower()
+					
+				fen += letra
+				
+		if casas_vazias > 0:
+			fen += str(casas_vazias)
+			
+		if y < 7:
+			fen += "/" 
+			
+	var letra_turno = "w" if brancas else "b"
+	fen += " " + letra_turno + " KQkq - 0 1"
 	
-	tabuleiro[destino.y][destino.x] = tabuleiro[origem.y][origem.x]
-	tabuleiro[origem.y][origem.x] = 0
+	return fen
+
+func uci_para_coordenadas(jogada_uci: String) -> Dictionary:
+	var colunas = {"a": 0, "b": 1, "c": 2, "d": 3, "e": 4, "f": 5, "g": 6, "h": 7}
 	
-	return peca_capturada
-
-func desfazer_mov_minimax(jogada: Dictionary, peca_capturada: int) -> void:
-	var origem = jogada["origem"]
-	var destino = jogada["destino"]
+	var origem_x = colunas[jogada_uci[0]]
+	var origem_y = 8 - int(jogada_uci[1])
 	
-	tabuleiro[origem.y][origem.x] = tabuleiro[destino.y][destino.x]
-	tabuleiro[destino.y][destino.x] = peca_capturada
-
-# Gera uma lista otimizada com todos os movimentos para a recursão
-func obter_todos_movimentos_validos(para_brancas: bool) -> Array:
-	var jogadas = []
-	var backup_sel = selecionar_peca
-	var backup_brancas = brancas
-
-	brancas = para_brancas
-	for y in range(TAMANHO_TABULEIRO):
-		for x in range(TAMANHO_TABULEIRO):
-			var val = tabuleiro[y][x]
-			if val != 0 and (val > 0) == para_brancas:
-				selecionar_peca = Vector2(x, y)
-				var movs = pegar_movimento()
-				for m in movs:
-					jogadas.append({"origem": Vector2(x, y), "destino": m})
-
-	selecionar_peca = backup_sel
-	brancas = backup_brancas
-	return jogadas
+	var destino_x = colunas[jogada_uci[2]]
+	var destino_y = 8 - int(jogada_uci[3])
+	
+	return {
+		"origem": Vector2(origem_x, origem_y),
+		"destino": Vector2(destino_x, destino_y)
+	}
