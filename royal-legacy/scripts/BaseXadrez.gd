@@ -54,6 +54,8 @@ var historico_partida: Array = [] # Pilha para guardar os estados anteriores
 var modo_pve: bool = true   # Se true, joga contra o PC. Se false, PvP local.
 var dificuldade_ia: int = 2 # 1 = Fácil, 2 = Médio, 3 = Difícil
 var ia_pensando: bool = false
+var jogo_finalizado: bool = false
+var tween_xeque: Tween
 
 # Histórico e Regras Especiais
 var ultimo_movimento = { "peca": 0, "origem": Vector2.ZERO, "destino": Vector2.ZERO }
@@ -446,20 +448,32 @@ func mostrar_quadrados() -> void:
 		if pecas_inimigas(i): casa.texture = DESTAQUE_CAPTURA
 
 func animar_xeque_tela() -> void:
+	if jogo_finalizado: 
+		return # Se o jogo acabou, proíbe o amarelo de rodar!
+		
 	if check_indicator:
 		check_indicator.visible = true
-		var tween = create_tween()
-		tween.set_loops(3)
-		tween.tween_property(check_indicator, "color", Color(1, 1, 0, 0.3), 0.2)
-		tween.tween_property(check_indicator, "color", Color(1, 1, 0, 0.0), 0.2)
+		
+		# Se já tiver uma animação rodando, mata ela antes de começar outra
+		if tween_xeque and tween_xeque.is_valid():
+			tween_xeque.kill()
+		
+		tween_xeque = create_tween()
+		tween_xeque.set_loops(3) # Pisca 3 vezes
+		tween_xeque.tween_property(check_indicator, "color", Color(1.0, 1.0, 0.0, 0.3), 0.2)
+		tween_xeque.tween_property(check_indicator, "color", Color(1.0, 1.0, 0.0, 0.0), 0.2)
 
 func animar_xeque_mate_tela() -> void:
+	jogo_finalizado = true # Avisa pro jogo inteiro que acabou!
 	if check_indicator:
 		check_indicator.visible = true
-		# Cria um novo Tween que vai cancelar a piscada e escurecer a tela
-		var tween = create_tween()
-		# Transição suave de meio segundo para um Vermelho Escuro (estático)
-		tween.tween_property(check_indicator, "color", Color(1.0, 0.0, 0.0, 0.6), 0.5)
+		
+		# CANCELA o piscar amarelo na mesma hora e assume o vermelho!
+		if tween_xeque and tween_xeque.is_valid():
+			tween_xeque.kill()
+			
+		tween_xeque = create_tween()
+		tween_xeque.tween_property(check_indicator, "color", Color(1.0, 0.0, 0.0, 0.6), 0.5)
 
 func destacar_rei_em_perigo(cor_branca: bool) -> void:
 	var pos_rei = encontrar_rei(cor_branca)
@@ -485,8 +499,11 @@ func get_game_manager() -> Node:
 
 func tocar_som(som: AudioStream) -> void:
 	if som_pecas:
-		som_pecas.stream = som; som_pecas.play()
-
+		som_pecas.stream = som
+		som_pecas.play()
+	else:
+		print("ERRO: O nó Som_pecas não foi encontrado!")
+		
 func _get_texture() -> Texture2D: return texture
 func _get_texture_size() -> Vector2: return _get_texture().get_size() if _get_texture() else Vector2.ZERO
 func _get_cell_size() -> float: return _get_texture_size().x / float(TAMANHO_TABULEIRO)
@@ -523,7 +540,9 @@ func salvar_estado_atual() -> void:
 
 func desfazer_ultima_jogada() -> void:
 	if historico_partida.is_empty(): return
-
+	
+	jogo_finalizado = false # Destrava a tela para voltar a piscar amarelo
+	
 	var estado_anterior = historico_partida.pop_back()
 	tabuleiro = estado_anterior["tabuleiro"]
 	brancas = estado_anterior["brancas"]
@@ -587,18 +606,25 @@ func _chamar_python_em_background(fen_atual: String, dificuldade: int) -> void:
 	call_deferred("_finalizar_turno_ia", melhor_jogada_uci)
 
 func _finalizar_turno_ia(jogada_uci: String) -> void:
-	# ATENÇÃO: Removemos o wait_to_finish() daqui para evitar o Deadlock!
-	
+	# 1. Dá a "baixa" na Thread liberando a memória do PC
+	if ia_thread and ia_thread.is_started():
+		ia_thread.wait_to_finish()
+		
+	# 2. Executa a jogada
 	if jogada_uci != "":
 		print("Stockfish jogou: ", jogada_uci)
 		var coordenadas = uci_para_coordenadas(jogada_uci)
 		executar_movimento_ia(coordenadas["origem"], coordenadas["destino"])
 	else:
 		print("A IA falhou em retornar uma jogada.")
-	
-	# LIBERA O JOGO: Avisa que a IA terminou e devolve o controle pra você
+		
 	ia_pensando = false
-	
+
+# Essa função roda automaticamente sempre que o jogo/fase é fechado
+func _exit_tree() -> void:
+	if ia_thread and ia_thread.is_started():
+		ia_thread.wait_to_finish()
+
 func executar_movimento_ia(origem: Vector2, destino: Vector2) -> void:
 	selecionar_peca = origem
 	movimento = [destino]
