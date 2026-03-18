@@ -46,9 +46,11 @@ Para rodar o **Royal Legacy** em sua máquina, siga os passos abaixo.
 
 ### Pré-requisitos
 
-Você precisará ter o **Godot Engine 4.x** instalado.
+Você precisará ter o **Godot Engine 4.x** e o **Stockfish** instalados no seu computador
 
 1.  Baixe o [Godot Engine 4.x](https://godotengine.org/download) (versão padrão ou .NET).
+2.  Baixe o [Stockfish](https://stockfishchess.org/download). (versão utilizada atualmente: Stockfish 18)
+3.  Adicone o "stockfish.exe" a pasta de scripts
 
 ### Instalação e Execução
 
