@@ -42,37 +42,43 @@ Este projeto foi desenvolvido utilizando a **Godot Engine**, uma poderosa ferram
 
 ## 🚀 Como Executar o Projeto
 
-Para rodar o **Royal Legacy** em sua máquina, siga os passos abaixo.
+Para rodar o **Royal Legacy** em sua máquina e ter a experiência completa jogando contra a IA, siga os passos abaixo.
 
-### Pré-requisitos
+### 1. Pré-requisitos
 
-Você precisará ter o **Godot Engine 4.x** e o **Stockfish** instalados no seu computador
+Certifique-se de ter os seguintes programas instalados:
 
-1.  Baixe o [Godot Engine 4.x](https://godotengine.org/download) (versão padrão ou .NET).
-2.  Baixe o [Stockfish](https://stockfishchess.org/download). (versão utilizada atualmente: Stockfish 18)
-3.  Adicone o "stockfish.exe" a pasta de scripts
+* **[Godot Engine 4.x](https://godotengine.org/download)** (versão padrão).
+* **[Python 3.x](https://www.python.org/downloads/)** (⚠️ **Importante:** marque a caixa *"Add Python to PATH"* durante a instalação).
+* **[Stockfish](https://stockfishchess.org/download)** (versão recomendada: Stockfish 18 ou superior).
 
-### Instalação e Execução
+### 2. Instalação e Configuração
 
 1.  **Clone o repositório** para sua máquina local:
-
     ```bash
-    git clone https://github.com/seu-usuario/royal-legacy.git
+    git clone [https://github.com/seu-usuario/royal-legacy.git](https://github.com/seu-usuario/royal-legacy.git)
     ```
 
 2.  **Navegue até o diretório do projeto Godot**:
-    
-    *O projeto Godot está aninhado em uma subpasta chamada `royal-legacy`.*
-
+    *(O projeto Godot está aninhado em uma subpasta chamada `royal-legacy`)*
     ```bash
     cd royal-legacy/royal-legacy
     ```
 
-3.  **Abra e Execute**:
-    
-    *   Abra o Godot Engine.
-    *   Clique em **Importar** e selecione o arquivo `project.godot` dentro da pasta `royal-legacy`.
-    *   Com o projeto aberto, clique no botão **Play** (ou pressione `F5`) para executar a cena principal (`menu_principal.tscn`).
+3.  **Instale as dependências da IA:** Abra o terminal (ou Prompt de Comando) e instale a biblioteca de xadrez do Python executando:
+    ```bash
+    pip install chess
+    ```
+
+4.  **Adicione o motor Stockfish:** Extraia o arquivo baixado do Stockfish, pegue o executável (`stockfish.exe`) e coloque-o **dentro da pasta `scripts/`** do projeto.
+
+5.  **Ajuste o caminho da IA (Importante):** Abra o arquivo `scripts/chess_bridge.py` no seu editor de texto e certifique-se de que a variável `caminho_stockfish` aponta para o local correto onde você colocou o `.exe` na sua máquina.
+
+### 3. Execução
+
+* Abra o **Godot Engine**.
+* Clique em **Importar** e selecione o arquivo `project.godot` dentro da pasta `royal-legacy`.
+* Com o projeto aberto, clique no botão **Play** (ou pressione `F5`) para iniciar a partida.
 
 ---
 
