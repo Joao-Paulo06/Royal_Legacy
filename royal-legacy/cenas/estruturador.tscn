@@ -16,10 +16,10 @@ script = ExtResource("1_2mx58")
 
 [node name="cenario" type="TextureRect" parent="." unique_id=1653686074]
 z_index = -11
-offset_left = -108.00002
-offset_top = -120.0
-offset_right = 4639.93
-offset_bottom = 2943.1785
+offset_left = -892.0001
+offset_top = -1639.9999
+offset_right = 120246.266
+offset_bottom = 85134.305
 scale = Vector2(0.2573753, 0.23276475)
 texture = ExtResource("2_31dd1")
 expand_mode = 1
