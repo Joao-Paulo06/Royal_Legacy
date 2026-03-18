@@ -115,7 +115,20 @@ func _input(event) -> void:
 		situacao = true
 	elif situacao:
 		definir_movimento(linha, coluna)
+
+# Função nativa da Godot que escuta tudo o que o jogador digita
+func _unhandled_input(event):
+	# Verifica se o evento foi apertar uma tecla do teclado (e não apenas segurar)
+	if event is InputEventKey and event.pressed and not event.is_echo():
 		
+		# Se a tecla for o ESC -> Fecha o jogo
+		if event.keycode == KEY_ESCAPE:
+			get_tree().quit()
+			
+		# Se a tecla for o R -> Reinicia a cena atual (o jogo inteiro)
+		elif event.keycode == KEY_R:
+			get_tree().reload_current_scene()
+
 # ==============================================================================
 # 4. LÓGICA DE MOVIMENTO (CORE)
 # ==============================================================================
