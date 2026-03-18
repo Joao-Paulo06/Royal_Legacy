@@ -8,7 +8,7 @@ import chess.engine
 
 def get_ai_move(fen, dificuldade_str):
     # Ajuste o caminho para onde o seu Stockfish está instalado
-    caminho_stockfish = "caminho/para/o/seu/stockfish.exe"
+    caminho_stockfish = r"C:\Users\Usuario\OneDrive\Área de Trabalho\Royal_Legacy\royal-legacy\scripts\stockfish.exe"
 
     board = chess.Board(fen)
 
