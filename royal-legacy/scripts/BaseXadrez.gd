@@ -513,6 +513,7 @@ func get_game_manager() -> Node:
 func tocar_som(som: AudioStream) -> void:
 	if som_pecas:
 		som_pecas.stream = som
+		som_pecas.bus = "Efeitos"
 		som_pecas.play()
 	else:
 		print("ERRO: O nó Som_pecas não foi encontrado!")

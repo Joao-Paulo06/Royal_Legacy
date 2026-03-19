@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://bf4gemc6bpw2r"]
+
+[ext_resource type="FontFile" uid="uid://d3wyk170ulhtp" path="res://fontes/LibreBaskerville-Bold.ttf" id="1_7g2qq"]
+[ext_resource type="Texture2D" uid="uid://r8jobodq5kjf" path="res://temas/tema_11.jpg" id="1_48n6x"]
+[ext_resource type="FontFile" uid="uid://cwjl7kg0e40pe" path="res://fontes/LibreBaskerville-Regular.ttf" id="2_48n6x"]
+[ext_resource type="Script" uid="uid://dudk6jcslny0x" path="res://scripts/TelaSons.gd" id="2_n3aqq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_n3aqq"]
+font = ExtResource("1_7g2qq")
+font_size = 80
+font_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0.85490197, 0.5411765, 0.2, 1)
+shadow_offset = Vector2(5, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v7b71"]
+bg_color = Color(0.13333334, 0.15294118, 0.31764707, 0.39215687)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 32.0
+expand_margin_top = 15.0
+expand_margin_right = 32.0
+expand_margin_bottom = 15.0
+shadow_color = Color(0, 0, 0, 0.396078)
+shadow_size = 10
+shadow_offset = Vector2(10, 10)
+
+[node name="cena_sons" type="TextureRect" unique_id=1693859549]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_48n6x")
+expand_mode = 3
+script = ExtResource("2_n3aqq")
+
+[node name="marg_ctn_sons" type="MarginContainer" parent="." unique_id=237137690]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 25
+
+[node name="btn_retornar_sons" type="Button" parent="marg_ctn_sons" unique_id=935056420]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("1_7g2qq")
+theme_override_font_sizes/font_size = 20
+text = "   <   "
+
+[node name="lbl_titulo_sons" type="Label" parent="marg_ctn_sons" unique_id=1374917287]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Opções de Sons"
+label_settings = SubResource("LabelSettings_n3aqq")
+
+[node name="pnl_ctn_sons" type="PanelContainer" parent="marg_ctn_sons" unique_id=1430543692]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_v7b71")
+
+[node name="vert_ctn_sons" type="VBoxContainer" parent="marg_ctn_sons/pnl_ctn_sons" unique_id=1705422438]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="btn_sons" type="Button" parent="marg_ctn_sons/pnl_ctn_sons/vert_ctn_sons" unique_id=1196012660]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_48n6x")
+theme_override_font_sizes/font_size = 20
+text = "               Volume Geral               "
+
+[node name="slider_vol_geral" type="HSlider" parent="marg_ctn_sons/pnl_ctn_sons/vert_ctn_sons" unique_id=180882016]
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+
+[node name="btn_temas" type="Button" parent="marg_ctn_sons/pnl_ctn_sons/vert_ctn_sons" unique_id=42058697]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_48n6x")
+theme_override_font_sizes/font_size = 20
+text = "Música"
+
+[node name="slider_musica" type="HSlider" parent="marg_ctn_sons/pnl_ctn_sons/vert_ctn_sons" unique_id=1369174768]
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+
+[node name="btn_creditos" type="Button" parent="marg_ctn_sons/pnl_ctn_sons/vert_ctn_sons" unique_id=1054639831]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_48n6x")
+theme_override_font_sizes/font_size = 20
+text = "Efeitos"
+
+[node name="slider_efeitos" type="HSlider" parent="marg_ctn_sons/pnl_ctn_sons/vert_ctn_sons" unique_id=940185165]
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+
+[connection signal="value_changed" from="marg_ctn_sons/pnl_ctn_sons/vert_ctn_sons/slider_vol_geral" to="." method="_on_slider_geral_value_changed"]
+[connection signal="value_changed" from="marg_ctn_sons/pnl_ctn_sons/vert_ctn_sons/slider_musica" to="." method="_on_slider_musica_value_changed"]
+[connection signal="value_changed" from="marg_ctn_sons/pnl_ctn_sons/vert_ctn_sons/slider_efeitos" to="." method="_on_slider_efeitos_value_changed"]

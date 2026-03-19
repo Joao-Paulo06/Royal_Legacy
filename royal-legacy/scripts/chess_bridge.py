@@ -41,7 +41,7 @@ def get_ai_move(fen, dificuldade_str):
             else:
                 # DIFÍCIL (3): Grande Mestre implacável.
                 engine.configure({"Skill Level": 20})
-                limite = chess.engine.Limit(depth=15, time=1.5)
+                limite = chess.engine.Limit(depth=20, time=1.5)
 
             result = engine.play(board, limite)
 

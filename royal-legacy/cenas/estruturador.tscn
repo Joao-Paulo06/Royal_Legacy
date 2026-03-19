@@ -1,18 +1,21 @@
 [gd_scene format=3 uid="uid://uc1uv57stt28"]
 
-[ext_resource type="Script" uid="uid://dumuijyxx18jm" path="res://scripts/estruturador.gd" id="1_2mx58"]
-[ext_resource type="Texture2D" uid="uid://c2q0w85vqu3ki" path="res://temas/tema_fundo_principal.png" id="2_31dd1"]
-[ext_resource type="PackedScene" uid="uid://v4acm1siny8r" path="res://cenas/NovoJogo.tscn" id="3_5567i"]
-[ext_resource type="Script" uid="uid://sokxvn1sv4y6" path="res://scripts/GameManager.gd" id="4_ry3m5"]
-[ext_resource type="FontFile" uid="uid://d3wyk170ulhtp" path="res://fontes/LibreBaskerville-Bold.ttf" id="5_4vg03"]
-[ext_resource type="Texture2D" uid="uid://gm3kw0onk2ow" path="res://assets/extras/Desfazer.png" id="6_31dd1"]
-[ext_resource type="PackedScene" uid="uid://b0mlqk52vlpxk" path="res://cenas/MenuOpcoes.tscn" id="6_lxwp1"]
-[ext_resource type="PackedScene" uid="uid://qlqxyol7fw8y" path="res://cenas/PvEMenuNovoJogo.tscn" id="7_5567i"]
-[ext_resource type="PackedScene" uid="uid://cce28b022shju" path="res://cenas/MenuNovoJogo.tscn" id="7_cj5mv"]
-[ext_resource type="PackedScene" uid="uid://cfrx3e3sbyo4a" path="res://cenas/MenuPrincipal.tscn" id="8_a1j3f"]
+[ext_resource type="Script" uid="uid://dumuijyxx18jm" path="res://scripts/Estruturador.gd" id="1_ry3m5"]
+[ext_resource type="Texture2D" uid="uid://c2q0w85vqu3ki" path="res://temas/tema_fundo_principal.png" id="2_4vg03"]
+[ext_resource type="PackedScene" uid="uid://v4acm1siny8r" path="res://cenas/NovoJogo.tscn" id="3_lxwp1"]
+[ext_resource type="Script" uid="uid://sokxvn1sv4y6" path="res://scripts/GameManager.gd" id="4_cj5mv"]
+[ext_resource type="FontFile" uid="uid://d3wyk170ulhtp" path="res://fontes/LibreBaskerville-Bold.ttf" id="5_a1j3f"]
+[ext_resource type="Texture2D" uid="uid://gm3kw0onk2ow" path="res://assets/extras/Desfazer.png" id="6_61gg7"]
+[ext_resource type="PackedScene" uid="uid://qlqxyol7fw8y" path="res://cenas/PvEMenuNovoJogo.tscn" id="7_md7fk"]
+[ext_resource type="PackedScene" uid="uid://cuyj64k10xu4l" path="res://cenas/TelaCreditos.tscn" id="8_8wt2o"]
+[ext_resource type="PackedScene" uid="uid://bf4gemc6bpw2r" path="res://cenas/TelaSons.tscn" id="9_4vg03"]
+[ext_resource type="PackedScene" uid="uid://b0mlqk52vlpxk" path="res://cenas/MenuOpcoes.tscn" id="9_oalho"]
+[ext_resource type="PackedScene" uid="uid://cce28b022shju" path="res://cenas/MenuNovoJogo.tscn" id="10_ueff5"]
+[ext_resource type="PackedScene" uid="uid://cfrx3e3sbyo4a" path="res://cenas/MenuPrincipal.tscn" id="11_eggmu"]
+[ext_resource type="AudioStream" uid="uid://dwamcf3oq4yig" path="res://assets/sons/Ambience Relaxing Music.mp3" id="13_lxwp1"]
 
 [node name="Estruturador" type="Node" unique_id=1050597522]
-script = ExtResource("1_2mx58")
+script = ExtResource("1_ry3m5")
 
 [node name="cenario" type="TextureRect" parent="." unique_id=1653686074]
 z_index = -11
@@ -21,11 +24,11 @@ offset_top = -1639.9999
 offset_right = 120246.266
 offset_bottom = 85134.305
 scale = Vector2(0.2573753, 0.23276475)
-texture = ExtResource("2_31dd1")
+texture = ExtResource("2_4vg03")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="tabuleiro" parent="." unique_id=899442188 instance=ExtResource("3_5567i")]
+[node name="tabuleiro" parent="." unique_id=899442188 instance=ExtResource("3_lxwp1")]
 position = Vector2(273, 12.999999)
 scale = Vector2(3.15, 3.15)
 
@@ -35,7 +38,7 @@ position = Vector2(71.70717, 71.70717)
 
 [node name="GameManager" type="Node2D" parent="tabuleiro" unique_id=1529957825]
 scale = Vector2(0.9999999, 0.9999999)
-script = ExtResource("4_ry3m5")
+script = ExtResource("4_cj5mv")
 
 [node name="btn_desfazer_mov" type="Button" parent="tabuleiro" unique_id=192284867]
 offset_left = -52.0
@@ -45,9 +48,9 @@ offset_bottom = 74.201996
 scale = Vector2(0.25, 0.25)
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("5_4vg03")
+theme_override_fonts/font = ExtResource("5_a1j3f")
 theme_override_font_sizes/font_size = 30
-icon = ExtResource("6_31dd1")
+icon = ExtResource("6_61gg7")
 
 [node name="btn_retornar" type="Button" parent="tabuleiro" unique_id=737699231]
 offset_left = -52.0
@@ -57,7 +60,7 @@ offset_bottom = 58.0
 scale = Vector2(0.25, 0.25)
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("5_4vg03")
+theme_override_fonts/font = ExtResource("5_a1j3f")
 theme_override_font_sizes/font_size = 30
 text = "   <   "
 
@@ -68,27 +71,74 @@ points = PackedVector2Array(187, 480, 667, 480, 667, 0, 187, 0, 187, 208.54034, 
 width = 8.0
 default_color = Color(0.3511163, 0.13352808, 0.011081624, 1)
 
-[node name="cen_PvE" parent="." unique_id=375808665 instance=ExtResource("7_5567i")]
-visible = false
+[node name="cen_tabuleiro" parent="." unique_id=375808665 instance=ExtResource("7_md7fk")]
 
-[node name="cen_menu_opcoes" parent="." unique_id=1989628465 instance=ExtResource("6_lxwp1")]
-visible = false
+[node name="cen_creditos" parent="." unique_id=619439846 instance=ExtResource("8_8wt2o")]
+
+[node name="txt_scroll" parent="cen_creditos/marg_ctn_creditos" parent_id_path=PackedInt32Array(619439846, 922507966) index="0" unique_id=1832738657]
+text = "[center]
+[b][u]CRÉDITOS[/u][/b]
+
+[b][u]Equipe de Desenvolvimento[/u][/b]  
+[b]Criadores do Royal Legacy:[/b]  
+- Danilo Matias  
+- Davi Brito  
+- João Paulo Moreira  
+- Klayvert  
+- Thierry Feitoza  
+
+[b][u]Agradecimentos Especiais[/u][/b]  
+- A toda a comunidade do [i]Godot Engine[/i] e do [i]Python[/i].
+- Aos desenvolvedores do [i]Stockfish[/i], o incrível motor de xadrez open-source.  
+- Aos professores, mentores e amigos que inspiraram este projeto.  
+- Aos nossos familiares, que sempre nos apoiaram.  
+
+[b][u]Ferramentas e Tecnologias Utilizadas[/u][/b]  
+[b]Game Engine:[/b] Godot Engine 4.x  
+[b]Linguagens de Programação:[/b] GDScript e Python  
+[b]Inteligência Artificial:[/b] Stockfish Engine (Integração assíncrona via Threads)  
+
+[b][u]Mensagem da Equipe[/u][/b]
+
+Desenvolver o [b]Royal Legacy[/b] exigiu muita estratégia, paciência e, principalmente, trabalho em equipe. 
+
+Cada linha de código, cada ajuste na interface e cada regra 
+programada no tabuleiro foi feita com muita dedicação por nós cinco.
+
+Agradecemos de coração a você por dedicar seu tempo para conhecer o nosso trabalho.
+
+
+[font_size=20][b]O seu legado apenas começou.[/b][/font_size]
+
+[b]MUITO OBRIGADO POR JOGAR![/b]
+
+
+[/center]"
+
+[node name="cen_sons" parent="." unique_id=1693859549 instance=ExtResource("9_4vg03")]
+
+[node name="cen_menu_opcoes" parent="." unique_id=1989628465 instance=ExtResource("9_oalho")]
 script = null
 
-[node name="cen_menu_novo_jogo" parent="." unique_id=866609491 instance=ExtResource("7_cj5mv")]
-visible = false
+[node name="cen_menu_novo_jogo" parent="." unique_id=866609491 instance=ExtResource("10_ueff5")]
 script = null
 
-[node name="cen_menu_principal" parent="." unique_id=2129603396 instance=ExtResource("8_a1j3f")]
-visible = false
+[node name="cen_menu_principal" parent="." unique_id=2129603396 instance=ExtResource("11_eggmu")]
 script = null
+
+[node name="musica_fundo" type="AudioStreamPlayer" parent="." unique_id=867158096]
+stream = ExtResource("13_lxwp1")
+volume_db = -5.0
+autoplay = true
+bus = &"Musica"
 
 [connection signal="pressed" from="tabuleiro/btn_desfazer_mov" to="tabuleiro" method="_on_btn_desfazer_mov_pressed"]
 [connection signal="pressed" from="tabuleiro/btn_retornar" to="." method="_on_btn_retornar_de_tabuleiro_pressed"]
-[connection signal="pressed" from="cen_PvE/marg_ctn_menu_novo_jogo/btn_retornar" to="." method="_on_btn_retornar_de_pve_pressed"]
-[connection signal="pressed" from="cen_PvE/marg_ctn_menu_novo_jogo/pnl_ctn_botoes/vert_ctn_botoes/btn_facil" to="." method="_on_btn_facil_pressed"]
-[connection signal="pressed" from="cen_PvE/marg_ctn_menu_novo_jogo/pnl_ctn_botoes/vert_ctn_botoes/btn_mediano" to="." method="_on_btn_mediano_pressed"]
-[connection signal="pressed" from="cen_PvE/marg_ctn_menu_novo_jogo/pnl_ctn_botoes/vert_ctn_botoes/btn_dificil" to="." method="_on_btn_dificil_pressed"]
+[connection signal="pressed" from="cen_tabuleiro/marg_ctn_menu_novo_jogo/btn_retornar" to="." method="_on_btn_retornar_de_pve_pressed"]
+[connection signal="pressed" from="cen_tabuleiro/marg_ctn_menu_novo_jogo/pnl_ctn_botoes/vert_ctn_botoes/btn_facil" to="." method="_on_btn_facil_pressed"]
+[connection signal="pressed" from="cen_tabuleiro/marg_ctn_menu_novo_jogo/pnl_ctn_botoes/vert_ctn_botoes/btn_mediano" to="." method="_on_btn_mediano_pressed"]
+[connection signal="pressed" from="cen_tabuleiro/marg_ctn_menu_novo_jogo/pnl_ctn_botoes/vert_ctn_botoes/btn_dificil" to="." method="_on_btn_dificil_pressed"]
+[connection signal="pressed" from="cen_sons/marg_ctn_sons/btn_retornar_sons" to="." method="_on_btn_retornar_sons_pressed"]
 [connection signal="pressed" from="cen_menu_opcoes/marg_ctn_menu_opcoes/btn_retornar" to="." method="_on_btn_retornar_de_opcoes_pressed"]
 [connection signal="pressed" from="cen_menu_opcoes/marg_ctn_menu_opcoes/pnl_ctn_botoes/vert_ctn_botoes/btn_sons" to="." method="_on_btn_sons_pressed"]
 [connection signal="pressed" from="cen_menu_opcoes/marg_ctn_menu_opcoes/pnl_ctn_botoes/vert_ctn_botoes/btn_temas" to="." method="_on_btn_temas_pressed"]
@@ -102,7 +152,9 @@ script = null
 [connection signal="pressed" from="cen_menu_principal/marg_ctn_menu_principal/pnl_ctn_botoes/vert_ctn_botoes/btn_sair" to="." method="_on_btn_sair_pressed"]
 
 [editable path="tabuleiro"]
-[editable path="cen_PvE"]
+[editable path="cen_tabuleiro"]
+[editable path="cen_creditos"]
+[editable path="cen_sons"]
 [editable path="cen_menu_opcoes"]
 [editable path="cen_menu_novo_jogo"]
 [editable path="cen_menu_principal"]

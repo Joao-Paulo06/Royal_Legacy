@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://cuyj64k10xu4l"]
+
+[ext_resource type="Script" uid="uid://b8u3dfcy5pl23" path="res://scripts/TelaCreditos.gd" id="1_tlyj6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yakeu"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="cena_creditos" type="ScrollContainer" unique_id=619439846 node_paths=PackedStringArray("text_node")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yakeu")
+scroll_vertical = 1
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+script = ExtResource("1_tlyj6")
+text_node = NodePath("marg_ctn_creditos/txt_scroll")
+
+[node name="marg_ctn_creditos" type="MarginContainer" parent="." unique_id=922507966]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="txt_scroll" type="RichTextLabel" parent="marg_ctn_creditos" unique_id=1832738657]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]
+[b][u]CRÉDITOS[/u][/b]
+
+[b][u]Equipe de Desenvolvimento[/u][/b]  
+[b]Criadores do Royal Legacy:[/b]  
+- Danilo Matias  
+- Davi Brito  
+- João Paulo Moreira  
+- Klayvert  
+- Thierry Feitoza  
+
+[b][u]Agradecimentos Especiais[/u][/b]  
+- A toda a comunidade do [i]Godot Engine[/i] e do [i]Python[/i].
+- Aos desenvolvedores do [i]Stockfish[/i], o incrível motor de xadrez open-source.  
+- Aos professores, mentores e amigos que inspiraram este projeto.  
+- Aos nossos familiares, que sempre nos apoiaram.  
+
+[b][u]Ferramentas e Tecnologias Utilizadas[/u][/b]  
+[b]Game Engine:[/b] Godot Engine 4.x  
+[b]Linguagens de Programação:[/b] GDScript e Python  
+[b]Inteligência Artificial:[/b] Stockfish Engine (Integração assíncrona via Threads)  
+
+[b][u]Mensagem da Equipe[/u][/b]
+
+Desenvolver o [b]Royal Legacy[/b] exigiu muita estratégia, paciência e, principalmente, trabalho em equipe. 
+
+Cada linha de código, cada ajuste na interface e cada regra 
+programada no tabuleiro foi feita com muita dedicação por nós cinco.
+
+Agradecemos de coração a você por dedicar seu tempo para conhecer o nosso trabalho.
+
+
+[font_size=20][b]O seu legado apenas começou.[/b][/font_size]
+
+[b]MUITO OBRIGADO POR JOGAR![/b]
+
+
+
+
+
+
+
+
+
+
+[i]Pressione \"R\" para sair[/i]
+[/center]"
+fit_content = true

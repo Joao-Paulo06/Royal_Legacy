@@ -18,6 +18,10 @@ config/name="Royal Legacy"
 run/main_scene="uid://uc1uv57stt28"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 
+[audio]
+
+buses/default_bus_layout="uid://up5313pgco3v"
+
 [autoload]
 
 Global="*res://scripts/Global.gd"

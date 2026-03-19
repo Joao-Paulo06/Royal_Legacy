@@ -5,14 +5,18 @@ extends Node
 @onready var menu_principal = $cen_menu_principal
 @onready var tela_novo_jogo = $cen_menu_novo_jogo
 @onready var tela_opcoes = $cen_menu_opcoes
-@onready var tela_p_v_e: TextureRect = $cen_PvE # Tela de Dificuldade
+@onready var tela_tabuleiro: TextureRect = $cen_tabuleiro # Tela de Dificuldade
 @onready var tabuleiro: Sprite2D = $tabuleiro
+@onready var tela_sons: TextureRect = $cen_sons
+@onready var tela_creditos: ScrollContainer = $cen_creditos
+
 
 var telas: Array[Node] = []
 
 func _ready() -> void:
 	# Lista todas as telas para facilitar a troca
-	telas = [menu_principal, tela_novo_jogo, tela_opcoes, tabuleiro, tela_p_v_e]
+	telas = [menu_principal, tela_novo_jogo, tela_opcoes, 
+	tabuleiro, tela_tabuleiro, tela_creditos, tela_sons]
 	mostrar_tela(menu_principal)
 	
 func mostrar_tela(tela: Node) -> void:
@@ -48,10 +52,9 @@ func _on_btn_retornar_de_tabuleiro_pressed() -> void:
 
 func _on_btn_p_v_e_pressed() -> void:
 	# Vai para a tela de escolher dificuldade
-	mostrar_tela(tela_p_v_e)
+	mostrar_tela(tela_tabuleiro)
 	
 func _on_btn_p_v_p_pressed() -> void:
-	# CORREÇÃO IMPORTANTE: Desliga a IA para jogar de 2 jogadores
 	Global.modo_pve = false 
 	iniciar_partida()
 
@@ -66,13 +69,16 @@ func _on_btn_retornar_de_opcoes_pressed() -> void:
 	mostrar_tela(menu_principal)
 	
 func _on_btn_sons_pressed() -> void:
-	pass
+	mostrar_tela(tela_sons)
+
+func _on_btn_retornar_sons_pressed() -> void:
+	mostrar_tela(tela_opcoes)
 
 func _on_btn_temas_pressed() -> void:
 	pass
 
 func _on_btn_creditos_pressed() -> void:
-	pass
+	mostrar_tela(tela_creditos)
 
 # ==============================================================================
 # BOTÕES - TELA DE DIFICULDADE (PvE)
@@ -80,8 +86,6 @@ func _on_btn_creditos_pressed() -> void:
 
 func _on_btn_retornar_de_pve_pressed() -> void:
 	mostrar_tela(tela_novo_jogo)
-
-# --- Botões de Nível (Conecte o sinal 'pressed' de cada um) ---
 
 func _on_btn_facil_pressed() -> void:
 	Global.modo_pve = true
