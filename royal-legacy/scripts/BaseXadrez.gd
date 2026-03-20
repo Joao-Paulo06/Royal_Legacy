@@ -56,6 +56,7 @@ var dificuldade_ia: int = 2 # 1 = Fácil, 2 = Médio, 3 = Difícil
 var ia_pensando: bool = false
 var jogo_finalizado: bool = false
 var tween_xeque: Tween
+var tween_rotacao: Tween
 
 # Histórico e Regras Especiais
 var ultimo_movimento = { "peca": 0, "origem": Vector2.ZERO, "destino": Vector2.ZERO }
@@ -186,6 +187,9 @@ func definir_movimento(linha: int, coluna: int) -> void:
 
 		brancas = not brancas
 		exibir() 
+		
+		if not modo_pve:
+			animar_rotacao_tabuleiro()
 		
 		if esta_em_xeque(brancas):
 			tocar_som(SOM_CAPTURANDO)
@@ -431,6 +435,7 @@ func exibir() -> void:
 			var casa = CASAS.instantiate()
 			pecas.add_child(casa)
 			casa.position = origin + Vector2(j * cell + cell * 0.5, i * cell + cell * 0.5)
+			casa.rotation_degrees = -self.rotation_degrees
 			
 			match tabuleiro[i][j]:
 				-6: casa.texture = REI_PRETO;
@@ -501,6 +506,23 @@ func destacar_rei_em_perigo(cor_branca: bool) -> void:
 func _on_check_state_changed(is_in_check: bool) -> void:
 	if is_in_check: animar_xeque_tela()
 
+func animar_rotacao_tabuleiro() -> void:
+	# Cancela animações anteriores para não bugar se jogarem muito rápido
+	if tween_rotacao and tween_rotacao.is_valid():
+		tween_rotacao.kill()
+		
+	tween_rotacao = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	
+	# Se for o turno das Brancas, a rotação é 0. Se for as Pretas, vira de ponta cabeça (180 graus)
+	var rotacao_alvo = 0.0 if brancas else 180.0
+	
+	# 1. Anima o giro do tabuleiro (o "self")
+	tween_rotacao.tween_property(self, "rotation_degrees", rotacao_alvo, 0.8)
+	
+	# 2. Faz as peças girarem no sentido contrário para continuarem "em pé"
+	for peca in pecas.get_children():
+		tween_rotacao.parallel().tween_property(peca, "rotation_degrees", -rotacao_alvo, 0.8)
+		
 # ==============================================================================
 # 9. UTILITÁRIOS
 # ==============================================================================

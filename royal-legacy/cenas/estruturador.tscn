@@ -29,51 +29,61 @@ expand_mode = 1
 stretch_mode = 6
 
 [node name="tabuleiro" parent="." unique_id=899442188 instance=ExtResource("3_lxwp1")]
-position = Vector2(273, 12.999999)
+position = Vector2(498, 239)
 scale = Vector2(3.15, 3.15)
+centered = true
 
 [node name="turno" parent="tabuleiro" index="2"]
 z_index = -10
-position = Vector2(71.70717, 71.70717)
+position = Vector2(7.6293945e-06, 0)
+
+[node name="CheckIndicator" parent="tabuleiro" index="4"]
+offset_left = -72.063484
+offset_top = -72.06349
+offset_right = -72.063484
+offset_bottom = -72.06349
 
 [node name="GameManager" type="Node2D" parent="tabuleiro" unique_id=1529957825]
 scale = Vector2(0.9999999, 0.9999999)
 script = ExtResource("4_cj5mv")
 
-[node name="btn_desfazer_mov" type="Button" parent="tabuleiro" unique_id=192284867]
-offset_left = -52.0
-offset_top = 19.202
-offset_right = 30.0
-offset_bottom = 74.201996
-scale = Vector2(0.25, 0.25)
+[node name="borda" type="Line2D" parent="tabuleiro" unique_id=959378862]
+position = Vector2(-130.15872, -73.33333)
+scale = Vector2(0.30465946, 0.30477175)
+points = PackedVector2Array(187, 480, 667, 480, 667, 0, 187, 0, 187, 208.54034, 187.00002, 483.98383)
+width = 8.0
+default_color = Color(0.3511163, 0.13352808, 0.011081624, 1)
+
+[node name="btn_desfazer_mov" type="Button" parent="." unique_id=192284867]
+offset_left = 126.0
+offset_top = 73.0
+offset_right = 208.0
+offset_bottom = 128.0
+scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("5_a1j3f")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
 icon = ExtResource("6_61gg7")
 
-[node name="btn_retornar" type="Button" parent="tabuleiro" unique_id=737699231]
-offset_left = -52.0
-offset_top = 3.0
-offset_right = 30.0
-offset_bottom = 58.0
-scale = Vector2(0.25, 0.25)
+[node name="btn_retornar" type="Button" parent="." unique_id=737699231]
+offset_left = 126.0
+offset_top = 32.0
+offset_right = 206.0
+offset_bottom = 88.0
+scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("5_a1j3f")
 theme_override_font_sizes/font_size = 30
 text = "   <   "
 
-[node name="borda" type="Line2D" parent="." unique_id=959378862]
-position = Vector2(90.21774, 9.680248)
-scale = Vector2(0.95967734, 0.9600311)
-points = PackedVector2Array(187, 480, 667, 480, 667, 0, 187, 0, 187, 208.54034, 187.00002, 483.98383)
-width = 8.0
-default_color = Color(0.3511163, 0.13352808, 0.011081624, 1)
-
 [node name="cen_tabuleiro" parent="." unique_id=375808665 instance=ExtResource("7_md7fk")]
+visible = false
 
 [node name="cen_creditos" parent="." unique_id=619439846 instance=ExtResource("8_8wt2o")]
+visible = false
+scroll_vertical = 0
 
 [node name="txt_scroll" parent="cen_creditos/marg_ctn_creditos" parent_id_path=PackedInt32Array(619439846, 922507966) index="0" unique_id=1832738657]
 text = "[center]
@@ -116,14 +126,18 @@ Agradecemos de coração a você por dedicar seu tempo para conhecer o nosso tra
 [/center]"
 
 [node name="cen_sons" parent="." unique_id=1693859549 instance=ExtResource("9_4vg03")]
+visible = false
 
 [node name="cen_menu_opcoes" parent="." unique_id=1989628465 instance=ExtResource("9_oalho")]
+visible = false
 script = null
 
 [node name="cen_menu_novo_jogo" parent="." unique_id=866609491 instance=ExtResource("10_ueff5")]
+visible = false
 script = null
 
 [node name="cen_menu_principal" parent="." unique_id=2129603396 instance=ExtResource("11_eggmu")]
+visible = false
 script = null
 
 [node name="musica_fundo" type="AudioStreamPlayer" parent="." unique_id=867158096]
@@ -132,8 +146,8 @@ volume_db = -5.0
 autoplay = true
 bus = &"Musica"
 
-[connection signal="pressed" from="tabuleiro/btn_desfazer_mov" to="tabuleiro" method="_on_btn_desfazer_mov_pressed"]
-[connection signal="pressed" from="tabuleiro/btn_retornar" to="." method="_on_btn_retornar_de_tabuleiro_pressed"]
+[connection signal="pressed" from="btn_desfazer_mov" to="tabuleiro" method="_on_btn_desfazer_mov_pressed"]
+[connection signal="pressed" from="btn_retornar" to="." method="_on_btn_retornar_de_tabuleiro_pressed"]
 [connection signal="pressed" from="cen_tabuleiro/marg_ctn_menu_novo_jogo/btn_retornar" to="." method="_on_btn_retornar_de_pve_pressed"]
 [connection signal="pressed" from="cen_tabuleiro/marg_ctn_menu_novo_jogo/pnl_ctn_botoes/vert_ctn_botoes/btn_facil" to="." method="_on_btn_facil_pressed"]
 [connection signal="pressed" from="cen_tabuleiro/marg_ctn_menu_novo_jogo/pnl_ctn_botoes/vert_ctn_botoes/btn_mediano" to="." method="_on_btn_mediano_pressed"]
