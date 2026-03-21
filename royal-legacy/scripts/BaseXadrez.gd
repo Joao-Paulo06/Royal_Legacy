@@ -21,6 +21,42 @@ const REI_BRANCO     = preload("uid://dbrigkc20j5jy")
 const REI_PRETO      = preload("uid://cxsmjhjlpdlyk")
 const TORRE_BRANCA   = preload("uid://uiwrboynrvyt")
 const TORRE_PRETA    = preload("uid://s10ect4l8h2u")
+const BISPO_BRANCO_V_2 = preload("uid://dqwp51jl3b0ck")
+const BISPO_PRETO_V_2 = preload("uid://gsw4f46g0jaa")
+const CAVALO_BRANCO_V_2 = preload("uid://cgxvi1qs4yjx3")
+const CAVALO_PRETO_V_2 = preload("uid://b6373wl3qw1ed")
+const PEAO_BRANCO_V_2 = preload("uid://cb2bb01f1vdha")
+const PEAO_PRETO_V_2 = preload("uid://nwdp0xwgkav")
+const RAINHA_BRANCA_V_2 = preload("uid://bko8lwj80wnqk")
+const RAINHA_PRETA_V_2 = preload("uid://djxknh4qwctcg")
+const REI_BRANCO_V_2 = preload("uid://r3shp73xdycd")
+const REI_PRETO_V_2 = preload("uid://d3xj2dtxa8r12")
+const TORRE_BRANCA_V_2 = preload("uid://cq8b6v0oiqvy8")
+const TORRE_PRETA_V_2 = preload("uid://gsxx2c4nyls8")
+const BISPO_BRANCO_V_3 = preload("uid://skqxkaj1b6i2")
+const BISPO_PRETO_V_3 = preload("uid://bpkaesobpavsd")
+const CAVALO_BRANCO_V_3 = preload("uid://cnhs5pw0mpyg4")
+const CAVALO_PRETO_V_3 = preload("uid://cqvdrw7pmtdwt")
+const PEAO_BRANCO_V_3 = preload("uid://ca7kpous743qr")
+const PEAO_PRETO_V_3 = preload("uid://bturaw75xwhtr")
+const RAINHA_BRANCA_V_3 = preload("uid://br8t47stpbrfv")
+const RAINHA_PRETA_V_3 = preload("uid://csys2q1avyu8e")
+const REI_BRANCO_V_3 = preload("uid://dgl44h421l8mi")
+const REI_PRETO_V_3 = preload("uid://7hjld17n62q6")
+const TORRE_BRANCA_V_3 = preload("uid://4krkkosomksy")
+const TORRE_PRETA_V_3 = preload("uid://caahm08xp07q2")
+const BISPO_PRETO_V_4 = preload("uid://cg5bl85f506ar")
+const BIXPO_BRANCO_V_4 = preload("uid://bujv0m31fic8q")
+const CAVALO_BRANCO_V_4 = preload("uid://cw7smt5mpbwqx")
+const CAVALO_PRETO_V_4 = preload("uid://b383jtdh167ux")
+const PEAO_BRANCO_V_4 = preload("uid://c83yyvg5j0cn6")
+const PEAO_PRETO_V_4 = preload("uid://bh64akl41oagj")
+const RAINHA_BRANCA_V_4 = preload("uid://ceyi6oqyancdn")
+const RAINHA_PRETA_V_4 = preload("uid://2w1ymn1u8gmy")
+const REI_BRANCO_V_4 = preload("uid://btsrgwcxfe0io")
+const REI_PRETO_V_4 = preload("uid://cd7iwngxtmgcp")
+const TORRE_BRANCA_V_4 = preload("uid://biigdliefbgyh")
+const TORRE_PRETA_V_4 = preload("uid://06tc7qxovryi")
 
 # Interface e Efeitos
 const CASAS             = preload("uid://c8snr6qequ51c")
@@ -580,6 +616,10 @@ func desfazer_ultima_jogada() -> void:
 	jogo_finalizado = false # Destrava a tela para voltar a piscar amarelo
 	
 	var estado_anterior = historico_partida.pop_back()
+	
+	if modo_pve and not estado_anterior["brancas"] and not historico_partida.is_empty():
+		estado_anterior = historico_partida.pop_back()
+	
 	tabuleiro = estado_anterior["tabuleiro"]
 	brancas = estado_anterior["brancas"]
 	rei_moveu = estado_anterior["rei_moveu"]
@@ -590,7 +630,10 @@ func desfazer_ultima_jogada() -> void:
 	selecionar_peca = Vector2(-1, -1)
 	movimento = []
 	exibir()
-
+	
+	if not modo_pve:
+			animar_rotacao_tabuleiro()
+			
 	for child in quadrados.get_children(): child.queue_free()
 	if check_indicator: check_indicator.color = Color(0,0,0,0)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b0mlqk52vlpxk"]
+[gd_scene format=3 uid="uid://b0mlqk52vlpxk"]
 
 [ext_resource type="Texture2D" uid="uid://djhhgqj4qd32d" path="res://temas/tema_10.jpg" id="1_eju38"]
 [ext_resource type="FontFile" uid="uid://d3wyk170ulhtp" path="res://fontes/LibreBaskerville-Bold.ttf" id="2_60l56"]
@@ -33,7 +33,7 @@ shadow_color = Color(0, 0, 0, 0.396078)
 shadow_size = 10
 shadow_offset = Vector2(10, 10)
 
-[node name="cen_menu_opcoes" type="TextureRect"]
+[node name="cen_menu_opcoes" type="TextureRect" unique_id=1609003389]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -43,7 +43,7 @@ texture = ExtResource("1_eju38")
 expand_mode = 2
 script = ExtResource("2_nto3o")
 
-[node name="marg_ctn_menu_opcoes" type="MarginContainer" parent="."]
+[node name="marg_ctn_menu_opcoes" type="MarginContainer" parent="." unique_id=458449692]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -54,14 +54,14 @@ theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
 
-[node name="lbl_titulo" type="Label" parent="marg_ctn_menu_opcoes"]
+[node name="lbl_titulo" type="Label" parent="marg_ctn_menu_opcoes" unique_id=1110220767]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "Opções"
 label_settings = SubResource("LabelSettings_psh2s")
 
-[node name="btn_retornar" type="Button" parent="marg_ctn_menu_opcoes"]
+[node name="btn_retornar" type="Button" parent="marg_ctn_menu_opcoes" unique_id=1740456665]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -69,29 +69,29 @@ theme_override_fonts/font = ExtResource("2_60l56")
 theme_override_font_sizes/font_size = 30
 text = "   <   "
 
-[node name="pnl_ctn_botoes" type="PanelContainer" parent="marg_ctn_menu_opcoes"]
+[node name="pnl_ctn_botoes" type="PanelContainer" parent="marg_ctn_menu_opcoes" unique_id=322745942]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_xn66q")
 
-[node name="vert_ctn_botoes" type="VBoxContainer" parent="marg_ctn_menu_opcoes/pnl_ctn_botoes"]
+[node name="vert_ctn_botoes" type="VBoxContainer" parent="marg_ctn_menu_opcoes/pnl_ctn_botoes" unique_id=771773704]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="btn_sons" type="Button" parent="marg_ctn_menu_opcoes/pnl_ctn_botoes/vert_ctn_botoes"]
+[node name="btn_sons" type="Button" parent="marg_ctn_menu_opcoes/pnl_ctn_botoes/vert_ctn_botoes" unique_id=543727049]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_nto3o")
 theme_override_font_sizes/font_size = 30
 text = "               Sons               "
 
-[node name="btn_temas" type="Button" parent="marg_ctn_menu_opcoes/pnl_ctn_botoes/vert_ctn_botoes"]
+[node name="btn_temas" type="Button" parent="marg_ctn_menu_opcoes/pnl_ctn_botoes/vert_ctn_botoes" unique_id=169197217]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_nto3o")
 theme_override_font_sizes/font_size = 30
 text = "Temas"
 
-[node name="btn_creditos" type="Button" parent="marg_ctn_menu_opcoes/pnl_ctn_botoes/vert_ctn_botoes"]
+[node name="btn_creditos" type="Button" parent="marg_ctn_menu_opcoes/pnl_ctn_botoes/vert_ctn_botoes" unique_id=670998015]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_nto3o")
 theme_override_font_sizes/font_size = 30
