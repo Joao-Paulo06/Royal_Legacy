@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqa8vmh6gwtq2"
-path="res://.godot/imported/tabuleiro_v5.png-325bbd7a3657022c2c8323461c62f397.ctex"
+uid="uid://f3wt0rdce1b0"
+path="res://.godot/imported/bispo_branco_v4.png-9551fa2a2a5edfb932df0faa0553943a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tabuleiros_alter/tabuleiro_v5.png"
-dest_files=["res://.godot/imported/tabuleiro_v5.png-325bbd7a3657022c2c8323461c62f397.ctex"]
+source_file="res://assets/versao_4/bispo_branco_v4.png"
+dest_files=["res://.godot/imported/bispo_branco_v4.png-9551fa2a2a5edfb932df0faa0553943a.ctex"]
 
 [params]
 

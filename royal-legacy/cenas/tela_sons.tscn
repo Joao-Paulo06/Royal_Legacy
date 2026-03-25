@@ -3,7 +3,7 @@
 [ext_resource type="FontFile" uid="uid://d3wyk170ulhtp" path="res://fontes/LibreBaskerville-Bold.ttf" id="1_7g2qq"]
 [ext_resource type="Texture2D" uid="uid://r8jobodq5kjf" path="res://temas/tema_11.jpg" id="1_48n6x"]
 [ext_resource type="FontFile" uid="uid://cwjl7kg0e40pe" path="res://fontes/LibreBaskerville-Regular.ttf" id="2_48n6x"]
-[ext_resource type="Script" uid="uid://dudk6jcslny0x" path="res://scripts/TelaSons.gd" id="2_n3aqq"]
+[ext_resource type="Script" uid="uid://dudk6jcslny0x" path="res://scripts/tela_sons.gd" id="2_n3aqq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_n3aqq"]
 font = ExtResource("1_7g2qq")

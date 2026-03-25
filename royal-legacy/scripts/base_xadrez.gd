@@ -21,18 +21,18 @@ const REI_BRANCO     = preload("uid://dbrigkc20j5jy")
 const REI_PRETO      = preload("uid://cxsmjhjlpdlyk")
 const TORRE_BRANCA   = preload("uid://uiwrboynrvyt")
 const TORRE_PRETA    = preload("uid://s10ect4l8h2u")
-const BISPO_BRANCO_V_2 = preload("uid://dqwp51jl3b0ck")
-const BISPO_PRETO_V_2 = preload("uid://gsw4f46g0jaa")
-const CAVALO_BRANCO_V_2 = preload("uid://cgxvi1qs4yjx3")
-const CAVALO_PRETO_V_2 = preload("uid://b6373wl3qw1ed")
-const PEAO_BRANCO_V_2 = preload("uid://cb2bb01f1vdha")
-const PEAO_PRETO_V_2 = preload("uid://nwdp0xwgkav")
-const RAINHA_BRANCA_V_2 = preload("uid://bko8lwj80wnqk")
-const RAINHA_PRETA_V_2 = preload("uid://djxknh4qwctcg")
-const REI_BRANCO_V_2 = preload("uid://r3shp73xdycd")
-const REI_PRETO_V_2 = preload("uid://d3xj2dtxa8r12")
-const TORRE_BRANCA_V_2 = preload("uid://cq8b6v0oiqvy8")
-const TORRE_PRETA_V_2 = preload("uid://gsxx2c4nyls8")
+const BISPO_BRANCO_V_2 = preload("uid://dftnuqu3utkr2")
+const BISPO_PRETO_V_2 = preload("uid://c8ptn5m25yamq")
+const CAVALO_BRANCO_V_2 = preload("uid://uw6mp77nlomu")
+const CAVALO_PRETO_V_2 = preload("uid://dqskyq7ccnqr")
+const PEAO_BRANCO_V_2 = preload("uid://c4vfguoqglrcv")
+const PEAO_PRETO_V_2 = preload("uid://dgx0c7ix061hr")
+const RAINHA_BRANCA_V_2 = preload("uid://8lhn0a5ieyur")
+const RAINHA_PRETA_V_2 = preload("uid://d3t6o46fd030u")
+const REI_BRANCO_V_2 = preload("uid://dqracnxsgitb0")
+const REI_PRETO_V_2 = preload("uid://dl7dhvl1df61q")
+const TORRE_BRANCA_V_2 = preload("uid://bmwfy7wlhdb38")
+const TORRE_PRETA_V_2 = preload("uid://b76iyithvmv8y")
 const BISPO_BRANCO_V_3 = preload("uid://skqxkaj1b6i2")
 const BISPO_PRETO_V_3 = preload("uid://bpkaesobpavsd")
 const CAVALO_BRANCO_V_3 = preload("uid://cnhs5pw0mpyg4")
@@ -46,17 +46,18 @@ const REI_PRETO_V_3 = preload("uid://7hjld17n62q6")
 const TORRE_BRANCA_V_3 = preload("uid://4krkkosomksy")
 const TORRE_PRETA_V_3 = preload("uid://caahm08xp07q2")
 const BISPO_PRETO_V_4 = preload("uid://cg5bl85f506ar")
-const BIXPO_BRANCO_V_4 = preload("uid://bujv0m31fic8q")
-const CAVALO_BRANCO_V_4 = preload("uid://cw7smt5mpbwqx")
-const CAVALO_PRETO_V_4 = preload("uid://b383jtdh167ux")
-const PEAO_BRANCO_V_4 = preload("uid://c83yyvg5j0cn6")
-const PEAO_PRETO_V_4 = preload("uid://bh64akl41oagj")
-const RAINHA_BRANCA_V_4 = preload("uid://ceyi6oqyancdn")
-const RAINHA_PRETA_V_4 = preload("uid://2w1ymn1u8gmy")
-const REI_BRANCO_V_4 = preload("uid://btsrgwcxfe0io")
-const REI_PRETO_V_4 = preload("uid://cd7iwngxtmgcp")
-const TORRE_BRANCA_V_4 = preload("uid://biigdliefbgyh")
-const TORRE_PRETA_V_4 = preload("uid://06tc7qxovryi")
+const BISPO_BRANCO_V_4 = preload("uid://f3wt0rdce1b0")
+const CAVALO_BRANCO_V_4 = preload("uid://c2wq8b32mtbb7")
+const CAVALO_PRETO_V_4 = preload("uid://vfnsx75sgyed")
+const PEAO_BRANCO_V_4 = preload("uid://bfepdmu8y88ef")
+const PEAO_PRETO_V_4 = preload("uid://fjt48700fqti")
+const RAINHA_BRANCA_V_4 = preload("uid://80bqf1pb4ivt")
+const RAINHA_PRETA_V_4 = preload("uid://c5623r6beexb8")
+const REI_BRANCO_V_4 = preload("uid://cf7rs77cx7bi")
+const REI_PRETO_V_4 = preload("uid://cqljh7vq3adu")
+const TORRE_BRANCA_V_4 = preload("uid://bdpnfvbera5k5")
+const TORRE_PRETA_V_4 = preload("uid://dm31qdl4udi4g")
+
 
 # Interface e Efeitos
 const CASAS             = preload("uid://c8snr6qequ51c")
@@ -93,6 +94,8 @@ var ia_pensando: bool = false
 var jogo_finalizado: bool = false
 var tween_xeque: Tween
 var tween_rotacao: Tween
+var tema_atual: int = 0 # 0 = Padrão, 1 = V_2, 2 = V_3, 3 = V_4
+var dicionario_temas: Dictionary = {}
 
 # Histórico e Regras Especiais
 var ultimo_movimento = { "peca": 0, "origem": Vector2.ZERO, "destino": Vector2.ZERO }
@@ -107,6 +110,8 @@ var torres_moveram = {
 # ==============================================================================
 
 func _ready() -> void:
+	add_to_group("tabuleiro")
+	
 	modo_pve = Global.modo_pve
 	dificuldade_ia = Global.dificuldade_escolhida
 
@@ -114,6 +119,18 @@ func _ready() -> void:
 	if game_manager:
 		if not game_manager.check_state_changed.is_connected(_on_check_state_changed):
 			game_manager.check_state_changed.connect(_on_check_state_changed)
+
+# Agrupa todos os preloads em "pacotes" numéricos
+	dicionario_temas = {
+		0: { -6: REI_PRETO, -5: RAINHA_PRETA, -4: TORRE_PRETA, -3: BISPO_PRETO, -2: CAVALO_PRETO, -1: PEAO_PRETO, 6: REI_BRANCO, 5: RAINHA_BRANCA, 4: TORRE_BRANCA, 3: BISPO_BRANCO, 2: CAVALO_BRANCO, 1: PEAO_BRANCO },
+		1: { -6: REI_PRETO_V_2, -5: RAINHA_PRETA_V_2, -4: TORRE_PRETA_V_2, -3: BISPO_PRETO_V_2, -2: CAVALO_PRETO_V_2, -1: PEAO_PRETO_V_2, 6: REI_BRANCO_V_2, 5: RAINHA_BRANCA_V_2, 4: TORRE_BRANCA_V_2, 3: BISPO_BRANCO_V_2, 2: CAVALO_BRANCO_V_2, 1: PEAO_BRANCO_V_2 },
+		2: { -6: REI_PRETO_V_3, -5: RAINHA_PRETA_V_3, -4: TORRE_PRETA_V_3, -3: BISPO_PRETO_V_3, -2: CAVALO_PRETO_V_3, -1: PEAO_PRETO_V_3, 6: REI_BRANCO_V_3, 5: RAINHA_BRANCA_V_3, 4: TORRE_BRANCA_V_3, 3: BISPO_BRANCO_V_3, 2: CAVALO_BRANCO_V_3, 1: PEAO_BRANCO_V_3 },
+		3: { -6: REI_PRETO_V_4, -5: RAINHA_PRETA_V_4, -4: TORRE_PRETA_V_4, -3: BISPO_PRETO_V_4, -2: CAVALO_PRETO_V_4, -1: PEAO_PRETO_V_4, 6: REI_BRANCO_V_4, 5: RAINHA_BRANCA_V_4, 4: TORRE_BRANCA_V_4, 3: BISPO_BRANCO_V_4, 2: CAVALO_BRANCO_V_4, 1: PEAO_BRANCO_V_4 }
+	}
+
+	# Se você tiver a variável no Global, puxamos ela pra definir o tema inicial
+	if Global.get("tema_escolhido") != null:
+		tema_atual = Global.tema_escolhido
 
 	# Inicializa Matriz do Tabuleiro
 	tabuleiro = [
@@ -462,34 +479,37 @@ func rei_movimento_bruto() -> Array:
 # ==============================================================================
 
 func exibir() -> void:
-	for child in pecas.get_children(): child.queue_free()
+	# 1. Limpa as peças antigas da tela
+	for child in pecas.get_children(): 
+		child.queue_free()
+		
 	var origin = _get_board_origin()
 	var cell = _get_cell_size()
 
+	# 2. Puxa a lista de texturas baseada no tema que está selecionado no momento (0, 1, 2 ou 3)
+	var texturas_do_tema = dicionario_temas[tema_atual]
+
+	# 3. Varre o tabuleiro inteiro
 	for i in range(TAMANHO_TABULEIRO):
 		for j in range(TAMANHO_TABULEIRO):
-			var casa = CASAS.instantiate()
-			pecas.add_child(casa)
-			casa.position = origin + Vector2(j * cell + cell * 0.5, i * cell + cell * 0.5)
-			casa.rotation_degrees = -self.rotation_degrees
+			var valor_peca = tabuleiro[i][j]
 			
-			match tabuleiro[i][j]:
-				-6: casa.texture = REI_PRETO;
-				-5: casa.texture = RAINHA_PRETA; 
-				-4: casa.texture = TORRE_PRETA;
-				-3: casa.texture = BISPO_PRETO; 
-				-2: casa.texture = CAVALO_PRETO; 
-				-1: casa.texture = PEAO_PRETO;
-				6: casa.texture = REI_BRANCO; 
-				5: casa.texture = RAINHA_BRANCA; 
-				4: casa.texture = TORRE_BRANCA
-				3: casa.texture = BISPO_BRANCO; 
-				2: casa.texture = CAVALO_BRANCO; 
-				1: casa.texture = PEAO_BRANCO
-			
-			if brancas: turno.texture = TURNO_BRANCO
-			else: turno.texture = TURNO_PRETO
-
+			# 4. A MÁGICA: Só instanciamos a cena se tiver uma peça ali (se não for 0)
+			if valor_peca != 0:
+				var casa = CASAS.instantiate()
+				pecas.add_child(casa)
+				
+				casa.position = origin + Vector2(j * cell + cell * 0.5, i * cell + cell * 0.5)
+				casa.rotation_degrees = -self.rotation_degrees
+				
+				# 5. Aplica a textura puxando direto do dicionário, sem precisar de match!
+				casa.texture = texturas_do_tema[valor_peca]
+				
+	# 6. Atualiza a UI de quem é o turno
+	if brancas: 
+		turno.texture = TURNO_BRANCO
+	else: 
+		turno.texture = TURNO_PRETO
 func mostrar_quadrados() -> void:
 	for child in quadrados.get_children(): child.queue_free()
 	var origin = _get_board_origin()
@@ -762,3 +782,7 @@ func uci_para_coordenadas(jogada_uci: String) -> Dictionary:
 		"origem": Vector2(origem_x, origem_y),
 		"destino": Vector2(destino_x, destino_y)
 	}
+	
+func atualizar_tema(novo_tema: int) -> void:
+	tema_atual = novo_tema
+	exibir()

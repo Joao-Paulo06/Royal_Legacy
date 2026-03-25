@@ -24,7 +24,7 @@ buses/default_bus_layout="uid://up5313pgco3v"
 
 [autoload]
 
-Global="*res://scripts/Global.gd"
+Global="*res://scripts/global.gd"
 
 [display]
 

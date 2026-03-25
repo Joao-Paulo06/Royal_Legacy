@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbdhclg5laxm"
-path="res://.godot/imported/tabuleiro_v4.png-3ba4053a88b264570709834e0415bdae.ctex"
+uid="uid://bgqouh3yset01"
+path="res://.godot/imported/tabuleiro_v1.png-e8fded9db2c10ac8bf14601184fe192d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tabuleiros_alter/tabuleiro_v4.png"
-dest_files=["res://.godot/imported/tabuleiro_v4.png-3ba4053a88b264570709834e0415bdae.ctex"]
+source_file="res://assets/versao_1/tabuleiro_v1.png"
+dest_files=["res://.godot/imported/tabuleiro_v1.png-e8fded9db2c10ac8bf14601184fe192d.ctex"]
 
 [params]
 

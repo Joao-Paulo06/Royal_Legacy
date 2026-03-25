@@ -1,20 +1,22 @@
 [gd_scene format=3 uid="uid://uc1uv57stt28"]
 
-[ext_resource type="Script" uid="uid://dumuijyxx18jm" path="res://scripts/Estruturador.gd" id="1_ry3m5"]
+[ext_resource type="Script" uid="uid://dumuijyxx18jm" path="res://scripts/estruturador.gd" id="1_ry3m5"]
 [ext_resource type="Texture2D" uid="uid://c2q0w85vqu3ki" path="res://temas/tema_fundo_principal.png" id="2_4vg03"]
-[ext_resource type="PackedScene" uid="uid://v4acm1siny8r" path="res://cenas/NovoJogo.tscn" id="3_lxwp1"]
-[ext_resource type="Script" uid="uid://sokxvn1sv4y6" path="res://scripts/GameManager.gd" id="4_cj5mv"]
+[ext_resource type="PackedScene" uid="uid://v4acm1siny8r" path="res://cenas/novo_jogo.tscn" id="3_lxwp1"]
+[ext_resource type="Script" uid="uid://sokxvn1sv4y6" path="res://scripts/game_manager.gd" id="4_cj5mv"]
+[ext_resource type="Texture2D" uid="uid://bgqouh3yset01" path="res://assets/versao_1/tabuleiro_v1.png" id="4_q25cx"]
 [ext_resource type="FontFile" uid="uid://d3wyk170ulhtp" path="res://fontes/LibreBaskerville-Bold.ttf" id="5_a1j3f"]
 [ext_resource type="Texture2D" uid="uid://gm3kw0onk2ow" path="res://assets/extras/Desfazer.png" id="6_61gg7"]
-[ext_resource type="PackedScene" uid="uid://qlqxyol7fw8y" path="res://cenas/PvEMenuNovoJogo.tscn" id="7_md7fk"]
-[ext_resource type="PackedScene" uid="uid://cuyj64k10xu4l" path="res://cenas/TelaCreditos.tscn" id="8_8wt2o"]
-[ext_resource type="PackedScene" uid="uid://bf4gemc6bpw2r" path="res://cenas/TelaSons.tscn" id="9_4vg03"]
-[ext_resource type="PackedScene" uid="uid://b0mlqk52vlpxk" path="res://cenas/MenuOpcoes.tscn" id="9_oalho"]
-[ext_resource type="PackedScene" uid="uid://cce28b022shju" path="res://cenas/MenuNovoJogo.tscn" id="10_ueff5"]
-[ext_resource type="PackedScene" uid="uid://cfrx3e3sbyo4a" path="res://cenas/MenuPrincipal.tscn" id="11_eggmu"]
-[ext_resource type="AudioStream" uid="uid://dwamcf3oq4yig" path="res://assets/sons/Ambience Relaxing Music.mp3" id="13_lxwp1"]
+[ext_resource type="PackedScene" uid="uid://qlqxyol7fw8y" path="res://cenas/pve.tscn" id="7_md7fk"]
+[ext_resource type="PackedScene" uid="uid://cuyj64k10xu4l" path="res://cenas/tela_creditos.tscn" id="8_8wt2o"]
+[ext_resource type="PackedScene" uid="uid://bf4gemc6bpw2r" path="res://cenas/tela_sons.tscn" id="9_4vg03"]
+[ext_resource type="PackedScene" uid="uid://b0mlqk52vlpxk" path="res://cenas/menu_opcoes.tscn" id="9_oalho"]
+[ext_resource type="PackedScene" uid="uid://dieunnwgac6pc" path="res://cenas/tela_temas.tscn" id="9_ulimd"]
+[ext_resource type="PackedScene" uid="uid://cce28b022shju" path="res://cenas/menu_novo_jogo.tscn" id="10_ueff5"]
+[ext_resource type="PackedScene" uid="uid://cfrx3e3sbyo4a" path="res://cenas/menu_principal.tscn" id="11_eggmu"]
+[ext_resource type="AudioStream" uid="uid://dwamcf3oq4yig" path="res://assets/sons/ambiente.mp3" id="13_lxwp1"]
 
-[node name="Estruturador" type="Node" unique_id=1050597522]
+[node name="estruturador" type="Node" unique_id=1050597522]
 script = ExtResource("1_ry3m5")
 
 [node name="cenario" type="TextureRect" parent="." unique_id=1653686074]
@@ -31,6 +33,7 @@ stretch_mode = 6
 [node name="tabuleiro" parent="." unique_id=899442188 instance=ExtResource("3_lxwp1")]
 position = Vector2(498, 239)
 scale = Vector2(3.15, 3.15)
+texture = ExtResource("4_q25cx")
 centered = true
 
 [node name="turno" parent="tabuleiro" index="2"]
@@ -48,8 +51,8 @@ scale = Vector2(0.9999999, 0.9999999)
 script = ExtResource("4_cj5mv")
 
 [node name="borda" type="Line2D" parent="tabuleiro" unique_id=959378862]
-position = Vector2(-130.15872, -73.33333)
-scale = Vector2(0.30465946, 0.30477175)
+position = Vector2(-130.18367, -73.120834)
+scale = Vector2(0.30479884, 0.30433983)
 points = PackedVector2Array(187, 480, 667, 480, 667, 0, 187, 0, 187, 208.54034, 187.00002, 483.98383)
 width = 8.0
 default_color = Color(0.3511163, 0.13352808, 0.011081624, 1)
@@ -125,7 +128,19 @@ Agradecemos de coração a você por dedicar seu tempo para conhecer o nosso tra
 
 [/center]"
 
-[node name="cen_sons" parent="." unique_id=1693859549 instance=ExtResource("9_4vg03")]
+[node name="cen_temas" parent="." unique_id=1693859549 instance=ExtResource("9_ulimd")]
+visible = false
+
+[node name="opt_btn_temas" parent="cen_temas/marg_ctn_temas/pnl_ctn_temas/vert_ctn_temas" parent_id_path=PackedInt32Array(1693859549, 1705422438) index="1" unique_id=1675148506]
+popup/item_0/id = 1
+popup/item_1/text = "Árabe"
+popup/item_1/id = 2
+popup/item_2/text = "Moderno"
+popup/item_2/id = 3
+popup/item_3/text = "Alternativo"
+popup/item_3/id = 4
+
+[node name="cen_sons" parent="." unique_id=2031205630 instance=ExtResource("9_4vg03")]
 visible = false
 
 [node name="cen_menu_opcoes" parent="." unique_id=1989628465 instance=ExtResource("9_oalho")]
@@ -152,6 +167,7 @@ bus = &"Musica"
 [connection signal="pressed" from="cen_tabuleiro/marg_ctn_menu_novo_jogo/pnl_ctn_botoes/vert_ctn_botoes/btn_facil" to="." method="_on_btn_facil_pressed"]
 [connection signal="pressed" from="cen_tabuleiro/marg_ctn_menu_novo_jogo/pnl_ctn_botoes/vert_ctn_botoes/btn_mediano" to="." method="_on_btn_mediano_pressed"]
 [connection signal="pressed" from="cen_tabuleiro/marg_ctn_menu_novo_jogo/pnl_ctn_botoes/vert_ctn_botoes/btn_dificil" to="." method="_on_btn_dificil_pressed"]
+[connection signal="pressed" from="cen_temas/marg_ctn_temas/btn_retornar_temas" to="." method="_on_btn_retornar_temas_pressed"]
 [connection signal="pressed" from="cen_sons/marg_ctn_sons/btn_retornar_sons" to="." method="_on_btn_retornar_sons_pressed"]
 [connection signal="pressed" from="cen_menu_opcoes/marg_ctn_menu_opcoes/btn_retornar" to="." method="_on_btn_retornar_de_opcoes_pressed"]
 [connection signal="pressed" from="cen_menu_opcoes/marg_ctn_menu_opcoes/pnl_ctn_botoes/vert_ctn_botoes/btn_sons" to="." method="_on_btn_sons_pressed"]
@@ -168,6 +184,7 @@ bus = &"Musica"
 [editable path="tabuleiro"]
 [editable path="cen_tabuleiro"]
 [editable path="cen_creditos"]
+[editable path="cen_temas"]
 [editable path="cen_sons"]
 [editable path="cen_menu_opcoes"]
 [editable path="cen_menu_novo_jogo"]

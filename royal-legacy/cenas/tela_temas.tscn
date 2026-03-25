@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://dieunnwgac6pc"]
+
+[ext_resource type="Texture2D" uid="uid://dok0pxlm3sp1y" path="res://temas/tema_5.jpg" id="1_0huel"]
+[ext_resource type="Script" uid="uid://culrffuew32my" path="res://scripts/tela_temas.gd" id="2_0huel"]
+[ext_resource type="FontFile" uid="uid://d3wyk170ulhtp" path="res://fontes/LibreBaskerville-Bold.ttf" id="3_ae8gr"]
+[ext_resource type="FontFile" uid="uid://cwjl7kg0e40pe" path="res://fontes/LibreBaskerville-Regular.ttf" id="4_t04lk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_n3aqq"]
+font = ExtResource("3_ae8gr")
+font_size = 80
+font_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(1, 1, 1, 1)
+shadow_offset = Vector2(5, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v7b71"]
+bg_color = Color(0.13333334, 0.15294118, 0.31764707, 0.39215687)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 32.0
+expand_margin_top = 15.0
+expand_margin_right = 32.0
+expand_margin_bottom = 15.0
+shadow_color = Color(0, 0, 0, 0.396078)
+shadow_size = 10
+shadow_offset = Vector2(10, 10)
+
+[node name="cena_temas" type="TextureRect" unique_id=1693859549]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_0huel")
+expand_mode = 3
+script = ExtResource("2_0huel")
+
+[node name="marg_ctn_temas" type="MarginContainer" parent="." unique_id=237137690]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 21
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = -5
+
+[node name="btn_retornar_temas" type="Button" parent="marg_ctn_temas" unique_id=935056420]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("3_ae8gr")
+theme_override_font_sizes/font_size = 20
+text = "   <   "
+
+[node name="lbl_titulo_temas" type="Label" parent="marg_ctn_temas" unique_id=1374917287]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Opções de Temas"
+label_settings = SubResource("LabelSettings_n3aqq")
+
+[node name="pnl_ctn_temas" type="PanelContainer" parent="marg_ctn_temas" unique_id=1430543692]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_v7b71")
+
+[node name="vert_ctn_temas" type="VBoxContainer" parent="marg_ctn_temas/pnl_ctn_temas" unique_id=1705422438]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="btn_temas" type="Button" parent="marg_ctn_temas/pnl_ctn_temas/vert_ctn_temas" unique_id=1196012660]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_t04lk")
+theme_override_font_sizes/font_size = 20
+text = "          Temas           "
+
+[node name="opt_btn_temas" type="OptionButton" parent="marg_ctn_temas/pnl_ctn_temas/vert_ctn_temas" unique_id=1675148506]
+layout_mode = 2
+selected = 0
+item_count = 4
+popup/item_0/text = "Clássico"
+popup/item_0/id = 0
+popup/item_1/text = "Nobre"
+popup/item_1/id = 1
+popup/item_2/text = "Real"
+popup/item_2/id = 2
+popup/item_3/text = "Lendário"
+popup/item_3/id = 3
+
+[connection signal="item_selected" from="marg_ctn_temas/pnl_ctn_temas/vert_ctn_temas/opt_btn_temas" to="." method="_on_opt_btn_temas_item_selected"]

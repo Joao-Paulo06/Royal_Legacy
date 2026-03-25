@@ -1,7 +1,7 @@
 extends Node
 # Script de Gerenciamento de Telas (Estruturador)
 
-# Referências para as telas (Verifique se os nomes batem com sua cena!)
+# Referências para as telas 
 @onready var menu_principal = $cen_menu_principal
 @onready var tela_novo_jogo = $cen_menu_novo_jogo
 @onready var tela_opcoes = $cen_menu_opcoes
@@ -9,14 +9,14 @@ extends Node
 @onready var tabuleiro: Sprite2D = $tabuleiro
 @onready var tela_sons: TextureRect = $cen_sons
 @onready var tela_creditos: ScrollContainer = $cen_creditos
-
+@onready var tela_temas: TextureRect = $cen_temas
 
 var telas: Array[Node] = []
 
 func _ready() -> void:
 	# Lista todas as telas para facilitar a troca
 	telas = [menu_principal, tela_novo_jogo, tela_opcoes, 
-	tabuleiro, tela_tabuleiro, tela_creditos, tela_sons]
+	tabuleiro, tela_tabuleiro, tela_creditos, tela_sons, tela_temas]
 	mostrar_tela(menu_principal)
 	
 func mostrar_tela(tela: Node) -> void:
@@ -75,7 +75,10 @@ func _on_btn_retornar_sons_pressed() -> void:
 	mostrar_tela(tela_opcoes)
 
 func _on_btn_temas_pressed() -> void:
-	pass
+	mostrar_tela(tela_temas)
+
+func _on_btn_retornar_temas_pressed() -> void:
+	mostrar_tela(tela_opcoes)
 
 func _on_btn_creditos_pressed() -> void:
 	mostrar_tela(tela_creditos)

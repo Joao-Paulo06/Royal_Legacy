@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cuyj64k10xu4l"]
 
-[ext_resource type="Script" uid="uid://b8u3dfcy5pl23" path="res://scripts/TelaCreditos.gd" id="1_tlyj6"]
+[ext_resource type="Script" uid="uid://b8u3dfcy5pl23" path="res://scripts/tela_creditos.gd" id="1_tlyj6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yakeu"]
 bg_color = Color(0, 0, 0, 1)
