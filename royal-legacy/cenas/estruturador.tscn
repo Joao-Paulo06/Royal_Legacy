@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://uc1uv57stt28"]
+[gd_scene format=3 uid="uid://fqx0f1jf5wyg"]
 
 [ext_resource type="Script" uid="uid://dumuijyxx18jm" path="res://scripts/estruturador.gd" id="1_ry3m5"]
 [ext_resource type="Texture2D" uid="uid://c2q0w85vqu3ki" path="res://temas/tema_fundo_principal.png" id="2_4vg03"]
@@ -34,11 +34,11 @@ position = Vector2(498, 239)
 scale = Vector2(3.15, 3.15)
 centered = true
 
-[node name="turno" parent="tabuleiro" index="2"]
+[node name="turno" parent="tabuleiro" index="2" unique_id=612825596]
 z_index = -10
 position = Vector2(7.6293945e-06, 0)
 
-[node name="CheckIndicator" parent="tabuleiro" index="4"]
+[node name="CheckIndicator" parent="tabuleiro" index="4" unique_id=1682278405]
 offset_left = -72.063484
 offset_top = -72.06349
 offset_right = -72.063484
@@ -146,8 +146,10 @@ visible = false
 script = null
 
 [node name="cen_menu_novo_jogo" parent="." unique_id=866609491 instance=ExtResource("10_ueff5")]
-visible = false
 script = null
+
+[node name="btn_p_v_p_online" parent="cen_menu_novo_jogo/marg_ctn_menu_novo_jogo/pnl_ctn_botoes/vert_ctn_botoes" index="2"]
+disabled = true
 
 [node name="cen_menu_principal" parent="." unique_id=2129603396 instance=ExtResource("11_eggmu")]
 visible = false

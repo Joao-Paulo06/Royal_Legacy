@@ -34,7 +34,7 @@ func set_winner(cor_vencedora: String):
 	game_over.emit(winner)
 	
 	# ESPERA 2 SEGUNDOS ANTES DE MUDAR DE TELA
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(1.5).timeout
 	
 	change_scene_game_over.call_deferred()
 	
