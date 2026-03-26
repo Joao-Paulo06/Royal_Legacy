@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://c2q0w85vqu3ki" path="res://temas/tema_fundo_principal.png" id="2_4vg03"]
 [ext_resource type="PackedScene" uid="uid://v4acm1siny8r" path="res://cenas/novo_jogo.tscn" id="3_lxwp1"]
 [ext_resource type="Script" uid="uid://sokxvn1sv4y6" path="res://scripts/game_manager.gd" id="4_cj5mv"]
-[ext_resource type="Texture2D" uid="uid://bgqouh3yset01" path="res://assets/versao_1/tabuleiro_v1.png" id="4_q25cx"]
 [ext_resource type="FontFile" uid="uid://d3wyk170ulhtp" path="res://fontes/LibreBaskerville-Bold.ttf" id="5_a1j3f"]
 [ext_resource type="Texture2D" uid="uid://gm3kw0onk2ow" path="res://assets/extras/Desfazer.png" id="6_61gg7"]
 [ext_resource type="PackedScene" uid="uid://qlqxyol7fw8y" path="res://cenas/pve.tscn" id="7_md7fk"]
@@ -33,7 +32,6 @@ stretch_mode = 6
 [node name="tabuleiro" parent="." unique_id=899442188 instance=ExtResource("3_lxwp1")]
 position = Vector2(498, 239)
 scale = Vector2(3.15, 3.15)
-texture = ExtResource("4_q25cx")
 centered = true
 
 [node name="turno" parent="tabuleiro" index="2"]

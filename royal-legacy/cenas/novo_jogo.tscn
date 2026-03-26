@@ -1,23 +1,23 @@
 [gd_scene format=3 uid="uid://v4acm1siny8r"]
 
-[ext_resource type="Texture2D" uid="uid://dw5sr42wu1i6" path="res://assets/versao_1/tabuleiro.png" id="1_6wpih"]
+[ext_resource type="Texture2D" uid="uid://bgqouh3yset01" path="res://assets/versao_1/tabuleiro.png" id="1_6wpih"]
 [ext_resource type="Script" uid="uid://bj7vu5tci1he3" path="res://scripts/base_xadrez.gd" id="2_f23y0"]
 
-[node name="tabuleiro" type="Sprite2D"]
+[node name="tabuleiro" type="Sprite2D" unique_id=415607969]
 scale = Vector2(3.333, 3.333)
 texture = ExtResource("1_6wpih")
 centered = false
 script = ExtResource("2_f23y0")
 
-[node name="pecas" type="Node2D" parent="."]
+[node name="pecas" type="Node2D" parent="." unique_id=13839133]
 
-[node name="quadrados" type="Node2D" parent="."]
+[node name="quadrados" type="Node2D" parent="." unique_id=684935852]
 
-[node name="turno" type="Sprite2D" parent="."]
+[node name="turno" type="Sprite2D" parent="." unique_id=612825596]
 
-[node name="Som_pecas" type="AudioStreamPlayer" parent="."]
+[node name="Som_pecas" type="AudioStreamPlayer" parent="." unique_id=609202531]
 
-[node name="CheckIndicator" type="ColorRect" parent="."]
+[node name="CheckIndicator" type="ColorRect" parent="." unique_id=1682278405]
 z_index = 10
 anchors_preset = 15
 anchor_right = 1.0

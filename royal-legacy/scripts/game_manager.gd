@@ -47,12 +47,12 @@ func change_scene_game_over():
 	
 	# Tentativa 1: O jeito normal
 	if tree:
-		tree.change_scene_to_file("res://cenas/EndGame.tscn")
+		tree.change_scene_to_file("res://cenas/end_game.tscn")
 	# Tentativa 2 (Fallback): Se o GameManager estiver "flutuando", puxamos a árvore direto da Engine
 	else:
 		var main_loop = Engine.get_main_loop()
 		if main_loop is SceneTree:
-			main_loop.change_scene_to_file("res://cenas/EndGame.tscn")
+			main_loop.change_scene_to_file("res://cenas/end_game.tscn")
 		else:
 			print("ERRO CRÍTICO: Não foi possível acessar a SceneTree para trocar a cena.")
 
