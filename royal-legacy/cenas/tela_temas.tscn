@@ -10,7 +10,7 @@ font = ExtResource("3_ae8gr")
 font_size = 80
 font_color = Color(0, 0, 0, 1)
 shadow_size = 5
-shadow_color = Color(1, 1, 1, 1)
+shadow_color = Color(0.5529412, 0.3647059, 0.4117647, 1)
 shadow_offset = Vector2(5, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v7b71"]
