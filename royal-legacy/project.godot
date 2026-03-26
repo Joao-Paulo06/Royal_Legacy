@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Royal Legacy"
-run/main_scene="uid://uc1uv57stt28"
+run/main_scene="uid://fqx0f1jf5wyg"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 
 [audio]
