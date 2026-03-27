@@ -56,18 +56,17 @@ E assim vai, converse com seu orientador o que seriam os algoritmos mais relevan
 \caption{Algoritmo de indicação de produtos.}
 \label{alg:indicacao_produtos}
 
-$P$ \gets $pesquisar\_produtos()$\;
+$P \gets \text{pesquisar\_produtos}()$\;
 
-$n \gets length(produtos)\;
-
+$n \gets \text{length}(P)$\;
 \eSe{$n \geq 1$}
 {
-    $P_{ord}$ \gets $ordenar\_por\_estrelas(P)$\;
-    
-    $P_{preferidos}$ \gets $P_{ord}[1:10]$\;
-
-    \Retorna{$P_{preferidos}$}
+	$P_{ord} \gets \text{ordenar\_por\_estrelas}(P)$\;
+	
+	$P_{preferidos} \gets P_{ord}[1:10]$\;
+	
+	\Retorna{$P_{preferidos}$}
 }{
-    \Retorna{Lista vazia}
+	\Retorna{Lista vazia}
 }
 \end{algorithm}
