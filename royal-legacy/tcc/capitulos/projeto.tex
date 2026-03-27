@@ -1,0 +1,73 @@
+\chapter{Projeto}
+\label{capitulo:projeto}
+
+Este capítulo apresenta os principais elementos de projeto do sistema proposto.
+Neste sentido são definidas estruturas da arquitetura do sistema, protótipos e diagramas estruturais e comportamentais.
+
+Embora este não seja o momento de definir conceitos\footnote{O momento de definir conceitos importantes é na revisão bibliográfica, capítulo \ref{capitulo:revisao_bibliografica}.}, você pode endossar o porquê as coisas foram feitas do jeito que foram utilizando citações.
+
+\section{Arquitetura do projeto}
+
+Fazer um diagrama de implantação da UML ou fazer uma figura que expresse como as partes do sistema foram divididas e como elas se comunicam.
+
+\section{Protótipos}
+\label{secao:prototipos}
+
+Nesta seção são apresentados os principais, senão todos, os protótipos do sistema.
+Conceitue o que são protótipos e lembre que eles são rascunhos do sistema, não as telas finais.
+As telas finais são tema do capítulo de resultados e discussão (capítulo \ref{capitulo:resultados_discussao}).
+
+Apresente todos os protótipos sempre com uma explicação e a figura.
+
+\section{Diagrama Entidade Relacionamento (DER)}
+
+Nesta seção encontra-se um exemplo de conceito que normalmente não entra no capítulo de revisão, mas cai muito bem uma boa citação.
+
+Por que é importante citar aqui? 
+Veja qual o motivo de ter escolhido um banco de dados relacional? 
+E por que a modelagem foi feita da forma que foi? 
+Ela segue as normas formais? 
+Quantas normas formais são? 
+Segue todas elas?
+
+Então, além de apresentar a figura do DER você também deve fazer uma explicação e afirmar que ela segue as normas formais. Em casos que não seguirem as normas formais deve ser prontamente justificado o porquê.
+
+É importantíssimo conferir a coesão do DER com os protótipos do sistema apresentados na seção \ref{secao:prototipos}.
+Todos os campos apresentados no protótipo devem estar no DER.
+
+\section{Diagrama de Casos de Uso}
+
+Inclua e explique o diagrama de caso de uso.
+
+\section{Diagrama de Classes}
+
+Inclua e explique o diagrama de caso de classes.
+Note que o diagrama de classes pode ter classes de domínio e sua relação assim como também podem haver diagramas de classes com mais níveis de detalhamento.
+Caso seja necessário inclua mais detalhes.
+
+\section{Algoritmos propostos}
+
+No seu trabalho você não deve incluir códigos\footnote{Raramente isto é aceitável}.
+Dê preferência a incluir os algoritmos que representam contribuições claras do seu trabalho.
+Veja se está fazendo um sistema de \textit{e-commerce}, inclua o algoritmo de indicação de produtos, por exemplo o algoritmo \ref{alg:indicacao_produtos}. E se o sistema for de biblioteca, inclua o algoritmo de sugestão de livros.
+E assim vai, converse com seu orientador o que seriam os algoritmos mais relevantes do seu trabalho.
+
+\begin{algorithm}
+\caption{Algoritmo de indicação de produtos.}
+\label{alg:indicacao_produtos}
+
+$P$ \gets $pesquisar\_produtos()$\;
+
+$n \gets length(produtos)\;
+
+\eSe{$n \geq 1$}
+{
+    $P_{ord}$ \gets $ordenar\_por\_estrelas(P)$\;
+    
+    $P_{preferidos}$ \gets $P_{ord}[1:10]$\;
+
+    \Retorna{$P_{preferidos}$}
+}{
+    \Retorna{Lista vazia}
+}
+\end{algorithm}
