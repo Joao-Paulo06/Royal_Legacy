@@ -35,7 +35,7 @@ shadow_color = Color(0, 0, 0, 0.396078)
 shadow_size = 10
 shadow_offset = Vector2(10, 10)
 
-[node name="cen_PvE" type="TextureRect"]
+[node name="cen_PvE" type="TextureRect" unique_id=1040177044]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -45,7 +45,7 @@ texture = ExtResource("1_e1mem")
 expand_mode = 2
 script = ExtResource("2_yf3iw")
 
-[node name="marg_ctn_menu_novo_jogo" type="MarginContainer" parent="."]
+[node name="marg_ctn_menu_novo_jogo" type="MarginContainer" parent="." unique_id=366713888]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -56,7 +56,7 @@ theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
 
-[node name="lbl_titulo" type="Label" parent="marg_ctn_menu_novo_jogo"]
+[node name="lbl_titulo" type="Label" parent="marg_ctn_menu_novo_jogo" unique_id=100040368]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -64,37 +64,37 @@ text = "Dificuldade"
 label_settings = SubResource("LabelSettings_psh2s")
 horizontal_alignment = 3
 
-[node name="btn_retornar" type="Button" parent="marg_ctn_menu_novo_jogo"]
+[node name="btn_retornar" type="Button" parent="marg_ctn_menu_novo_jogo" unique_id=364587694]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("3_0kvhd")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 18
 text = "   <   "
 
-[node name="pnl_ctn_botoes" type="PanelContainer" parent="marg_ctn_menu_novo_jogo"]
+[node name="pnl_ctn_botoes" type="PanelContainer" parent="marg_ctn_menu_novo_jogo" unique_id=1737855536]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_xn66q")
 
-[node name="vert_ctn_botoes" type="VBoxContainer" parent="marg_ctn_menu_novo_jogo/pnl_ctn_botoes"]
+[node name="vert_ctn_botoes" type="VBoxContainer" parent="marg_ctn_menu_novo_jogo/pnl_ctn_botoes" unique_id=928798633]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="btn_facil" type="Button" parent="marg_ctn_menu_novo_jogo/pnl_ctn_botoes/vert_ctn_botoes"]
+[node name="btn_facil" type="Button" parent="marg_ctn_menu_novo_jogo/pnl_ctn_botoes/vert_ctn_botoes" unique_id=1020983327]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_1buvh")
 theme_override_font_sizes/font_size = 30
 text = "              Fácil              "
 
-[node name="btn_mediano" type="Button" parent="marg_ctn_menu_novo_jogo/pnl_ctn_botoes/vert_ctn_botoes"]
+[node name="btn_mediano" type="Button" parent="marg_ctn_menu_novo_jogo/pnl_ctn_botoes/vert_ctn_botoes" unique_id=17944349]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_1buvh")
 theme_override_font_sizes/font_size = 30
 text = "Mediano"
 
-[node name="btn_dificil" type="Button" parent="marg_ctn_menu_novo_jogo/pnl_ctn_botoes/vert_ctn_botoes"]
+[node name="btn_dificil" type="Button" parent="marg_ctn_menu_novo_jogo/pnl_ctn_botoes/vert_ctn_botoes" unique_id=1421281357]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_1buvh")
 theme_override_font_sizes/font_size = 30

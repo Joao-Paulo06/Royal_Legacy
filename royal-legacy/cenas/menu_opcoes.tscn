@@ -66,7 +66,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("2_60l56")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 18
 text = "   <   "
 
 [node name="pnl_ctn_botoes" type="PanelContainer" parent="marg_ctn_menu_opcoes" unique_id=322745942]
