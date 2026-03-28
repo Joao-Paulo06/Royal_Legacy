@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.3.16)  27 MAR 2026 14:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.3.16)  28 MAR 2026 09:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1864,7 +1864,10 @@ Overfull \hbox (15.4134pt too wide) in paragraph at lines 4--12
 
 [5
 
-]) (preambulo/resumo_lingua_vernacula.tex [6
+]) (preambulo/resumo_lingua_vernacula.tex
+LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <12> not available
+(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 2.
+ [6
 
 ])
 (preambulo/resumo_lingua_estrangeira.tex
@@ -1894,8 +1897,6 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: TS1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <12> not available
-(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 26.
 
 [12
 
@@ -1977,13 +1978,13 @@ Package rerunfilecheck Info: File `tc.brf' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 39034 strings out of 467871
- 734072 string characters out of 5417408
+ 39040 strings out of 467871
+ 734144 string characters out of 5417408
  1248055 words of memory out of 5000000
  66962 multiletter control sequences out of 15000+600000
- 685449 words of font info for 189 fonts, out of 8000000 for 9000
+ 685814 words of font info for 192 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 113i,14n,121p,1001b,680s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 113i,14n,121p,1557b,680s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
 m/cmr10.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/public/
 amsfonts/cm/cmsy10.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/ty
@@ -1996,7 +1997,7 @@ X/fonts/type1/public/lm/lmsso10.pfb><C:/Users/Usuario/AppData/Local/Programs/Mi
 KTeX/fonts/type1/public/lm/lmsso12.pfb><C:/Users/Usuario/AppData/Local/Programs
 /MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/Usuario/AppData/Local/Progra
 ms/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on tc.pdf (24 pages, 677464 bytes).
+Output written on tc.pdf (24 pages, 680297 bytes).
 PDF statistics:
  442 PDF objects out of 1000 (max. 8388607)
  93 named destinations out of 1000 (max. 500000)
