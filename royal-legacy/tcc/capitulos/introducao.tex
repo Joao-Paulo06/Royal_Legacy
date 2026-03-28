@@ -1,50 +1,52 @@
 \chapter{Introdução}
 \label{capitulo:introducao}
 
-No capítulo da introdução é feita a definição inicial do tema da pesquisa ou trabalho a ser desenvolvido.
-Neste momento, o autor do trabalho deve ser claro e sua explicação deve ser simples evitando o máximo possível de termos técnicos.
+O xadrez é um dos jogos de tabuleiro mais antigos e estudados do mundo, sendo frequentemente utilizado ao longo da história como um laboratório para testar a capacidade lógica e o poder de processamento dos computadores. Nos primórdios da ciência da computação, as partidas contra a máquina eram restritas a terminais de texto escuros ou interfaces extremamente rudimentares. No entanto, com a evolução da tecnologia e a mudança nas expectativas dos jogadores, os jogos digitais passaram a exigir não apenas uma matemática impecável, mas também uma apresentação visual imersiva e responsiva.
 
-Pode-se dizer que uma boa introdução ou até mesmo um bom texto é aquele que qualquer leitor, independente do conhecimento prévio na área, consegue entender bem.
+Hoje em dia, jogar xadrez contra o computador é algo comum, mas o desenvolvimento desse tipo de software envolve um desafio de arquitetura bastante específico: unir uma interface visual atraente, rica em animações e menus, com um "cérebro" lógico capaz de calcular milhões de probabilidades matemáticas em poucos segundos. 
 
-Este texto introdutório apresenta o \textbf{tema} e o \textbf{problema de pesquisa}.
-No entanto, não deve ser um texto muito longo \cite{RaulSidneiWazlawick2021}.
-Recomendo que este trecho tenha no máximo 2 páginas.
+Motores de jogos modernos, como a Godot Engine, são ferramentas excelentes e acessíveis para criar telas interativas, gerenciar efeitos sonoros e construir menus complexos. Contudo, eles não foram construídos para processar algoritmos pesados de inteligência artificial de forma nativa. Por outro lado, ferramentas consagradas de Inteligência Artificial voltadas para o xadrez, como o Stockfish, são extremamente poderosas e precisas, mas funcionam apenas nos bastidores, através de linhas de comando, sem oferecer nenhuma tela, gráfico ou botão para o jogador humano.
+
+Diante desse cenário, este trabalho apresenta o desenvolvimento do simulador digital \textit{Royal Legacy}. O problema de pesquisa que norteia este projeto é: como integrar de forma eficiente um motor lógico de xadrez de alta complexidade (Stockfish) a uma interface gráfica moderna (Godot Engine), garantindo que o jogo seja visualmente personalizável e que os cálculos da máquina não congelem ou travem a experiência do usuário durante as partidas?
 
 \section{Objetivo Geral}
 
-Em um parágrafo apresentar o objetivo do trabalho. Por exemplo: ``Este trabalho tem como objetivo desenvolver um sistema capaz de resolver o problema XYZ com um tempo polinomial''.
+Este trabalho tem como objetivo desenvolver um simulador de xadrez digital interativo e customizável na Godot Engine, integrado ao motor de inteligência artificial Stockfish através de uma comunicação em linguagem Python, proporcionando uma experiência de jogo fluida, modular e com diferentes níveis de dificuldade.
 
 \section{Objetivos específicos}
 
-Para concluir o objetivo geral foram definidos os seguintes objetivos específicos: 
+Para alcançar o objetivo geral, foram definidos os seguintes objetivos específicos: 
 
 \begin{itemize}
-	\item Determinar uma arquitetura que permita comunicação entre as partes do sistema;
-
-    \item Desenvolver um sistema administrativo que permita cadastrar dados e emitir relatórios de acompanhamento;
-
-    \item Avaliar a usabilidade do sistema através do \textit{feedback} do usuário e propor melhorias nas interfaces gráficas.
+	\item Implementar a interface gráfica e a lógica completa das regras do xadrez (incluindo movimentação restrita, roque e \textit{en passant}) utilizando a linguagem nativa GDScript;
+	\item Desenvolver um \textit{middleware} em Python para estabelecer a comunicação assíncrona entre o frontend do jogo e o binário do Stockfish, operando através do protocolo \textit{Universal Chess Interface} (UCI);
+	\item Estruturar um sistema de gerenciamento de cenas e menus de opções, garantindo uma experiência de usuário (UX) intuitiva para a configuração de volume, dificuldades e modos de jogo;
+	\item Criar um sistema dinâmico de temas visuais baseado em dicionários de dados, permitindo a alteração das cores e dos conjuntos de peças em tempo real;
+	\item Desenvolver um gerenciador de estados para controlar turnos e condições de fim de jogo (xeque-mate e empate), validando o fluxo correto das partidas nas modalidades Jogador contra Jogador (PvP) e Jogador contra Máquina (PvE).
 \end{itemize}
 
 \section{Justificativa}
 \label{secao:justificativa}
 
-É nesta seção que você deverá justificar a importância do trabalho.
-Deve-se deixar claro o motivo deste trabalho ser relevante e enfatizar o que ele difere dos demais trabalhos existentes que serão apresentados no capítulo de revisão bibliográfica.
+A relevância deste trabalho reside na demonstração prática de uma arquitetura de software altamente modular. O desenvolvimento de um algoritmo de xadrez do zero, com alta performance, diretamente em uma \textit{Game Engine} seria inviável para o escopo do projeto, além de computacionalmente ineficiente. Ao invés de reinventar ferramentas já consolidadas pela comunidade científica e de desenvolvedores, este projeto propõe uma ponte técnica elegante entre tecnologias de naturezas distintas (uma engine gráfica, uma linguagem de script utilitária e um executável externo). 
+
+Essa abordagem arquitetural é fortemente justificável pois resolve uma lacuna comum no desenvolvimento de software de entretenimento: a dificuldade de executar processos pesados em segundo plano sem impactar a fluidez visual do sistema. Muitos desenvolvedores iniciantes enfrentam travamentos de tela ao tentar calcular lances de IA na mesma via de processamento (\textit{thread}) dos gráficos. Ao documentar a separação dessas responsabilidades, este projeto serve como um modelo de estudo valioso para estudantes de Análise e Desenvolvimento de Sistemas que precisem integrar motores visuais modernos a inteligências artificiais complexas.
 
 \section{Contribuições realizadas}
 
-Esta seção entra com pontos muito bem objetivos sobre o que foi avançado na área de pesquisa do tema do trabalho.
-Note que para trabalhos que envolvam apenas o desenvolvimento de um \textit{software} sem a apresentação de grandes melhorias ou novas propostas no que já existe.
-Este pode ser um ponto crucial para o aceite ou aprovação da banca.
+O desenvolvimento deste simulador trouxe contribuições práticas e metodológicas para a estruturação de projetos de jogos de tabuleiro, destacando-se:
 
-A seção \ref{secao:justificativa} pode te apoiar na escrita das contribuições realizadas, uma vez que, se sua crítica é sobre o tempo de resposta de um determinado algoritmo, espera-se que o trabalho em questão tenha melhora este tempo.
+\begin{itemize}
+	\item \textbf{Arquitetura de Comunicação Assíncrona:} A implementação de um script em Python que atua como ponte, traduzindo o estado do tabuleiro (formato FEN) e devolvendo a melhor jogada (formato UCI), provou que é viável acoplar programas externos pesados à Godot sem causar interrupções (\textit{stutters}) na interface principal.
+	\item \textbf{Modularidade de Interface:} A centralização da navegação entre os diversos menus e telas do jogo por meio de um único gerenciador global demonstrou a aplicação de boas práticas de design de software, facilitando a expansão do código e evitando o acoplamento excessivo entre as telas.
+	\item \textbf{Escalabilidade Visual:} A criação de um sistema de customização que utiliza estruturas de dados flexíveis (como Dicionários) substituiu lógicas condicionais repetitivas, resultando em um código mais limpo e otimizado para futuras atualizações de conteúdo estético.
+\end{itemize}
 
 \section{Organização do trabalho}
 
-Este capítulo expôs o problema de pesquisa, os motivos, os objetivos e as contribuições deste trabalho.
-O capítulo \ref{capitulo:revisao_bibliografica} apresenta os principais trabalhos relacionados ao tema assim como as principais ferramentas de \textit{frameworks} utilizados para a solução do problema.
-O capítulo \ref{capitulo:materiais_metodos} apresenta os materiais e métodos utilizados como abordagem desta pesquisa.
-O capítulo \ref{capitulo:projeto} é apresentado o projeto de \textit{software} proposto neste trabalho, assim são apresentados diagramas relacionados a arquitetura, banco de dados, estrutura de fluxo de comunicação entre as entidades que compõem o sistema.
-O capítulo \ref{capitulo:resultados_discussao} são apresentados os resultados deste trabalho e faz-se uma discussão sobre os motivos destes serem como são de suas consequências na área de pesquisa.
-Por fim, o capítulo \ref{capitulo:consideracoes_finais} apresenta as considerações finais e propostas de trabalhos futuros relacionados ao tema.
+Este capítulo expôs o contexto inicial, o problema de pesquisa, os motivos, os objetivos e as contribuições deste trabalho. 
+O capítulo \ref{capitulo:revisao_bibliografica} apresenta os principais conceitos teóricos sobre o xadrez computacional, assim como as ferramentas, linguagens e \textit{frameworks} utilizados para a solução do problema. 
+O capítulo \ref{capitulo:materiais_metodos} apresenta a metodologia adotada e a arquitetura delineada para o desenvolvimento da aplicação. 
+O capítulo \ref{capitulo:projeto} expõe o projeto de \textit{software} construído, detalhando os scripts, a organização visual e o fluxo de dados entre o jogo e a Inteligência Artificial. 
+O capítulo \ref{capitulo:resultados_discussao} apresenta os resultados práticos obtidos com o simulador em funcionamento, discutindo a eficiência da comunicação assíncrona. 
+Por fim, o capítulo \ref{capitulo:consideracoes_finais} compila as considerações finais sobre os desafios superados e sugere propostas para trabalhos futuros.
