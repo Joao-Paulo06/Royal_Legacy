@@ -1,25 +1,27 @@
-\chapter{Considerações finais}
+\chapter{Considerações Finais}
 \label{capitulo:consideracoes_finais}
 
-Este capítulo apresenta as considerações finais do trabalho. 
-Sendo dividido em duas seções \ref{secao:contribuicoes} e 
-\ref{secao:trabalhos_futuros}.
-Na primeira, serão apresentados os avanços proporcionados por este trabalho.
-Na segundo, são apresentados pontos de melhorias para que futuros pesquisadores continuem contribuindo com o tema.
+Este capítulo apresenta as considerações finais do trabalho, sumarizando os resultados obtidos com o desenvolvimento do simulador \textit{Royal Legacy}. O projeto alcançou o seu objetivo principal de criar uma experiência de xadrez digital fluida, integrando um motor lógico de alto desempenho sem comprometer a estabilidade da interface gráfica. O capítulo divide-se nas seções \ref{secao:contribuicoes}, que detalha os avanços técnicos alcançados, e \ref{secao:trabalhos_futuros}, que sugere caminhos para a continuidade desta pesquisa.
 
 \section{Contribuições}
 \label{secao:contribuicoes}
 
-Apresente de forma pontual as contribuições que fez, ex:
+O desenvolvimento deste projeto resultou em contribuições técnicas e arquiteturais significativas para a criação de jogos de tabuleiro integrados a motores externos. Destacam-se pontualmente:
 
 \begin{itemize}
-    \item O algoritmo de ordenação do problema X foi melhorado para $O(n \log n)$;
-
-    \item A interface do sistema ficou mais intuitiva\footnote{Cuidado com estas afirmações, estabeleça uma metodologia no capítulo \ref{capitulo:materiais_metodos} para que estas afirmações estejam corretas.};
+	\item \textbf{Arquitetura Assíncrona de Comunicação:} A criação de um \textit{middleware} em Python demonstrou ser uma solução altamente eficaz para o problema de travamento de interface (\textit{stuttering}). A execução isolada do binário do Stockfish permitiu que a Godot Engine mantivesse uma taxa de renderização constante de 60 FPS durante o cálculo de jogadas profundas.
+	\item \textbf{Motor Lógico Independente em GDScript:} A transcrição de todas as regras do xadrez (incluindo lances especiais como \textit{en passant}, roque e promoção) para a linguagem nativa da Godot, utilizando matrizes bidimensionais, resultou em um código base modular e de fácil manutenção.
+	\item \textbf{Sistema de Customização Dinâmica:} A implementação de um gerenciador de temas baseado em Dicionários de dados otimizou a troca de recursos visuais (\textit{sprites} e paletas de cores) em tempo de execução, dispensando o uso de estruturas condicionais extensas e reduzindo o consumo desnecessário de memória.
 \end{itemize}
 
 \section{Trabalhos Futuros}
 \label{secao:trabalhos_futuros}
 
-Aqui serão apresentadas propostas para continuação da linha de pesquisa deste tema.
-Sugira coisas que acredita que devem ser melhoradas em médio e longo prazo.
+Apesar do pleno funcionamento da arquitetura proposta e do atingimento dos objetivos iniciais, o escopo do \textit{Royal Legacy} permite diversas expansões. Para que futuros pesquisadores ou desenvolvedores continuem contribuindo com o tema, sugerem-se as seguintes melhorias a médio e longo prazo:
+
+\begin{itemize}
+	\item \textbf{Implementação de \textit{Multiplayer} Online:} Expandir o sistema para suportar partidas remotas entre jogadores (PvP via rede), utilizando a API de rede de alto nível da Godot ou WebSockets para a troca eficiente de \textit{strings} FEN através de um servidor central.
+	\item \textbf{Portabilidade para Dispositivos Móveis:} Adaptar a interface para telas sensíveis ao toque (UX/UI \textit{mobile}) e reestruturar a comunicação assíncrona para compilar o código-fonte do Stockfish nativamente como um módulo em C++ (GDExtension), permitindo a execução em sistemas Android e iOS sem a necessidade do interpretador Python.
+	\item \textbf{Integração com Múltiplos Motores (IA):} Adicionar suporte a outras Inteligências Artificiais de xadrez de código aberto compatíveis com o protocolo UCI, como a Leela Chess Zero (baseada em redes neurais), permitindo que o usuário enfrente oponentes virtuais com diferentes "personalidades" e estilos de jogo.
+	\item \textbf{Análise de Partidas em Tempo Real:} Desenvolver um módulo gráfico que traduza a avaliação numérica contínua do Stockfish em uma barra de vantagens visual durante o jogo, auxiliando o usuário no aprendizado, estudo de posições e detecção de erros graves (\textit{blunders}).
+\end{itemize}

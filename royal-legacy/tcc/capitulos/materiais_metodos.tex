@@ -1,40 +1,54 @@
 \chapter{Materiais e métodos}
 \label{capitulo:materiais_metodos}
 
-Os materiais e métodos compõem a metodologia do trabalho.
-Neste momento deverão ser apresentadas as principais tecnologias utilizadas.
+Este capítulo descreve a metodologia aplicada no desenvolvimento do simulador \textit{Royal Legacy}. Serão apresentados os materiais tecnológicos, abrangendo \textit{hardware} e \textit{software}, e os métodos adotados para a modelagem, levantamento de requisitos e execução das etapas do projeto. Ressalta-se que a fundamentação teórica sobre o funcionamento destas tecnologias já foi abordada na seção \ref{secao:fundamentacao_teorica}.
 
-Entende-se como materiais: 
+\section{Materiais}
+\label{secao:materiais}
 
-\begin{itemize}
-    \item linguagens de programação (Julia, Java, PHP, Python);
+Os materiais empregados nesta pesquisa dividem-se em recursos físicos (\textit{hardware}), utilizados para o desenvolvimento e medição de desempenho, e lógicos (\textit{software}), que compõem o ecossistema de programação e integração do sistema.
 
-    \item \textit{frameworks} ou arcabouços;
+\subsection{Recursos de \textit{Hardware}}
 
-    \item Banco de dados (PostgreSQL, MySQL, SQL Server, Oracle, etc.);
-
-    \item Ambiente de Desenvolvimento Integrado (IDE): NetBeans, Eclipse, etc;
-
-    \item APIs de sistemas;
-
-    \item \textit{Hardwares}: seu computador\footnote{Sim! Seu computador. Se estiver fazendo um trabalho que envolva calcular tempo de execução de um algoritmo, as definições do seu computador devem ser incluídas no trabalho, tais como: processador, número de núcleos, número de \textit{threads}, memória RAM, tipo de disco rígido (HD ou SSD), tamanho do disco rígido, até mesmo a velocidade de conexão deve ser incluída dependendo do trabalho.}, Arduíno, Raspberry Pi, etc.
-\end{itemize}
-    
-Não entenda mal, a questão deste capítulo não consiste apenas em citar os materiais, mas sim falar onde e como eles foram utilizados na sua pesquisa.
-Então ao citar o computador, deve ser mencionado nos métodos como o computador foi utilizado.
-
-Como métodos entende-se:
+O desenvolvimento da aplicação, bem como os testes de estresse envolvendo o cálculo de jogadas pela Inteligência Artificial, foram conduzidos em um computador (nomeado na rede local como SERVIDOR) com as seguintes especificações:
 
 \begin{itemize}
-    \item metodologia de desenvolvimento (SCRUM, cascata, incremental, etc.);
-    
-    \item qual forma o sistema foi modelado? Usou-se Diagrama de Fluxo de Dados (DFD)? Unified Modeling Language (UML)? O que foi usado?
-
-    \item Como os requisitos foram levantados? Quais técnicas foram usadas nas entrevistas? Onde foram as entrevistas? Quando? Quem eram os envolvidos?
-
-    \item Quais etapas foram seguidas no desenvolvimento?
+	\item \textbf{Processador:} AMD Ryzen 5 4600G com Radeon Graphics (3.70 GHz), arquitetura baseada em x64, contando com 6 núcleos e 12 \textit{threads}. Essa configuração foi essencial para suportar a execução da \textit{Game Engine} na via principal (\textit{main thread}) em paralelo com o motor de xadrez em segundo plano, sem causar gargalos de processamento;
+	\item \textbf{Memória RAM:} 16,0 GB de memória instalada (sendo 15,4 GB utilizáveis), garantindo a alocação necessária para a manipulação de matrizes do tabuleiro e o armazenamento da árvore de busca profunda do Stockfish;
+	\item \textbf{Sistema Operacional e Arquitetura:} Sistema operacional de 64 bits, adequado para compilar o executável da Godot Engine e lidar com o alto volume de instruções da Inteligência Artificial;
+	\item \textbf{Armazenamento:} Unidade de armazenamento local em disco rígido/SSD, utilizada para reduzir o tempo de carregamento dos \textit{assets} visuais (temas e peças) e acelerar as chamadas de leitura do \textit{script} Python.
 \end{itemize}
 
-O autor deve tomar cuidado para não confundir os materiais com a revisão bibliográfica (capítulo \ref{capitulo:revisao_bibliografica}).
-Note que neste capítulo não é o momento de definir o que são os materiais, mas sim como eles foram utilizados.
-Então se o autor vai apresentar a linguagem Julia ao leitor, isto deve ser feito no capítulo de revisão bibliográfica na parte de fundamentação teórica (seção \ref{secao:fundamentacao_teorica}).
+\subsection{Recursos de \textit{Software}}
+
+As tecnologias e ferramentas de \textit{software} foram aplicadas de forma modularizada, separando a interface gráfica da lógica computacional:
+
+\begin{itemize}
+	\item \textbf{Godot Engine e GDScript:} O motor gráfico foi empregado como o Ambiente de Desenvolvimento Integrado (IDE) principal para a interface. O GDScript foi a linguagem utilizada para programar as regras de movimentação, o gerenciamento de cenas (\texttt{estruturador.tscn}) e o controle de áudio (\texttt{tela\_sons.gd});
+	\item \textbf{Python:} Utilizado exclusivamente para o desenvolvimento do \textit{middleware} (\texttt{chess\_bridge.py}). O Python operou a biblioteca \texttt{subprocess} para abrir fluxos de leitura e escrita com a Inteligência Artificial;
+	\item \textbf{Stockfish:} Empregado como o executável (\textit{backend}) que recebe os estados do tabuleiro e devolve os cálculos matemáticos das melhores jogadas durante as partidas contra a máquina;
+	\item \textbf{Visual Studio Code:} Utilizado como IDE auxiliar para a escrita, formatação e depuração do código Python, facilitando a visualização dos retornos do terminal;
+	\item \textbf{Protocolos FEN e UCI:} O padrão FEN foi utilizado como estrutura de dados para trafegar o posicionamento das peças entre a Godot e o Python. O protocolo UCI funcionou como a Interface de Programação de Aplicações (API) padrão para enviar comandos de nível de dificuldade ao Stockfish.
+\end{itemize}
+
+\section{Métodos}
+\label{secao:metodos}
+
+O projeto foi conduzido utilizando a metodologia de desenvolvimento iterativo e incremental. Essa escolha metodológica permitiu que o simulador de xadrez fosse construído em pequenos ciclos funcionais, garantindo que a base do jogo estivesse sólida antes da introdução de sistemas mais complexos, como a Inteligência Artificial.
+
+\subsection{Levantamento de Requisitos e Modelagem}
+
+Como o projeto trata-se da simulação de um jogo de tabuleiro clássico, o levantamento de requisitos não ocorreu por meio de entrevistas tradicionais com usuários, mas sim através de pesquisa documental e análise de sistemas correlatos. Os requisitos de regras lógicas foram extraídos do manual oficial da Federação Internacional de Xadrez (FIDE). Já os requisitos arquiteturais basearam-se na documentação do protocolo UCI para a troca de mensagens de texto.
+
+Para a modelagem do sistema, optou-se pela utilização de Diagramas de Fluxo de Dados (DFD) e fluxogramas lógicos, que mapearam o caminho da informação desde o clique do usuário na interface da Godot, passando pela tradução no \textit{script} Python, até o processamento no binário do Stockfish e o seu retorno para a tela.
+
+\subsection{Etapas de Desenvolvimento}
+
+O desenvolvimento do \textit{Royal Legacy} foi dividido em quatro iterações principais, executadas sequencialmente:
+
+\begin{enumerate}
+	\item \textbf{Iteração 1 - Estruturação Visual:} Criação do tabuleiro em grade (\textit{grid}), instanciamento das peças 2D e implementação da lógica básica de seleção e movimentação com o \textit{mouse};
+	\item \textbf{Iteração 2 - Lógica de Regras:} Codificação das validações geométricas no GDScript (movimentos permitidos por peça) e implementação de regras especiais (\textit{en passant}, roque e promoção);
+	\item \textbf{Iteração 3 - Integração com a IA:} Construção do \textit{script} ponte em Python, formatação do tabuleiro em FEN e estabelecimento da comunicação assíncrona com o Stockfish sem travar a interface visual;
+	\item \textbf{Iteração 4 - Polimento e Gerenciamento de Estado:} Criação do \texttt{estruturador.tscn} para transitar entre os menus, aplicação do Dicionário de dados para a troca dinâmica de temas visuais e ajustes finais no controlador de áudio.
+\end{enumerate}

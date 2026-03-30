@@ -1,3 +1,12 @@
 \babel@toc {brazil}{}\relax 
 \babel@toc {brazil}{}\relax 
-\contentsline {figure}{\numberline {1}{\ignorespaces Interface de partida contra o computador na plataforma Lichess.}}{16}{figure.caption.10}%
+\contentsline {figure}{\numberline {1}{\ignorespaces Interface de partida contra o computador na plataforma Lichess.}}{19}{figure.caption.10}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Diagrama de Implantação da arquitetura do Royal Legacy.}}{24}{figure.caption.11}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Rascunho da interface do Menu Principal.}}{25}{figure.caption.12}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Rascunho da interface de configurações de áudio, dificuldade e temas.}}{26}{figure.caption.13}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Rascunho da interface principal do tabuleiro e painéis laterais.}}{27}{figure.caption.14}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Diagrama Entidade Relacionamento para persistência local.}}{28}{figure.caption.15}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Diagrama de Casos de Uso do simulador.}}{29}{figure.caption.16}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Diagrama de Classes detalhando a estrutura GDScript e middleware Python.}}{30}{figure.caption.17}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Interface final do Menu Principal e seleção de temas.}}{33}{figure.caption.20}%
+\contentsline {figure}{\numberline {10}{\ignorespaces Interface final do tabuleiro de jogo com tema visual aplicado.}}{34}{figure.caption.21}%
