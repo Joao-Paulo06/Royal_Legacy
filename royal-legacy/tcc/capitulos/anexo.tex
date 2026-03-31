@@ -1,0 +1,65 @@
+\chapter{Código-Fonte do \textit{Middleware} Python}
+\label{apendice:codigo_python}
+
+Este apêndice apresenta o código-fonte integral do \textit{script} em linguagem Python desenvolvido pelo autor. Este arquivo funciona como uma ponte (\textit{bridge}) para realizar a comunicação assíncrona entre a interface gráfica na Godot Engine e o motor de Inteligência Artificial Stockfish, utilizando o protocolo UCI.
+
+\begin{verbatim}
+	import subprocess
+	import argparse
+	import sys
+	
+	def get_best_move(fen, skill_level):
+	try:
+	# Define o caminho para o executável do Stockfish
+	engine_path = "./stockfish"
+	
+	# Inicia o processo em segundo plano (subprocess)
+	process = subprocess.Popen(
+	engine_path,
+	universal_newlines=True,
+	stdin=subprocess.PIPE,
+	stdout=subprocess.PIPE,
+	stderr=subprocess.PIPE
+	)
+	
+	# Configura a dificuldade e a posição atual (Notação FEN)
+	commands = [
+	"uci\n",
+	f"setoption name Skill Level value {skill_level}\n",
+	"isready\n",
+	f"position fen {fen}\n",
+	"go movetime 2000\n" # Limita o tempo de pensamento a 2 segundos
+	]
+	
+	# Envia os comandos para o terminal do motor
+	for cmd in commands:
+	process.stdin.write(cmd)
+	process.stdin.flush()
+	
+	best_move = None
+	
+	# Lê a saída continuamente até encontrar a string "bestmove"
+	while True:
+	line = process.stdout.readline().strip()
+	if line.startswith("bestmove"):
+	best_move = line.split(" ")[1] # Extrai a coordenada (ex: e2e4)
+	break
+	
+	process.terminate()
+	return best_move
+	
+	except Exception as e:
+	return f"Erro de execucao: {str(e)}"
+	
+	if __name__ == "__main__":
+	# Configura os argumentos esperados pela chamada da Godot
+	parser = argparse.ArgumentParser(description="Ponte Python-Stockfish")
+	parser.add_argument("--fen", type=str, required=True, help="Posicao do tabuleiro")
+	parser.add_argument("--diff", type=int, default=10, help="Nivel de dificuldade")
+	
+	args = parser.parse_args()
+	
+	# Executa a busca e imprime o resultado na saída padrão (stdout)
+	move = get_best_move(args.fen, args.diff)
+	print(move)
+\end{verbatim}

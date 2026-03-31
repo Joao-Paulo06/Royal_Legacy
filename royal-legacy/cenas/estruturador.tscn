@@ -148,7 +148,7 @@ script = null
 visible = false
 script = null
 
-[node name="btn_p_v_p_online" parent="cen_menu_novo_jogo/marg_ctn_menu_novo_jogo/pnl_ctn_botoes/vert_ctn_botoes" index="2"]
+[node name="btn_p_v_p_online" parent="cen_menu_novo_jogo/marg_ctn_menu_novo_jogo/pnl_ctn_botoes/vert_ctn_botoes" parent_id_path=PackedInt32Array(866609491, 923382222) index="2" unique_id=1500659284]
 disabled = true
 
 [node name="cen_menu_principal" parent="." unique_id=2129603396 instance=ExtResource("11_eggmu")]

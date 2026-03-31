@@ -1,0 +1,60 @@
+\documentclass[versao=digital]{tc_ifto}
+
+\author{DANILO COSTA MATIAS}
+\title{DESENVOLVIMENTO DE UM SIMULADOR DE XADREZ COM INTEGRAÇÃO DO MOTOR STOCKFISH UTILIZANDO GODOT}
+\curso{Tecnologo em Análise e Desenvolvimento de Sistemas}
+
+\data{\today}
+\ano{2026}
+\local{Colinas do Tocantins}
+\uf{TO}
+
+\instituicao{Instituto Federal do Tocantins Campus Colinas do Tocantins}
+\tipotrabalho{Monografia}
+
+\orientador{Me. Fernando Turibio de Moura}
+\orientadorInstituicao{Instituto Federal do Tocantins Campus Colinas do Tocantins}
+
+\primeiroMembroBanca{TITULO. NOME MEMBRO 1}
+\primeiroMembroBancaInstituicao{INTITUIÇÃO DO MEMBRO 1}
+
+\segundoMembroBanca{TITULO. NOME MEMBRO 2}
+\segundoMembroBancaInstituicao{INSTITUIÇÃO DO MEMBRO 2}
+
+\dataDefesa{DATA DA DEFESA}
+
+%\fichaCatalografica{./documentos_externos/ficha_catalografica.pdf}
+%\folhaAprovacaoAssinada{./documentos_assinados/folha_aprovacao.pdf}
+
+\configurarInformacoesPDF
+
+\usetikzlibrary{shapes,arrows}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{mathtools}
+
+\providecommand{\sin}{} \renewcommand{\sin}{\hspace{2pt}\textrm{sen}}
+\providecommand{\tan}{} \renewcommand{\tan}{\hspace{2pt}\textrm{tg}}
+\providecommand{\coth}{} \renewcommand{\coth}{\hspace{2pt}\textrm{cotg}}
+
+\begin{document}
+	\input{./preambulo/preambulo.tex}
+	
+	%Início da parte textual
+	\textual
+	
+	\input{./capitulos/introducao.tex}
+	\input{./capitulos/revisao_bibliografica.tex}
+	\input{./capitulos/materiais_metodos.tex}
+	\input{./capitulos/projeto.tex}
+	\input{./capitulos/resultados_discussao.tex}
+	\input{./capitulos/consideracoes_finais.tex}
+	
+	%Início da parte pós-textual
+	\postextual	
+	\bibliography{referencias}
+	
+	%Apêndices
+	\apendices
+	\input{./capitulos/anexo.tex}
+\end{document}

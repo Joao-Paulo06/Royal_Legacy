@@ -58,7 +58,6 @@ const REI_PRETO_V_4 = preload("uid://cqljh7vq3adu")
 const TORRE_BRANCA_V_4 = preload("uid://bdpnfvbera5k5")
 const TORRE_PRETA_V_4 = preload("uid://dm31qdl4udi4g")
 
-
 # Interface e Efeitos
 const CASAS             = preload("uid://c8snr6qequ51c")
 const MOVIMENTACAO_PECA = preload("uid://dsbd2dsi7qewt")
@@ -128,7 +127,6 @@ func _ready() -> void:
 		3: { -6: REI_PRETO_V_4, -5: RAINHA_PRETA_V_4, -4: TORRE_PRETA_V_4, -3: BISPO_PRETO_V_4, -2: CAVALO_PRETO_V_4, -1: PEAO_PRETO_V_4, 6: REI_BRANCO_V_4, 5: RAINHA_BRANCA_V_4, 4: TORRE_BRANCA_V_4, 3: BISPO_BRANCO_V_4, 2: CAVALO_BRANCO_V_4, 1: PEAO_BRANCO_V_4 }
 	}
 
-	# Se você tiver a variável no Global, puxamos ela pra definir o tema inicial
 	if Global.get("tema_escolhido") != null:
 		tema_atual = Global.tema_escolhido
 
@@ -669,8 +667,7 @@ var ia_thread: Thread
 func iniciar_turno_ia() -> void:
 	ia_pensando = true
 	
-	# A MÁGICA CONTRA O TRAVAMENTO: 
-	# Limpamos a Thread antiga AQUI, antes de criar a nova, e não no final.
+	# Limpamos a Thread antiga AQUI
 	if ia_thread and ia_thread.is_started():
 		ia_thread.wait_to_finish()
 	

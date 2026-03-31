@@ -1,0 +1,134 @@
+\chapter{Projeto do Sistema}
+\label{capitulo:projeto}
+
+Este capítulo apresenta os principais elementos de projeto do simulador \textit{Royal Legacy}. São detalhadas a arquitetura do sistema, os protótipos das interfaces, a modelagem de dados para persistência, os diagramas estruturais e comportamentais baseados na Unified Modeling Language (UML), bem como a representação lógica dos algoritmos centrais de validação e comunicação.
+
+As decisões de projeto aqui expostas visam atender aos requisitos de modularidade, customização visual e execução assíncrona da Inteligência Artificial, conforme justificado na seção \ref{secao:justificativa}.
+
+\section{Arquitetura do projeto}
+
+A arquitetura do \textit{Royal Legacy} foi projetada seguindo o princípio da separação de responsabilidades, dividindo o sistema em camadas distintas que se comunicam através de protocolos padronizados. Essa abordagem é fundamental para garantir que o processamento pesado da IA não impacte a fluidez da interface gráfica \cite{Fowler2003}.
+
+A Figura \ref{figura:arquitetura_sistema} apresenta o diagrama de implantação que ilustra como as partes do sistema foram divididas e como elas se comunicam.
+
+%\figura{caminho}{tamanho cm}{legenda}{referencia}
+\figura{./imagens/diagrama_1}{12cm}{Diagrama de Implantação da arquitetura do Royal Legacy.}{figura:arquitetura_sistema}
+
+O fluxo de comunicação segue o modelo Cliente-Servidor local:
+\begin{enumerate}
+	\item \textbf{Camada de Apresentação (Godot Engine):} Atua como o cliente (Frontend). Gerencia a interface, captura entradas do usuário e envia o estado do jogo (formato FEN) para o intermediário.
+	\item \textbf{Camada de Comunicação (\textit{Middleware} Python):} Um \textit{script} que roda em segundo plano, agindo como ponte. Ele orquestra a execução da IA e traduz os comandos.
+	\item \textbf{Camada Lógica (Stockfish Binary):} O motor de xadrez (Backend). Recebe configurações via protocolo UCI e devolve os cálculos matemáticos.
+\end{enumerate}
+
+\section{Interfaces e Telas}
+\label{secao:prototipos}
+
+Nesta seção são apresentadas as interfaces principais do \textit{Royal Legacy}. Estas telas foram desenvolvidas com foco na disposição clara dos elementos e na Experiência do Usuário (UX).
+
+\subsection{Menu Principal e Opções}
+
+A interface do Menu Principal (Figura \ref{figura:menu}) foi projetada para ser minimalista, oferecendo acesso rápido aos modos de jogo e configurações. A tela de Opções (Figura \ref{figura:opções}) apresenta os controles de volume (sons), a galeria de seleção de temas visuais e a seção de créditos do jogo.
+
+\figura{./imagens/menu_principal.png}{10cm}{Interface do Menu Principal.}{figura:menu}
+\figura{./imagens/menu_opcoes.png}{10cm}{Interface de configurações de áudio, temas e créditos.}{figura:opções}
+
+\subsection{Tabuleiro de Jogo}
+
+A tela de jogo (Figura \ref{figura:jogo}) apresenta a grade $8\times8$ centralizada com peças em estilo pixel art, sobre um fundo verde-oliva. No canto superior esquerdo, encontram-se dois botões de interface de usuário: um para retornar ao menu principal e outro com a função de desfazer jogadas ou reiniciar o tabuleiro, dispensando os painéis laterais e cronômetros presentes no rascunho inicial.
+
+\figura{./imagens/tabuleiro.png}{10cm}{Interface final do tabuleiro com peças pixel art e botões de controle.}{figura:jogo}
+
+\section{Diagrama Entidade Relacionamento (DER)}
+
+Dado que o \textit{Royal Legacy} é um simulador local focado na jogabilidade e não na gestão complexa de usuários, optou-se por não utilizar um Banco de Dados Relacional tradicional. A persistência de dados é realizada através do objeto \textit{Singleton} \texttt{Global.gd} e arquivos de configuração locais, simplificando a arquitetura \cite{Date2003}.
+
+A Figura \ref{figura:der_sistema} apresenta o Diagrama Entidade Relacionamento que rege a organização lógica das preferências do sistema.
+
+\figura{./imagens/diagrama_2.png}{12cm}{Diagrama Entidade Relacionamento para persistência de preferências locais.}{figura:der_sistema}
+
+O DER segue as normas formais de modelagem:
+\begin{itemize}
+	\item \textbf{Configuracao\_Local:} Centraliza as preferências do usuário. Armazena de forma independente os níveis de volume para o canal mestre (\textit{Master}), trilha sonora (\textit{Musica}) e efeitos sonoros (\textit{Efeitos}), além da referência ao tema visual ativo.
+	\item \textbf{Tema\_Visual:} Estrutura os códigos de cores (casas claras e escuras) e identificadores de \textit{assets} para a customização dinâmica da interface do tabuleiro.
+\end{itemize}
+
+Como o simulador prioriza sessões de jogo independentes, o modelo não contempla uma entidade de histórico de partidas, focando-se na persistência da experiência de uso e customização estética. Todos os campos modelados possuem representação direta nos \textit{scripts} de interface \texttt{tela\_sons.gd} e \texttt{tela\_temas.gd}.
+
+\section{Diagrama de Casos de Uso}
+
+O Diagrama de Casos de Uso (Figura \ref{figura:caso_uso}) descreve as funcionalidades do sistema sob a perspectiva dos atores envolvidos. No contexto do \textit{Royal Legacy}, o ator principal é o \textbf{Jogador Humano}, enquanto o \textbf{Motor Stockfish} atua como um ator secundário invocado pelo sistema nos modos PvE.
+
+\figura{./capitulos/projeto/diagrama_uso.png}{12cm}{Diagrama de Casos de Uso do simulador.}{figura:caso_uso}
+
+Os principais casos de uso incluem:
+\begin{itemize}
+	\item \textbf{Configurar Jogo:} Permite alterar volume e tema visual.
+	\item \textbf{Iniciar Partida:} Subdividido em Jogador vs Jogador (PvP) ou Jogador vs Máquina (PvE).
+	\item \textbf{Realizar Jogada:} Inclui a validação de regras lógicas.
+	\item \textbf{Solicitar Melhor Movimento:} Caso de uso executado pelo sistema que invoca o ator Stockfish no modo PvE.
+\end{itemize}
+
+\section{Diagrama de Classes}
+
+A organização estrutural do código na Godot Engine, embora baseada em Cenas e Nós, pode ser representada formalmente através de um Diagrama de Classes UML. A Figura \ref{figura:diagrama_classes} apresenta as principais classes de domínio do \textit{Royal Legacy} e suas relações.
+
+\figura{./capitulos/projeto/diagrama_classes.png}{14cm}{Diagrama de Classes detalhando a estrutura GDScript e middleware Python.}{figura:diagrama_classes}
+
+Destacam-se as seguintes classes e relações:
+\begin{itemize}
+	\item \textbf{StructuralManager:} Atua como o nó raiz (\texttt{estruturador.tscn}), gerenciando os estados de troca de cenas (Menus e Tabuleiro).
+	\item \textbf{ChessBoard:} Classe central que detém a matriz do tabuleiro, o histórico de lances e a lógica de validação de regras.
+	\item \textbf{PythonBridge:} Classe responsável por executar o processo externo via \textit{script} Python de forma assíncrona.
+	\item \textbf{AudioManager (Singleton):} Classe Autoload (\texttt{tela\_sons.gd}) para execução contínua de áudio.
+\end{itemize}
+
+\section{Algoritmos Implementados}
+
+Nesta seção, detalha-se a lógica de conversão do estado do jogo e a comunicação com a IA. O Algoritmo \ref{alg:matriz_fen} apresenta a lógica de tradução da matriz interna da Godot para a notação FEN, essencial para que o Stockfish compreenda a posição das peças.
+
+\begin{algorithm}[H]
+	\caption{Conversão de Matriz para Notação FEN (base\_xadrez.gd).}
+	\label{alg:matriz_fen}
+	\Inicio{
+		\texttt{fen} $\leftarrow$ ""\;
+		\Para{\texttt{y} de 0 até 7}{
+			\texttt{vazias} $\leftarrow$ 0\;
+			\Para{\texttt{x} de 0 até 7}{
+				\texttt{peca} $\leftarrow$ \texttt{tabuleiro[y][x]}\;
+				\Se{\texttt{peca} == 0}{
+					\texttt{vazias} $\leftarrow$ \texttt{vazias} + 1\;
+				}
+				\Senao{
+					\Se{\texttt{vazias} > 0}{ \texttt{fen} $\leftarrow$ \texttt{fen} + \texttt{string(vazias)}\; \texttt{vazias} $\leftarrow$ 0\; }
+					\texttt{letra} $\leftarrow$ \texttt{converter\_tipo\_peca(peca)}\;
+					\texttt{fen} $\leftarrow$ \texttt{fen} + \texttt{letra}\;
+				}
+			}
+			\Se{\texttt{vazias} > 0}{ \texttt{fen} $\leftarrow$ \texttt{fen} + \texttt{string(vazias)}\; }
+			\Se{\texttt{y} < 7}{ \texttt{fen} $\leftarrow$ \texttt{fen} + "/"\; }
+		}
+		\Retorna{\texttt{fen}}\;
+	}
+\end{algorithm}
+
+O processo de decisão da IA é executado em uma \textit{Thread} separada para evitar o congelamento da interface. O Algoritmo \ref{alg:ponte_python} descreve como o \textit{middleware} Python processa a requisição baseada no nível de dificuldade.
+
+\begin{algorithm}[H]
+	\caption{Processamento de Movimento no Middleware Python (chess\_bridge.py).}
+	\label{alg:ponte_python}
+	\Entrada{\texttt{fen}, \texttt{dificuldade}}
+	\Inicio{
+		\texttt{tabuleiro} $\leftarrow$ \texttt{chess.Board(fen)}\;
+		\Se{\texttt{dificuldade} == 1}{
+			\texttt{movimento} $\leftarrow$ \texttt{escolha\_aleatoria(tabuleiro.legal\_moves)}\;
+		}
+		\Senao{
+			\texttt{engine} $\leftarrow$ \texttt{abrir\_stockfish()}\;
+			\texttt{nivel\_ia} $\leftarrow$ (\texttt{dificuldade} == 2 ? 1 : 20)\;
+			\texttt{engine.configure("Skill Level", nivel\_ia)}\;
+			\texttt{movimento} $\leftarrow$ \texttt{engine.play(tabuleiro)}\;
+		}
+		\Retorna{\texttt{json.dumps(movimento.uci)}}\;
+	}
+\end{algorithm}
