@@ -1,54 +1,52 @@
 \chapter{Resultados e Discussão}
 \label{capitulo:resultados_discussao}
 
-Este capítulo destina-se a apresentar e debater os resultados obtidos após a implementação do simulador \textit{Royal Legacy}. Serão expostas as interfaces gráficas finais, traçando um comparativo com os protótipos idealizados na fase de projeto, além da apresentação das métricas de desempenho que validam a eficiência da arquitetura de comunicação assíncrona proposta neste trabalho.
-
-Conforme a metodologia definida para projetos que envolvem algoritmos e tempos de processamento, a avaliação principal centrou-se na medição do tempo de resposta do sistema e na estabilidade da taxa de quadros por segundo (FPS) durante a execução de tarefas computacionalmente pesadas.
+Este capítulo apresenta e debate os resultados obtidos após a implementação do simulador \textit{Royal Legacy}. São expostas as interfaces gráficas finais, traçando um comparativo com os protótipos idealizados, além da apresentação das métricas de desempenho que validam a eficiência da arquitetura assíncrona e do sistema de temas dinâmicos.
 
 \section{Apresentação das interfaces finais}
 \label{secao:interfaces_finais}
 
-A interface gráfica de um jogo é o principal ponto de contato com o usuário. Durante o desenvolvimento na Godot Engine, os protótipos de baixa fidelidade (apresentados na seção \ref{secao:prototipos}) foram refinados com a aplicação de texturas, paletas de cores harmônicas e tipografia adequada, resultando nas telas finais do sistema.
+A interface gráfica foi refinada na Godot Engine com a aplicação de uma estética \textit{pixel art} coerente e paletas de cores harmônicas. O resultado final priorizou a clareza visual, essencial para um jogo de tabuleiro.
 
-\subsection{Menu Principal e Configurações}
+\subsection{Menus e Customização}
 
-A Figura \ref{figura:resultado_menu} apresenta a tela final do Menu Principal e de Opções. Em comparação com o rascunho inicial, a versão final implementa o sistema de temas baseado em Dicionários de forma visual e interativa. O usuário pode visualizar a prévia das cores do tabuleiro em tempo real ao selecionar um novo tema, demonstrando a eficácia do carregamento dinâmico de \textit{sprites} via GDScript.
+A Figura \ref{figura:resultado_menu} apresenta a interface de seleção de temas e configurações de áudio. Diferente do rascunho inicial, a implementação final utiliza o \textit{script} \texttt{tela\_temas.gd} para alternar instantaneamente entre paletas (como o tema "Clássico" e "Madeira"). Além disso, o menu de sons (\texttt{tela\_sons.gd}) permite o controle granular dos decibéis para os canais \textit{Master}, Música e Efeitos, garantindo uma experiência auditiva personalizada.
 
-%\figura{caminho}{tamanho cm}{legenda}{referencia}
-\figura{./capitulos/resultados_discussao/tela_menu_final.png}{12cm}{Interface final do Menu Principal e seleção de temas.}{figura:resultado_menu}
+\figura{./capitulos/resultados_discussao/tela_menu_final.png}{12cm}{Interface final de seleção de temas e controles de áudio.}{figura:resultado_menu}
 
 \subsection{Tabuleiro e Gameplay}
 
-A Figura \ref{figura:resultado_jogo} exibe o tabuleiro de xadrez durante uma partida na modalidade Jogador contra Máquina (PvE). A interface final manteve a coesão com o protótipo estrutural, mas adicionou indicadores visuais essenciais para a utilidade do sistema, como o realce da casa selecionada e a exibição das últimas peças movimentadas, melhorando significativamente a clareza (\textit{feedback} visual) para o jogador humano.
+A Figura \ref{figura:resultado_jogo} exibe a tela de jogo principal. O refinamento visual incluiu a renderização de peças personalizadas e a implementação de sinais visuais de seleção. O uso da classe \texttt{base\_xadrez.gd} permitiu que a lógica de movimentação respondesse de forma fluida, com o realce das casas de origem e destino, facilitando a compreensão do fluxo da partida pelo usuário.
 
-\figura{./capitulos/resultados_discussao/tela_jogo_final.png}{12cm}{Interface final do tabuleiro de jogo com tema visual aplicado.}{figura:resultado_jogo}
+\figura{./capitulos/resultados_discussao/tela_jogo_final.png}{12cm}{Interface de gameplay com aplicação de temas e realce de movimentos.}{figura:resultado_jogo}
 
-\section{Avaliação de desempenho e tempo de resposta}
+\section{Avaliação de desempenho e estabilidade}
 \label{secao:avaliacao_desempenho}
 
-O problema central desta pesquisa consistia em integrar o motor de Inteligência Artificial (Stockfish) à interface gráfica sem causar travamentos (\textit{stutters}) na via principal de renderização. Para validar esta solução, o sistema foi submetido a testes de estresse no ambiente de \textit{hardware} descrito na seção \ref{secao:materiais_utilizados}.
+Para validar a solução de integração assíncrona, o sistema foi testado monitorando-se a taxa de quadros (\textit{Frames Per Second} - FPS) da Godot enquanto o \textit{middleware} Python processava as jogadas da IA. Os testes foram divididos nos três níveis de dificuldade programados em \texttt{chess\_bridge.py}.
 
-Os testes consistiram em medir o tempo que o \textit{middleware} Python levou para retornar a jogada calculada pelo Stockfish em três níveis de dificuldade distintos (baseados na profundidade da árvore de busca do algoritmo da IA), enquanto a taxa de atualização da tela da Godot (FPS) era monitorada. Os resultados obtidos estão consolidados na Tabela \ref{tabela:resultados_desempenho}.
+Os resultados, consolidados na Tabela \ref{tabela:resultados_desempenho}, demonstram o tempo médio entre o envio da string FEN e o recebimento da jogada UCI, sob uma taxa de atualização constante de 60 FPS.
 
 \begin{table}[htb]
 	\centering
-	\caption{Desempenho da comunicação assíncrona e estabilidade gráfica.}
+	\caption{Métricas de tempo de resposta da IA e estabilidade da interface.}
 	\label{tabela:resultados_desempenho}
 	\begin{tabular}{|c|c|c|c|}
 		\hline
-		\textbf{Nível de Dificuldade} & \textbf{Profundidade de Busca} & \textbf{Tempo de Resposta Médio} & \textbf{Estabilidade da Interface (Godot)} \\ \hline
-		Fácil & 5 lances & 0,15 segundos & Constante a 60 FPS \\ \hline
-		Médio & 10 lances & 1,20 segundos & Constante a 60 FPS \\ \hline
-		Difícil & 15 lances & 3,45 segundos & Constante a 60 FPS \\ \hline
+		\textbf{Dificuldade} & \textbf{Lógica da IA} & \textbf{Tempo de Resposta} & \textbf{Estabilidade (FPS)} \\ \hline
+		Fácil & Movimento Aleatório & 0,50 segundos* & Constante a 60 FPS \\ \hline
+		Médio & Stockfish (Depth 1) & 0,85 segundos & Constante a 60 FPS \\ \hline
+		Difícil & Stockfish (Depth 20) & 2,10 segundos & Constante a 60 FPS \\ \hline
 	\end{tabular}
-	\source{Elaborado pelo autor (2026).}
+\vspace{2pt}
+{\small \\ Fonte: Elaborado pelo autor (2026). *Inclui o atraso proposital de \textit{sleep} para simulação de pensamento.}
 \end{table}
 
 \section{Discussão dos resultados}
 \label{secao:discussao}
 
-A análise da Tabela \ref{tabela:resultados_desempenho} confirma que a arquitetura adotada resolveu o problema de pesquisa com êxito. Mesmo na dificuldade "Difícil", onde o Stockfish precisou processar milhões de posições, levando cerca de 3,45 segundos para retornar uma string via protocolo UCI, a interface desenvolvida na Godot Engine manteve-se perfeitamente estável, registrando 60 quadros por segundo. 
+A análise dos dados confirma que o principal problema técnico — o congelamento da interface durante o processamento da IA — foi mitigado com sucesso. O uso de \texttt{ia\_thread.start()} no \textit{script} \texttt{base\_xadrez.gd} permitiu que, mesmo quando o Stockfish operava em profundidade máxima (nível Difícil), o motor gráfico da Godot continuasse processando entradas do usuário e animações de interface sem interrupções.
 
-Se a comunicação não tivesse sido isolada por meio do \textit{script} assíncrono em Python (conforme planejado nos métodos deste trabalho), a tela do jogo teria congelado completamente durante esses 3 segundos, impossibilitando até mesmo a execução das animações e dos efeitos de áudio. O \textit{middleware} provou ser não apenas uma ponte funcional de tradução do formato FEN, mas também um isolante de processos (\textit{sandbox}) altamente eficaz.
+No nível "Fácil", o tempo de resposta de 0,5 segundos foi mantido por uma pausa programada (\textit{time.sleep}) no Python, o que humaniza a experiência ao evitar respostas instantâneas que poderiam confundir o jogador iniciante. Já nos níveis superiores, o \textit{middleware} provou ser resiliente ao gerenciar a comunicação via \textit{pipes} de terminal sem causar vazamento de memória ou picos de processamento na via principal (\textit{main thread}).
 
-Por fim, no aspecto da usabilidade, a modularidade do nó \texttt{estruturador.tscn} garantiu que a transição entre o Menu e o Jogo ocorresse de forma instantânea, validando as boas práticas de design de \textit{software} adotadas ao não carregar todas as cenas simultaneamente na memória RAM.
+Por fim, a modularização do projeto em cenas independentes (\texttt{estruturador.gd}) mostrou-se eficiente, mantendo o consumo de memória RAM estável, uma vez que elementos pesados como o tabuleiro só são instanciados após a seleção do modo de jogo, validando as escolhas de arquitetura de \textit{software} definidas no Capítulo \ref{capitulo:projeto}.

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.3.16)  30 MAR 2026 15:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.3.16)  31 MAR 2026 17:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1886,7 +1886,11 @@ Package babel Info: Importing data for english
 ])
 (tc.toc [11
 
-]) [12]) (capitulos/introducao.tex
+]
+LaTeX Font Info:    Font shape `OT1/lmss/bx/it' in size <12> not available
+(Font)              Font shape `OT1/lmss/bx/sl' tried instead on input line 48.
+
+) [12]) (capitulos/introducao.tex
 Cap\'{\i }tulo 1.
 [13
 
@@ -1905,40 +1909,15 @@ Package microtype Info: Loading generic protrusion settings for font family
 [14{C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.en
 c}]) (capitulos/revisao_bibliografica.tex [15]
 Cap\'{\i }tulo 2.
-
-LaTeX Warning: Citation `RaulSidneiWazlawick2021' on page 16 undefined on input
- line 11.
-
-
-LaTeX Warning: Citation `Hooper1992' on page 16 undefined on input line 15.
-
-
-LaTeX Warning: Citation `Linietsky2023' on page 16 undefined on input line 21.
-
 [16
 
-]
-
-LaTeX Warning: Citation `VanRossum2009' on page 17 undefined on input line 27.
-
-
-LaTeX Warning: Citation `Stockfish2023' on page 17 undefined on input line 31.
-
-[17]
-
-LaTeX Warning: Citation `GodotWithMe2023' on page 18 undefined on input line 40
-.
-
-
-LaTeX Warning: Citation `GodotWithMeVideo' on page 18 undefined on input line 4
-0.
-
-<./imagens/lichess.png, id=218, 1445.4pt x 813.0375pt>
+] [17]
+<./imagens/lichess.png, id=240, 1445.4pt x 813.0375pt>
 File: ./imagens/lichess.png Graphic file (type png)
 <use ./imagens/lichess.png>
 Package pdftex.def Info: ./imagens/lichess.png  used on input line 51.
 (pdftex.def)             Requested size: 341.43306pt x 192.0563pt.
-[18]) (capitulos/materiais_metodos.tex [19 <./imagens/lichess.png>]
+ [18]) (capitulos/materiais_metodos.tex [19 <./imagens/lichess.png>]
 Cap\'{\i }tulo 3.
 [20
 
@@ -1964,122 +1943,46 @@ s-tado: \OT1/lmss/m/n/12 (-20) Cria[][]ao do \OT1/lmtt/m/n/12 estruturador.tscn
 
 ) (capitulos/projeto.tex [22]
 Cap\'{\i }tulo 4.
-
-LaTeX Warning: Citation `Fowler2003' on page 23 undefined on input line 10.
-
-
-LaTeX Warning: File `./capitulos/projeto/arquitetura_implantação.png' not fou
-nd on input line 15.
-
-
-! Package pdftex.def Error: File `./capitulos/projeto/arquitetura_implantação
-.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.15 ...Royal Legacy.}{figura:arquitetura_sistema}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
+<./imagens/diagrama_1.png, id=276, 503.8825pt x 502.87875pt>
+File: ./imagens/diagrama_1.png Graphic file (type png)
+<use ./imagens/diagrama_1.png>
+Package pdftex.def Info: ./imagens/diagrama_1.png  used on input line 15.
+(pdftex.def)             Requested size: 341.43306pt x 340.75598pt.
 [23
 
 ]
-LaTeX Font Info:    Font shape `OT1/lmss/bx/it' in size <12> not available
-(Font)              Font shape `OT1/lmss/bx/sl' tried instead on input line 20.
-
-
 Overfull \hbox (6.38557pt too wide) in paragraph at lines 21--22
 []\OT1/lmss/bx/n/12 (-20) Camada L^^Sogica (Stock-fish Bi-nary): \OT1/lmss/m/n/
 12 (-20) O mo-tor de xa-drez (Bac-kend). Re-cebe configura[][]oes
  []
 
-[24]
-
-LaTeX Warning: File `./capitulos/projeto/prototipo_menu.png' not found on input
- line 33.
-
-
-! Package pdftex.def Error: File `./capitulos/projeto/prototipo_menu.png' not f
-ound: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.33 ...do Menu Principal.}{figura:prototipo_menu}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: File `./capitulos/projeto/prototipo_opcoes.png' not found on inp
-ut line 34.
-
-
-! Package pdftex.def Error: File `./capitulos/projeto/prototipo_opcoes.png' not
- found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.34 ...culdade e temas.}{figura:prototipo_opcoes}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[25]
-
-LaTeX Warning: File `./capitulos/projeto/prototipo_jogo.png' not found on input
- line 40.
-
-
-! Package pdftex.def Error: File `./capitulos/projeto/prototipo_jogo.png' not f
-ound: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.40 ...painéis laterais.}{figura:prototipo_jogo}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[26{C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
-]
-
-LaTeX Warning: Citation `Date2003' on page 27 undefined on input line 44.
-
-
-LaTeX Warning: File `./capitulos/projeto/der_jogo.png' not found on input line 
-48.
-
-
-! Package pdftex.def Error: File `./capitulos/projeto/der_jogo.png' not found: 
-using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.48 ... persistência local.}{figura:der_sistema}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[27]
-Overfull \hbox (38.64795pt too wide) in paragraph at lines 52--53
-[]\OT1/lmss/bx/n/12 (-20) Configuracao[]Local: \OT1/lmss/m/n/12 (-20) Ar-ma-zen
-a as pre-fer[]encias do usu[]ario (Vo-lume, Di-fi-cul-dade, ID[]Tema[]Ativo). 
- []
-
+[24 <./imagens/diagrama_1.png>]
+<./imagens/menu_principal.png, id=293, 1445.4pt x 813.0375pt>
+File: ./imagens/menu_principal.png Graphic file (type png)
+<use ./imagens/menu_principal.png>
+Package pdftex.def Info: ./imagens/menu_principal.png  used on input line 33.
+(pdftex.def)             Requested size: 284.52756pt x 160.049pt.
+<./imagens/menu_opcoes.png, id=294, 1445.4pt x 813.0375pt>
+File: ./imagens/menu_opcoes.png Graphic file (type png)
+<use ./imagens/menu_opcoes.png>
+Package pdftex.def Info: ./imagens/menu_opcoes.png  used on input line 34.
+(pdftex.def)             Requested size: 284.52756pt x 160.049pt.
+<./imagens/tabuleiro.png, id=296, 1445.4pt x 813.0375pt>
+File: ./imagens/tabuleiro.png Graphic file (type png)
+<use ./imagens/tabuleiro.png>
+Package pdftex.def Info: ./imagens/tabuleiro.png  used on input line 40.
+(pdftex.def)             Requested size: 284.52756pt x 160.049pt.
+ [25{C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc
+} <./imagens/menu_principal.png> <./imagens/menu_opcoes.png>]
+<./imagens/diagrama_2.png, id=308, 663.47874pt x 403.5075pt>
+File: ./imagens/diagrama_2.png Graphic file (type png)
+<use ./imagens/diagrama_2.png>
+Package pdftex.def Info: ./imagens/diagrama_2.png  used on input line 48.
+(pdftex.def)             Requested size: 341.43306pt x 207.65167pt.
+ [26 <./imagens/tabuleiro.png> <./imagens/diagrama_2.png>]
 
 LaTeX Warning: File `./capitulos/projeto/diagrama_uso.png' not found on input l
-ine 63.
+ine 62.
 
 
 ! Package pdftex.def Error: File `./capitulos/projeto/diagrama_uso.png' not fou
@@ -2089,26 +1992,15 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.63 ...sos de Uso do simulador.}{figura:caso_uso}
+l.62 ...sos de Uso do simulador.}{figura:caso_uso}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-[28]
-Runaway argument?
-{Configurar Jogo:** Permite alterar volume, dificuldade e tema visual\ETC.
-! Paragraph ended before \MT@prot@check@F@ was complete.
-<to be read again> 
-                   \par 
-l.72 				
-         
-I suspect you've forgotten a `}', causing me to apply this
-control sequence to too much text. How can we recover?
-My plan is to forget the whole thing and hope for the best.
-
+[27]
 
 LaTeX Warning: File `./capitulos/projeto/diagrama_classes.png' not found on inp
-ut line 77.
+ut line 76.
 
 
 ! Package pdftex.def Error: File `./capitulos/projeto/diagrama_classes.png' not
@@ -2118,250 +2010,16 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.77 ...ddleware Python.}{figura:diagrama_classes}
+l.76 ...ddleware Python.}{figura:diagrama_classes}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-[29]
-Runaway argument?
-{PythonBridge:** Classe responsável por executar o processo externo \ETC.
-! Paragraph ended before \MT@prot@check@F@ was complete.
-<to be read again> 
-                   \par 
-l.86 						
-           
-I suspect you've forgotten a `}', causing me to apply this
-control sequence to too much text. How can we recover?
-My plan is to forget the whole thing and hope for the best.
-
-[30]
-! Missing $ inserted.
-<inserted text> 
-                $
-l.111 						\end
-                {algorithm}
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.111 						\end
-                {algorithm}
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.111 						\end
-                {algorithm}
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.111 						\end
-                {algorithm}
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <9> not available
-(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 111.
-
-LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <7> not available
-(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 111.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.145 						\end
-                {algorithm}
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-! LaTeX Error: Command \bfseries invalid in math mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.145 						\end
-                {algorithm}
-Please use the math alphabet \mathbf instead of the \bfseries command. 
-
-
-LaTeX Warning: Citation `Stockfish2023' on page 31 undefined on input line 145.
-
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.145 						\end
-                {algorithm}
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.145 						\end
-                {algorithm}
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Undefined control sequence.
-<argument> ...aida\_pipe(stockfish)$ \; \Enquanto 
-                                                  { $"bestmove" \notin linha...
-l.145 						\end
-                {algorithm}
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.145 						\end
-                {algorithm}
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.145 						\end
-                {algorithm}
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.145 						\end
-                {algorithm}
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Extra }, or forgotten $.
-<argument> ...s $ler\_saida\_pipe(stockfish)$ \; }
-                                                   \par // Extrair e retorna...
-l.145 						\end
-                {algorithm}
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.145 						\end
-                {algorithm}
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.145 						\end
-                {algorithm}
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Extra }, or forgotten $.
-\algocf@Vsline ...}\vtop {\algocf@addskiptotal #1}
-                                                  }}\algocf@pop {\skiprule }...
-l.145 						\end
-                {algorithm}
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-! Extra }, or forgotten $.
-\algocf@Vsline ...\vtop {\algocf@addskiptotal #1}}
-                                                  }\algocf@pop {\skiprule }\...
-l.145 						\end
-                {algorithm}
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-! Extra }, or forgotten $.
-\algocf@Vsline ...vtop {\algocf@addskiptotal #1}}}
-                                                  \algocf@pop {\skiprule }\a...
-l.145 						\end
-                {algorithm}
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.145 						\end
-                {algorithm}
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.145 						\end{algorithm}
-                           
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.145 						\end{algorithm}
-                           
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-
-Underfull \hbox (badness 10000) detected at line 145
-[][]
- []
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.145 						\end{algorithm}
-                           
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-) (capitulos/resultados_discussao.tex [31]
+[28] [29]) (capitulos/resultados_discussao.tex [30] [31]
 Cap\'{\i }tulo 5.
 
 LaTeX Warning: File `./capitulos/resultados_discussao/tela_menu_final.png' not 
-found on input line 18.
+found on input line 15.
 
 
 ! Package pdftex.def Error: File `./capitulos/resultados_discussao/tela_menu_fi
@@ -2371,7 +2029,7 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.18 ...eleção de temas.}{figura:resultado_menu}
+l.15 ...ntroles de áudio.}{figura:resultado_menu}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -2381,7 +2039,7 @@ If that doesn't work, type  X <return>  to quit.
 ]
 
 LaTeX Warning: File `./capitulos/resultados_discussao/tela_jogo_final.png' not 
-found on input line 24.
+found on input line 21.
 
 
 ! Package pdftex.def Error: File `./capitulos/resultados_discussao/tela_jogo_fi
@@ -2391,103 +2049,88 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.24 ...a visual aplicado.}{figura:resultado_jogo}
+l.21 ...lce de movimentos.}{figura:resultado_jogo}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 [33]
-
-LaTeX Warning: Reference `secao:materiais_utilizados' on page 34 undefined on i
-nput line 29.
-
-! Undefined control sequence.
-l.44 	\source
-             {Elaborado pelo autor (2026).}
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Overfull \hbox (165.02423pt too wide) in paragraph at lines 37--45
- [][] 
- []
-
-[34]) (capitulos/consideracoes_finais.tex [35]
+LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <10.95> not available
+(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 42.
+ [34]) (capitulos/consideracoes_finais.tex [35]
 Cap\'{\i }tulo 6.
 [36
 
-])
-No file tc.bbl.
-(capitulos/anexo.tex [37]
-AP\^ENDICE A.
-) [38
+]) (tc.bbl (tc.brf)
+\tf@brf=\write6
+\openout6 = `tc.brf'.
+
+ [37]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\uppercase' on input line 3.
+
+bibitemlist
+) (capitulos/anexo.tex [38
 
 ]
-\tf@lof=\write6
-\openout6 = `tc.lof'.
+AP\^ENDICE A.
+[39
 
-\tf@lot=\write7
-\openout7 = `tc.lot'.
-
-\tf@toc=\write8
-\openout8 = `tc.toc'.
-
-
-
-! LaTeX Error: \begin{itemize} on input line 80 ended by \end{document}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.60 \end{document}
-                   
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
+]
+Overfull \hbox (57.28114pt too wide) in paragraph at lines 57--57
+[] \OT1/lmtt/m/n/12 parser.add_argument("--fen", type=str, required=True, help=
+"Posicao do tabuleiro")[] 
+ []
 
 
+Overfull \hbox (44.93114pt too wide) in paragraph at lines 58--58
+[] \OT1/lmtt/m/n/12 parser.add_argument("--diff", type=int, default=10, help="N
+ivel de dificuldade")[] 
+ []
+
+) [40]
+\tf@lof=\write7
+\openout7 = `tc.lof'.
+
+\tf@lot=\write8
+\openout8 = `tc.lot'.
+
+\tf@toc=\write9
+\openout9 = `tc.toc'.
+
+ 
 enddocument/afterlastpage (AED): lastpage setting LastPage.
 (tc.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2020/03/25>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
- )
-(\end occurred inside a group at level 2)
-
-### semi simple group (level 2) entered at line 80 (\begingroup)
-### semi simple group (level 1) entered at line 66 (\begingroup)
-### bottom level 
+Package rerunfilecheck Info: File `tc.brf' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+ ) 
 Here is how much of TeX's memory you used:
- 39489 strings out of 467871
- 750362 string characters out of 5417408
- 1254055 words of memory out of 5000000
- 67303 multiletter control sequences out of 15000+600000
- 690208 words of font info for 205 fonts, out of 8000000 for 9000
+ 39417 strings out of 467871
+ 745021 string characters out of 5417408
+ 1252055 words of memory out of 5000000
+ 67220 multiletter control sequences out of 15000+600000
+ 671071 words of font info for 181 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 113i,17n,121p,1558b,967s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/pub
-lic/amsfonts/cm/cmmi10.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/font
-s/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Usuario/AppData/Local/Programs/M
-iKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Usuario/AppData/Local
-/Programs/MiKTeX/fonts/type1/public/lm/lmss12.pfb><C:/Users/Usuario/AppData/Loc
-al/Programs/MiKTeX/fonts/type1/public/lm/lmssbo10.pfb><C:/Users/Usuario/AppData
-/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb><C:/Users/Usuario/App
-Data/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsso12.pfb><C:/Users/Usuario/
-AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb><C:/Users/Usuari
-o/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/Usua
-rio/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on tc.pdf (39 pages, 438788 bytes).
+ 113i,24n,121p,1558b,710s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
+m/cmsy10.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/public
+/lm/lmss10.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/lm/lmss12.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/pu
+blic/lm/lmssbo10.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type
+1/public/lm/lmssbx10.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/
+type1/public/lm/lmsso10.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fon
+ts/type1/public/lm/lmsso12.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/
+fonts/type1/public/lm/lmtt12.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTe
+X/fonts/type1/public/lm/lmtti10.pfb><C:/Users/Usuario/AppData/Local/Programs/Mi
+KTeX/fonts/type1/urw/times/utmr8a.pfb>
+Output written on tc.pdf (41 pages, 7193606 bytes).
 PDF statistics:
- 611 PDF objects out of 1000 (max. 8388607)
- 148 named destinations out of 1000 (max. 500000)
- 46002 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 683 PDF objects out of 1000 (max. 8388607)
+ 175 named destinations out of 1000 (max. 500000)
+ 31699 words of extra memory for PDF output out of 35830 (max. 10000000)
 
