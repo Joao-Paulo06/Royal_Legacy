@@ -7,6 +7,7 @@
 \contentsline {figure}{\numberline {5}{\ignorespaces Interface final do tabuleiro com peças pixel art e botões de controle.}}{26}{figure.caption.14}%
 \contentsline {figure}{\numberline {6}{\ignorespaces Diagrama Entidade Relacionamento para persistência de preferências locais.}}{26}{figure.caption.15}%
 \contentsline {figure}{\numberline {7}{\ignorespaces Diagrama de Casos de Uso do simulador.}}{27}{figure.caption.16}%
-\contentsline {figure}{\numberline {8}{\ignorespaces Diagrama de Classes detalhando a estrutura GDScript e middleware Python.}}{28}{figure.caption.17}%
-\contentsline {figure}{\numberline {9}{\ignorespaces Interface final de seleção de temas e controles de áudio.}}{33}{figure.caption.18}%
-\contentsline {figure}{\numberline {10}{\ignorespaces Interface de gameplay com aplicação de temas e realce de movimentos.}}{34}{figure.caption.19}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Diagrama de Classes detalhando a estrutura em GDScript e Python.}}{29}{figure.caption.17}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Interface final de seleção de temas visuais.}}{33}{figure.caption.18}%
+\contentsline {figure}{\numberline {10}{\ignorespaces Interface final de controle de canais de áudio.}}{34}{figure.caption.19}%
+\contentsline {figure}{\numberline {11}{\ignorespaces Interface de gameplay com aplicação de temas e realce de movimentos.}}{34}{figure.caption.20}%

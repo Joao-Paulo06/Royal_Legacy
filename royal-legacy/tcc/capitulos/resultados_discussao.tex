@@ -4,33 +4,39 @@
 Este capítulo apresenta e debate os resultados obtidos após a implementação do simulador \textit{Royal Legacy}. São expostas as interfaces gráficas finais, traçando um comparativo com os protótipos idealizados, além da apresentação das métricas de desempenho que validam a eficiência da arquitetura assíncrona e do sistema de temas dinâmicos.
 
 \section{Apresentação das interfaces finais}
-\label{secao:interfaces_finais}
+\label{secao:interfaces-finais}
 
 A interface gráfica foi refinada na Godot Engine com a aplicação de uma estética \textit{pixel art} coerente e paletas de cores harmônicas. O resultado final priorizou a clareza visual, essencial para um jogo de tabuleiro.
 
 \subsection{Menus e Customização}
 
-A Figura \ref{figura:resultado_menu} apresenta a interface de seleção de temas e configurações de áudio. Diferente do rascunho inicial, a implementação final utiliza o \textit{script} \texttt{tela\_temas.gd} para alternar instantaneamente entre paletas (como o tema "Clássico" e "Madeira"). Além disso, o menu de sons (\texttt{tela\_sons.gd}) permite o controle granular dos decibéis para os canais \textit{Master}, Música e Efeitos, garantindo uma experiência auditiva personalizada.
+As Figuras \ref{figura:resultado-temas} e \ref{figura:resultado-sons} apresentam as interfaces dedicadas à customização da experiência do jogador. 
 
-\figura{./capitulos/resultados_discussao/tela_menu_final.png}{12cm}{Interface final de seleção de temas e controles de áudio.}{figura:resultado_menu}
+Diferente do rascunho inicial, a implementação final utiliza o \textit{script} \texttt{tela\_temas.gd} (Figura \ref{figura:resultado-temas}) para alternar instantaneamente entre assets (como o tema "Clássico" e "Moderno"). A modularização dessa tela garante que a escolha seja salva globalmente e aplicada ao tabuleiro de forma dinâmica.
+
+\figura{./imagens/menu_temas.png}{12cm}{Interface final de seleção de temas visuais.}{figura:resultado-temas}
+
+Por sua vez, o menu de configurações de áudio (Figura \ref{figura:resultado-sons}), gerenciado pelo \textit{script} \texttt{tela\_sons.gd}, permite o controle granular dos decibéis. A separação dos canais em \textit{Master}, Música e Efeitos proporciona ao jogador uma experiência auditiva totalmente personalizada, sem interferir no fluxo do jogo.
+
+\figura{./imagens/menu_sons.png}{12cm}{Interface final de controle de canais de áudio.}{figura:resultado-sons}
 
 \subsection{Tabuleiro e Gameplay}
 
-A Figura \ref{figura:resultado_jogo} exibe a tela de jogo principal. O refinamento visual incluiu a renderização de peças personalizadas e a implementação de sinais visuais de seleção. O uso da classe \texttt{base\_xadrez.gd} permitiu que a lógica de movimentação respondesse de forma fluida, com o realce das casas de origem e destino, facilitando a compreensão do fluxo da partida pelo usuário.
+A Figura \ref{figura:resultado-jogo} exibe a tela de jogo principal. O refinamento visual incluiu a renderização de peças personalizadas e a implementação de sinais visuais de seleção. O uso da classe \texttt{base\_xadrez.gd} permitiu que a lógica de movimentação respondesse de forma fluida, com o realce das casas de origem e destino, facilitando a compreensão do fluxo da partida pelo usuário.
 
-\figura{./capitulos/resultados_discussao/tela_jogo_final.png}{12cm}{Interface de gameplay com aplicação de temas e realce de movimentos.}{figura:resultado_jogo}
+\figura{./imagens/tabuleiro_arabe.png}{12cm}{Interface de gameplay com aplicação de temas e realce de movimentos.}{figura:resultado-jogo}
 
 \section{Avaliação de desempenho e estabilidade}
-\label{secao:avaliacao_desempenho}
+\label{secao:avaliacao-desempenho}
 
 Para validar a solução de integração assíncrona, o sistema foi testado monitorando-se a taxa de quadros (\textit{Frames Per Second} - FPS) da Godot enquanto o \textit{middleware} Python processava as jogadas da IA. Os testes foram divididos nos três níveis de dificuldade programados em \texttt{chess\_bridge.py}.
 
-Os resultados, consolidados na Tabela \ref{tabela:resultados_desempenho}, demonstram o tempo médio entre o envio da string FEN e o recebimento da jogada UCI, sob uma taxa de atualização constante de 60 FPS.
+Os resultados, consolidados na Tabela \ref{tabela:resultados-desempenho}, demonstram o tempo médio entre o envio da string FEN e o recebimento da jogada UCI, sob uma taxa de atualização constante de 60 FPS.
 
 \begin{table}[htb]
 	\centering
 	\caption{Métricas de tempo de resposta da IA e estabilidade da interface.}
-	\label{tabela:resultados_desempenho}
+	\label{tabela:resultados-desempenho}
 	\begin{tabular}{|c|c|c|c|}
 		\hline
 		\textbf{Dificuldade} & \textbf{Lógica da IA} & \textbf{Tempo de Resposta} & \textbf{Estabilidade (FPS)} \\ \hline
@@ -38,8 +44,9 @@ Os resultados, consolidados na Tabela \ref{tabela:resultados_desempenho}, demons
 		Médio & Stockfish (Depth 1) & 0,85 segundos & Constante a 60 FPS \\ \hline
 		Difícil & Stockfish (Depth 20) & 2,10 segundos & Constante a 60 FPS \\ \hline
 	\end{tabular}
-\vspace{2pt}
-{\small \\ Fonte: Elaborado pelo autor (2026). *Inclui o atraso proposital de \textit{sleep} para simulação de pensamento.}
+	
+	\vspace{5pt}
+	{\small Fonte: Elaborado pelo autor (2026). *Inclui o atraso proposital de \textit{sleep} para simulação de pensamento.}
 \end{table}
 
 \section{Discussão dos resultados}

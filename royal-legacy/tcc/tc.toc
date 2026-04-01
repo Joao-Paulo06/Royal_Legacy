@@ -33,16 +33,16 @@
 \contentsline {section}{\numberline {4.3}Diagrama Entidade Relacionamento (DER)}{26}{section.4.3}%
 \contentsline {section}{\numberline {4.4}Diagrama de Casos de Uso}{27}{section.4.4}%
 \contentsline {section}{\numberline {4.5}Diagrama de Classes}{28}{section.4.5}%
-\contentsline {section}{\numberline {4.6}Algoritmos Implementados}{29}{section.4.6}%
-\contentsline {chapter}{\chapternumberline {5} \MakeTextUppercase []{Resultados e Discussão} }{32}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Apresentação das interfaces finais}{32}{section.5.1}%
-\contentsline {subsection}{\numberline {5.1.1}Menus e Customização}{32}{subsection.5.1.1}%
-\contentsline {subsection}{\numberline {5.1.2}Tabuleiro e Gameplay}{33}{subsection.5.1.2}%
-\contentsline {section}{\numberline {5.2}Avaliação de desempenho e estabilidade}{34}{section.5.2}%
+\contentsline {section}{\numberline {4.6}Algoritmos Implementados}{30}{section.4.6}%
+\contentsline {chapter}{\chapternumberline {5} \MakeTextUppercase []{Resultados e Discussão} }{33}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Apresentação das interfaces finais}{33}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Menus e Customização}{33}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Tabuleiro e Gameplay}{34}{subsection.5.1.2}%
+\contentsline {section}{\numberline {5.2}Avaliação de desempenho e estabilidade}{35}{section.5.2}%
 \contentsline {section}{\numberline {5.3}Discussão dos resultados}{35}{section.5.3}%
 \contentsline {chapter}{\chapternumberline {6} \MakeTextUppercase []{Considerações Finais} }{36}{chapter.6}%
 \contentsline {section}{\numberline {6.1}Contribuições}{36}{section.6.1}%
 \contentsline {section}{\numberline {6.2}Trabalhos Futuros}{36}{section.6.2}%
-\contentsline {chapter}{\uppercase {Referências}}{38}{chapter*.22}%
+\contentsline {chapter}{\uppercase {Referências}}{38}{chapter*.23}%
 \renewcommand *{\cftappendixname }{AP\^ENDICE \space }
 \contentsline {appendix}{\chapternumberline {A} \MakeTextUppercase []{Código-Fonte do \textit {Middleware} Python} }{39}{appendix.A}%

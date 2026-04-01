@@ -1,65 +1,73 @@
 \chapter{Código-Fonte do \textit{Middleware} Python}
-\label{apendice:codigo_python}
-
-Este apêndice apresenta o código-fonte integral do \textit{script} em linguagem Python desenvolvido pelo autor. Este arquivo funciona como uma ponte (\textit{bridge}) para realizar a comunicação assíncrona entre a interface gráfica na Godot Engine e o motor de Inteligência Artificial Stockfish, utilizando o protocolo UCI.
+\label{apendice:codigo-python}
 
 \begin{verbatim}
-	import subprocess
-	import argparse
-	import sys
-	
-	def get_best_move(fen, skill_level):
-	try:
-	# Define o caminho para o executável do Stockfish
-	engine_path = "./stockfish"
-	
-	# Inicia o processo em segundo plano (subprocess)
-	process = subprocess.Popen(
-	engine_path,
-	universal_newlines=True,
-	stdin=subprocess.PIPE,
-	stdout=subprocess.PIPE,
-	stderr=subprocess.PIPE
-	)
-	
-	# Configura a dificuldade e a posição atual (Notação FEN)
-	commands = [
-	"uci\n",
-	f"setoption name Skill Level value {skill_level}\n",
-	"isready\n",
-	f"position fen {fen}\n",
-	"go movetime 2000\n" # Limita o tempo de pensamento a 2 segundos
-	]
-	
-	# Envia os comandos para o terminal do motor
-	for cmd in commands:
-	process.stdin.write(cmd)
-	process.stdin.flush()
-	
-	best_move = None
-	
-	# Lê a saída continuamente até encontrar a string "bestmove"
-	while True:
-	line = process.stdout.readline().strip()
-	if line.startswith("bestmove"):
-	best_move = line.split(" ")[1] # Extrai a coordenada (ex: e2e4)
-	break
-	
-	process.terminate()
-	return best_move
-	
-	except Exception as e:
-	return f"Erro de execucao: {str(e)}"
-	
-	if __name__ == "__main__":
-	# Configura os argumentos esperados pela chamada da Godot
-	parser = argparse.ArgumentParser(description="Ponte Python-Stockfish")
-	parser.add_argument("--fen", type=str, required=True, help="Posicao do tabuleiro")
-	parser.add_argument("--diff", type=int, default=10, help="Nivel de dificuldade")
-	
-	args = parser.parse_args()
-	
-	# Executa a busca e imprime o resultado na saída padrão (stdout)
-	move = get_best_move(args.fen, args.diff)
-	print(move)
+import sys
+import json
+import chess
+import chess.engine
+import os
+import random
+import time
+
+def get_ai_move(fen, dificuldade_str):
+diretorio_atual = os.path.dirname(os.path.abspath(__file__))
+caminho_stockfish = os.path.join(diretorio_atual, "stockfish.exe")
+board = chess.Board(fen)
+
+try:
+dificuldade = int(dificuldade_str)
+
+if dificuldade == 1:
+# Pega todas as jogadas válidas no tabuleiro agora
+movimentos_legais = list(board.legal_moves)
+
+# Escolhe uma jogada de forma 100% aleatória (Modo Caos)
+movimento_escolhido = random.choice(movimentos_legais)
+
+time.sleep(0.5)
+
+print(json.dumps({
+	"status": "success",
+	"move_uci": movimento_escolhido.uci(),
+	"debug_info": "IA Nível 1 (Modo Pombo Aleatório)"
+}))
+return
+
+# ======== NÍVEIS MÉDIO E DIFÍCIL ========
+with chess.engine.SimpleEngine.popen_uci(caminho_stockfish) as engine:
+
+if dificuldade == 2:
+# MÉDIO: Jogador de clube amador.
+engine.configure({"Skill Level": 1})
+limite = chess.engine.Limit(depth=1, time=0.5)
+
+else:
+# DIFÍCIL (3): Grande Mestre implacável.
+engine.configure({"Skill Level": 20})
+limite = chess.engine.Limit(depth=20, time=1.5)
+
+result = engine.play(board, limite)
+
+print(json.dumps({
+	"status": "success",
+	"move_uci": result.move.uci(),
+	"debug_info": f"IA Nível {dificuldade} (Depth: {limite.depth})"
+}))
+
+except Exception as e:
+print(json.dumps({
+	"status": "error",
+	"message": str(e)
+}))
+
+
+# Lógica para receber os comandos da Godot
+if __name__ == "__main__":
+if len(sys.argv) > 3:
+comando = sys.argv[2]
+if comando == "get_ai_move":
+fen_board = sys.argv[1]
+nivel_dificuldade = sys.argv[3]
+get_ai_move(fen_board, nivel_dificuldade)
 \end{verbatim}

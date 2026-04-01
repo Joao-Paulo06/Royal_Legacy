@@ -57,78 +57,93 @@ Como o simulador prioriza sessões de jogo independentes, o modelo não contempl
 
 \section{Diagrama de Casos de Uso}
 
-O Diagrama de Casos de Uso (Figura \ref{figura:caso_uso}) descreve as funcionalidades do sistema sob a perspectiva dos atores envolvidos. No contexto do \textit{Royal Legacy}, o ator principal é o \textbf{Jogador Humano}, enquanto o \textbf{Motor Stockfish} atua como um ator secundário invocado pelo sistema nos modos PvE.
+O Diagrama de Casos de Uso (Figura \ref{figura:caso_uso}) descreve as funcionalidades oferecidas pelo simulador e as interações entre o usuário e o motor de IA.
 
-\figura{./capitulos/projeto/diagrama_uso.png}{12cm}{Diagrama de Casos de Uso do simulador.}{figura:caso_uso}
+\figura{./imagens/diagrama_3.png}{12cm}{Diagrama de Casos de Uso do simulador.}{figura:caso_uso}
 
-Os principais casos de uso incluem:
+Os principais casos de uso identificados são:
 \begin{itemize}
-	\item \textbf{Configurar Jogo:} Permite alterar volume e tema visual.
-	\item \textbf{Iniciar Partida:} Subdividido em Jogador vs Jogador (PvP) ou Jogador vs Máquina (PvE).
-	\item \textbf{Realizar Jogada:} Inclui a validação de regras lógicas.
-	\item \textbf{Solicitar Melhor Movimento:} Caso de uso executado pelo sistema que invoca o ator Stockfish no modo PvE.
+	\item \textbf{Configurar Preferências:} O usuário interage com as interfaces \texttt{tela\_sons.gd} e \texttt{tela\_temas.gd} para ajustar volumes e a estética do jogo.
+	\item \textbf{Iniciar Partida:} Gerenciado pelo \texttt{estruturador.gd}, permite definir o modo de jogo e o nível de dificuldade.
+	\item \textbf{Movimentar Peças:} Ação principal de interação no tabuleiro (\texttt{base\_xadrez.gd}), onde o sistema valida as regras do xadrez.
+	\item \textbf{Calcular Jogada:} Caso de uso executado pelo ator secundário (Stockfish) via \texttt{chess\_bridge.py}, disparado de forma assíncrona quando o modo PvE está ativo.
 \end{itemize}
 
 \section{Diagrama de Classes}
 
-A organização estrutural do código na Godot Engine, embora baseada em Cenas e Nós, pode ser representada formalmente através de um Diagrama de Classes UML. A Figura \ref{figura:diagrama_classes} apresenta as principais classes de domínio do \textit{Royal Legacy} e suas relações.
+A organização estrutural do código na Godot Engine e a integração com o \textit{middleware} Python podem ser representadas formalmente através de um Diagrama de Classes UML. A Figura \ref{figura:diagrama_classes} apresenta as principais classes de domínio do \textit{Royal Legacy}, seus atributos, métodos e relacionamentos.
 
-\figura{./capitulos/projeto/diagrama_classes.png}{14cm}{Diagrama de Classes detalhando a estrutura GDScript e middleware Python.}{figura:diagrama_classes}
+\figura{./imagens/diagrama_4.png}{14cm}{Diagrama de Classes detalhando a estrutura em GDScript e Python.}{figura:diagrama_classes}
 
-Destacam-se as seguintes classes e relações:
+Destacam-se as seguintes classes no funcionamento do sistema:
 \begin{itemize}
-	\item \textbf{StructuralManager:} Atua como o nó raiz (\texttt{estruturador.tscn}), gerenciando os estados de troca de cenas (Menus e Tabuleiro).
-	\item \textbf{ChessBoard:} Classe central que detém a matriz do tabuleiro, o histórico de lances e a lógica de validação de regras.
-	\item \textbf{PythonBridge:} Classe responsável por executar o processo externo via \textit{script} Python de forma assíncrona.
-	\item \textbf{AudioManager (Singleton):} Classe Autoload (\texttt{tela\_sons.gd}) para execução contínua de áudio.
+	\item \textbf{Global (Singleton):} Classe \textit{Autoload} que persiste o estado da aplicação entre as trocas de cena, armazenando variáveis como \texttt{tema\_escolhido} e \texttt{dificuldade\_escolhida}.
+	\item \textbf{Estruturador:} Atua como o nó raiz (\texttt{estruturador.gd}), contendo um \textit{Array} de nós para instanciar e gerenciar a transição entre as interfaces gráficas através do método \texttt{mostrar\_tela()}.
+	\item \textbf{BaseXadrez:} Classe central do jogo (\texttt{base\_xadrez.gd}). Detém a matriz do tabuleiro, executa a validação de regras e possui o método \texttt{matriz\_para\_fen()}, essencial para traduzir o estado do jogo. Também gerencia a \texttt{ia\_thread}.
+	\item \textbf{GameManager:} Classe (\texttt{game\_manager.gd}) responsável por monitorar o fluxo da partida, emitindo sinais de xeque e definindo o encerramento do jogo via \texttt{end\_game()}.
+	\item \textbf{ChessBridge:} \textit{Script} Python (\texttt{chess\_bridge.py}) independente, que recebe a string FEN e a dificuldade, instanciando o motor Stockfish para calcular e retornar a jogada.
 \end{itemize}
 
 \section{Algoritmos Implementados}
 
-Nesta seção, detalha-se a lógica de conversão do estado do jogo e a comunicação com a IA. O Algoritmo \ref{alg:matriz_fen} apresenta a lógica de tradução da matriz interna da Godot para a notação FEN, essencial para que o Stockfish compreenda a posição das peças.
+Nesta seção, detalha-se a lógica de conversão do estado do jogo e a comunicação com a IA. O Algoritmo \ref{alg:matriz-fen} apresenta a lógica de tradução da matriz interna da Godot para a notação FEN, essencial para que o Stockfish compreenda a posição das peças.
 
 \begin{algorithm}[H]
-	\caption{Conversão de Matriz para Notação FEN (base\_xadrez.gd).}
-	\label{alg:matriz_fen}
+	\caption{Lógica de Conversão da Matriz do Tabuleiro para Notação FEN.}
+	\label{alg:matriz-fen}
+	\Entrada{matriz\_do\_tabuleiro}
 	\Inicio{
-		\texttt{fen} $\leftarrow$ ""\;
-		\Para{\texttt{y} de 0 até 7}{
-			\texttt{vazias} $\leftarrow$ 0\;
-			\Para{\texttt{x} de 0 até 7}{
-				\texttt{peca} $\leftarrow$ \texttt{tabuleiro[y][x]}\;
-				\Se{\texttt{peca} == 0}{
-					\texttt{vazias} $\leftarrow$ \texttt{vazias} + 1\;
+		texto\_fen $\leftarrow$ texto vazio\;
+		\Para{cada linha da matriz\_do\_tabuleiro}{
+			casas\_vazias $\leftarrow$ 0\;
+			\Para{cada coluna da linha atual}{
+				peca\_atual $\leftarrow$ verificar a peça na posição atual\;
+				\Se{a casa estiver vazia}{
+					casas\_vazias $\leftarrow$ casas\_vazias + 1\;
 				}
 				\Senao{
-					\Se{\texttt{vazias} > 0}{ \texttt{fen} $\leftarrow$ \texttt{fen} + \texttt{string(vazias)}\; \texttt{vazias} $\leftarrow$ 0\; }
-					\texttt{letra} $\leftarrow$ \texttt{converter\_tipo\_peca(peca)}\;
-					\texttt{fen} $\leftarrow$ \texttt{fen} + \texttt{letra}\;
+					\Se{casas\_vazias > 0}{
+						concatenar o número de casas\_vazias ao texto\_fen\;
+						casas\_vazias $\leftarrow$ 0\;
+					}
+					letra\_peca $\leftarrow$ converter a peca\_atual para sua letra correspondente\;
+					concatenar letra\_peca ao texto\_fen\;
 				}
 			}
-			\Se{\texttt{vazias} > 0}{ \texttt{fen} $\leftarrow$ \texttt{fen} + \texttt{string(vazias)}\; }
-			\Se{\texttt{y} < 7}{ \texttt{fen} $\leftarrow$ \texttt{fen} + "/"\; }
+			\Se{casas\_vazias > 0}{
+				concatenar o número de casas\_vazias ao texto\_fen\;
+			}
+			\Se{a linha atual não for a última}{
+				concatenar o símbolo "/" ao texto\_fen\;
+			}
 		}
-		\Retorna{\texttt{fen}}\;
+		\Retorna{texto\_fen}\;
 	}
 \end{algorithm}
 
-O processo de decisão da IA é executado em uma \textit{Thread} separada para evitar o congelamento da interface. O Algoritmo \ref{alg:ponte_python} descreve como o \textit{middleware} Python processa a requisição baseada no nível de dificuldade.
+O processo de decisão da IA é executado em uma \textit{Thread} separada para evitar o congelamento da interface. O Algoritmo \ref{alg:ponte_python} descreve a lógica de como o \textit{middleware} processa a requisição baseada no nível de dificuldade.
 
 \begin{algorithm}[H]
-	\caption{Processamento de Movimento no Middleware Python (chess\_bridge.py).}
+	\caption{Lógica de Processamento de Movimento da Inteligência Artificial.}
 	\label{alg:ponte_python}
-	\Entrada{\texttt{fen}, \texttt{dificuldade}}
+	\Entrada{estado\_do\_tabuleiro, nivel\_dificuldade}
 	\Inicio{
-		\texttt{tabuleiro} $\leftarrow$ \texttt{chess.Board(fen)}\;
-		\Se{\texttt{dificuldade} == 1}{
-			\texttt{movimento} $\leftarrow$ \texttt{escolha\_aleatoria(tabuleiro.legal\_moves)}\;
+		ler o estado\_do\_tabuleiro\;
+		\Se{nivel\_dificuldade == 1}{
+			lista\_movimentos $\leftarrow$ obter todos os movimentos válidos\;
+			movimento\_escolhido $\leftarrow$ sortear aleatoriamente um movimento da lista\_movimentos\;
 		}
 		\Senao{
-			\texttt{engine} $\leftarrow$ \texttt{abrir\_stockfish()}\;
-			\texttt{nivel\_ia} $\leftarrow$ (\texttt{dificuldade} == 2 ? 1 : 20)\;
-			\texttt{engine.configure("Skill Level", nivel\_ia)}\;
-			\texttt{movimento} $\leftarrow$ \texttt{engine.play(tabuleiro)}\;
+			iniciar o motor de xadrez\;
+			\Se{nivel\_dificuldade == 2}{
+				limite\_busca $\leftarrow$ profundidade 1\;
+			}
+			\Senao{
+				limite\_busca $\leftarrow$ profundidade 20\;
+			}
+			movimento\_escolhido $\leftarrow$ calcular a melhor jogada usando o limite\_busca\;
 		}
-		\Retorna{\texttt{json.dumps(movimento.uci)}}\;
+		resposta $\leftarrow$ formatar movimento\_escolhido e status de sucesso\;
+		\Retorna{resposta}\;
 	}
 \end{algorithm}

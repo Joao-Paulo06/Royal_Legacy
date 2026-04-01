@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.3.16)  31 MAR 2026 17:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.3.16)  1 APR 2026 16:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1912,7 +1912,7 @@ Cap\'{\i }tulo 2.
 [16
 
 ] [17]
-<./imagens/lichess.png, id=240, 1445.4pt x 813.0375pt>
+<./imagens/lichess.png, id=242, 1445.4pt x 813.0375pt>
 File: ./imagens/lichess.png Graphic file (type png)
 <use ./imagens/lichess.png>
 Package pdftex.def Info: ./imagens/lichess.png  used on input line 51.
@@ -1943,7 +1943,7 @@ s-tado: \OT1/lmss/m/n/12 (-20) Cria[][]ao do \OT1/lmtt/m/n/12 estruturador.tscn
 
 ) (capitulos/projeto.tex [22]
 Cap\'{\i }tulo 4.
-<./imagens/diagrama_1.png, id=276, 503.8825pt x 502.87875pt>
+<./imagens/diagrama_1.png, id=278, 503.8825pt x 502.87875pt>
 File: ./imagens/diagrama_1.png Graphic file (type png)
 <use ./imagens/diagrama_1.png>
 Package pdftex.def Info: ./imagens/diagrama_1.png  used on input line 15.
@@ -1957,107 +1957,72 @@ Overfull \hbox (6.38557pt too wide) in paragraph at lines 21--22
  []
 
 [24 <./imagens/diagrama_1.png>]
-<./imagens/menu_principal.png, id=293, 1445.4pt x 813.0375pt>
+<./imagens/menu_principal.png, id=295, 1445.4pt x 813.0375pt>
 File: ./imagens/menu_principal.png Graphic file (type png)
 <use ./imagens/menu_principal.png>
 Package pdftex.def Info: ./imagens/menu_principal.png  used on input line 33.
 (pdftex.def)             Requested size: 284.52756pt x 160.049pt.
-<./imagens/menu_opcoes.png, id=294, 1445.4pt x 813.0375pt>
+<./imagens/menu_opcoes.png, id=296, 1445.4pt x 813.0375pt>
 File: ./imagens/menu_opcoes.png Graphic file (type png)
 <use ./imagens/menu_opcoes.png>
 Package pdftex.def Info: ./imagens/menu_opcoes.png  used on input line 34.
 (pdftex.def)             Requested size: 284.52756pt x 160.049pt.
-<./imagens/tabuleiro.png, id=296, 1445.4pt x 813.0375pt>
+<./imagens/tabuleiro.png, id=298, 1445.4pt x 813.0375pt>
 File: ./imagens/tabuleiro.png Graphic file (type png)
 <use ./imagens/tabuleiro.png>
 Package pdftex.def Info: ./imagens/tabuleiro.png  used on input line 40.
 (pdftex.def)             Requested size: 284.52756pt x 160.049pt.
  [25{C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc
 } <./imagens/menu_principal.png> <./imagens/menu_opcoes.png>]
-<./imagens/diagrama_2.png, id=308, 663.47874pt x 403.5075pt>
+<./imagens/diagrama_2.png, id=310, 663.47874pt x 403.5075pt>
 File: ./imagens/diagrama_2.png Graphic file (type png)
 <use ./imagens/diagrama_2.png>
 Package pdftex.def Info: ./imagens/diagrama_2.png  used on input line 48.
 (pdftex.def)             Requested size: 341.43306pt x 207.65167pt.
  [26 <./imagens/tabuleiro.png> <./imagens/diagrama_2.png>]
+<./imagens/diagrama_3.png, id=319, 804.00375pt x 804.00375pt>
+File: ./imagens/diagrama_3.png Graphic file (type png)
+<use ./imagens/diagrama_3.png>
+Package pdftex.def Info: ./imagens/diagrama_3.png  used on input line 62.
+(pdftex.def)             Requested size: 341.43306pt x 341.43332pt.
 
-LaTeX Warning: File `./capitulos/projeto/diagrama_uso.png' not found on input l
-ine 62.
+[27 <./imagens/diagrama_3.png>]
+Overfull \hbox (33.57329pt too wide) in paragraph at lines 69--70
+[]\OT1/lmss/bx/n/12 (-20) Calcular Jo-gada: \OT1/lmss/m/n/12 (-20) Caso de uso 
+exe-cu-tado pelo ator se-cund[]ario (Stock-fish) via \OT1/lmtt/m/n/12 chess[]br
+idge.py\OT1/lmss/m/n/12 (-20) ,
+ []
 
-
-! Package pdftex.def Error: File `./capitulos/projeto/diagrama_uso.png' not fou
-nd: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.62 ...sos de Uso do simulador.}{figura:caso_uso}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[27]
-
-LaTeX Warning: File `./capitulos/projeto/diagrama_classes.png' not found on inp
-ut line 76.
-
-
-! Package pdftex.def Error: File `./capitulos/projeto/diagrama_classes.png' not
- found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.76 ...ddleware Python.}{figura:diagrama_classes}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[28] [29]) (capitulos/resultados_discussao.tex [30] [31]
+<./imagens/diagrama_4.png, id=326, 783.92876pt x 875.27pt>
+File: ./imagens/diagrama_4.png Graphic file (type png)
+<use ./imagens/diagrama_4.png>
+Package pdftex.def Info: ./imagens/diagrama_4.png  used on input line 76.
+(pdftex.def)             Requested size: 398.33858pt x 444.75243pt.
+[28] [29 <./imagens/diagrama_4.png>] [30]) (capitulos/resultados_discussao.tex
+[31] [32]
 Cap\'{\i }tulo 5.
+<./imagens/menu_temas.png, id=404, 1445.4pt x 813.0375pt>
+File: ./imagens/menu_temas.png Graphic file (type png)
+<use ./imagens/menu_temas.png>
+Package pdftex.def Info: ./imagens/menu_temas.png  used on input line 17.
+(pdftex.def)             Requested size: 341.43306pt x 192.0563pt.
+[33
 
-LaTeX Warning: File `./capitulos/resultados_discussao/tela_menu_final.png' not 
-found on input line 15.
-
-
-! Package pdftex.def Error: File `./capitulos/resultados_discussao/tela_menu_fi
-nal.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.15 ...ntroles de áudio.}{figura:resultado_menu}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[32
-
-]
-
-LaTeX Warning: File `./capitulos/resultados_discussao/tela_jogo_final.png' not 
-found on input line 21.
-
-
-! Package pdftex.def Error: File `./capitulos/resultados_discussao/tela_jogo_fi
-nal.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.21 ...lce de movimentos.}{figura:resultado_jogo}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[33]
+ <./imagens/menu_temas.png>]
+<./imagens/menu_sons.png, id=411, 1445.4pt x 813.0375pt>
+File: ./imagens/menu_sons.png Graphic file (type png)
+<use ./imagens/menu_sons.png>
+Package pdftex.def Info: ./imagens/menu_sons.png  used on input line 21.
+(pdftex.def)             Requested size: 341.43306pt x 192.0563pt.
+<./imagens/tabuleiro_arabe.png, id=413, 1445.4pt x 813.0375pt>
+File: ./imagens/tabuleiro_arabe.png Graphic file (type png)
+<use ./imagens/tabuleiro_arabe.png>
+Package pdftex.def Info: ./imagens/tabuleiro_arabe.png  used on input line 27.
+(pdftex.def)             Requested size: 341.43306pt x 192.0563pt.
+ [34 <./imagens/menu_sons.png> <./imagens/tabuleiro_arabe.png>]
 LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <10.95> not available
-(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 42.
- [34]) (capitulos/consideracoes_finais.tex [35]
+(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 49.
+) (capitulos/consideracoes_finais.tex [35]
 Cap\'{\i }tulo 6.
 [36
 
@@ -2077,19 +2042,7 @@ bibitemlist
 AP\^ENDICE A.
 [39
 
-]
-Overfull \hbox (57.28114pt too wide) in paragraph at lines 57--57
-[] \OT1/lmtt/m/n/12 parser.add_argument("--fen", type=str, required=True, help=
-"Posicao do tabuleiro")[] 
- []
-
-
-Overfull \hbox (44.93114pt too wide) in paragraph at lines 58--58
-[] \OT1/lmtt/m/n/12 parser.add_argument("--diff", type=int, default=10, help="N
-ivel de dificuldade")[] 
- []
-
-) [40]
+] [40]) [41]
 \tf@lof=\write7
 \openout7 = `tc.lof'.
 
@@ -2110,13 +2063,13 @@ Package rerunfilecheck Info: File `tc.brf' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 39417 strings out of 467871
- 745021 string characters out of 5417408
- 1252055 words of memory out of 5000000
- 67220 multiletter control sequences out of 15000+600000
- 671071 words of font info for 181 fonts, out of 8000000 for 9000
+ 39346 strings out of 467871
+ 739683 string characters out of 5417408
+ 1255055 words of memory out of 5000000
+ 67134 multiletter control sequences out of 15000+600000
+ 671234 words of font info for 184 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 113i,24n,121p,1558b,710s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 113i,24n,121p,1558b,781s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
 m/cmsy10.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/public
 /lm/lmss10.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/publ
@@ -2126,11 +2079,10 @@ blic/lm/lmssbo10.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type
 type1/public/lm/lmsso10.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fon
 ts/type1/public/lm/lmsso12.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/
 fonts/type1/public/lm/lmtt12.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTe
-X/fonts/type1/public/lm/lmtti10.pfb><C:/Users/Usuario/AppData/Local/Programs/Mi
-KTeX/fonts/type1/urw/times/utmr8a.pfb>
-Output written on tc.pdf (41 pages, 7193606 bytes).
+X/fonts/type1/urw/times/utmr8a.pfb>
+Output written on tc.pdf (42 pages, 10917239 bytes).
 PDF statistics:
- 683 PDF objects out of 1000 (max. 8388607)
- 175 named destinations out of 1000 (max. 500000)
- 31699 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 705 PDF objects out of 1000 (max. 8388607)
+ 183 named destinations out of 1000 (max. 500000)
+ 31212 words of extra memory for PDF output out of 35830 (max. 10000000)
 
