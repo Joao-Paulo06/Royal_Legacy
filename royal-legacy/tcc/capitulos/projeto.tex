@@ -102,7 +102,7 @@ Nesta seção, detalha-se a lógica de conversão do estado do jogo e a comunica
 					casas\_vazias $\leftarrow$ casas\_vazias + 1\;
 				}
 				\Senao{
-					\Se{casas\_vazias > 0}{
+					\Se{casas\_vazias $\rightarrow$ 0}{
 						concatenar o número de casas\_vazias ao texto\_fen\;
 						casas\_vazias $\leftarrow$ 0\;
 					}
@@ -110,7 +110,7 @@ Nesta seção, detalha-se a lógica de conversão do estado do jogo e a comunica
 					concatenar letra\_peca ao texto\_fen\;
 				}
 			}
-			\Se{casas\_vazias > 0}{
+			\Se{casas\_vazias $\rightarrow$ 0}{
 				concatenar o número de casas\_vazias ao texto\_fen\;
 			}
 			\Se{a linha atual não for a última}{
