@@ -5,55 +5,56 @@
 \providecommand{\abntbstabout}[1]{}
 \abntbstabout{v-1.9.7 }
 
-\bibitem[Date 2003]{Date2003}
-\abntrefinfo{Date}{DATE}{2003}
-{DATE, C.~J. \textbf{Introdução a Sistemas de Bancos de Dados}. 7. ed. Rio de
-  Janeiro: Campus, 2003.}
+\bibitem[{Date} 2003]{Date2003}
+\abntrefinfo{{Date}}{{Date}}{2003}
+{{Date}, C.~J. \textbf{{Introdução a Sistemas de Bancos de Dados}}. 7. ed.
+  Rio de Janeiro: Campus, 2003.}
 
-\bibitem[Fowler 2003]{Fowler2003}
-\abntrefinfo{Fowler}{FOWLER}{2003}
-{FOWLER, M. \textbf{Padrões de Arquitetura de Aplicações Corporativas}.
+\bibitem[{Fowler} 2003]{Fowler2003}
+\abntrefinfo{{Fowler}}{{Fowler}}{2003}
+{{Fowler}, M. \textbf{{Padrões de Arquitetura de Aplicações Corporativas}}.
   Porto Alegre: Bookman, 2003.}
 
 \bibitem[{Godot With Me} 2023]{GodotWithMe2023}
 \abntrefinfo{{Godot With Me}}{{Godot With Me}}{2023a}
-{{Godot With Me}. \textbf{Desenvolvimento de Jogos com Godot Engine}. 2023.
+{{Godot With Me}. \textbf{{Desenvolvimento de Jogos com Godot Engine}}. 2023.
 Dispon{\'\i}vel em: \url{https://github.com/Godot-With-Me/Chess}. Acesso em: 31
   mar. 2026.}
 
 \bibitem[{Godot With Me} 2023]{GodotWithMeVideo}
 \abntrefinfo{{Godot With Me}}{{Godot With Me}}{2023b}
-{{Godot With Me}. \textbf{Tutorial de Criação de Xadrez na Godot}. 2023.
-Dispon{\'\i}vel em: \url{https://www.youtube.com/}. Acesso em: 31 mar. 2026.}
+{{Godot With Me}. \textbf{{Tutorial de Criação de Xadrez na Godot}}. 2023.
+Dispon{\'\i}vel em:
+  \url{ttp://www.youtube.com/playlist?list=PLd\_56bdSJ-tS4-q1gczTdKJhqMep3Ij\_w/}.
+  Acesso em: 31 mar. 2026.}
 
-\bibitem[Hooper e Whyld 1992]{Hooper1992}
-\abntrefinfo{Hooper e Whyld}{HOOPER; WHYLD}{1992}
-{HOOPER, D.; WHYLD, K. \textbf{The Oxford Companion to Chess}. 2. ed. Oxford:
-  Oxford University Press, 1992.}
+\bibitem[{Hooper} e {Whyld} 1992]{Hooper1992}
+\abntrefinfo{{Hooper} e {Whyld}}{{Hooper}; {Whyld}}{1992}
+{{Hooper}, D.; {Whyld}, K. \textbf{{The Oxford Companion to Chess}}. 2. ed.
+  Oxford: Oxford University Press, 1992.}
 
-\bibitem[Linietsky, Manzur e {Godot Engine Community} 2023]{Linietsky2023}
-\abntrefinfo{Linietsky, Manzur e {Godot Engine Community}}{LINIETSKY; MANZUR;
-  {Godot Engine Community}}{2023}
-{LINIETSKY, J.; MANZUR, A.; {Godot Engine Community}. \textbf{Godot Engine
-  Documentation}. 2023.
+\bibitem[{Linietsky}, {Manzur} e {Godot Engine Community} 2023]{Linietsky2023}
+\abntrefinfo{{Linietsky}, {Manzur} e {Godot Engine Community}}{{Linietsky};
+  {Manzur}; {Godot Engine Community}}{2023}
+{{Linietsky}, J.; {Manzur}, A.; {Godot Engine Community}. \textbf{{Godot Engine
+  Documentation}}. 2023.
 Dispon{\'\i}vel em: \url{https://docs.godotengine.org/}. Acesso em: 15 mar.
   2026.}
 
 \bibitem[{Stockfish Team} 2023]{Stockfish2023}
 \abntrefinfo{{Stockfish Team}}{{Stockfish Team}}{2023}
-{{Stockfish Team}. \textbf{Stockfish: Open Source Chess Engine}. 2023.
+{{Stockfish Team}. \textbf{{Stockfish: Open Source Chess Engine}}. 2023.
 Dispon{\'\i}vel em: \url{https://stockfishchess.org/}. Acesso em: 15 mar.
   2026.}
 
-\bibitem[{Van Rossum} e Drake 2009]{VanRossum2009}
-\abntrefinfo{{Van Rossum} e Drake}{{Van Rossum}; DRAKE}{2009}
-{{Van Rossum}, G.; DRAKE, F.~L. \textbf{Python 3 Reference Manual}. Scotts
+\bibitem[{Van Rossum} e {Drake} 2009]{VanRossum2009}
+\abntrefinfo{{Van Rossum} e {Drake}}{{Van Rossum}; {Drake}}{2009}
+{{Van Rossum}, G.; {Drake}, F.~L. \textbf{{Python 3 Reference Manual}}. Scotts
   Valley: CreateSpace, 2009.}
 
-\bibitem[Wazlawick 2021]{RaulSidneiWazlawick2021}
-\abntrefinfo{Wazlawick}{WAZLAWICK}{2021}
-{WAZLAWICK, R.~S. \textbf{Metodologia de Pesquisa em Ciência da Computação}.
-  3. ed. Rio de Janeiro: LTC, 2021.
-ISBN 978-85-951-5109-3.}
+\bibitem[{Wazlawick} 2021]{RaulSidneiWazlawick2021}
+\abntrefinfo{{Wazlawick}}{{Wazlawick}}{2021}
+{{Wazlawick}, R.~S. \textbf{{Metodologia de Pesquisa em Ciência da
+  Computação}}. 3. ed. Rio de Janeiro: LTC, 2021.}
 
 \end{thebibliography}
