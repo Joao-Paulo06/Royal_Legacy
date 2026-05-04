@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.3.16)  2 MAY 2026 11:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.3.16)  4 MAY 2026 11:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1382,7 +1382,9 @@ LaTeX Info: Redefining \cite on input line 618.
 )
 (C:\Users\Usuario\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2025/11/14 1.11b listings language file
-)) (C:\Users\Usuario\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty
+)
+LaTeX Info: Redefining \url on input line 118.
+) (C:\Users\Usuario\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty
 Package: inputenc 2024/02/08 v1.3d Input encoding file
 \inpenc@prehook=\toks49
 \inpenc@posthook=\toks50
@@ -2091,11 +2093,11 @@ Package rerunfilecheck Info: File `tc.brf' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 39401 strings out of 467871
- 740862 string characters out of 5417408
- 1255134 words of memory out of 5000000
- 67170 multiletter control sequences out of 15000+600000
- 677183 words of font info for 191 fonts, out of 8000000 for 9000
+ 39271 strings out of 467871
+ 738838 string characters out of 5417408
+ 1246343 words of memory out of 5000000
+ 67050 multiletter control sequences out of 15000+600000
+ 671328 words of font info for 185 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  113i,24n,121p,1558b,781s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
@@ -2108,9 +2110,9 @@ type1/public/lm/lmsso10.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fon
 ts/type1/public/lm/lmsso12.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/
 fonts/type1/public/lm/lmtt12.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTe
 X/fonts/type1/urw/times/utmr8a.pfb>
-Output written on tc.pdf (45 pages, 11846710 bytes).
+Output written on tc.pdf (45 pages, 11844874 bytes).
 PDF statistics:
- 735 PDF objects out of 1000 (max. 8388607)
+ 731 PDF objects out of 1000 (max. 8388607)
  190 named destinations out of 1000 (max. 500000)
- 35328 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 31232 words of extra memory for PDF output out of 35830 (max. 10000000)
 
