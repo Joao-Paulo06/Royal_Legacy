@@ -1,17 +1,21 @@
 \chapter{Considerações Finais}
 \label{capitulo:consideracoes_finais}
 
-Este capítulo apresenta as considerações finais do trabalho, sumarizando os resultados obtidos com o desenvolvimento do simulador \textit{Royal Legacy}. O projeto alcançou o seu objetivo principal de criar uma experiência de xadrez digital fluida, integrando um motor lógico de alto desempenho sem comprometer a estabilidade da interface gráfica. O capítulo divide-se nas seções \ref{secao:contribuicoes}, que detalha os avanços técnicos alcançados, e \ref{secao:trabalhos_futuros}, que sugere caminhos para a continuidade desta pesquisa.
+Este capítulo apresenta as considerações finais do trabalho, sumarizando os resultados obtidos com o desenvolvimento do simulador \textit{Royal Legacy}. O objetivo geral desta pesquisa foi plenamente alcançado, uma vez que foi possível validar a viabilidade técnica de integrar um motor de análise complexo (Stockfish) a um motor de jogos moderno (Godot), garantindo tanto a precisão lógica quanto a fluidez visual. O projeto resultou em uma experiência de xadrez digital estável, integrando o processamento de alto desempenho sem comprometer a interface gráfica. O capítulo divide-se nas seções \ref{secao:contribuicoes}, que detalha os avanços técnicos e desafios superados, e \ref{secao:trabalhos_futuros}, que sugere caminhos para a continuidade desta pesquisa.
 
-\section{Contribuições}
+\section{Contribuições e Desafios de Integração}
 \label{secao:contribuicoes}
 
-O desenvolvimento deste projeto resultou em contribuições técnicas e arquiteturais significativas para a criação de jogos de tabuleiro integrados a motores externos. Destacam-se pontualmente:
+O desenvolvimento deste projeto resultou em avanços técnicos e estruturais significativos para a criação de sistemas de jogos integrados a motores externos. As principais contribuições e superações técnicas deste trabalho são detalhadas a seguir:
 
 \begin{itemize}
-	\item \textbf{Arquitetura Assíncrona de Comunicação:} A criação de um \textit{middleware} em Python demonstrou ser uma solução altamente eficaz para o problema de travamento de interface (\textit{stuttering}). A execução isolada do binário do Stockfish permitiu que a Godot Engine mantivesse uma taxa de renderização constante de 60 FPS durante o cálculo de jogadas profundas.
-	\item \textbf{Motor Lógico Independente em GDScript:} A transcrição de todas as regras do xadrez (incluindo lances especiais como \textit{en passant}, roque e promoção) para a linguagem nativa da Godot, utilizando matrizes bidimensionais, resultou em um código base modular e de fácil manutenção.
-	\item \textbf{Sistema de Customização Dinâmica:} A implementação de um gerenciador de temas baseado em Dicionários de dados otimizou a troca de recursos visuais (\textit{sprites} e paletas de cores) em tempo de execução, dispensando o uso de estruturas condicionais extensas e reduzindo o consumo desnecessário de memória.
+	\item \textbf{Arranjo Assíncrono de Comunicação:} A criação de um \textit{middleware} em Python demonstrou ser uma solução eficaz para mitigar a latência na camada de visualização (comumente referida como \textit{stuttering}). A execução isolada do binário do Stockfish permitiu que o ambiente de interação mantivesse uma taxa de renderização constante de 60 FPS, mesmo durante o processamento de jogadas complexas.
+	
+	\item \textbf{Motor Lógico Independente em GDScript:} A transcrição integral das regras do xadrez incluindo movimentos especiais como \textit{en passant}, roque e promoção para a linguagem nativa da Godot resultou em um sistema modular. O uso de matrizes bidimensionais para representação do tabuleiro facilitou a manutenção do código e a validação de estados de jogo.
+	
+	\item \textbf{Superação de Desafios na Integração de Sistemas:} Um dos principais obstáculos superados foi a sincronização entre o interpretador Python e o sistema de sinais da Godot. Foi necessária uma gestão rigorosa de processos para impedir que instâncias do motor de busca permanecessem como processos órfãos, garantindo a estabilidade e a integridade da memória do sistema durante longas sessões de uso.
+	
+	\item \textbf{Sistema de Customização Dinâmica:} A implementação de um gerenciador de temas baseado em dicionários de dados otimizou a transição de recursos visuais (\textit{sprites} e paletas) em tempo de execução. Esta abordagem eliminou a necessidade de estruturas condicionais extensas, tornando o componente visual mais leve e eficiente em termos de consumo de memória.
 \end{itemize}
 
 \section{Trabalhos Futuros}
