@@ -5,15 +5,22 @@
 \providecommand{\abntbstabout}[1]{}
 \abntbstabout{v-1.9.7 }
 
-\bibitem[{Date} 2003]{Date2003}
-\abntrefinfo{{Date}}{{Date}}{2003}
-{{Date}, C.~J. \textbf{{Introdução a Sistemas de Bancos de Dados}}. 7. ed.
-  Rio de Janeiro: Campus, 2003.}
+\bibitem[Amorim 2002]{Amorim2002}
+\abntrefinfo{Amorim}{AMORIM}{2002}
+{AMORIM, C.~A. de.
+\textbf{A Máquina e seus Limites: Uma Investigação Sobre o Xadrez
+  Computacional}.
+Dissertação (Mestrado) --- UFBA, 2002.}
 
-\bibitem[{Fowler} 2003]{Fowler2003}
-\abntrefinfo{{Fowler}}{{Fowler}}{2003}
+\bibitem[{Date} 2004]{Date2004}
+\abntrefinfo{{Date}}{{Date}}{2004}
+{{Date}, C.~J. \textbf{{Introdução a Sistemas de Bancos de Dados}}. 8. ed.
+  Rio de Janeiro: Campus, 2004.}
+
+\bibitem[{Fowler} 2006]{Fowler2006}
+\abntrefinfo{{Fowler}}{{Fowler}}{2006}
 {{Fowler}, M. \textbf{{Padrões de Arquitetura de Aplicações Corporativas}}.
-  Porto Alegre: Bookman, 2003.}
+  Porto Alegre: Bookman, 2006.}
 
 \bibitem[{Godot With Me} 2023]{GodotWithMe2023}
 \abntrefinfo{{Godot With Me}}{{Godot With Me}}{2023a}
@@ -27,10 +34,22 @@ Dispon{\'\i}vel em: \url{https://github.com/Godot-With-Me/Chess}. Acesso em: 31
 Dispon{\'\i}vel em: \url{https://youtu.be/1y57hJo1ONQ?si=IkjlcUxRxrgqTy1Q}.
   Acesso em: 31 mar. 2026.}
 
+\bibitem[Gregory 2018]{Gregory2018}
+\abntrefinfo{Gregory}{GREGORY}{2018}
+{GREGORY, J. \textbf{Game Engine Architecture}. 3. ed. Boca Raton: CRC Press,
+  2018.}
+
 \bibitem[{Hooper} e {Whyld} 1992]{Hooper1992}
 \abntrefinfo{{Hooper} e {Whyld}}{{Hooper}; {Whyld}}{1992}
 {{Hooper}, D.; {Whyld}, K. \textbf{{The Oxford Companion to Chess}}. 2. ed.
   Oxford: Oxford University Press, 1992.}
+
+\bibitem[{Instituto de Estudos Avançados da USP} 2025]{USP2025}
+\abntrefinfo{{Instituto de Estudos Avançados da USP}}{{Instituto de Estudos
+  Avançados da USP}}{2025}
+{{Instituto de Estudos Avançados da USP}. O computador como máquina
+  epistemológica: o caso do xadrez computacional.
+\textbf{IEA-USP}, 2025.}
 
 \bibitem[{Linietsky}, {Manzur} e {Godot Engine Community} 2023]{Linietsky2023}
 \abntrefinfo{{Linietsky}, {Manzur} e {Godot Engine Community}}{{Linietsky};
@@ -39,6 +58,32 @@ Dispon{\'\i}vel em: \url{https://youtu.be/1y57hJo1ONQ?si=IkjlcUxRxrgqTy1Q}.
   Documentation}}. 2023.
 Dispon{\'\i}vel em: \url{https://docs.godotengine.org/}. Acesso em: 15 mar.
   2026.}
+
+\bibitem[Massollar 2005]{Massollar2005}
+\abntrefinfo{Massollar}{MASSOLLAR}{2005}
+{MASSOLLAR, J. \textbf{Modelagem de Sistemas com UML}. [S.l.]: COPPE/UFRJ,
+  2005.}
+
+\bibitem[Norman 2013]{Norman2013}
+\abntrefinfo{Norman}{NORMAN}{2013}
+{NORMAN, D.~A. \textbf{The Design of Everyday Things}. New York: Basic Books,
+  2013.}
+
+\bibitem[Pires e Pedrini 2022]{Pires2022}
+\abntrefinfo{Pires e Pedrini}{PIRES; PEDRINI}{2022}
+{PIRES, G.~S.; PEDRINI, H. Métodos de aprendizado de máquina aplicados ao
+  jogo de xadrez.
+\textbf{IC/UNICAMP}, 2022.}
+
+\bibitem[Russell e Norvig 2021]{RussellNorvig2021}
+\abntrefinfo{Russell e Norvig}{RUSSELL; NORVIG}{2021}
+{RUSSELL, S.; NORVIG, P. \textbf{Artificial Intelligence: A Modern Approach}.
+  4. ed. [S.l.]: Pearson, 2021.}
+
+\bibitem[Sommerville 2011]{Sommerville2011}
+\abntrefinfo{Sommerville}{SOMMERVILLE}{2011}
+{SOMMERVILLE, I. \textbf{Engenharia de Software}. 9. ed. São Paulo:
+  Addison-Wesley, 2011.}
 
 \bibitem[{Stockfish Team} 2023]{Stockfish2023}
 \abntrefinfo{{Stockfish Team}}{{Stockfish Team}}{2023}
@@ -51,7 +96,7 @@ Dispon{\'\i}vel em: \url{https://stockfishchess.org/}. Acesso em: 15 mar.
 {{Van Rossum}, G.; {Drake}, F.~L. \textbf{{Python 3 Reference Manual}}. Scotts
   Valley: CreateSpace, 2009.}
 
-\bibitem[{Wazlawick} 2021]{RaulSidneiWazlawick2021}
+\bibitem[{Wazlawick} 2021]{Wazlawick2021}
 \abntrefinfo{{Wazlawick}}{{Wazlawick}}{2021}
 {{Wazlawick}, R.~S. \textbf{{Metodologia de Pesquisa em Ciência da
   Computação}}. 3. ed. Rio de Janeiro: LTC, 2021.}

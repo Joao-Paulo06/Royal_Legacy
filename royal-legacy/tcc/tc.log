@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.3.16)  4 MAY 2026 11:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.3.16)  6 MAY 2026 16:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1904,7 +1904,7 @@ Cap\'{\i }tulo 1.
 
 ]
 LaTeX Font Info:    Trying to load font information for TS1+lmss on input line 
-21.
+23.
  (C:\Users\Usuario\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmss.fd
 File: ts1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -1919,33 +1919,33 @@ Cap\'{\i }tulo 2.
 [17
 
 ] [18]
-<./imagens/gwm_git.png, id=254, 1445.4pt x 813.0375pt>
+<./imagens/gwm_git.png, id=277, 1445.4pt x 813.0375pt>
 File: ./imagens/gwm_git.png Graphic file (type png)
 <use ./imagens/gwm_git.png>
-Package pdftex.def Info: ./imagens/gwm_git.png  used on input line 45.
+Package pdftex.def Info: ./imagens/gwm_git.png  used on input line 53.
 (pdftex.def)             Requested size: 341.43306pt x 192.0563pt.
-<./imagens/gwm_ytb.png, id=256, 1217.2978pt x 787.44188pt>
+ [19]
+<./imagens/gwm_ytb.png, id=288, 1217.2978pt x 787.44188pt>
 File: ./imagens/gwm_ytb.png Graphic file (type png)
 <use ./imagens/gwm_ytb.png>
-Package pdftex.def Info: ./imagens/gwm_ytb.png  used on input line 48.
+Package pdftex.def Info: ./imagens/gwm_ytb.png  used on input line 56.
 (pdftex.def)             Requested size: 341.43306pt x 220.86671pt.
- [19 <./imagens/gwm_git.png>]
-<./imagens/lichess.png, id=265, 1445.4pt x 813.0375pt>
+<./imagens/lichess.png, id=290, 1445.4pt x 813.0375pt>
 File: ./imagens/lichess.png Graphic file (type png)
 <use ./imagens/lichess.png>
-Package pdftex.def Info: ./imagens/lichess.png  used on input line 57.
+Package pdftex.def Info: ./imagens/lichess.png  used on input line 65.
 (pdftex.def)             Requested size: 341.43306pt x 192.0563pt.
- [20 <./imagens/gwm_ytb.png>]
-<./imagens/lucas_chess.png, id=271, 1445.4pt x 813.0375pt>
+ [20 <./imagens/gwm_git.png> <./imagens/gwm_ytb.png>]
+<./imagens/lucas_chess.png, id=297, 1445.4pt x 813.0375pt>
 File: ./imagens/lucas_chess.png Graphic file (type png)
 <use ./imagens/lucas_chess.png>
-Package pdftex.def Info: ./imagens/lucas_chess.png  used on input line 66.
+Package pdftex.def Info: ./imagens/lucas_chess.png  used on input line 74.
 (pdftex.def)             Requested size: 341.43306pt x 192.0563pt.
  [21 <./imagens/lichess.png> <./imagens/lucas_chess.png>]
-<./imagens/chess.png, id=278, 1445.4pt x 813.0375pt>
+<./imagens/chess.png, id=304, 1445.4pt x 813.0375pt>
 File: ./imagens/chess.png Graphic file (type png)
 <use ./imagens/chess.png>
-Package pdftex.def Info: ./imagens/chess.png  used on input line 74.
+Package pdftex.def Info: ./imagens/chess.png  used on input line 81.
 (pdftex.def)             Requested size: 341.43306pt x 192.0563pt.
 ) (capitulos/materiais_metodos.tex [22 <./imagens/chess.png>]
 Cap\'{\i }tulo 3.
@@ -1957,81 +1957,62 @@ LaTeX Font Info:    Trying to load font information for OT1+lmtt on input line
  (C:\Users\Usuario\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmtt.fd
 File: ot1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-Overfull \hbox (21.70654pt too wide) in paragraph at lines 28--29
+Overfull \hbox (15.08331pt too wide) in paragraph at lines 28--29
 []\OT1/lmss/bx/n/12 (-20) Python: \OT1/lmss/m/n/12 (-20) Uti-li-zado ex-clu-si-
-va-mente para o de-sen-vol-vi-mento do \OT1/lmss/m/sl/12 (-20) mid-dleware \OT1
-/lmss/m/n/12 (-20) (\OT1/lmtt/m/n/12 chess[]bridge.py\OT1/lmss/m/n/12 (-20) ).
+va-mente para a implementa[][]ao do \OT1/lmss/m/sl/12 (-20) mid-dleware \OT1/lm
+ss/m/n/12 (-20) (\OT1/lmtt/m/n/12 chess[]bridge.py\OT1/lmss/m/n/12 (-20) ).
  []
 
 [24{C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rmtt.e
-nc}]
-Overfull \hbox (2.9306pt too wide) in paragraph at lines 53--54
-[]\OT1/lmss/bx/n/12 (-20) Itera^^Xc~ao 4 - Po-li-mento e Ge-ren-ci-a-mento de E
-s-tado: \OT1/lmss/m/n/12 (-20) Cria[][]ao do \OT1/lmtt/m/n/12 estruturador.tscn
-
- []
-
-) (capitulos/projeto.tex [25]
+nc}]) (capitulos/projeto.tex [25]
 Cap\'{\i }tulo 4.
-<./imagens/diagrama_1.png, id=307, 503.8825pt x 502.87875pt>
+<./imagens/diagrama_1.png, id=335, 503.8825pt x 502.87875pt>
 File: ./imagens/diagrama_1.png Graphic file (type png)
 <use ./imagens/diagrama_1.png>
 Package pdftex.def Info: ./imagens/diagrama_1.png  used on input line 15.
 (pdftex.def)             Requested size: 341.43306pt x 340.75598pt.
 [26
 
-]
-Overfull \hbox (6.38557pt too wide) in paragraph at lines 21--22
-[]\OT1/lmss/bx/n/12 (-20) Camada L^^Sogica (Stock-fish Bi-nary): \OT1/lmss/m/n/
-12 (-20) O mo-tor de xa-drez (Bac-kend). Re-cebe configura[][]oes
- []
-
-[27 <./imagens/diagrama_1.png>]
-<./imagens/menu_principal.png, id=323, 1445.4pt x 813.0375pt>
+] [27 <./imagens/diagrama_1.png>]
+<./imagens/menu_principal.png, id=350, 1445.4pt x 813.0375pt>
 File: ./imagens/menu_principal.png Graphic file (type png)
 <use ./imagens/menu_principal.png>
 Package pdftex.def Info: ./imagens/menu_principal.png  used on input line 33.
 (pdftex.def)             Requested size: 284.52756pt x 160.049pt.
-<./imagens/menu_opcoes.png, id=324, 1445.4pt x 813.0375pt>
+<./imagens/menu_opcoes.png, id=351, 1445.4pt x 813.0375pt>
 File: ./imagens/menu_opcoes.png Graphic file (type png)
 <use ./imagens/menu_opcoes.png>
 Package pdftex.def Info: ./imagens/menu_opcoes.png  used on input line 34.
 (pdftex.def)             Requested size: 284.52756pt x 160.049pt.
-<./imagens/tabuleiro.png, id=326, 1445.4pt x 813.0375pt>
+<./imagens/tabuleiro.png, id=353, 1445.4pt x 813.0375pt>
 File: ./imagens/tabuleiro.png Graphic file (type png)
 <use ./imagens/tabuleiro.png>
 Package pdftex.def Info: ./imagens/tabuleiro.png  used on input line 40.
 (pdftex.def)             Requested size: 284.52756pt x 160.049pt.
  [28{C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc
 } <./imagens/menu_principal.png> <./imagens/menu_opcoes.png>]
-<./imagens/diagrama_2.png, id=338, 663.47874pt x 403.5075pt>
+<./imagens/diagrama_2.png, id=365, 663.47874pt x 403.5075pt>
 File: ./imagens/diagrama_2.png Graphic file (type png)
 <use ./imagens/diagrama_2.png>
 Package pdftex.def Info: ./imagens/diagrama_2.png  used on input line 48.
 (pdftex.def)             Requested size: 341.43306pt x 207.65167pt.
  [29 <./imagens/tabuleiro.png> <./imagens/diagrama_2.png>]
-<./imagens/diagrama_3.png, id=347, 804.00375pt x 804.00375pt>
+<./imagens/diagrama_3.png, id=374, 804.00375pt x 804.00375pt>
 File: ./imagens/diagrama_3.png Graphic file (type png)
 <use ./imagens/diagrama_3.png>
 Package pdftex.def Info: ./imagens/diagrama_3.png  used on input line 62.
 (pdftex.def)             Requested size: 341.43306pt x 341.43332pt.
 
 [30 <./imagens/diagrama_3.png>]
-Overfull \hbox (33.57329pt too wide) in paragraph at lines 69--70
-[]\OT1/lmss/bx/n/12 (-20) Calcular Jo-gada: \OT1/lmss/m/n/12 (-20) Caso de uso 
-exe-cu-tado pelo ator se-cund[]ario (Stock-fish) via \OT1/lmtt/m/n/12 chess[]br
-idge.py\OT1/lmss/m/n/12 (-20) ,
- []
-
-<./imagens/diagrama_4.png, id=355, 783.92876pt x 875.27pt>
+<./imagens/diagrama_4.png, id=384, 783.92876pt x 875.27pt>
 File: ./imagens/diagrama_4.png Graphic file (type png)
 <use ./imagens/diagrama_4.png>
 Package pdftex.def Info: ./imagens/diagrama_4.png  used on input line 76.
 (pdftex.def)             Requested size: 398.33858pt x 444.75243pt.
-[31] [32 <./imagens/diagrama_4.png>] [33]) (capitulos/resultados_discussao.tex
-[34] [35]
+ [31] [32 <./imagens/diagrama_4.png>] [33]
+[34]) (capitulos/resultados_discussao.tex [35]
 Cap\'{\i }tulo 5.
-<./imagens/menu_temas.png, id=432, 1445.4pt x 813.0375pt>
+<./imagens/menu_temas.png, id=464, 1445.4pt x 813.0375pt>
 File: ./imagens/menu_temas.png Graphic file (type png)
 <use ./imagens/menu_temas.png>
 Package pdftex.def Info: ./imagens/menu_temas.png  used on input line 17.
@@ -2039,40 +2020,46 @@ Package pdftex.def Info: ./imagens/menu_temas.png  used on input line 17.
 [36
 
  <./imagens/menu_temas.png>]
-<./imagens/menu_sons.png, id=440, 1445.4pt x 813.0375pt>
+<./imagens/menu_sons.png, id=472, 1445.4pt x 813.0375pt>
 File: ./imagens/menu_sons.png Graphic file (type png)
 <use ./imagens/menu_sons.png>
 Package pdftex.def Info: ./imagens/menu_sons.png  used on input line 21.
 (pdftex.def)             Requested size: 341.43306pt x 192.0563pt.
-<./imagens/tabuleiro_arabe.png, id=442, 1445.4pt x 813.0375pt>
+<./imagens/tabuleiro_arabe.png, id=474, 1445.4pt x 813.0375pt>
 File: ./imagens/tabuleiro_arabe.png Graphic file (type png)
 <use ./imagens/tabuleiro_arabe.png>
 Package pdftex.def Info: ./imagens/tabuleiro_arabe.png  used on input line 27.
 (pdftex.def)             Requested size: 341.43306pt x 192.0563pt.
  [37 <./imagens/menu_sons.png> <./imagens/tabuleiro_arabe.png>]
+Overfull \hbox (7.04684pt too wide) in paragraph at lines 34--35
+[]\OT1/lmss/m/n/12 (-20) Os tes-tes fo-ram di-vi-di-dos nos tr[]es n[]^^Pveis d
+e di-fi-cul-dade pro-gra-ma-dos em \OT1/lmtt/m/n/12 chess[]bridge.py\OT1/lmss/m
+/n/12 (-20) .
+ []
+
 LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <10.95> not available
 (Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 49.
-) (capitulos/consideracoes_finais.tex [38]
+) (capitulos/consideracoes_finais.tex [38] [39]
 Cap\'{\i }tulo 6.
-[39
+[40
 
 ]) (tc.bbl (tc.brf)
 \tf@brf=\write6
 \openout6 = `tc.brf'.
 
- [40]
+ [41]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\uppercase' on input line 3.
 
 bibitemlist
-) (capitulos/anexo.tex [41
-
-]
-AP\^ENDICE A.
 [42
 
-] [43]) [44]
+]) (capitulos/anexo.tex [43]
+AP\^ENDICE A.
+[44
+
+] [45]) [46]
 \tf@lof=\write7
 \openout7 = `tc.lof'.
 
@@ -2093,13 +2080,13 @@ Package rerunfilecheck Info: File `tc.brf' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 39271 strings out of 467871
- 738838 string characters out of 5417408
- 1246343 words of memory out of 5000000
- 67050 multiletter control sequences out of 15000+600000
- 671328 words of font info for 185 fonts, out of 8000000 for 9000
+ 39346 strings out of 467871
+ 739998 string characters out of 5417408
+ 1241343 words of memory out of 5000000
+ 67107 multiletter control sequences out of 15000+600000
+ 671721 words of font info for 189 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 113i,24n,121p,1558b,781s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 113i,24n,121p,1558b,786s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
 m/cmsy10.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/public
 /lm/lmss10.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/publ
@@ -2110,9 +2097,9 @@ type1/public/lm/lmsso10.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fon
 ts/type1/public/lm/lmsso12.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/
 fonts/type1/public/lm/lmtt12.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTe
 X/fonts/type1/urw/times/utmr8a.pfb>
-Output written on tc.pdf (45 pages, 11844874 bytes).
+Output written on tc.pdf (47 pages, 11856886 bytes).
 PDF statistics:
- 731 PDF objects out of 1000 (max. 8388607)
- 190 named destinations out of 1000 (max. 500000)
+ 779 PDF objects out of 1000 (max. 8388607)
+ 200 named destinations out of 1000 (max. 500000)
  31232 words of extra memory for PDF output out of 35830 (max. 10000000)
 

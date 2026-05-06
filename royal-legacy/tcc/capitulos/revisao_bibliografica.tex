@@ -1,74 +1,81 @@
 \chapter{Revisão Bibliográfica}
 \label{capitulo:revisao_bibliografica}
 
-Este capítulo apresenta a base teórica e mercadológica que fundamenta o desenvolvimento do simulador \textit{Royal Legacy}. Para compreender a arquitetura do projeto, é necessário explorar os conceitos tecnológicos aplicados na sua construção, bem como analisar softwares já existentes que resolvem problemas semelhantes.
+Este capítulo apresenta a base teórica e mercadológica que fundamenta o desenvolvimento do simulador \textit{Royal Legacy}. Para compreender a estrutura do sistema, é necessário explorar os conceitos tecnológicos aplicados na sua construção, bem como analisar softwares já existentes que resolvem problemas semelhantes.
 
-A seção \ref{secao:fundamentacao_teorica} dedica-se à fundamentação teórica, descrevendo os conceitos de xadrez computacional, os protocolos de comunicação padronizados e as tecnologias (motores e linguagens de programação) escolhidas para o desenvolvimento. Em seguida, a seção \ref{secao:trabalhos_correlatos} apresenta uma análise de trabalhos correlatos e plataformas de xadrez amplamente utilizadas no mercado, destacando as diferenças e justificando as escolhas arquiteturais deste projeto em relação ao cenário atual.
+A seção \ref{secao:fundamentacao_teorica} dedica-se à fundamentação teórica, descrevendo os conceitos de xadrez computacional, os protocolos de comunicação padronizados e as tecnologias (motores e linguagens de programação) escolhidas para o desenvolvimento. Em seguida, a seção \ref{secao:trabalhos_correlatos} apresenta uma análise de trabalhos correlatos e plataformas de xadrez amplamente utilizadas no mercado, destacando as diferenças e justificando as escolhas de modelagem deste projeto em relação ao cenário atual.
 
 \section{Fundamentação teórica}
 \label{secao:fundamentacao_teorica}
 
-A fundamentação teórica estabelece os conceitos e as ferramentas obtidos na literatura técnica que viabilizaram a construção do simulador. Segundo \citeonline{RaulSidneiWazlawick2021}, esta etapa é essencial para embasar cientificamente as decisões de projeto. A seguir, são detalhados os protocolos e \textit{frameworks} centrais do trabalho.
+A fundamentação teórica estabelece os conceitos e as ferramentas obtidos na literatura técnica que viabilizaram a construção do simulador. Segundo \citeonline{Wazlawick2021}, esta etapa é essencial para embasar cientificamente as decisões de projeto. A seguir, são detalhados os protocolos e \textit{frameworks} centrais do trabalho.
 
 \subsection{Xadrez Computacional e Protocolos (FEN e UCI)}
 
-O desenvolvimento de interfaces para xadrez exige a padronização da forma como o tabuleiro e as jogadas são representados pelo computador. A notação FEN (\textit{Forsyth-Edwards Notation}) é o padrão global para descrever as posições de um jogo de xadrez em uma única linha de texto. Ela mapeia quais peças estão em quais casas, de quem é o turno e as disponibilidades de roque \cite{Hooper1992}.
+O desenvolvimento de ambientes visuais para xadrez exige a padronização da forma como o tabuleiro e as jogadas são representados pelo computador. A notação FEN (\textit{Forsyth-Edwards Notation}) é o padrão global para descrever as posições de um jogo de xadrez em uma única linha de texto. Ela mapeia quais peças estão em quais casas, de quem é o turno e as disponibilidades de roque \cite{Hooper1992}. Para alcançar alta eficiência no cálculo de movimentos, motores modernos utilizam \textit{bitboards}. Segundo \citeonline{Pires2022}, tratam-se de estruturas de 64 bits que permitem operações lógicas rápidas diretamente no \textit{hardware} do processador, representando o tabuleiro de forma otimizada.
 
-Além da representação do tabuleiro, a comunicação com motores de Inteligência Artificial requer uma linguagem comum. O protocolo UCI (\textit{Universal Chess Interface}) é um padrão aberto que permite que interfaces gráficas (GUI) conversem com motores de xadrez de forma independente. O motor recebe a posição atual via texto e devolve a melhor jogada calculada, garantindo a separação entre a lógica visual e a lógica matemática profunda.
+Além da representação do tabuleiro, a comunicação com motores de Inteligência Artificial requer uma linguagem comum. O protocolo UCI (\textit{Universal Chess Interface}) é um padrão aberto que permite que os sistemas gráficos (GUI) conversem com motores de xadrez de forma independente. O motor recebe a posição atual via texto e devolve a melhor jogada calculada, garantindo a separação absoluta entre a camada de apresentação e o núcleo de processamento lógico.
 
 \subsection{Godot Engine e GDScript}
 
-A Godot Engine é um motor de jogo (\textit{Game Engine}) de código aberto e multiplataforma, amplamente reconhecido pela sua arquitetura flexível baseada em nós (\textit{nodes}) e cenas. Diferente de outras ferramentas do mercado, a Godot oferece um ambiente unificado para o desenvolvimento 2D e 3D, sendo altamente otimizada para a criação de interfaces de usuário (UI) complexas \cite{Linietsky2023}.
+A Godot Engine é um motor de jogo (\textit{Game Engine}) de código aberto e multiplataforma, amplamente reconhecido pela sua estrutura flexível baseada em nós (\textit{nodes}) e cenas. Segundo \citeonline[p. 11]{Gregory2018}, um motor de jogo moderno define-se como "uma suite de ferramentas e tecnologias concebidas para simplificar o processo de desenvolvimento de jogos, fornecendo funcionalidades nucleares reutilizáveis". Essa robustez permite que o desenvolvedor foque na lógica específica, enquanto o motor gerencia a renderização complexa de UI \cite{Linietsky2023}.
 
-Para a manipulação da lógica interna do jogo, utilizou-se o GDScript, a linguagem de programação nativa da Godot. O GDScript possui uma sintaxe inspirada em Python, sendo dinamicamente tipada e profundamente integrada ao motor, o que facilita o acesso rápido aos elementos visuais, instanciamento de cenas e manipulação de estruturas de dados, como os Dicionários utilizados para a troca de temas no \textit{Royal Legacy}.
+Além da base tecnológica, a qualidade da experiência do usuário foi central na concepção do \textit{Royal Legacy}. Como afirma \citeonline[p. 8]{Norman2013}, "a interface é o meio pelo qual o utilizador interage com o sistema e a sua clareza determina a eficácia dessa interação". Para a manipulação dessa lógica, utilizou-se o GDScript, a linguagem nativa da Godot, que facilita o acesso rápido aos elementos visuais e a manipulação de estruturas de dados (como os Dicionários utilizados para a troca de temas).
 
 \subsection{Linguagem Python}
 
-Python é uma linguagem de programação de alto nível, interpretada e de propósito geral, conhecida por sua legibilidade e vasta biblioteca padrão \cite{VanRossum2009}. Neste projeto, Python foi escolhido para atuar como um \textit{middleware} (ponte) devido à sua robustez na manipulação de processos do sistema operacional e fluxos de entrada e saída de dados. Através de bibliotecas específicas, o script Python executa o binário da Inteligência Artificial em segundo plano, recebe os comandos da interface na Godot, formata os dados e os repassa via protocolo UCI, resolvendo os problemas de travamento da interface gráfica.
+Python é uma linguagem de programação de alto nível conhecida por sua legibilidade e vasta biblioteca padrão \cite{VanRossum2009}. Neste projeto, atua como um \textit{middleware} (ponte) devido à sua robustez na manipulação de processos do sistema operacional. \citeonline[p. 234]{Sommerville2011} detalha a importância dessa estrutura em projetos de \textit{software}:
+
+\begin{quote}
+	O middleware é um software que fornece serviços de ligação a aplicações de software para além dos disponíveis no sistema operativo. Pode ser descrito como "cola de software", pois facilita a comunicação e a gestão de dados em sistemas distribuídos ou integrados.
+\end{quote}
+
+Através de bibliotecas específicas, o \textit{script} Python executa o binário da Inteligência Artificial em segundo plano, recebe os comandos da camada gráfica da Godot, formata os dados e os repassa via protocolo UCI, resolvendo os problemas de travamento e garantindo a fluidez da renderização.
 
 \subsection{Motor de Inteligência Artificial Stockfish}
 
-O Stockfish é atualmente um dos motores de xadrez de código aberto mais fortes do mundo. Em vez de possuir uma interface visual própria, ele é um programa executável operado inteiramente por linha de comando. Nas suas versões mais recentes, o Stockfish combina algoritmos tradicionais de busca em profundidade, como o \textit{Alpha-Beta Pruning}, com avaliações baseadas em redes neurais eficientes (NNUE), permitindo-lhe avaliar milhões de posições por segundo com precisão sobre-humana \cite{Stockfish2023}.
+O Stockfish é atualmente um dos motores de xadrez de código aberto mais fortes do mundo, operado inteiramente por linha de comando. Como explicam \citeonline[p. 165]{RussellNorvig2021}, no xadrez computacional, "a busca competitiva em jogos de soma zero exige algoritmos de poda para gerir a explosão combinatória de lances possíveis".
+
+O sucesso do Stockfish deve-se justamente ao seu algoritmo de busca \textit{alfa-beta} otimizado, que descarta ramos menos promissores da árvore de decisão \cite{Amorim2002}. Além disso, a partir da versão 12, ele integra avaliações baseadas em redes neurais eficientes (NNUE), permitindo-lhe avaliar milhões de posições por segundo com precisão sobre-humana, mesmo operando em CPUs comuns \cite{Stockfish2023}.
 
 \section{Trabalhos correlatos}
 \label{secao:trabalhos_correlatos}
 
-Esta seção apresenta os principais softwares, plataformas e repositórios relacionados ao tema deste estudo. A análise destes sistemas permite não apenas identificar os padrões da indústria, mas também reconhecer as bases comunitárias que apoiaram o desenvolvimento arquitetural do simulador \textit{Royal Legacy}.
+Esta seção apresenta os principais \textit{softwares}, plataformas e repositórios relacionados ao tema deste estudo. A análise destes sistemas permite não apenas identificar os padrões da indústria, mas também reconhecer as bases comunitárias que apoiaram a estruturação técnica do simulador \textit{Royal Legacy}.
 
 \subsection{Godot With Me: Chess (Repositório Open-Source)}
 
-O projeto \textit{Godot With Me: Chess} é um repositório de código aberto hospedado no GitHub que serve como um guia prático para a implementação das regras básicas de xadrez utilizando a Godot Engine. Ele aborda a movimentação em \textit{grid} (grade) e o instanciamento das peças 2D no tabuleiro \cite{GodotWithMe2023, GodotWithMeVideo}.
+O projeto \textit{Godot With Me: Chess} é um repositório hospedado no GitHub que serve como um guia prático para a implementação das regras básicas de xadrez utilizando a Godot Engine \cite{GodotWithMe2023, GodotWithMeVideo}.
 
-Este repositório serviu como principal referência inicial para o desenvolvimento do \textit{Royal Legacy}, auxiliando no entendimento da manipulação de matrizes em GDScript e na estruturação visual das casas lógicas. No entanto, o presente trabalho diferencia-se e expande significativamente o escopo desse repositório base ao implementar três grandes melhorias estruturais: a integração de uma Inteligência Artificial externa (Stockfish) operando em segundo plano via Python; a criação de um gerenciador de cenas estruturado para menus complexos; e um sistema dinâmico de troca de temas visuais via Dicionários de dados.
-
-%\figura{caminho}{tamanho cm}{legenda}{referencia}
-\figura{./imagens/gwm_git.png}{12cm}{Interface do repositório Open-Source.}{figura:Godot_with_me_git }
+Este repositório serviu como referência inicial para o entendimento da manipulação de matrizes em GDScript. No entanto, o presente trabalho diferencia-se e expande significativamente o escopo sistêmico ao implementar a integração de uma IA externa operando em segundo plano via Python, a criação de um gerenciador de cenas para menus complexos e um sistema dinâmico de troca de temas visuais.
 
 %\figura{caminho}{tamanho cm}{legenda}{referencia}
-\figura{./imagens/gwm_ytb.png}{12cm}{Interface do canal no YouTube.}{figura:Godot_with_me_youtube }
+\figura{./imagens/gwm_git.png}{12cm}{Página do repositório Open-Source.}{figura:Godot_with_me_git }
+
+%\figura{caminho}{tamanho cm}{legenda}{referencia}
+\figura{./imagens/gwm_ytb.png}{12cm}{Visualização do canal no YouTube.}{figura:Godot_with_me_youtube }
 
 \subsection{Lichess (Plataforma Web Open-Source)}
 
-O Lichess é um dos maiores servidores de xadrez da Internet, sendo totalmente gratuito e de código aberto. A plataforma permite partidas \textit{multiplayer} e contra a máquina, utilizando o próprio motor Stockfish nos seus servidores (\textit{backend}) ou através da compilação em WebAssembly no navegador do usuário (\textit{frontend}). 
+O Lichess é um dos maiores servidores de xadrez da Internet, sendo totalmente gratuito. A plataforma permite partidas utilizando o motor Stockfish nos seus servidores (\textit{backend}) ou através do navegador do usuário (\textit{frontend}). 
 
-A figura \ref{figura:lichess_interface} apresenta o tabuleiro padrão da plataforma. Embora seja uma referência mundial, o Lichess possui uma arquitetura focada em tecnologias web (cliente-servidor). O presente trabalho difere por ser uma aplicação \textit{desktop} nativa focada em renderização através de uma \textit{Game Engine}, dispensando a necessidade de navegadores para a integração com a Inteligência Artificial.
+A figura \ref{figura:lichess_interface} apresenta o tabuleiro padrão da plataforma. Embora seja uma referência mundial, o Lichess possui um arranjo tecnológico focado em ambiente \textit{web}. O presente trabalho difere por ser uma aplicação \textit{desktop} nativa focada em renderização através de uma \textit{Game Engine}, dispensando navegadores para a integração com a IA.
 
 %\figura{caminho}{tamanho cm}{legenda}{referencia}
-\figura{./imagens/lichess.png}{12cm}{Interface de partida contra o computador na plataforma Lichess.}{figura:lichess_interface}
+\figura{./imagens/lichess.png}{12cm}{Ambiente de partida contra o computador na plataforma Lichess.}{figura:lichess_interface}
 
 \subsection{Lucas Chess}
 
-O \textit{Lucas Chess} é um software \textit{desktop} voltado para o treinamento e ensino de xadrez. O seu grande diferencial é a inclusão de dezenas de motores de IA diferentes, configurados para simular adversários de diversas faixas de força (rating ELO), de iniciantes a Grandes Mestres.
+O \textit{Lucas Chess} é um \textit{software desktop} voltado para o treinamento de xadrez, incluindo dezenas de motores de IA diferentes.
 
-Assim como o projeto \textit{Royal Legacy}, o Lucas Chess utiliza a integração local com motores via protocolo UCI. No entanto, a sua interface gráfica é construída com ferramentas tradicionais de janelas do sistema operacional, focando mais na utilidade estatística do que na experiência audiovisual ou fluidez de animações. O uso da Godot Engine neste TCC propõe justamente uma evolução na apresentação visual e interativa desse tipo de simulador local.
+Assim como o projeto \textit{Royal Legacy}, ele utiliza a integração local via protocolo UCI. No entanto, a sua camada de apresentação é construída com ferramentas tradicionais de janelas do sistema operacional, focando na utilidade estatística. O uso da Godot Engine neste TCC propõe justamente uma evolução audiovisual e interativa para esse tipo de simulador.
 
 %\figura{caminho}{tamanho cm}{legenda}{referencia}
-\figura{./imagens/lucas_chess.png}{12cm}{Interface do site Lucas Chess.}{figura:lucas_chess}
-
+\figura{./imagens/lucas_chess.png}{12cm}{Layout do software Lucas Chess.}{figura:lucas_chess}
 
 \subsection{Chess.com}
 
-O Chess.com é a plataforma comercial líder de mercado em xadrez digital. A aplicação oferece uma vasta gama de personalização de temas, avatares (bots) com personalidades distintas e análises profundas de partidas. Por ser um software proprietário, os motores lógicos utilizados por trás dos seus "bots" são fechados em servidores remotos de alto desempenho. O desenvolvimento do \textit{Royal Legacy} busca espelhar a experiência de customização visual e a seleção de dificuldades de IA encontrada no Chess.com, porém arquitetando tudo de forma local, \textit{offline} e utilizando apenas ferramentas \textit{open-source}.
+O Chess.com é a plataforma comercial líder de mercado. A aplicação oferece uma vasta gama de personalização de temas e avatares (\textit{bots}). Por ser um \textit{software} proprietário, os motores lógicos utilizados são fechados em servidores remotos. O desenvolvimento do \textit{Royal Legacy} busca espelhar a experiência de customização estética e seleção de dificuldades encontrada no Chess.com, porém estruturando tudo de forma local, \textit{offline} e utilizando apenas ferramentas \textit{open-source}.
 
 %\figura{caminho}{tamanho cm}{legenda}{referencia}
-\figura{./imagens/chess.png}{12cm}{Interface do site Chess.com.}{figura:chess}
+\figura{./imagens/chess.png}{12cm}{Componente visual do site Chess.com.}{figura:chess}

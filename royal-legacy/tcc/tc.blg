@@ -16,6 +16,10 @@ Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'wiz_functions' (item size: 4) to 9000 items.
 Database file #1: abntex2-options.bib
 Database file #2: referencias.bib
+Repeated entry---line 88 of file referencias.bib
+ : @book{Fowler2006
+ :                 ,
+I'm skipping whatever remains of this entry
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'glb_str_end' (item size: 4) to 20 items.
 Reallocating 'glb_str_ptr' (item size: 4) to 20 items.
@@ -25,44 +29,45 @@ Reallocating 'global_strs' (item size: 1) to 4000000 items.
 | Em caso de dúvidas ou problemas com este estilo procure |
 | http://www.abntex.net.br/                               |
 +---------------------------------------------------------+
-You've used 11 entries,
+You've used 19 entries,
             6714 wiz_defined-function locations,
-            1254 strings with 10442 characters,
-and the built_in function-call counts, 10152 in all, are:
-= -- 1125
-> -- 208
-< -- 149
-+ -- 267
-- -- 65
-* -- 605
-:= -- 1361
-add.period$ -- 38
-call.type$ -- 11
-change.case$ -- 79
-chr.to.int$ -- 18
-cite$ -- 9
-duplicate$ -- 754
-empty$ -- 628
-format.name$ -- 302
-if$ -- 2235
+            1307 strings with 11300 characters,
+and the built_in function-call counts, 15259 in all, are:
+= -- 1486
+> -- 365
+< -- 152
++ -- 323
+- -- 115
+* -- 934
+:= -- 2081
+add.period$ -- 65
+call.type$ -- 19
+change.case$ -- 140
+chr.to.int$ -- 35
+cite$ -- 17
+duplicate$ -- 1042
+empty$ -- 1077
+format.name$ -- 534
+if$ -- 3438
 int.to.chr$ -- 2
 int.to.str$ -- 0
-missing$ -- 186
-newline$ -- 48
-num.names$ -- 45
-pop$ -- 250
+missing$ -- 333
+newline$ -- 84
+num.names$ -- 85
+pop$ -- 439
 preamble$ -- 1
-purify$ -- 37
+purify$ -- 63
 quote$ -- 0
-skip$ -- 886
+skip$ -- 1168
 stack$ -- 1
-substring$ -- 360
-swap$ -- 277
+substring$ -- 501
+swap$ -- 386
 text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 0
+type$ -- 4
 warning$ -- 0
-while$ -- 60
+while$ -- 108
 width$ -- 0
-write$ -- 141
+write$ -- 257
+(There was 1 error message)

@@ -1,7 +1,7 @@
 \chapter{Considerações Finais}
 \label{capitulo:consideracoes_finais}
 
-Este capítulo apresenta as considerações finais do trabalho, sumarizando os resultados obtidos com o desenvolvimento do simulador \textit{Royal Legacy}. O objetivo geral desta pesquisa foi plenamente alcançado, uma vez que foi possível validar a viabilidade técnica de integrar um motor de análise complexo (Stockfish) a um motor de jogos moderno (Godot), garantindo tanto a precisão lógica quanto a fluidez visual. O projeto resultou em uma experiência de xadrez digital estável, integrando o processamento de alto desempenho sem comprometer a interface gráfica. O capítulo divide-se nas seções \ref{secao:contribuicoes}, que detalha os avanços técnicos e desafios superados, e \ref{secao:trabalhos_futuros}, que sugere caminhos para a continuidade desta pesquisa.
+Este capítulo apresenta as considerações finais do trabalho, sumarizando os resultados obtidos com o desenvolvimento do simulador \textit{Royal Legacy}. O objetivo geral desta pesquisa foi plenamente alcançado, uma vez que foi possível validar a viabilidade técnica de integrar um motor de análise complexo (Stockfish) a um motor de jogos moderno (Godot), garantindo tanto a precisão lógica quanto a fluidez visual. O projeto resultou em uma experiência de xadrez digital estável, integrando o processamento de alto desempenho sem comprometer a camada de visualização. O capítulo divide-se nas seções \ref{secao:contribuicoes}, que detalha os avanços técnicos e desafios superados, e \ref{secao:trabalhos_futuros}, que sugere caminhos para a continuidade desta pesquisa.
 
 \section{Contribuições e Desafios de Integração}
 \label{secao:contribuicoes}
@@ -9,11 +9,11 @@ Este capítulo apresenta as considerações finais do trabalho, sumarizando os r
 O desenvolvimento deste projeto resultou em avanços técnicos e estruturais significativos para a criação de sistemas de jogos integrados a motores externos. As principais contribuições e superações técnicas deste trabalho são detalhadas a seguir:
 
 \begin{itemize}
-	\item \textbf{Arranjo Assíncrono de Comunicação:} A criação de um \textit{middleware} em Python demonstrou ser uma solução eficaz para mitigar a latência na camada de visualização (comumente referida como \textit{stuttering}). A execução isolada do binário do Stockfish permitiu que o ambiente de interação mantivesse uma taxa de renderização constante de 60 FPS, mesmo durante o processamento de jogadas complexas.
+	\item \textbf{Arranjo Assíncrono de Comunicação:} A criação de um \textit{middleware} em Python demonstrou ser uma solução eficaz para mitigar a latência na camada gráfica (comumente referida como \textit{stuttering}). A execução isolada do binário do Stockfish permitiu que o ambiente de interação mantivesse uma taxa de renderização constante de 60 FPS, mesmo durante o processamento de jogadas complexas.
 	
-	\item \textbf{Motor Lógico Independente em GDScript:} A transcrição integral das regras do xadrez incluindo movimentos especiais como \textit{en passant}, roque e promoção para a linguagem nativa da Godot resultou em um sistema modular. O uso de matrizes bidimensionais para representação do tabuleiro facilitou a manutenção do código e a validação de estados de jogo.
+	\item \textbf{Motor Lógico Independente em GDScript:} A transcrição integral das regras do xadrez — incluindo movimentos especiais como \textit{en passant}, roque e promoção — para a linguagem nativa da Godot resultou em um sistema modular. O uso de matrizes bidimensionais para a representação do tabuleiro facilitou a manutenção do código e a validação contínua dos estados de jogo.
 	
-	\item \textbf{Superação de Desafios na Integração de Sistemas:} Um dos principais obstáculos superados foi a sincronização entre o interpretador Python e o sistema de sinais da Godot. Foi necessária uma gestão rigorosa de processos para impedir que instâncias do motor de busca permanecessem como processos órfãos, garantindo a estabilidade e a integridade da memória do sistema durante longas sessões de uso.
+	\item \textbf{Superação de Desafios na Integração de Sistemas:} Um dos principais obstáculos superados foi a sincronização entre o interpretador Python e o sistema de sinais da Godot. Foi necessária uma gestão rigorosa de processos para impedir que instâncias do motor de busca permanecessem executando em segundo plano como processos órfãos, garantindo a estabilidade e a integridade da memória do sistema durante longas sessões de uso.
 	
 	\item \textbf{Sistema de Customização Dinâmica:} A implementação de um gerenciador de temas baseado em dicionários de dados otimizou a transição de recursos visuais (\textit{sprites} e paletas) em tempo de execução. Esta abordagem eliminou a necessidade de estruturas condicionais extensas, tornando o componente visual mais leve e eficiente em termos de consumo de memória.
 \end{itemize}
@@ -21,11 +21,11 @@ O desenvolvimento deste projeto resultou em avanços técnicos e estruturais sig
 \section{Trabalhos Futuros}
 \label{secao:trabalhos_futuros}
 
-Apesar do pleno funcionamento da arquitetura proposta e do atingimento dos objetivos iniciais, o escopo do \textit{Royal Legacy} permite diversas expansões. Para que futuros pesquisadores ou desenvolvedores continuem contribuindo com o tema, sugerem-se as seguintes melhorias a médio e longo prazo:
+Apesar do pleno funcionamento da estrutura sistêmica proposta e do atingimento dos objetivos iniciais, o escopo do \textit{Royal Legacy} permite diversas expansões. Para que futuros pesquisadores ou desenvolvedores continuem contribuindo com o tema, sugerem-se as seguintes melhorias a médio e longo prazo:
 
 \begin{itemize}
-	\item \textbf{Implementação de \textit{Multiplayer} Online:} Expandir o sistema para suportar partidas remotas entre jogadores (PvP via rede), utilizando a API de rede de alto nível da Godot ou WebSockets para a troca eficiente de \textit{strings} FEN através de um servidor central.
-	\item \textbf{Portabilidade para Dispositivos Móveis:} Adaptar a interface para telas sensíveis ao toque (UX/UI \textit{mobile}) e reestruturar a comunicação assíncrona para compilar o código-fonte do Stockfish nativamente como um módulo em C++ (GDExtension), permitindo a execução em sistemas Android e iOS sem a necessidade do interpretador Python.
+	\item \textbf{Implementação de \textit{Multiplayer} Online:} Expandir o sistema para suportar partidas remotas entre jogadores (PvP via rede), utilizando a API de rede de alto nível da Godot ou \textit{WebSockets} para a troca eficiente de \textit{strings} FEN através de um servidor central.
+	\item \textbf{Portabilidade para Dispositivos Móveis:} Adaptar a camada de apresentação para telas sensíveis ao toque (UX/UI \textit{mobile}) e reestruturar a comunicação assíncrona para compilar o código-fonte do Stockfish nativamente como um módulo em C++ (GDExtension), permitindo a execução em sistemas Android e iOS sem a necessidade do interpretador Python.
 	\item \textbf{Integração com Múltiplos Motores (IA):} Adicionar suporte a outras Inteligências Artificiais de xadrez de código aberto compatíveis com o protocolo UCI, como a Leela Chess Zero (baseada em redes neurais), permitindo que o usuário enfrente oponentes virtuais com diferentes "personalidades" e estilos de jogo.
-	\item \textbf{Análise de Partidas em Tempo Real:} Desenvolver um módulo gráfico que traduza a avaliação numérica contínua do Stockfish em uma barra de vantagens visual durante o jogo, auxiliando o usuário no aprendizado, estudo de posições e detecção de erros graves (\textit{blunders}).
+	\item \textbf{Análise de Partidas em Tempo Real:} Desenvolver um módulo gráfico que traduza a avaliação numérica contínua do Stockfish em uma barra de vantagens visual durante o jogo, auxiliando o usuário no aprendizado, no estudo de posições e na detecção de erros graves (\textit{blunders}).
 \end{itemize}
