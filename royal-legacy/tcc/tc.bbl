@@ -5,9 +5,9 @@
 \providecommand{\abntbstabout}[1]{}
 \abntbstabout{v-1.9.7 }
 
-\bibitem[Amorim 2002]{Amorim2002}
-\abntrefinfo{Amorim}{AMORIM}{2002}
-{AMORIM, C.~A. de.
+\bibitem[{Amorim} 2002]{Amorim2002}
+\abntrefinfo{{Amorim}}{{Amorim}}{2002}
+{{Amorim}, C.~A. de.
 \textbf{A Máquina e seus Limites: Uma Investigação Sobre o Xadrez
   Computacional}.
 Dissertação (Mestrado) --- UFBA, 2002.}
@@ -34,9 +34,9 @@ Dispon{\'\i}vel em: \url{https://github.com/Godot-With-Me/Chess}. Acesso em: 31
 Dispon{\'\i}vel em: \url{https://youtu.be/1y57hJo1ONQ?si=IkjlcUxRxrgqTy1Q}.
   Acesso em: 31 mar. 2026.}
 
-\bibitem[Gregory 2018]{Gregory2018}
-\abntrefinfo{Gregory}{GREGORY}{2018}
-{GREGORY, J. \textbf{Game Engine Architecture}. 3. ed. Boca Raton: CRC Press,
+\bibitem[{Gregory} 2018]{Gregory2018}
+\abntrefinfo{{Gregory}}{{Gregory}}{2018}
+{{Gregory}, J. \textbf{Game Engine Architecture}. 3. ed. Boca Raton: CRC Press,
   2018.}
 
 \bibitem[{Hooper} e {Whyld} 1992]{Hooper1992}
@@ -59,30 +59,30 @@ Dispon{\'\i}vel em: \url{https://youtu.be/1y57hJo1ONQ?si=IkjlcUxRxrgqTy1Q}.
 Dispon{\'\i}vel em: \url{https://docs.godotengine.org/}. Acesso em: 15 mar.
   2026.}
 
-\bibitem[Massollar 2005]{Massollar2005}
-\abntrefinfo{Massollar}{MASSOLLAR}{2005}
-{MASSOLLAR, J. \textbf{Modelagem de Sistemas com UML}. [S.l.]: COPPE/UFRJ,
+\bibitem[{Massollar} 2005]{Massollar2005}
+\abntrefinfo{{Massollar}}{{Massollar}}{2005}
+{{Massollar}, J. \textbf{Modelagem de Sistemas com UML}. [S.l.]: COPPE/UFRJ,
   2005.}
 
-\bibitem[Norman 2013]{Norman2013}
-\abntrefinfo{Norman}{NORMAN}{2013}
-{NORMAN, D.~A. \textbf{The Design of Everyday Things}. New York: Basic Books,
+\bibitem[{Norman} 2013]{Norman2013}
+\abntrefinfo{{Norman}}{{Norman}}{2013}
+{{Norman}, D.~A. \textbf{The Design of Everyday Things}. New York: Basic Books,
   2013.}
 
-\bibitem[Pires e Pedrini 2022]{Pires2022}
-\abntrefinfo{Pires e Pedrini}{PIRES; PEDRINI}{2022}
-{PIRES, G.~S.; PEDRINI, H. Métodos de aprendizado de máquina aplicados ao
+\bibitem[{Pires} e {Pedrini} 2022]{Pires2022}
+\abntrefinfo{{Pires} e {Pedrini}}{{Pires}; {Pedrini}}{2022}
+{{Pires}, G.~S.; {Pedrini}, H. Métodos de aprendizado de máquina aplicados ao
   jogo de xadrez.
 \textbf{IC/UNICAMP}, 2022.}
 
-\bibitem[Russell e Norvig 2021]{RussellNorvig2021}
-\abntrefinfo{Russell e Norvig}{RUSSELL; NORVIG}{2021}
-{RUSSELL, S.; NORVIG, P. \textbf{Artificial Intelligence: A Modern Approach}.
-  4. ed. [S.l.]: Pearson, 2021.}
+\bibitem[{Russell} e {Norvig} 2021]{RussellNorvig2021}
+\abntrefinfo{{Russell} e {Norvig}}{{Russell}; {Norvig}}{2021}
+{{Russell}, S.; {Norvig}, P. \textbf{Artificial Intelligence: A Modern
+  Approach}. 4. ed. [S.l.]: Pearson, 2021.}
 
-\bibitem[Sommerville 2011]{Sommerville2011}
-\abntrefinfo{Sommerville}{SOMMERVILLE}{2011}
-{SOMMERVILLE, I. \textbf{Engenharia de Software}. 9. ed. São Paulo:
+\bibitem[{Sommerville} 2011]{Sommerville2011}
+\abntrefinfo{{Sommerville}}{{Sommerville}}{2011}
+{{Sommerville}, I. \textbf{Engenharia de Software}. 9. ed. São Paulo:
   Addison-Wesley, 2011.}
 
 \bibitem[{Stockfish Team} 2023]{Stockfish2023}

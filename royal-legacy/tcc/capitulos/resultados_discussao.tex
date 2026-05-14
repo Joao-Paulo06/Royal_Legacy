@@ -52,7 +52,7 @@ Os testes foram divididos nos três níveis de dificuldade programados em \textt
 \section{Discussão dos resultados}
 \label{secao:discussao}
 
-A análise dos dados confirma que o principal problema técnico delimitado no início da pesquisa — o congelamento da tela durante o processamento de cálculos profundos — foi mitigado com sucesso. O uso do comando \texttt{ia\_thread.start()} no \textit{script} principal permitiu que, mesmo quando o Stockfish operava em profundidade máxima (nível Difícil), o motor gráfico da Godot continuasse processando entradas do usuário e animações sem interrupções.
+A análise dos dados confirma que o principal problema técnico delimitado no início da pesquisa o congelamento da tela durante o processamento de cálculos profundos foi mitigado com sucesso. O uso do comando \texttt{ia\_thread.start()} no \textit{script} principal permitiu que, mesmo quando o Stockfish operava em profundidade máxima (nível Difícil), o motor gráfico da Godot continuasse processando entradas do usuário e animações sem interrupções.
 
 No nível "Fácil", o tempo de resposta de 0,5 segundos foi mantido por uma pausa programada (\textit{time.sleep}) no Python. Essa decisão técnica visa humanizar a experiência. Como argumenta \citeonline[p. 8]{Norman2013}, o \textit{design} de interação deve alinhar-se à expectativa humana; uma resposta artificial imediata em jogos de tabuleiro pode causar desconforto e quebra de imersão para jogadores iniciantes.
 
