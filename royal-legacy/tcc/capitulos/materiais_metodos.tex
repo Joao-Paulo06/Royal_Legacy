@@ -15,8 +15,8 @@ O desenvolvimento da aplicação, bem como os testes de estresse envolvendo o c�
 \begin{itemize}
 	\item \textbf{Processador:} AMD Ryzen 5 4600G com Radeon Graphics (3.70 GHz), arquitetura baseada em x64, contando com 6 núcleos e 12 \textit{threads}. Essa configuração foi essencial para suportar a execução do motor de jogo na via principal (\textit{main thread}) em paralelo com o motor de xadrez em segundo plano, sem causar gargalos de processamento;
 	\item \textbf{Memória RAM:} 16,0 GB de memória instalada (sendo 15,4 GB utilizáveis), garantindo a alocação necessária para a manipulação de matrizes do tabuleiro e o armazenamento da árvore de busca profunda do Stockfish;
-	\item \textbf{Sistema Operacional e Arquitetura:} Sistema operacional de 64 bits, adequado para compilar o executável da Godot Engine e lidar com o alto volume de instruções da Inteligência Artificial;
-	\item \textbf{Armazenamento:} Unidade de armazenamento em disco de estado sólido (SSD), utilizada para reduzir o tempo de carregamento dos recursos visuais (\textit{assets}) e acelerar as operações de leitura e escrita do \textit{middleware} em Python.
+	\item \textbf{Sistema Operacional e Arquitetura:} sistema operacional de 64 bits, adequado para compilar o executável da Godot Engine e lidar com o alto volume de instruções da Inteligência Artificial;
+	\item \textbf{Armazenamento:} unidade de armazenamento em disco de estado sólido (SSD), utilizada para reduzir o tempo de carregamento dos recursos visuais (\textit{assets}) e acelerar as operações de leitura e escrita do \textit{middleware} em Python.
 \end{itemize}
 
 \subsection{Recursos de \textit{Software}}
@@ -24,11 +24,11 @@ O desenvolvimento da aplicação, bem como os testes de estresse envolvendo o c�
 As tecnologias e ferramentas de \textit{software} foram aplicadas de forma modularizada, isolando a camada de apresentação da lógica computacional profunda:
 
 \begin{itemize}
-	\item \textbf{Godot Engine e GDScript:} O motor gráfico atuou como o Ambiente de Desenvolvimento Integrado (IDE) principal. O GDScript foi a linguagem utilizada para programar as regras de movimentação, o gerenciamento de cenas (\texttt{estruturador.tscn}) e o controlador de áudio (\texttt{tela\_sons.gd});
-	\item \textbf{Python:} Utilizado exclusivamente para a implementação do \textit{middleware} (\texttt{chess\_bridge.py}). A linguagem operou a biblioteca padrão \texttt{subprocess} para abrir fluxos de comunicação (leitura e escrita) com o motor de xadrez;
-	\item \textbf{Stockfish:} Empregado como o núcleo de processamento (\textit{backend}) que recebe os estados do tabuleiro e devolve os cálculos matemáticos das melhores jogadas durante as partidas contra a máquina;
-	\item \textbf{Visual Studio Code:} Adotado como IDE auxiliar para a escrita, formatação e depuração do código Python, facilitando o monitoramento das saídas de terminal;
-	\item \textbf{Protocolos FEN e UCI:} O padrão FEN serviu como estrutura de dados para trafegar o posicionamento das peças entre a Godot e o processo Python. O protocolo UCI funcionou como a interface de comunicação padrão para enviar comandos de configuração de dificuldade e receber as jogadas do Stockfish.
+	\item \textbf{Godot Engine e GDScript:} o motor gráfico atuou como o Ambiente de Desenvolvimento Integrado (IDE) principal. O GDScript foi a linguagem utilizada para programar as regras de movimentação, o gerenciamento de cenas (\texttt{estruturador.tscn}) e o controlador de áudio (\texttt{tela\_sons.gd});
+	\item \textbf{Python:} utilizado exclusivamente para a implementação do \textit{middleware} (\texttt{chess\_bridge.py}). A linguagem operou a biblioteca padrão \texttt{subprocess} para abrir fluxos de comunicação (leitura e escrita) com o motor de xadrez;
+	\item \textbf{Stockfish:} empregado como o núcleo de processamento (\textit{backend}) que recebe os estados do tabuleiro e devolve os cálculos matemáticos das melhores jogadas durante as partidas contra a máquina;
+	\item \textbf{Visual Studio Code:} adotado como IDE auxiliar para a escrita, formatação e depuração do código Python, facilitando o monitoramento das saídas de terminal;
+	\item \textbf{Protocolos FEN e UCI:} o padrão FEN serviu como estrutura de dados para trafegar o posicionamento das peças entre a Godot e o processo Python. O protocolo UCI funcionou como a interface de comunicação padrão para enviar comandos de configuração de dificuldade e receber as jogadas do Stockfish.
 \end{itemize}
 
 \section{Métodos}
@@ -47,8 +47,8 @@ Para a modelagem arquitetural do sistema, optou-se pela utilização de Diagrama
 A construção do simulador \textit{Royal Legacy} foi fragmentada em quatro iterações principais, executadas de maneira sequencial:
 
 \begin{enumerate}
-	\item \textbf{Iteração 1 - Estruturação Visual:} Criação da grade do tabuleiro (\textit{grid}), instanciamento das peças bidimensionais e implementação das lógicas basilares de seleção e movimentação \textit{point-and-click};
-	\item \textbf{Iteração 2 - Lógica de Domínio:} Codificação das validações geométricas em GDScript (movimentos legais por tipo de peça) e implementação das regras especiais e condições de vitória (\textit{en passant}, roque, promoção, xeque e xeque-mate);
-	\item \textbf{Iteração 3 - Integração Assíncrona:} Desenvolvimento da ponte em Python, codificação do mapeamento do tabuleiro para a notação FEN e consolidação da comunicação bidirecional com o Stockfish, assegurando a independência da \textit{thread} principal da interface;
-	\item \textbf{Iteração 4 - Polimento e Componentização:} Estruturação do gerenciador global de cenas (\texttt{estruturador.tscn}) para a navegação entre os menus, implementação do dicionário de dados para a transição dinâmica de temas visuais e calibração fina do sistema de áudio.
+	\item \textbf{Iteração 1 - Estruturação Visual:} criação da grade do tabuleiro (\textit{grid}), instanciamento das peças bidimensionais e implementação das lógicas basilares de seleção e movimentação \textit{point-and-click};
+	\item \textbf{Iteração 2 - Lógica de Domínio:} codificação das validações geométricas em GDScript (movimentos legais por tipo de peça) e implementação das regras especiais e condições de vitória (\textit{en passant}, roque, promoção, xeque e xeque-mate);
+	\item \textbf{Iteração 3 - Integração Assíncrona:} desenvolvimento da ponte em Python, codificação do mapeamento do tabuleiro para a notação FEN e consolidação da comunicação bidirecional com o Stockfish, assegurando a independência da \textit{thread} principal da interface;
+	\item \textbf{Iteração 4 - Polimento e Componentização:} estruturação do gerenciador global de cenas (\texttt{estruturador.tscn}) para a navegação entre os menus, implementação do dicionário de dados para a transição dinâmica de temas visuais e calibração fina do sistema de áudio.
 \end{enumerate}

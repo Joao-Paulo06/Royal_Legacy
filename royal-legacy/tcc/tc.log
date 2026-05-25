@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.3.16)  14 MAY 2026 11:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.3.16)  25 MAY 2026 14:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1918,36 +1918,36 @@ c}]) (capitulos/revisao_bibliografica.tex [16]
 Cap\'{\i }tulo 2.
 [17
 
-] [18]
-<./imagens/gwm_git.png, id=277, 1445.4pt x 813.0375pt>
+] [18] [19]
+<./imagens/gwm_git.png, id=291, 1445.4pt x 813.0375pt>
 File: ./imagens/gwm_git.png Graphic file (type png)
 <use ./imagens/gwm_git.png>
-Package pdftex.def Info: ./imagens/gwm_git.png  used on input line 53.
+Package pdftex.def Info: ./imagens/gwm_git.png  used on input line 57.
 (pdftex.def)             Requested size: 341.43306pt x 192.0563pt.
- [19]
-<./imagens/gwm_ytb.png, id=288, 1217.2978pt x 787.44188pt>
+<./imagens/gwm_ytb.png, id=293, 1217.2978pt x 787.44188pt>
 File: ./imagens/gwm_ytb.png Graphic file (type png)
 <use ./imagens/gwm_ytb.png>
-Package pdftex.def Info: ./imagens/gwm_ytb.png  used on input line 56.
+Package pdftex.def Info: ./imagens/gwm_ytb.png  used on input line 60.
 (pdftex.def)             Requested size: 341.43306pt x 220.86671pt.
-<./imagens/lichess.png, id=290, 1445.4pt x 813.0375pt>
+ [20 <./imagens/gwm_git.png> <./imagens/gwm_ytb.png>]
+<./imagens/lichess.png, id=301, 1445.4pt x 813.0375pt>
 File: ./imagens/lichess.png Graphic file (type png)
 <use ./imagens/lichess.png>
-Package pdftex.def Info: ./imagens/lichess.png  used on input line 65.
+Package pdftex.def Info: ./imagens/lichess.png  used on input line 69.
 (pdftex.def)             Requested size: 341.43306pt x 192.0563pt.
- [20 <./imagens/gwm_git.png> <./imagens/gwm_ytb.png>]
-<./imagens/lucas_chess.png, id=297, 1445.4pt x 813.0375pt>
+<./imagens/lucas_chess.png, id=302, 1445.4pt x 813.0375pt>
 File: ./imagens/lucas_chess.png Graphic file (type png)
 <use ./imagens/lucas_chess.png>
-Package pdftex.def Info: ./imagens/lucas_chess.png  used on input line 74.
+Package pdftex.def Info: ./imagens/lucas_chess.png  used on input line 78.
 (pdftex.def)             Requested size: 341.43306pt x 192.0563pt.
- [21 <./imagens/lichess.png> <./imagens/lucas_chess.png>]
-<./imagens/chess.png, id=304, 1445.4pt x 813.0375pt>
+ [21 <./imagens/lichess.png>]
+<./imagens/chess.png, id=308, 1445.4pt x 813.0375pt>
 File: ./imagens/chess.png Graphic file (type png)
 <use ./imagens/chess.png>
-Package pdftex.def Info: ./imagens/chess.png  used on input line 81.
+Package pdftex.def Info: ./imagens/chess.png  used on input line 85.
 (pdftex.def)             Requested size: 341.43306pt x 192.0563pt.
-) (capitulos/materiais_metodos.tex [22 <./imagens/chess.png>]
+) (capitulos/materiais_metodos.tex [22 <./imagens/lucas_chess.png> <./imagens/c
+hess.png>]
 Cap\'{\i }tulo 3.
 [23
 
@@ -1957,8 +1957,8 @@ LaTeX Font Info:    Trying to load font information for OT1+lmtt on input line
  (C:\Users\Usuario\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmtt.fd
 File: ot1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-Overfull \hbox (15.08331pt too wide) in paragraph at lines 28--29
-[]\OT1/lmss/bx/n/12 (-20) Python: \OT1/lmss/m/n/12 (-20) Uti-li-zado ex-clu-si-
+Overfull \hbox (13.15076pt too wide) in paragraph at lines 28--29
+[]\OT1/lmss/bx/n/12 (-20) Python: \OT1/lmss/m/n/12 (-20) uti-li-zado ex-clu-si-
 va-mente para a implementa[][]ao do \OT1/lmss/m/sl/12 (-20) mid-dleware \OT1/lm
 ss/m/n/12 (-20) (\OT1/lmtt/m/n/12 chess[]bridge.py\OT1/lmss/m/n/12 (-20) ).
  []
@@ -1966,7 +1966,7 @@ ss/m/n/12 (-20) (\OT1/lmtt/m/n/12 chess[]bridge.py\OT1/lmss/m/n/12 (-20) ).
 [24{C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rmtt.e
 nc}]) (capitulos/projeto.tex [25]
 Cap\'{\i }tulo 4.
-<./imagens/diagrama_1.png, id=335, 503.8825pt x 502.87875pt>
+<./imagens/diagrama_1.png, id=340, 503.8825pt x 502.87875pt>
 File: ./imagens/diagrama_1.png Graphic file (type png)
 <use ./imagens/diagrama_1.png>
 Package pdftex.def Info: ./imagens/diagrama_1.png  used on input line 15.
@@ -1974,37 +1974,37 @@ Package pdftex.def Info: ./imagens/diagrama_1.png  used on input line 15.
 [26
 
 ] [27 <./imagens/diagrama_1.png>]
-<./imagens/menu_principal.png, id=350, 1445.4pt x 813.0375pt>
+<./imagens/menu_principal.png, id=355, 1445.4pt x 813.0375pt>
 File: ./imagens/menu_principal.png Graphic file (type png)
 <use ./imagens/menu_principal.png>
 Package pdftex.def Info: ./imagens/menu_principal.png  used on input line 33.
 (pdftex.def)             Requested size: 284.52756pt x 160.049pt.
-<./imagens/menu_opcoes.png, id=351, 1445.4pt x 813.0375pt>
+<./imagens/menu_opcoes.png, id=356, 1445.4pt x 813.0375pt>
 File: ./imagens/menu_opcoes.png Graphic file (type png)
 <use ./imagens/menu_opcoes.png>
 Package pdftex.def Info: ./imagens/menu_opcoes.png  used on input line 34.
 (pdftex.def)             Requested size: 284.52756pt x 160.049pt.
-<./imagens/tabuleiro.png, id=353, 1445.4pt x 813.0375pt>
+<./imagens/tabuleiro.png, id=358, 1445.4pt x 813.0375pt>
 File: ./imagens/tabuleiro.png Graphic file (type png)
 <use ./imagens/tabuleiro.png>
 Package pdftex.def Info: ./imagens/tabuleiro.png  used on input line 40.
 (pdftex.def)             Requested size: 284.52756pt x 160.049pt.
  [28{C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc
 } <./imagens/menu_principal.png> <./imagens/menu_opcoes.png>]
-<./imagens/diagrama_2.png, id=365, 663.47874pt x 403.5075pt>
+<./imagens/diagrama_2.png, id=370, 663.47874pt x 403.5075pt>
 File: ./imagens/diagrama_2.png Graphic file (type png)
 <use ./imagens/diagrama_2.png>
 Package pdftex.def Info: ./imagens/diagrama_2.png  used on input line 48.
 (pdftex.def)             Requested size: 341.43306pt x 207.65167pt.
  [29 <./imagens/tabuleiro.png> <./imagens/diagrama_2.png>]
-<./imagens/diagrama_3.png, id=374, 804.00375pt x 804.00375pt>
+<./imagens/diagrama_3.png, id=379, 804.00375pt x 804.00375pt>
 File: ./imagens/diagrama_3.png Graphic file (type png)
 <use ./imagens/diagrama_3.png>
 Package pdftex.def Info: ./imagens/diagrama_3.png  used on input line 62.
 (pdftex.def)             Requested size: 341.43306pt x 341.43332pt.
 
 [30 <./imagens/diagrama_3.png>]
-<./imagens/diagrama_4.png, id=384, 783.92876pt x 875.27pt>
+<./imagens/diagrama_4.png, id=389, 783.92876pt x 875.27pt>
 File: ./imagens/diagrama_4.png Graphic file (type png)
 <use ./imagens/diagrama_4.png>
 Package pdftex.def Info: ./imagens/diagrama_4.png  used on input line 76.
@@ -2012,7 +2012,7 @@ Package pdftex.def Info: ./imagens/diagrama_4.png  used on input line 76.
  [31] [32 <./imagens/diagrama_4.png>] [33]
 [34]) (capitulos/resultados_discussao.tex [35]
 Cap\'{\i }tulo 5.
-<./imagens/menu_temas.png, id=464, 1445.4pt x 813.0375pt>
+<./imagens/menu_temas.png, id=469, 1445.4pt x 813.0375pt>
 File: ./imagens/menu_temas.png Graphic file (type png)
 <use ./imagens/menu_temas.png>
 Package pdftex.def Info: ./imagens/menu_temas.png  used on input line 17.
@@ -2020,12 +2020,12 @@ Package pdftex.def Info: ./imagens/menu_temas.png  used on input line 17.
 [36
 
  <./imagens/menu_temas.png>]
-<./imagens/menu_sons.png, id=472, 1445.4pt x 813.0375pt>
+<./imagens/menu_sons.png, id=477, 1445.4pt x 813.0375pt>
 File: ./imagens/menu_sons.png Graphic file (type png)
 <use ./imagens/menu_sons.png>
 Package pdftex.def Info: ./imagens/menu_sons.png  used on input line 21.
 (pdftex.def)             Requested size: 341.43306pt x 192.0563pt.
-<./imagens/tabuleiro_arabe.png, id=474, 1445.4pt x 813.0375pt>
+<./imagens/tabuleiro_arabe.png, id=479, 1445.4pt x 813.0375pt>
 File: ./imagens/tabuleiro_arabe.png Graphic file (type png)
 <use ./imagens/tabuleiro_arabe.png>
 Package pdftex.def Info: ./imagens/tabuleiro_arabe.png  used on input line 27.
@@ -2080,13 +2080,13 @@ Package rerunfilecheck Info: File `tc.brf' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 39348 strings out of 467871
- 740024 string characters out of 5417408
- 1241281 words of memory out of 5000000
- 67107 multiletter control sequences out of 15000+600000
- 671815 words of font info for 190 fonts, out of 8000000 for 9000
+ 39357 strings out of 467871
+ 740180 string characters out of 5417408
+ 1241345 words of memory out of 5000000
+ 67112 multiletter control sequences out of 15000+600000
+ 674779 words of font info for 193 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 113i,24n,121p,1558b,786s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 113i,24n,121p,1563b,786s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
 m/cmsy10.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/public
 /lm/lmss10.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/type1/publ
@@ -2097,9 +2097,9 @@ type1/public/lm/lmsso10.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fon
 ts/type1/public/lm/lmsso12.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTeX/
 fonts/type1/public/lm/lmtt12.pfb><C:/Users/Usuario/AppData/Local/Programs/MiKTe
 X/fonts/type1/urw/times/utmr8a.pfb>
-Output written on tc.pdf (47 pages, 11856865 bytes).
+Output written on tc.pdf (47 pages, 11865190 bytes).
 PDF statistics:
- 779 PDF objects out of 1000 (max. 8388607)
+ 783 PDF objects out of 1000 (max. 8388607)
  200 named destinations out of 1000 (max. 500000)
- 31232 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 33280 words of extra memory for PDF output out of 35830 (max. 10000000)
 
