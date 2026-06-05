@@ -206,7 +206,7 @@
 %Configura a folha de rosto
 \def\titulacaoCurso#1{\def\@titulacaoCurso{#1}}                \titulacaoCurso{}
 
-\preambulo{Trabalho de curso apresentado ao curso de \@curso\space do Instituto Federal do Tocantins – Campus Colinas do Tocantins, como requisito parcial para a obtenção do título de \@curso, sob orientação do Prof. \imprimirorientador.}
+\preambulo{Trabalho de curso apresentado ao curso de Tecnologia\space do Instituto Federal do Tocantins – Campus Colinas do Tocantins, como requisito parcial para a obtenção do título de \@curso, sob orientação do Prof. \imprimirorientador.}
 
 %Conforme o Anexo B (pg 32)
 \renewcommand{\folhaderostocontent}{

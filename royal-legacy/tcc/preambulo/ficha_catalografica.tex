@@ -2,29 +2,45 @@
 	\sffamily
 	\vspace*{\fill}					% Posição vertical
 	\begin{center}					% Minipage Centralizado
-	\fbox{\begin{minipage}[c][8cm]{13.5cm}		% Largura
-	\small
-	\imprimirautor
-	%Sobrenome, Nome do autor
-	
-	\hspace{0.5cm} \imprimirtitulo  / \imprimirautor. --
-	\imprimirlocal, \imprimirdata-
-	
-	\hspace{0.5cm} \pageref{LastPage} p. : il. (algumas color.) ; 30 cm.\\
-	
-	\hspace{0.5cm} \imprimirorientadorRotulo~\imprimirorientador\\
-	
-	\hspace{0.5cm}
-	\parbox[t]{\textwidth}{\imprimirtipotrabalho~--~\imprimirinstituicao,
-	\imprimirdata.}\\
-	
-	\hspace{0.5cm}
-		1. PALAVRA-CHAVE 1.
-		2. PALAVRA-CHAVE 2.
-		2. PALAVRA-CHAVE 3.
-		I. \imprimirorientador.
-		II. Instituto Federal Goiano Câmpus Ceres.
-		IV. TÍTULO AQUI		
-	\end{minipage}}
+		\fbox{\begin{minipage}[c][9.5cm]{13.5cm}		% Largura e Altura ajustadas para o bloco
+				\small
+				\raggedright % IMPEDE QUE AS PALAVRAS FIQUEM ESTICADAS OU MISTURADAS
+				
+				\vspace{0.2cm}
+				
+				% Cabeçalho oficial do IFTO
+				\begin{center}
+					Dados Internacionais de Catalogação na Publicação (CIP)\\
+					Bibliotecas do Instituto Federal do Tocantins\\
+				\end{center}
+				
+				\vspace{0.4cm}
+				
+				% Linha do Código Cutter e Autor Principal
+				M433d \hspace{0.5cm} Matias, Danilo Costa \\ 
+				
+				\vspace{0.2cm}
+				
+				% Bloco de texto recuado que organiza e quebra as linhas perfeitamente
+				\hspace{1.5cm} \parbox[t]{11.2cm}{%
+					\raggedright
+					\setlength{\parskip}{0.15cm} % Espaçamento sutil entre os parágrafos internos
+					
+					Desenvolvimento de um simulador de xadrez com integração do motor stockfish utilizando a Godot / Danilo Costa Matias. -- Colinas do Tocantins, TO, 2026.
+					
+					47 f. : il. color.
+					
+					Trabalho de Conclusão de Curso (Curso Superior de Tecnologia em Análise e Desenvolvimento de Sistemas) - Instituto Federal de Educação, Ciência e Tecnologia do Tocantins, Campus Colinas do Tocantins, Colinas do Tocantins, TO, 2026.
+					
+					Orientador: Me. Fernando Turíbio de Moura.
+					
+					1. Simulador de xadrez. 2. Motor Stockfish. 3. Godot engine. I. Turíbio de Moura, Fernando. II. Título.
+				}		
+				
+				\vspace{0.2cm}
+				\begin{flushright}
+					CDD 004.2
+				\end{flushright}	
+		\end{minipage}}
 	\end{center}
 \end{fichacatalografica}

@@ -12,8 +12,15 @@ A fundamentação teórica estabelece os conceitos e as ferramentas obtidos na l
 
 \subsection{Xadrez Computacional e Protocolos (FEN e UCI)}
 
-O desenvolvimento de ambientes visuais para xadrez exige a padronização da forma como o tabuleiro e as jogadas são representados pelo computador. A Notação Forsyth-Edwards0
- (\textit{FEN, do inglês Forsyth-Edwards Notation}) é o padrão global para descrever as posições de um jogo de xadrez em uma única linha de texto. Ela mapeia quais peças estão em quais casas, de quem é o turno e as disponibilidades de roque \cite{Hooper1992}. Para alcançar alta eficiência no cálculo de movimentos, motores modernos utilizam \textit{bitboards}. Segundo \citeonline{Pires2022}, tratam-se de estruturas de 64 bits que permitem operações lógicas rápidas diretamente no \textit{hardware} do processador, representando o tabuleiro de forma otimizada.
+O desenvolvimento de ambientes visuais para xadrez exige a padronização da forma como o tabuleiro e as jogadas são representados pelo computador. A Notação Forsyth-Edwards (\textit{FEN, do inglês Forsyth-Edwards Notation}) é o padrão global para descrever as posições de um jogo de xadrez em uma única linha de texto. Ela mapeia quais peças estão em quais casas, de quem é o turno e as disponibilidades de roque \cite{Hooper1992}. Para alcançar alta eficiência no cálculo de movimentos, motores modernos utilizam \textit{bitboards}. Segundo \citeonline{Pires2022}, tratam-se de estruturas de 64 bits que permitem operações lógicas rápidas diretamente no \textit{hardware} do processador, representando o tabuleiro de forma otimizada.
+
+Como exemplo prático, a configuração da posição inicial clássica de uma partida é traduzida pelo padrão FEN através da seguinte cadeia de caracteres:
+
+\begin{center}
+	\texttt{rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1}
+\end{center}
+
+Nessa estrutura, o primeiro bloco mapeia as linhas do tabuleiro da oitava para a primeira fileira, separadas por barras; as letras maiúsculas denotam as peças brancas (ex: \texttt{R} para torre), as minúsculas indicam as pretas e os números representam espaços vazios consecutivos. Os blocos subsequentes definem, respectivamente: a cor ativa que deve jogar (\texttt{w} para brancas), os direitos de roque ainda vigentes (\texttt{KQkq}), a existência de alvos para capturas \textit{en passant} (\texttt{-}), o contador de meio-lances para a regra de empate (\texttt{0}) e o número total de lances completos da partida (\texttt{1}).
 
 Além da representação do tabuleiro, a comunicação com motores de Inteligência Artificial requer uma linguagem comum. O protocolo UCI (\textit{Universal Chess Interface}) é um padrão aberto que permite que os sistemas gráficos (GUI) conversem com motores de xadrez de forma independente. O motor recebe a posição atual via texto e devolve a melhor jogada calculada, garantindo a separação absoluta entre a camada de apresentação e o núcleo de processamento lógico.
 
@@ -31,7 +38,7 @@ Python é uma linguagem de programação de alto nível conhecida por sua legibi
 	O middleware é um software que fornece serviços de ligação a aplicações de software para além dos disponíveis no sistema operativo. Pode ser descrito como "cola de software", pois facilita a comunicação e a gestão de dados em sistemas distribuídos ou integrados.
 \end{citacao}
 
-Através de bibliotecas específicas, o \textit{script} Python executa o binário da Inteligência Artificial em segundo plano, recebe os comandos da camada gráfica da Godot, formata os dados e os repassa via protocolo UCI, resolvendo os problemas de travamento e garantindo a fluidez da renderização.
+Através de bibliotecas específicas, o \textit{script} Python executa o binário da Inteligência Artificial Stockfish em segundo plano, recebe os comandos da camada gráfica da Godot, formata os dados e os repassa via protocolo UCI, resolvendo os problemas de travamento e garantindo a fluidez da renderização.
 
 \subsection{Motor de Inteligência Artificial Stockfish}
 \label{sec:stockfish}
@@ -40,7 +47,9 @@ O Stockfish é atualmente um dos motores de xadrez de código aberto mais fortes
 
 No entanto, devido à explosão combinatória do xadrez, calcular todas as ramificações possíveis até o fim da partida torna-se computacionalmente inviável. Como explicam \citeonline[p.~165]{RussellNorvig2021}, no xadrez computacional, ``a busca competitiva em jogos de soma zero exige algoritmos de poda para gerir a explosão combinatória de lances possíveis''. 
 
-O sucesso do Stockfish deve-se justamente à utilização de uma versão altamente otimizada do algoritmo de busca alfa-beta (\textit{Alpha-Beta Pruning}), que descarta ramos menos promissores da árvore de decisão do Minimax sem perder a jogada ideal \cite{Amorim2002}. Além disso, a partir da versão 12, ele integra avaliações baseadas em redes neurais eficientes (NNUE), permitindo-lhe avaliar milhões de posições por segundo com precisão sobre-humana, mesmo operando em CPUs comuns \cite{Stockfish2023}.
+O sucesso do Stockfish deve-se justamente à utilização de uma versão altamente otimizada do algoritmo de busca alfa-beta (\textit{Alpha-Beta Pruning}), uma técnica de otimização aplicada sobre a árvore de decisão do algoritmo Minimax. Esse mecanismo funciona estabelecendo dois valores de controle (alfa e beta) que representam as pontuações mínima e máxima que os jogadores podem garantir ao longo do cálculo. Caso o algoritmo detecte que uma jogada futura resultará em uma posição pior do que uma alternativa já avaliada, ele interrompe a exploração daquele caminho. Dessa forma, o sistema descarta ramos menos promissores da árvore de decisão sem perder a jogada ideal \cite{Amorim2002}.
+
+Além disso, a partir da versão 12, o motor integra avaliações baseadas em Redes Neurais Eficientes Atualizáveis (\textit{NNUE, do inglês Efficiently Updatable Neural Networks}). Ao contrário das redes neurais profundas convencionais, que exigem placas gráficas de alto desempenho (GPUs) para processamento, a arquitetura NNUE é composta por conexões mais rasas e otimizadas para rodar em tempo real. O seu diferencial técnico reside na avaliação incremental: em vez de recalcular todo o tabuleiro a cada movimento, a rede atualiza apenas a matriz correspondente às peças que mudaram de posição. Essa abordagem híbrida permite ao motor avaliar milhões de posições por segundo com precisão sobre-humana, mesmo operando em unidades centrais de processamento (\textit{CPUs}) comuns \cite{Stockfish2023}.
 
 \section{Trabalhos correlatos}
 \label{secao:trabalhos_correlatos}
@@ -55,9 +64,17 @@ Este repositório serviu como referência inicial para o entendimento da manipul
 
 %\figura{caminho}{tamanho cm}{legenda}{referencia}
 \figura{./imagens/gwm_git.png}{12cm}{Página do repositório \textit{Open-Source}}{figura:Godot_with_me_git }
+\begin{center}
+	\vspace{-0.2cm}
+	\small \textbf{Fonte:} Repositório Godot With Me (2026)
+\end{center}
 
 %\figura{caminho}{tamanho cm}{legenda}{referencia}
 \figura{./imagens/gwm_ytb.png}{12cm}{Visualização do canal no YouTube}{figura:Godot_with_me_youtube }
+\begin{center}
+	\vspace{-0.2cm}
+	\small \textbf{Fonte:} Canal Godot With Me (2026)
+\end{center}
 
 \subsection{Lichess (Plataforma Web Open-Source)}
 
@@ -67,6 +84,10 @@ A figura \ref{figura:lichess_interface} apresenta o tabuleiro padrão da platafo
 
 %\figura{caminho}{tamanho cm}{legenda}{referencia}
 \figura{./imagens/lichess.png}{12cm}{Ambiente de partida contra o computador na plataforma Lichess}{figura:lichess_interface}
+\begin{center}
+	\vspace{-0.2cm}
+	\small \textbf{Fonte:} Plataforma Lichess (2026)
+\end{center}
 
 \subsection{Lucas Chess}
 
@@ -76,10 +97,19 @@ Assim como o projeto \textit{Royal Legacy}, ele utiliza a integração local via
 
 %\figura{caminho}{tamanho cm}{legenda}{referencia}
 \figura{./imagens/lucas_chess.png}{12cm}{Layout do software Lucas Chess}{figura:lucas_chess}
+\nopagebreak
+\begin{center}
+	\vspace{-0.2cm} % Ajusta a aproximação com a imagem
+	\small \textbf{Fonte:} Plataforma Lucas Chess (2026)
+\end{center}
 
 \subsection{Chess.com}
 
 O Chess.com é a plataforma comercial líder de mercado. A aplicação oferece uma vasta gama de personalização de temas e avatares (\textit{bots}). Por ser um \textit{software} proprietário, os motores lógicos utilizados são fechados em servidores remotos. O desenvolvimento do \textit{Royal Legacy} busca espelhar a experiência de customização estética e seleção de dificuldades encontrada no Chess.com, porém estruturando tudo de forma local, \textit{offline} e utilizando apenas ferramentas \textit{open-source}.
 
 %\figura{caminho}{tamanho cm}{legenda}{referencia}
-\figura{./imagens/chess.png}{12cm}{Componente visual do site Chess.com}{figura:chess}
+\figura{./imagens/chess.png}{12cm}{Visual do site Chess.com}{figura:chess}
+\begin{center}
+	\vspace{-0.2cm} % Ajusta a aproximação com a imagem
+	\small \textbf{Fonte:} Plataforma Chess.com (2026)
+\end{center}

@@ -10,52 +10,65 @@ A camada de apresentação foi refinada na Godot Engine com a aplicação de uma
 
 \subsection{Menus e Customização}
 
-As Figuras \ref{figura:resultado-temas} e \ref{figura:resultado-sons} apresentam os ambientes dedicados à customização da experiência do usuário. 
+As figuras \ref{figura:resultado-temas} e \ref{figura:resultado-sons} apresentam os ambientes dedicados à customização da experiência do usuário. 
 
-Diferente dos protótipos iniciais, a implementação final utiliza o \textit{script} \texttt{tela\_temas.gd} (Figura \ref{figura:resultado-temas}) para alternar instantaneamente entre os recursos visuais (\textit{assets}), como o tema "Clássico" e "Moderno". A modularização desta tela garante que a escolha seja salva globalmente e aplicada ao tabuleiro de forma dinâmica, sem necessidade de recarregar o sistema.
+Utilizando o \textit{script} \texttt{tela\_temas.gd} \cite{RoyalLegacy2026} (figura \ref{figura:resultado-temas}) para alternar instantaneamente entre os recursos visuais (\textit{assets}), como o tema ''Clássico'' e ''Moderno". A modularização desta tela garante que a escolha seja salva globalmente e aplicada ao tabuleiro de forma dinâmica, sem necessidade de recarregar o sistema.
 
-\figura{./imagens/menu_temas.png}{12cm}{Ambiente final de seleção de temas visuais.}{figura:resultado-temas}
+\figura{./imagens/menu_temas.png}{12cm}{Ambiente final de seleção de temas visuais}{figura:resultado-temas}
+\begin{center}
+	\vspace{-0.2cm} % Ajusta a aproximação com a imagem
+	\small \textbf{Fonte:} Royal Legacy (2026)
+\end{center}
 
-Por sua vez, o menu de configurações de áudio (Figura \ref{figura:resultado-sons}), gerenciado pelo \textit{script} \texttt{tela\_sons.gd}, permite o controle granular dos decibéis. A separação dos canais em \textit{Master}, Música e Efeitos proporciona ao jogador uma experiência auditiva totalmente personalizada, sem interferir no fluxo do jogo.
+Por sua vez, o menu de configurações de áudio (figura \ref{figura:resultado-sons}), gerenciado pelo \textit{script} \texttt{tela\_sons.gd} \cite{RoyalLegacy2026}, permite o controle granular dos decibéis. A separação dos canais em \textit{Master}, Música e Efeitos proporciona ao jogador uma experiência auditiva totalmente personalizada, sem interferir no fluxo do jogo.
 
-\figura{./imagens/menu_sons.png}{12cm}{Painel final de controle de canais de áudio.}{figura:resultado-sons}
+\figura{./imagens/menu_sons.png}{12cm}{Painel final de controle de canais de áudio}{figura:resultado-sons}
+\begin{center}
+	\vspace{-0.2cm} % Ajusta a aproximação com a imagem
+	\small \textbf{Fonte:} Royal Legacy (2026)
+\end{center}
 
 \subsection{Tabuleiro e Mecânicas de Jogo}
 
-A Figura \ref{figura:resultado-jogo} exibe a tela de jogo principal. O refinamento gráfico incluiu a renderização de peças personalizadas e a implementação de sinais visuais de seleção. O uso da classe \texttt{base\_xadrez.gd} permitiu que a lógica de movimentação respondesse de forma fluida, com o realce das casas de origem e destino, facilitando a compreensão do fluxo da partida pelo usuário.
+A figura \ref{figura:resultado-jogo} exibe a tela de jogo principal. O refinamento gráfico incluiu a renderização de peças personalizadas e a implementação de sinais visuais de seleção. O uso do \textit{script} \texttt{base\_xadrez.gd} \cite{RoyalLegacy2026} permitiu que a lógica de movimentação respondesse de forma fluida, com o realce das casas de origem e destino, facilitando a compreensão do fluxo da partida pelo usuário.
 
-\figura{./imagens/tabuleiro_arabe.png}{12cm}{Ambiente de partida com aplicação de temas e realce de movimentos.}{figura:resultado-jogo}
+\figura{./imagens/tabuleiro_arabe.png}{12cm}{Ambiente de partida com aplicação de temas e realce de movimentos}{figura:resultado-jogo}
+\begin{center}
+	\vspace{-0.2cm} % Ajusta a aproximação com a imagem
+	\small \textbf{Fonte:} Royal Legacy (2026)
+\end{center}
 
 \section{Avaliação de desempenho e estabilidade}
 \label{secao:avaliacao-desempenho}
 
 Para validar a solução de integração assíncrona, o sistema foi testado monitorando-se a taxa de quadros (\textit{Frames Per Second} - FPS) da Godot enquanto o \textit{middleware} Python processava as jogadas da IA. Segundo \citeonline{Sommerville2011}, o desempenho contínuo e a confiabilidade de resposta são requisitos não-funcionais críticos para a aceitação de sistemas interativos complexos.
 
-Os testes foram divididos nos três níveis de dificuldade programados em \texttt{chess\_bridge.py}. Os resultados, consolidados na Tabela \ref{tabela:resultados-desempenho}, demonstram o tempo médio entre o envio da \textit{string} FEN e o recebimento da jogada UCI, garantindo uma taxa de atualização de tela impecável.
+Os testes foram divididos nos três níveis de dificuldade programados em \texttt{chess\_bridge.py}. Os resultados, consolidados na tabela \ref{tabela:resultados-desempenho}, demonstram o tempo médio entre o envio da \textit{string} FEN e o recebimento da jogada UCI, garantindo uma taxa de atualização de tela impecável.
 
 \begin{table}[htb]
 	\centering
-	\caption{Métricas de tempo de resposta da IA e estabilidade da renderização.}
+	\caption{Métricas de tempo de resposta da IA Stockfish e estabilidade da renderização}
 	\label{tabela:resultados-desempenho}
 	\begin{tabular}{|c|c|c|c|}
 		\hline
-		\textbf{Dificuldade} & \textbf{Lógica da IA} & \textbf{Tempo de Resposta} & \textbf{Estabilidade (FPS)} \\ \hline
+		\textbf{Dificuldade} & \textbf{Lógica da IA Stockfish} & \textbf{Tempo de Resposta} & \textbf{Estabilidade (FPS)} \\ \hline
 		Fácil & Movimento Aleatório & 0,50 segundos* & Constante a 60 FPS \\ \hline
 		Médio & Stockfish (Depth 1) & 0,85 segundos & Constante a 60 FPS \\ \hline
 		Difícil & Stockfish (Depth 20) & 2,10 segundos & Constante a 60 FPS \\ \hline
 	\end{tabular}
 	
 	\vspace{5pt}
-	{\small Fonte: Elaborado pelo autor (2026). *Inclui o atraso proposital de \textit{sleep} para simulação de pensamento.}
+	{\small *Inclui o atraso proposital de \textit{sleep} para simulação de pensamento. \\
+		\textbf{Fonte:} Elaborado pelo autor (2026).}
 \end{table}
 
 \section{Discussão dos resultados}
 \label{secao:discussao}
 
-A análise dos dados confirma que o principal problema técnico delimitado no início da pesquisa o congelamento da tela durante o processamento de cálculos profundos foi mitigado com sucesso. O uso do comando \texttt{ia\_thread.start()} no \textit{script} principal permitiu que, mesmo quando o Stockfish operava em profundidade máxima (nível Difícil), o motor gráfico da Godot continuasse processando entradas do usuário e animações sem interrupções.
+A análise dos dados confirma que o principal problema técnico delimitado no início da pesquisa o congelamento da tela durante o processamento de cálculos profundos foi mitigado com sucesso. O uso do comando \texttt{ia\_thread.start()} no \textit{script} principal \cite{RoyalLegacy2026} permitiu que, mesmo quando o motor Stockfish operava em profundidade máxima (nível Difícil), o motor gráfico da Godot continuasse processando as entradas do usuário e as animações sem interrupções na \textit{thread} principal.
 
-No nível "Fácil", o tempo de resposta de 0,5 segundos foi mantido por uma pausa programada (\textit{time.sleep}) no Python. Essa decisão técnica visa humanizar a experiência. Como argumenta \citeonline[p. 8]{Norman2013}, o \textit{design} de interação deve alinhar-se à expectativa humana; uma resposta artificial imediata em jogos de tabuleiro pode causar desconforto e quebra de imersão para jogadores iniciantes.
+No nível fácil, o tempo de resposta de 0,5 segundos foi mantido por meio de uma pausa programada (\textit{time.sleep}) no Python (apêndice: A). Essa decisão técnica visa humanizar a experiência do usuário. Como argumenta \citeonline[p. 8]{Norman2013}, o \textit{design} de interação deve alinhar-se à expectativa humana; uma resposta artificial imediata em jogos de tabuleiro pode causar desconforto e quebra de imersão para jogadores iniciantes.
 
-Já nos níveis superiores, o \textit{middleware} provou ser resiliente ao gerenciar a comunicação via \textit{pipes} de terminal, sem causar vazamento de memória ou picos de processamento na via principal (\textit{main thread}). 
+Nos níveis superiores, o \textit{middleware} provou ser resiliente ao gerenciar a comunicação via \textit{pipes} (dutos) de terminal, sem causar vazamento de memória ou picos de processamento na linha de execução principal (\textit{main thread}). Para viabilizar essa arquitetura entre o ecossistema do motor gráfico e o código de inteligência artificial, utilizou-se o conceito \textit{Inter-Process Communication}. cujo algoritmo completo desenvolvido encontra-se disponível no Apêndice \ref{apendice:codigo-python}. Os \textit{pipes} operam como canais de fluxo de dados gerenciados pelo sistema operacional, permitindo que a saída de texto da interface do jogo seja diretamente conectada à entrada do motor de análise Stockfish, garantindo uma troca de dados contínua e de baixa latência.
 
-Por fim, a modularização do projeto em cenas independentes mostrou-se eficiente, mantendo o consumo de memória RAM estável, uma vez que elementos densos como o tabuleiro só são instanciados após a seleção do modo de jogo. Estes resultados validam categoricamente as escolhas de estruturação do sistema baseadas nos princípios de separação de responsabilidades \cite{Fowler2006}, conforme propostas no Capítulo \ref{capitulo:projeto}.
+Por fim, a modularização do projeto em cenas independentes mostrou-se eficiente para a otimização de recursos, mantendo o consumo da memória de Acesso Aleatório (RAM) estável, uma vez que elementos densos, como o tabuleiro, só são instanciados após a seleção do modo de jogo. Esses resultados validam as escolhas de estruturação do sistema baseadas nos princípios de separação de responsabilidades \cite{Fowler2006}, conforme o proposto no capítulo \ref{capitulo:projeto}.

@@ -3,7 +3,7 @@
 
 Este capítulo apresenta os principais elementos de projeto do simulador \textit{Royal Legacy}. São detalhadas a estrutura do sistema, os protótipos das camadas visuais, a modelagem de dados para persistência, os diagramas estruturais e comportamentais baseados na \textit{Unified Modeling Language} (UML), bem como a representação lógica dos algoritmos centrais de validação e comunicação.
 
-As decisões de projeto aqui expostas visam atender aos requisitos de modularidade, customização visual e execução assíncrona da Inteligência Artificial, conforme justificado na seção \ref{secao:justificativa}.
+As decisões de projeto aqui expostas visam atender aos requisitos de modularidade, customização visual e execução assíncrona da Inteligência Artificial Stockfish, conforme justificado na seção \ref{secao:justificativa}.
 
 \section{Estruturação do projeto}
 
@@ -13,11 +13,15 @@ A figura \ref{figura:arquitetura_sistema} apresenta o diagrama de implantação 
 
 %\figura{caminho}{tamanho cm}{legenda}{referencia}
 \figura{./imagens/diagrama_1}{12cm}{Diagrama de Implantação da estrutura técnica do Royal Legacy}{figura:arquitetura_sistema}
+\begin{center}
+	\vspace{-0.2cm} % Ajusta a aproximação com a imagem
+	\small \textbf{Fonte:} Elaborado pelo autor (2026)
+\end{center}
 
 O fluxo de comunicação segue o modelo Cliente-Servidor local:
 \begin{enumerate}
 	\item \textbf{Camada de Apresentação (Godot Engine):} atua como o cliente (\textit{Frontend}). Gerencia o componente visual, captura entradas do usuário e envia o estado do jogo (formato FEN) para o intermediário;
-	\item \textbf{Camada de Comunicação (\textit{Middleware} Python):} um \textit{script} que roda em segundo plano, agindo como ponte. Ele orquestra a execução da IA e traduz os comandos;
+	\item \textbf{Camada de Comunicação (\textit{Middleware} Python):} um \textit{script} que roda em segundo plano, agindo como ponte. Ele orquestra a execução da IA Stockfish e traduz os comandos;
 	\item \textbf{Camada Lógica (Stockfish Binary):} o núcleo de processamento (\textit{Backend}). Recebe configurações via protocolo UCI e devolve os cálculos matemáticos profundos.
 \end{enumerate}
 
@@ -31,13 +35,26 @@ Nesta seção são apresentadas as interfaces principais do \textit{Royal Legacy
 A tela do menu principal (figura \ref{figura:menu}) foi projetada para ser minimalista, oferecendo acesso rápido aos modos de jogo e configurações. A tela de opções (figura \ref{figura:opções}) apresenta os controles de volume (sons), a galeria de seleção de temas visuais e a seção de créditos do jogo.
 
 \figura{./imagens/menu_principal.png}{10cm}{Layout do menu principal}{figura:menu}
+\begin{center}
+	\vspace{-0.2cm} % Ajusta a aproximação com a imagem
+	\small \textbf{Fonte:} Royal Legacy (2026)
+\end{center}
+
 \figura{./imagens/menu_opcoes.png}{10cm}{Página de configurações de áudio, temas e créditos}{figura:opções}
+\begin{center}
+	\vspace{-0.2cm} % Ajusta a aproximação com a imagem
+	\small \textbf{Fonte:} Royal Legacy (2026)
+\end{center}
 
 \subsection{Tabuleiro de Jogo}
 
 O ambiente de jogo (figura \ref{figura:jogo}) apresenta a grade $8\times8$ centralizada com peças em estilo \textit{pixel art}, sobre um fundo verde-oliva. No canto superior esquerdo, encontram-se dois botões de controle de fluxo: um para retornar ao menu principal e outro com a função de desfazer jogadas ou reiniciar o tabuleiro.
 
 \figura{./imagens/tabuleiro.png}{10cm}{Ambiente final do tabuleiro com peças \textit{pixel art} e botões de controle}{figura:jogo}
+\begin{center}
+	\vspace{-0.2cm} % Ajusta a aproximação com a imagem
+	\small \textbf{Fonte:} Royal Legacy (2026)
+\end{center}
 
 \section{Diagrama Entidade Relacionamento (DER)}
 
@@ -46,6 +63,10 @@ Dado que o \textit{Royal Legacy} é um simulador local focado na jogabilidade e 
 A figura \ref{figura:der_sistema} apresenta o diagrama entidade relacionamento (DER) que rege a organização das preferências do sistema.
 
 \figura{./imagens/diagrama_2.png}{12cm}{Diagrama Entidade Relacionamento para persistência de preferências locais}{figura:der_sistema}
+\begin{center}
+	\vspace{-0.2cm} % Ajusta a aproximação com a imagem
+	\small \textbf{Fonte:} Elaborado pelo autor (2026)
+\end{center}
 
 O DER segue as normas formais de modelagem:
 \begin{itemize}
@@ -60,13 +81,17 @@ Como o simulador prioriza sessões de jogo independentes, o modelo não contempl
 O diagrama de casos de uso (figura \ref{figura:caso_uso}) descreve as funcionalidades oferecidas pelo simulador e as interações entre o usuário e o núcleo de IA.
 
 \figura{./imagens/diagrama_3.png}{12cm}{Diagrama de casos de uso do simulador}{figura:caso_uso}
+\begin{center}
+	\vspace{-0.2cm} % Ajusta a aproximação com a imagem
+	\small \textbf{Fonte:} Elaborado pelo autor (2026)
+\end{center}
 
 Os principais casos de uso identificados são:
 \begin{itemize}
 	\item \textbf{Configurar Preferências:} o usuário interage com as telas para ajustar volumes e a estética do jogo;
-	\item \textbf{Iniciar Partida:} gerenciado pelo estruturador, permite definir o modo de jogo e o nível de dificuldade.
-	\item \textbf{Movimentar Peças:} ação principal de interação no tabuleiro, onde o sistema valida as regras matemáticas do xadrez.
-	\item \textbf{Calcular Jogada:} caso de uso executado pelo ator secundário (Stockfish) via \textit{middleware}, disparado de forma assíncrona quando o modo PvE está ativo.
+	\item \textbf{Iniciar Partida:} gerenciado pelo estruturador, permite definir o modo de jogo e o nível de dificuldade;
+	\item \textbf{Movimentar Peças:} ação principal de interação no tabuleiro, cujas regras matemáticas e validações de lances (como movimentos válidos, capturas, xeque e roque) foram implementadas de forma nativa através de algoritmos customizados em \textit{GDScript}, baseando-se no modelo lógico de matrizes bidimensionais estruturado no projeto pedagógico \textit{Godot With Me} \cite{GodotWithMeVideo};
+	\item \textbf{Calcular Jogada:} caso de uso executado pelo ator secundário (Stockfish) via \textit{middleware}, disparado de forma assíncrona quando o modo \textit{Player vs Environment} (\textit{PvE}, ou seja, Jogador contra o Ambiente/Inteligência Artificial) está ativo, processando a resposta do motor gráfico e devolvendo a melhor jogada calculada.
 \end{itemize}
 
 \section{Diagrama de Classes}
@@ -74,13 +99,17 @@ Os principais casos de uso identificados são:
 A organização estrutural do código na Godot Engine e a integração com o \textit{middleware} Python podem ser representadas formalmente. A modelagem estática do sistema, representada pelo diagrama de classes (figura \ref{figura:diagrama_classes}), define a estrutura das classes, seus atributos e os relacionamentos de associação e composição necessários para o funcionamento do simulador \cite{Massollar2005}.
 
 \figura{./imagens/diagrama_4.png}{14cm}{Diagrama de classes detalhando a estrutura em GDScript e Python}{figura:diagrama_classes}
+\begin{center}
+	\vspace{-0.2cm} % Ajusta a aproximação com a imagem
+	\small \textbf{Fonte:} Elaborado pelo autor (2026)
+\end{center}
 
 Destacam-se as seguintes classes no funcionamento do sistema:
 \begin{itemize}
-	\item \textbf{Classe Global (Singleton):} script configurado por meio do recurso \textit{autoload} da Godot Engine, responsável por persistir o estado da aplicação e reter os dados globais de configuração do simulador durante a alternância de cenas.
-	\item \textbf{Estruturador:} atua como o nó raiz, instanciando e gerenciando a transição entre os componentes gráficos através do método \texttt{mostrar\_tela()}.
-	\item \textbf{BaseXadrez:} classe central do jogo. Detém a matriz do tabuleiro, executa a validação de regras e possui o método \texttt{matriz\_para\_fen()}, essencial para traduzir o estado do jogo. Também gerencia a \textit{thread} da IA.
-	\item \textbf{GameManager:} classe responsável por monitorar o fluxo da partida, emitindo sinais de xeque e definindo o encerramento do jogo.
+	\item \textbf{Global:} script configurado por meio do recurso \textit{autoload} da Godot Engine, responsável por persistir o estado da aplicação e reter os dados globais de configuração do simulador durante a alternância de cenas;
+	\item \textbf{Estruturador:} atua como o nó raiz, instanciando e gerenciando a transição entre os componentes gráficos através do método \texttt{mostrar\_tela()};
+	\item \textbf{BaseXadrez:} classe central do jogo. Detém a matriz do tabuleiro, executa a validação de regras e possui o método \texttt{matriz\_para\_fen()}, essencial para traduzir o estado do jogo. Também gerencia a \textit{thread} da IA;
+	\item \textbf{GameManager:} classe responsável por monitorar o fluxo da partida, emitindo sinais de xeque e definindo o encerramento do jogo;
 	\item \textbf{ChessBridge:} \textit{script} Python independente que recebe a \textit{string} FEN e a dificuldade, instanciando o motor Stockfish para calcular e retornar a jogada.
 \end{itemize}
 
@@ -98,11 +127,11 @@ Nesta seção, detalha-se a lógica de conversão do estado do jogo e a comunica
 			casas\_vazias $\leftarrow$ 0\;
 			\Para{cada coluna da linha atual}{
 				peca\_atual $\leftarrow$ verificar a peça na posição atual\;
-				\Se{a casa estiver vazia}{
+				\uSe{peca\_atual == null}{
 					casas\_vazias $\leftarrow$ casas\_vazias + 1\;
 				}
 				\Senao{
-					\Se{casas\_vazias $\rightarrow$ 0}{
+					\Se{casas\_vazias $> 0$}{
 						concatenar o número de casas\_vazias ao texto\_fen\;
 						casas\_vazias $\leftarrow$ 0\;
 					}
@@ -110,32 +139,36 @@ Nesta seção, detalha-se a lógica de conversão do estado do jogo e a comunica
 					concatenar letra\_peca ao texto\_fen\;
 				}
 			}
-			\Se{casas\_vazias $\rightarrow$ 0}{
+			\Se{casas\_vazias $> 0$}{
 				concatenar o número de casas\_vazias ao texto\_fen\;
 			}
-			\Se{a linha atual não for a última}{
+			\Se{$linha < 8$}{
 				concatenar o símbolo "/" ao texto\_fen\;
 			}
 		}
 		\Retorna{texto\_fen}\;
 	}
 \end{algorithm}
+\begin{center}
+	\vspace{-0.2cm} % Ajusta a aproximação com a imagem
+	\small \textbf{Fonte:} Elaborado pelo autor (2026)
+\end{center}
 
-O processo de decisão da IA é executado em uma \textit{Thread} separada para evitar o congelamento da camada visual. O algoritmo \ref{alg:ponte_python} descreve a lógica do \textit{middleware}. É importante notar que a aplicação do limite de profundidade (linhas 13 e 15) é uma execução prática do modelo \textit{Minimax} estruturado, conforme descrito por \citeonline{Pires2022}, garantindo a limitação da árvore de pesquisa e o tempo de resposta aceitável da máquina.
+O processo de decisão da IA Stockfish é executado em uma \textit{Thread} separada para evitar o congelamento da camada visual. O algoritmo \ref{alg:ponte_python} descreve a lógica do \textit{middleware}. É importante notar que a aplicação do limite de profundidade (linhas 10 e 13) é uma execução prática do modelo \textit{Minimax} estruturado, conforme descrito por \citeonline{Pires2022}, garantindo a limitação da árvore de pesquisa e o tempo de resposta aceitável da máquina.
 
 \begin{algorithm}[H]
-	\caption{Lógica de Processamento de Movimento da Inteligência Artificial.}
+	\caption{Lógica de Processamento de Movimento da IA Stockfish.}
 	\label{alg:ponte_python}
 	\Entrada{estado\_do\_tabuleiro, nivel\_dificuldade}
 	\Inicio{
 		ler o estado\_do\_tabuleiro\;
-		\Se{nivel\_dificuldade = 1}{
+		\uSe{nivel\_dificuldade = 1}{
 			lista\_movimentos $\leftarrow$ obter todos os movimentos válidos\;
 			movimento\_escolhido $\leftarrow$ sortear aleatoriamente um movimento da lista\_movimentos\;
 		}
 		\Senao{
 			iniciar o motor de xadrez\;
-			\Se{nivel\_dificuldade = 2}{
+			\uSe{nivel\_dificuldade = 2}{
 				limite\_busca $\leftarrow$ profundidade 1\;
 			}
 			\Senao{
@@ -147,3 +180,7 @@ O processo de decisão da IA é executado em uma \textit{Thread} separada para e
 		\Retorna{resposta}\;
 	}
 \end{algorithm}
+\begin{center}
+	\vspace{-0.2cm} % Ajusta a aproximação com a imagem
+	\small \textbf{Fonte:} Elaborado pelo autor (2026)
+\end{center}

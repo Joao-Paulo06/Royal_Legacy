@@ -1,7 +1,7 @@
 %%
 % Comandos para edicao de textos em latex
 % Autor: Ronneesley Moura Teles
-% Modificado para adequação ABNT 2023
+% Modificado para adequação ABNT e Suporte Python/UTF8
 %%
 \RequirePackage{url}
 \RequirePackage{listings}
@@ -17,7 +17,6 @@
 \RequirePackage{xifthen}
 \RequirePackage{multirow}
 \RequirePackage{lmodern}
-\RequirePackage[portuguese, lined, boxruled, commentsnumbered, linesnumbered]{algorithm2e}
 \RequirePackage{subcaption}
 \RequirePackage{pgfpages}
 \RequirePackage{tikz}
@@ -26,8 +25,9 @@
 \RequirePackage{lscape}
 \RequirePackage{setspace}
 \RequirePackage{mathtools}
-\RequirePackage[alf]{abntex2cite}
 \RequirePackage{array}
+\RequirePackage[portuguese, lined, boxruled, commentsnumbered, linesnumbered]{algorithm2e}
+\RequirePackage[alf]{abntex2cite}
 
 %%%%%%%%%%%%%%%%%
 % Parâmetros do pacote
@@ -52,17 +52,25 @@
 \definecolor{mygreen}{RGB}{28,172,0}
 \definecolor{mylilas}{RGB}{170,55,241}
 
-\lstset{language=Matlab,
-    tabsize=3,
+% Tradução dos termos do pacote listings para o Português (ABNT)
+\renewcommand{\lstlistingname}{Código}
+\renewcommand{\lstlistlistingname}{Sumário de Códigos}
+
+\lstset{
+    tabsize=4,
     breaklines=true,
-    keywordstyle=\color{blue},
+    keywordstyle=\color{blue}\bfseries,
     stringstyle=\color{mylilas},
     commentstyle=\color{mygreen},
     showstringspaces=false,
     numbers=left,
     numberstyle={\tiny \color{black}},
-    inputencoding=cp1252,
-    extendedchars=true
+    inputencoding=utf8,               % Atualizado para o padrão moderno UTF-8
+    extendedchars=true,
+    frame=single,                     % Moldura elegante ao redor do código
+    captionpos=t,                      % Legenda sempre no topo (Padrão ABNT)
+    % Mapeamento de acentos caso você precise usar comentários em português no futuro
+    literate={á}{{\'a}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {é}{{\'e}}1 {ã}{{\~a}}1 {õ}{{\~o}}1 {ç}{{\c{c}}}1 {Í}{{\'I}}1 {É}{{\'E}}1 {Á}{{\'A}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
 }
 
 \lstdefinestyle{CodigoFonte}{
@@ -106,15 +114,12 @@
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 
-
-% Ambiente para respostas (us
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % AJUSTE FINAL ABNT 2023 - VERSÃO SEGURA (SEM ERROS)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \makeatletter
 
-% 1. Remove os parênteses das URLs (O comando \url é o que causa isso)
+% 1. Remove os parênteses das URLs
 \DeclareRobustCommand{\url}[1]{#1}
 
 % 2. Define os prefixos apenas se eles já existirem, evitando o erro "Undefined"

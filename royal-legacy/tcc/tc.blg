@@ -16,10 +16,6 @@ Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'wiz_functions' (item size: 4) to 9000 items.
 Database file #1: abntex2-options.bib
 Database file #2: referencias.bib
-Repeated entry---line 88 of file referencias.bib
- : @book{Fowler2006
- :                 ,
-I'm skipping whatever remains of this entry
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'glb_str_end' (item size: 4) to 20 items.
 Reallocating 'glb_str_ptr' (item size: 4) to 20 items.
@@ -29,45 +25,44 @@ Reallocating 'global_strs' (item size: 1) to 4000000 items.
 | Em caso de dúvidas ou problemas com este estilo procure |
 | http://www.abntex.net.br/                               |
 +---------------------------------------------------------+
-You've used 19 entries,
+You've used 20 entries,
             6714 wiz_defined-function locations,
-            1307 strings with 11318 characters,
-and the built_in function-call counts, 15259 in all, are:
-= -- 1486
-> -- 365
-< -- 152
-+ -- 323
-- -- 115
-* -- 934
-:= -- 2081
-add.period$ -- 65
-call.type$ -- 19
-change.case$ -- 140
-chr.to.int$ -- 35
-cite$ -- 17
-duplicate$ -- 1042
-empty$ -- 1077
-format.name$ -- 534
-if$ -- 3438
+            1324 strings with 11783 characters,
+and the built_in function-call counts, 17196 in all, are:
+= -- 1750
+> -- 380
+< -- 197
++ -- 373
+- -- 120
+* -- 1045
+:= -- 2297
+add.period$ -- 88
+call.type$ -- 20
+change.case$ -- 164
+chr.to.int$ -- 36
+cite$ -- 18
+duplicate$ -- 1256
+empty$ -- 1151
+format.name$ -- 557
+if$ -- 3837
 int.to.chr$ -- 2
 int.to.str$ -- 0
-missing$ -- 333
-newline$ -- 84
-num.names$ -- 85
-pop$ -- 439
+missing$ -- 367
+newline$ -- 96
+num.names$ -- 90
+pop$ -- 464
 preamble$ -- 1
-purify$ -- 63
+purify$ -- 66
 quote$ -- 0
-skip$ -- 1168
+skip$ -- 1328
 stack$ -- 1
-substring$ -- 501
-swap$ -- 386
-text.length$ -- 4
+substring$ -- 600
+swap$ -- 478
+text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 4
 warning$ -- 0
-while$ -- 108
+while$ -- 115
 width$ -- 0
-write$ -- 257
-(There was 1 error message)
+write$ -- 290

@@ -1,73 +1,72 @@
 \chapter{Código-Fonte do \textit{Middleware} Python}
 \label{apendice:codigo-python}
 
-\begin{verbatim}
-import sys
-import json
-import chess
-import chess.engine
-import os
-import random
-import time
-
-def get_ai_move(fen, dificuldade_str):
-diretorio_atual = os.path.dirname(os.path.abspath(__file__))
-caminho_stockfish = os.path.join(diretorio_atual, "stockfish.exe")
-board = chess.Board(fen)
-
-try:
-dificuldade = int(dificuldade_str)
-
-if dificuldade == 1:
-# Pega todas as jogadas válidas no tabuleiro agora
-movimentos_legais = list(board.legal_moves)
-
-# Escolhe uma jogada de forma 100% aleatória (Modo Caos)
-movimento_escolhido = random.choice(movimentos_legais)
-
-time.sleep(0.5)
-
-print(json.dumps({
-	"status": "success",
-	"move_uci": movimento_escolhido.uci(),
-	"debug_info": "IA Nível 1 (Modo Pombo Aleatório)"
-}))
-return
-
-# ======== NÍVEIS MÉDIO E DIFÍCIL ========
-with chess.engine.SimpleEngine.popen_uci(caminho_stockfish) as engine:
-
-if dificuldade == 2:
-# MÉDIO: Jogador de clube amador.
-engine.configure({"Skill Level": 1})
-limite = chess.engine.Limit(depth=1, time=0.5)
-
-else:
-# DIFÍCIL (3): Grande Mestre implacável.
-engine.configure({"Skill Level": 20})
-limite = chess.engine.Limit(depth=20, time=1.5)
-
-result = engine.play(board, limite)
-
-print(json.dumps({
-	"status": "success",
-	"move_uci": result.move.uci(),
-	"debug_info": f"IA Nível {dificuldade} (Depth: {limite.depth})"
-}))
-
-except Exception as e:
-print(json.dumps({
-	"status": "error",
-	"message": str(e)
-}))
-
-
-# Lógica para receber os comandos da Godot
-if __name__ == "__main__":
-if len(sys.argv) > 3:
-comando = sys.argv[2]
-if comando == "get_ai_move":
-fen_board = sys.argv[1]
-nivel_dificuldade = sys.argv[3]
-get_ai_move(fen_board, nivel_dificuldade)
-\end{verbatim}
+\begin{lstlisting}[language=Python, caption={Codigo-fonte do script de integracao em Python (middleware).}]
+	import sys
+	import json
+	import chess
+	import chess.engine
+	import os
+	import random
+	import time
+	
+	def get_ai_move(fen, dificuldade_str):
+	diretorio_atual = os.path.dirname(os.path.abspath(__file__))
+	caminho_stockfish = os.path.join(diretorio_atual, "stockfish.exe")
+	board = chess.Board(fen)
+	
+	try:
+	dificuldade = int(dificuldade_str)
+	
+	if dificuldade == 1:
+	# Pega todas as jogadas validas no tabuleiro agora
+	movimentos_legais = list(board.legal_moves)
+	
+	# Escolhe uma jogada de forma aleatoria (Modo Caos)
+	movimento_escolhido = random.choice(movimentos_legais)
+	
+	time.sleep(0.5)
+	
+	print(json.dumps({
+		"status": "success",
+		"move_uci": movimento_escolhido.uci(),
+		"debug_info": "IA Nivel 1"
+	}))
+	return
+	
+	# ======== NIVEIS MEDIO E DIFICIL ========
+	with chess.engine.SimpleEngine.popen_uci(caminho_stockfish) as engine:
+	
+	if dificuldade == 2:
+	# MEDIO: Jogador de clube amador.
+	engine.configure({"Skill Level": 1})
+	limite = chess.engine.Limit(depth=1, time=0.5)
+	
+	else:
+	# DIFICIL (3): Grande Mestre implacavel.
+	engine.configure({"Skill Level": 20})
+	limite = chess.engine.Limit(depth=20, time=1.5)
+	
+	result = engine.play(board, limite)
+	
+	print(json.dumps({
+		"status": "success",
+		"move_uci": result.move.uci(),
+		"debug_info": f"IA Nivel {dificuldade}"
+	}))
+	
+	except Exception as e:
+	print(json.dumps({
+		"status": "error",
+		"message": str(e)
+	}))
+	
+	# Logica para receber os comandos da Godot
+	if __name__ == "__main__":
+	if len(sys.argv) > 3:
+	comando = sys.argv[2]
+	if comando == "get_ai_move":
+	fen_board = sys.argv[1]
+	nivel_dificuldade = sys.argv[3]
+	get_ai_move(fen_board, nivel_dificuldade)
+\end{lstlisting}
