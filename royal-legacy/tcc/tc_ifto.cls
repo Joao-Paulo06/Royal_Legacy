@@ -85,13 +85,18 @@
 
 \pagenumbering{arabic} %Manual página 17
 
-%Configura o cabeçalho
+% Configura o cabeçalho
 \renewcommand{\textual}{
 	\makepagestyle{plain}
 	\pagestyle{plain}
 	\aliaspagestyle{chapter}{plain}
-	\makeevenfoot{plain}{}{}{\normalfont \thepage}
-	\makeoddfoot{plain}{}{}{\normalfont \thepage}
+	
+	%Tamanho da fonte da paginação (manual página 9)
+	\makeoddhead{plain}{}{}{\footnotesize \thepage}   % ímpares → direita
+	\makeevenhead{plain}{\footnotesize \thepage}{}{} % pares → esquerda
+	
+	\makeoddfoot{plain}{}{}{}
+	\makeevenfoot{plain}{}{}{}
 }
 
 \renewcommand{\postextual}{
